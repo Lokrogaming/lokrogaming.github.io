@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <title>Twitch Player Black0815xx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-70a6755c-e447-44a1-9b0b-ec3f4607f45b" data-elfsight-app-lazy></div>
+    <style>
+        body {
+            font-family=: Arial, sans-serif;
+            background: linear-gradient(to right, red, black);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .episodes {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .episode {
+            min-width: max-content;
+            margin-bottom: .8rem;
+            padding: .8rem 1rem;
+            border-radius: 10px;
+            border: 0;
+            background: #191414;
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+        }
+        .episode:hover {
+            background: #1Db954;
+        }
+         .button {
+            background-color: transparent;
+            border: 2px solid #1DB954; /* Spotify Grün */
+            border-radius: 12px; /* Abgerundete Ecken */
+            color: #A0A0A0; /* Graue Schriftfarbe für "SPOTIFY PLAYER" */
+            font-size: 18px;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .button:hover {
+            background-color: rgba(29, 185, 84, 0.1); /* Leichte grüne Hintergrundfarbe beim Hover */
+        }
+        
+        
+        iframe {
+            width: 50%;
+            height: 25%;
+            margin-bottom: 10px;
+            border: none;
+            
+        }
+        .twitch-embed { 
+            width: 100%;
+            height: 50%;
+        }
+    </style>
+</head>
+<body>
+<button class="button" onclick="backtomenu()">
+<strong><em>BACK TO MENU</em></strong> 
+</button>
+
+   <!-- Add a placeholder for the Twitch embed -->
+<div id="twitch-embed"></div>
+
+<!-- Load the Twitch embed script -->
+<script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+<!-- Create a Twitch.Player object. This will render within the placeholder div -->
+<script type="text/javascript">
+  new Twitch.Player("twitch-embed", {
+    channel: "black0815xx"
+  });
+</script>
+
+    <iframe
+  id="chat_embed"
+  src="https://www.twitch.tv/embed/black0815xx/chat?parent=lokrogaming.github.io"
+  height="500"
+  width="350">
+</iframe>
+
+    <script src="script.js"></script>
+</body>
+</html>
