@@ -3,7 +3,8 @@ function loadedpage() {
   let checkdcbtnpress : JSON.Stringify(dcbtnpressed);
   localstorage.setItem(checkloaded);
 }
-  
+
+let seldate = GetElementByID("date").value
 
 
 
@@ -11,7 +12,7 @@ function loadedpage() {
 
 
 // Set the date we're counting down to
-var countDownDate = new Date("Feb 28, 2025 00:00:00").getTime();
+var countDownDate = new Date(seldate).getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
