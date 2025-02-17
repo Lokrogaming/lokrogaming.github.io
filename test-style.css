@@ -14,7 +14,21 @@ body {
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
-button {
-  background: linear-gradient(to right, Black, Red);
+     .button {
+            background-color: transparent;
+            border: 2px solid #1DB954; /* Spotify Grün */
+            border-radius: 12px; /* Abgerundete Ecken */
+            color: #A0A0A0; /* Graue Schriftfarbe für "SPOTIFY PLAYER" */
+            font-size: 18px;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .button:hover {
+            background-color: rgba(29, 185, 84, 0.1); /* Leichte grüne Hintergrundfarbe beim Hover */
+        }
   
   
