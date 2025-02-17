@@ -1,5 +1,5 @@
 var i = 0;
-var txt = 'Lorem ipsum typing effect!'; /* The text */
+var txt = 'Hallo! Willkommen auf meiner Seite! Huer teste ich viele Sachen aus die ich lerne. Viel Spaß! Falls du Tipps für mich hast, kontaktiere mich gerne!'; /* The text */
 var speed = 50; /* The speed/duration of the effect in milliseconds */
 
 function typeWriter() {
