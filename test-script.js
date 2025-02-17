@@ -10,7 +10,7 @@ function typeWriter() {
   }
 }
 
-function on() {
+function overlayactive() {
   document.getElementById("overlay").style.display = "block";
   documment.getElementById("overlaybtn").style.display ="none";
 }
@@ -20,4 +20,4 @@ function off() {
   document.getElementById("overlaybtn".style.display = "block";
 }
 
-window.onload = on()
+window.onload = overlayactive() 
