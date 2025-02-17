@@ -12,6 +12,7 @@ function typeWriter() {
 
 function on() {
   document.getElementById("overlay").style.display = "block";
+  documment.getElementById("overlaybtn"
 }
 
 function off() {
