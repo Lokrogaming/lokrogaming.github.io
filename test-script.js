@@ -12,11 +12,12 @@ function typeWriter() {
 
 function on() {
   document.getElementById("overlay").style.display = "block";
-  documment.getElementById("overlaybtn"
+  documment.getElementById("overlaybtn").style.display ="none";
 }
 
 function off() {
   document.getElementById("overlay").style.display = "none";
+  document.getElementById("overlaybtn".style.display = "block";
 }
 
 window.onload = on()
