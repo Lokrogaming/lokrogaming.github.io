@@ -23,7 +23,7 @@
     <script>
       window.onload = onload()
       
-   function dlsubmit {
+   function dlsubmit() {
       let input = document.getElementById("tabellendownloader").value;
      if (input == "IPT-dl") {
        document.getElementById("ipt-dl-txt").style.visibility = "visible";
@@ -35,9 +35,9 @@
            document.getElementById("prät-dl-txt").style.visibility = "visible";
            document.getElementById("tabellendownloader").style.visibility = "hidden";
          } else {
-           document.getElementById("error").style.visible = "visible";
+           document.getElementById("error").style.visibility = "visible";
          }
-       }
+   }
          function onload() {
            document.getElementById("error").style.visibility = "hidden";
            document.getElementById("tabellendownloader").style.visibility = "visibile";
