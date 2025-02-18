@@ -25,17 +25,13 @@
       
    function dlsubmit {
       let input = document.getElementById("tabellendownloader").value;
-     if input == "IPT-dl" => {
+     if (input == "IPT-dl") {
        document.getElementById("ipt-dl-txt").style.display = "block";
        document.getElementById("tabellendownloader").style.display ="none";
-     };
-     else {
-       if input == "PT-dl" => {
+     } else if input == "PT-dl") {
          document.getElementById("pt-dl-txt").style.display = "block";
          document.getElementById("tabellendownloader").style.display = "none";
-       };
-       else {
-         if input == "PRÄT-dl" => {
+       } else if (input == "PRÄT-dl") {
            document.getElementById("prät-dl-txt").style.display = "block";
            document.getElementById("tabellendownloader").style.display = "none";
          };
@@ -44,12 +40,14 @@
          }
        }
          function onload() {
-           document.getElementById("error").style.display = "none";
-           document.getElementById("tabellendownloader").style.display = "block";
-           document.getElementById("prät-dl-txt").style.display = "none";
-           document.getElementById("pt-dl-txt").style.display = "none";
-           document.getElementById("ipt-dl-txt").style.display = "none";
+           document.getElementById("error").style.visibility = "hidden";
+           document.getElementById("tabellendownloader").style.visibility = "visibile";
+           document.getElementById("prät-dl-txt").style.visibility = "hidden";
+           document.getElementById("pt-dl-txt").style.visibility = "hidden";
+           document.getElementById("ipt-dl-txt").style.visibility = "hidden";
          }
+     }
+   }
            
            
        
