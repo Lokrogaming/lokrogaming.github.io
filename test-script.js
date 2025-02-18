@@ -12,7 +12,12 @@ function typeWriter() {
 
 function overlayactive() {
   document.getElementById("overlay").style.display = "block";
-  documment.getElementById("overlaybtn").style.display ="none";
+  document.getElementById("overlaybtn").style.display ="none";
+    if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
 }
 
 function off() {
