@@ -15,9 +15,46 @@
     </ul>
     
     <input type="text" id="tabellendownloader" placeholder="Tabellennamen eingeben">
+    <button class="button" onclick="dlsubmit()">Download!</button>
     <a id="ipt-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0513.jpeg" download>Klicke um die Tabelle zu downloaden</a>
-    <a id="pt-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0514" download>Klicke um die Tabelle zu downloaden</a>
+    <a id="pt-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0511.jpeg" download>Klicke um die Tabelle zu downloaden</a>
+    <a id="prät-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0517.jpeg" download>Klicke um die Tabelle zu downloaden</a>
+    <p style=" color: Red" id="error">AN ERROR OCCURED</p>
     <script>
+      window.onload = onload()
+      
+   function dlsubmit {
+      let input = document.getElementById("tabellendownloader").value;
+     if input == "IPT-dl" => {
+       document.getElementById("ipt-dl-txt").style.display = "none";
+       document.getElementById("tabellendownloader").style.display ="block";
+     };
+     else {
+       if input == "PT-dl" => {
+         document.getElementById("pt-dl-txt").style.display = "none";
+         document.getElementById("tabellendownloader").style.display = "block";
+       };
+       else {
+         if input == "PRÄT-dl" => {
+           document.getElementById("prät-dl-txt").style.display = "none";
+           document.getElementById("tabellendownloader").style.display = "block";
+         };
+         else {
+           document.getElementById("error").style.display = "none";
+         }
+       }
+         function onload() {
+           document.getElementById("error").style.display = "block";
+           document.getElementById("tabellendownloader").style.display = "none";
+           document.getElementById("prät-dl-txt").style.display = "block";
+           document.getElementById("pt-dl-txt").style.display = "block";
+           document.getElementById("ipt-dl-txt").style.display = "block";
+         }
+           
+           
+       
+       
+      
       
     </script>
     
