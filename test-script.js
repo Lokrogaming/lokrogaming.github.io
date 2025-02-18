@@ -11,8 +11,8 @@ function typeWriter() {
 }
 
 function overlayactive() {
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById("overlaybtn").style.display ="none";
+  document.getElementById("overlay").style.visibility = "visible";
+  document.getElementById("overlaybtn").style.visibility ="hidden";
     if (i < txt.length) {
     document.getElementById("demo").innerHTML += txt.charAt(i);
     i++;
@@ -21,8 +21,8 @@ function overlayactive() {
 }
 
 function off() {
-  document.getElementById("overlay").style.display = "none";
-  document.getElementById("overlaybtn".style.display = "block";
+  document.getElementById("overlay").style.visibility = "hidden";
+  document.getElementById("overlaybtn").style.visibility = "visible";
 }
 
 window.onload = overlayactive() 
