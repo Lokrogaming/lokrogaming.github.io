@@ -40,3 +40,6 @@ function opendiscord() {
 function opentest() {
   window.location.href="test-coupon-page.html"
 }
+function openlateindl() {
+  window.location.href="projects/latein/verben-gruppen-projekt/downloader.html"
+}
