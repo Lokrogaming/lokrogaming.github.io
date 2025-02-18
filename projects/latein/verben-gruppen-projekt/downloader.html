@@ -26,29 +26,29 @@
    function dlsubmit {
       let input = document.getElementById("tabellendownloader").value;
      if input == "IPT-dl" => {
-       document.getElementById("ipt-dl-txt").style.display = "none";
-       document.getElementById("tabellendownloader").style.display ="block";
+       document.getElementById("ipt-dl-txt").style.display = "block";
+       document.getElementById("tabellendownloader").style.display ="none";
      };
      else {
        if input == "PT-dl" => {
-         document.getElementById("pt-dl-txt").style.display = "none";
-         document.getElementById("tabellendownloader").style.display = "block";
+         document.getElementById("pt-dl-txt").style.display = "block";
+         document.getElementById("tabellendownloader").style.display = "none";
        };
        else {
          if input == "PRÄT-dl" => {
-           document.getElementById("prät-dl-txt").style.display = "none";
-           document.getElementById("tabellendownloader").style.display = "block";
+           document.getElementById("prät-dl-txt").style.display = "block";
+           document.getElementById("tabellendownloader").style.display = "none";
          };
          else {
-           document.getElementById("error").style.display = "none";
+           document.getElementById("error").style.display = "block";
          }
        }
          function onload() {
-           document.getElementById("error").style.display = "block";
-           document.getElementById("tabellendownloader").style.display = "none";
-           document.getElementById("prät-dl-txt").style.display = "block";
-           document.getElementById("pt-dl-txt").style.display = "block";
-           document.getElementById("ipt-dl-txt").style.display = "block";
+           document.getElementById("error").style.display = "none";
+           document.getElementById("tabellendownloader").style.display = "block";
+           document.getElementById("prät-dl-txt").style.display = "none";
+           document.getElementById("pt-dl-txt").style.display = "none";
+           document.getElementById("ipt-dl-txt").style.display = "none";
          }
            
            
