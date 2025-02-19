@@ -11,9 +11,7 @@
     <h1>Hallo! Hier kannst du die Tabellen für die Zeitfomen von "esse" downloaden!</h1>
     <p>Hier kannst du nach Bedarf die Lerntabellen eintippen und downloaden! </p>
     <ul>
-      <li>Imperfekt von esse => IPT-dl</li>
-      <li>Perfekt von esse => PT-dl</li>
-      <li>Präsens von esse => PRÄT-dl</li>
+      <li>Tabellen PDF downloaden => tabellen-dl</li>
     </ul>
     
     <input type="text" id="tabellendownloader" placeholder="Tabellennamen eingeben">
@@ -21,6 +19,7 @@
     <a id="ipt-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0513.jpeg" download>Klicke um die Tabelle zu downloaden</a>
     <a id="pt-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0511.jpeg" download>Klicke um die Tabelle zu downloaden</a>
     <a id="prät-dl-txt" href="projects/latein/verben-gruppen-projekt/IMG_0517.jpeg" download>Klicke um die Tabelle zu downloaden</a>
+    <a id="tabellen-pdf-txt" href="IMG_0511.zip" download>Klicke um die Tabellen PDF zu downloaden</a>
     <p style=" color: Red" id="error">AN ERROR OCCURED</p>
     <script>
       window.onload = onload()
@@ -36,9 +35,13 @@
        } else if (input == "PRÄT-dl") {
            document.getElementById("prät-dl-txt").style.visibility = "visible";
            document.getElementById("tabellendownloader").style.visibility = "hidden";
+         } else if (input == "tabellen-dl") {
+           document.getElementById("tabellen-pdf-txt").style.visibility = "visible";
+           document.getElementById("tabellendownloader").style.visibility = "hidden";
          } else {
-           document.getElementById("error").style.visibility = "visible";
-         }
+            document.getElementById("error").style.visibility = "visibile";
+     }
+    
    }
          function onload() {
            document.getElementById("error").style.visibility = "hidden";
@@ -46,6 +49,7 @@
            document.getElementById("prät-dl-txt").style.visibility = "hidden";
            document.getElementById("pt-dl-txt").style.visibility = "hidden";
            document.getElementById("ipt-dl-txt").style.visibility = "hidden";
+           document.getElementById("tabellen-dl-txt").style.visibility = "hidden";
          }
      
            
