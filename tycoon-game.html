@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endlos-Tycoon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .button {
+            padding: 12px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff9800, #e68900);
+            color: white;
+            transition: transform 0.2s ease, background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #e68900, #ff5722);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #money-display {
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        #money-display.animate {
+            transform: scale(1.2);
+        }
+        #upgrade-container button {
+            display: block;
+            width: 80%;
+            margin: 5px auto;
+        }
+        .game-background {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img class="game-background" src="https://source.unsplash.com/1600x300/?city,future" alt="Spielhintergrund">
+    <h1><i class="fas fa-coins"></i> Endlos-Tycoon</h1>
+    <div class="container">
+        <div class="info-box">
+            <p><i class="fas fa-money-bill-wave"></i> Geld: <span id="money-display">0</span>€</p>
+            <p><i class="fas fa-chart-line"></i> Einkommen: <span id="income">0</span>€/s</p>
+            <p><i class="fas fa-level-up-alt"></i> Level: <span id="level">1</span></p>
+            <p><i class="fas fa-star"></i> Erfahrung: <span id="xp">0</span> / <span id="xpMax">100</span></p>
+            <p><i class="fas fa-trophy"></i> Prestige-Stufe: <span id="prestige">0</span></p>
+        </div>
+        <button class="button" onclick="earnMoney()"><i class="fas fa-hand-holding-usd"></i> Geld verdienen</button>
+    </div>
+    <h2><i class="fas fa-hammer"></i> Upgrades</h2>
+    <div id="upgrade-container"></div>
+    <h2><i class="fas fa-sync-alt"></i> Prestige</h2>
+    <button class="button" onclick="prestige()">🔄 Prestige aktivieren (Level 10 benötigt)</button>
+    <h2><i class="fas fa-award"></i> Errungenschaften</h2>
+    <div id="achievements"></div>
+    
+    <script>
+        let money = 0;
+        let income = 0;
+        let level = 1;
+        let xp = 0;
+        let xpMax = 100;
+        let prestigeLevel = 0;
+        let upgrades = [];
+        let achievements = [];
+
+        function earnMoney() {
+            money += 1;
+            checkAchievements();
+            updateDisplay();
+            animateMoney();
+        }
+        
+        function generateUpgrade() {
+            let id = upgrades.length + 1;
+            let cost = Math.floor(10 * Math.pow(1.5, id));
+            let incomeBoost = id * 2;
+            let xpGain = id * 5;
+            
+            let upgrade = { id, cost, incomeBoost, xpGain, count: 0 };
+            upgrades.push(upgrade);
+            
+            let button = document.createElement("button");
+            button.className = "button";
+            button.innerHTML = `<i class="fas fa-arrow-up"></i> Upgrade ${id} kaufen (${cost}€) [+${incomeBoost}/s, +${xpGain} XP]`;
+            button.onclick = () => buyUpgrade(id - 1);
+            document.getElementById("upgrade-container").appendChild(button);
+        }
+        
+        function buyUpgrade(index) {
+            let upgrade = upgrades[index];
+            if (money >= upgrade.cost) {
+                money -= upgrade.cost;
+                upgrade.count++;
+                income += upgrade.incomeBoost;
+                xp += upgrade.xpGain;
+                checkLevelUp();
+                checkAchievements();
+                updateDisplay();
+            } else {
+                alert("Nicht genug Geld!");
+            }
+        }
+        
+        function checkLevelUp() {
+            if (xp >= xpMax) {
+                xp -= xpMax;
+                level++;
+                xpMax = Math.floor(xpMax * 1.2);
+            }
+        }
+        
+        function updateDisplay() {
+            document.getElementById("money-display").innerText = money;
+            document.getElementById("income").innerText = income;
+            document.getElementById("level").innerText = level;
+            document.getElementById("xp").innerText = xp;
+            document.getElementById("xpMax").innerText = xpMax;
+            document.getElementById("prestige").innerText = prestigeLevel;
+        }
+        
+        setInterval(() => {
+            money += income;
+            checkAchievements();
+            updateDisplay();
+        }, 1000);
+        
+        generateUpgrade();
+    </script>
+</body>
+</html>
