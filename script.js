@@ -43,3 +43,6 @@ function opentest() {
 function openlateindl() {
   window.location.href="projects/latein/verben-gruppen-projekt/downloader.html"
 }
+function opentycoon() {
+  window.location.href="tycoon.html"
+}
