@@ -64,6 +64,34 @@
             border-radius: 8px;
             width: 300px;
         }
+        .achievements {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            width: 300px;
+        }
+        .achievement {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 5px;
+        }
+        .achievement.completed {
+            background-color: #4caf50;
+        }
+        .export-import-container {
+            margin-top: 20px;
+        }
+        #export-textarea {
+            width: 100%;
+            height: 100px;
+            background-color: #222;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -92,8 +120,27 @@
         <ul id="purchased-list"></ul>
     </div>
 
+    <h2><i class="fas fa-trophy"></i> Erfolge</h2>
+    <div class="achievements" id="achievements"></div>
+
+    <!-- Speichern und Laden Buttons -->
+    <div>
+        <button class="button" onclick="saveGame()">Spielstand speichern</button>
+        <button class="button" onclick="loadGame()">Spielstand laden</button>
+    </div>
+
+    <!-- Export/Import Bereich -->
+    <div class="export-import-container">
+        <h3>Spielstand exportieren/importieren</h3>
+        <textarea id="export-textarea" readonly></textarea><br>
+        <button class="button" onclick="exportGame()">Spielstand exportieren</button>
+        <br><br>
+        <textarea id="import-textarea" placeholder="Füge hier deinen gespeicherten Spielstand ein"></textarea><br>
+        <button class="button" onclick="importGame()">Spielstand importieren</button>
+    </div>
+
     <script>
-        // Variablen für das Spiel
+        // Spiel-Variablen
         let money = 0;
         let income = 0;
         let level = 1;
@@ -105,6 +152,7 @@
         let prestigeShopItems = [];
         let upgradeShopItems = [];
         let purchasedItems = []; // Array für gekaufte Effekte
+        let achievements = []; // Array für Erfolge
 
         // Lade gespeicherten Spielstand
         function loadGame() {
@@ -119,6 +167,7 @@
                 prestigeCoins = savedGame.prestigeCoins;
                 upgrades = savedGame.upgrades;
                 purchasedItems = savedGame.purchasedItems || [];
+                achievements = savedGame.achievements || []; // Lade Erfolge
                 updateDisplay();
             }
         }
@@ -134,9 +183,49 @@
                 prestigeLevel,
                 prestigeCoins,
                 upgrades,
-                purchasedItems
+                purchasedItems,
+                achievements // Speichern der Erfolge
             };
             localStorage.setItem("gameData", JSON.stringify(gameData));
+        }
+
+        // Spielstand exportieren
+        function exportGame() {
+            const gameData = {
+                money,
+                income,
+                level,
+                xp,
+                xpMax,
+                prestigeLevel,
+                prestigeCoins,
+                upgrades,
+                purchasedItems,
+                achievements
+            };
+            const exportText = JSON.stringify(gameData);
+            document.getElementById("export-textarea").value = exportText;
+        }
+
+        // Spielstand importieren
+        function importGame() {
+            const importText = document.getElementById("import-textarea").value;
+            try {
+                const gameData = JSON.parse(importText);
+                money = gameData.money;
+                income = gameData.income;
+                level = gameData.level;
+                xp = gameData.xp;
+                xpMax = gameData.xpMax;
+                prestigeLevel = gameData.prestigeLevel;
+                prestigeCoins = gameData.prestigeCoins;
+                upgrades = gameData.upgrades;
+                purchasedItems = gameData.purchasedItems || [];
+                achievements = gameData.achievements || [];
+                updateDisplay();
+            } catch (e) {
+                alert("Fehler beim Importieren des Spielstands. Bitte überprüfe das Format.");
+            }
         }
 
         // Geld verdienen
@@ -144,16 +233,40 @@
             money += 1;
             xp += 10;
             checkLevelUp();
+            checkAchievements();
             updateDisplay();
         }
 
-        // Level up nach Erreichen der XP Grenze
+        // Level-Up nach Erreichen der XP-Grenze
         function checkLevelUp() {
             if (xp >= xpMax) {
                 xp -= xpMax;
                 level++;
                 xpMax = Math.floor(xpMax * 1.2);
+                checkAchievements(); // Überprüfe Erfolge nach Level-Up
             }
+        }
+
+        // Überprüfe, ob ein Achievement freigeschaltet wurde
+        function checkAchievements() {
+            if (money >= 1000 && !achievements.includes('earn_1000')) {
+                achievements.push('earn_1000');
+                addAchievement("Erhalte 1000€", "Erhalten: 1000€");
+            }
+
+            if (level >= 10 && !achievements.includes('reach_level_10')) {
+                achievements.push('reach_level_10');
+                addAchievement("Erreiche Level 10", "Erreiche Level 10");
+            }
+        }
+
+        // Zeige neue Achievements an
+        function addAchievement(title, description) {
+            let achievementBox = document.createElement("div");
+            achievementBox.classList.add("achievement", "completed");
+            achievementBox.innerHTML = `<strong>${title}</strong><br>${description}`;
+            document.getElementById("achievements").appendChild(achievementBox);
+            saveGame(); // Speichern nach Erreichen eines Erfolges
         }
 
         // Prestige-Funktion
@@ -236,7 +349,7 @@
                 if (item.effect === "income") {
                     income += 1;
                 } else if (item.effect === "click") {
-                    income += 1; // Oder logik für Klick-Boost
+                    income += 1; // Oder Logik für Klick-Boost
                 }
                 updateDisplay();
                 generateUpgradeItems();
@@ -260,21 +373,19 @@
             });
         }
 
-        // Beschreibung des Effekts
+        // Effekte-Beschreibung
         function getEffectDescription(effect) {
             switch (effect) {
                 case "income":
-                    return "Erhöht das Einkommen um 5€/s";
-                case "level":
-                    return "Erhöht das Level des Spielers um 1";
+                    return "Erhöht dein Einkommen.";
                 case "click":
-                    return "Erhöht das Einkommen pro Klick um 1€";
+                    return "Erhöht deinen Klick-Boost.";
                 default:
-                    return "Keine Beschreibung verfügbar";
+                    return "Unbekannter Effekt";
             }
         }
 
-        // Anzeige aktualisieren
+        // Aktualisiere die Anzeige
         function updateDisplay() {
             document.getElementById("money-display").innerText = money;
             document.getElementById("income").innerText = income;
@@ -285,16 +396,9 @@
             document.getElementById("prestige-coins").innerText = prestigeCoins;
         }
 
-        // Spiel alle 1 Sekunde fortschreiten lassen (Einkommen)
-        setInterval(() => {
-            money += income;
-            updateDisplay();
-            saveGame();
-        }, 1000);
-
-        // Lade den Spielstand beim Start
+        // Initialisierung des Spiels
         loadGame();
-        generateUpgradeItems(); // Generiere den Upgrade-Shop beim Start
+        generateUpgradeItems();
     </script>
 </body>
 </html>
