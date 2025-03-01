@@ -44,5 +44,5 @@ function openlateindl() {
   window.location.href="projects/latein/verben-gruppen-projekt/downloader.html"
 }
 function opentycoon() {
-  window.location.href="tycoon-game.html"
+  window.location.href="tycoon.html"
 }
