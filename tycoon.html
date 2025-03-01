@@ -146,7 +146,7 @@
             updateDisplay();
             animateMoney();
         }
-        
+
         function generateUpgrade() {
             let id = upgrades.length + 1;
             let cost = Math.floor(10 * Math.pow(1.5, id));
@@ -173,6 +173,7 @@
                 checkLevelUp();
                 checkAchievements();
                 updateDisplay();
+                generateUpgrade(); // Generiert nach jedem Upgrade ein neues
             } else {
                 alert("Nicht genug Geld!");
             }
@@ -206,7 +207,25 @@
                 achievementDiv.classList.remove("new");
             }, 2000);
         }
-        
+
+        function prestige() {
+            if (level >= 10) {
+                prestigeLevel++;
+                level = 1;
+                xp = 0;
+                xpMax = 100;
+                income = 0;
+                money = 0;
+                upgrades = [];
+                document.getElementById("prestige").innerText = prestigeLevel;
+                alert("Prestige aktiviert! Dein Fortschritt wurde zurückgesetzt.");
+                updateDisplay();
+                generateUpgrade();
+            } else {
+                alert("Du musst Level 10 erreichen, um Prestige zu aktivieren.");
+            }
+        }
+
         function updateDisplay() {
             document.getElementById("money-display").innerText = money;
             document.getElementById("income").innerText = income;
@@ -228,8 +247,8 @@
             checkAchievements();
             updateDisplay();
         }, 1000);
-        
-        generateUpgrade();
+
+        generateUpgrade(); // Generiert das erste Upgrade zu Spielbeginn
     </script>
 </body>
 </html>
