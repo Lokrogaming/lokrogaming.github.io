@@ -154,36 +154,58 @@
         ];
         let prestigeUsed = false;
 
+        // Upgrade-Konfiguration (mit kosten und boosts)
+        let upgradeConfig = [
+            { name: 'Upgrade 1', cost: 10, incomeBoost: 2 },
+            { name: 'Upgrade 2', cost: 50, incomeBoost: 5 },
+            { name: 'Upgrade 3', cost: 200, incomeBoost: 10 },
+            { name: 'Upgrade 4', cost: 500, incomeBoost: 20 },
+            { name: 'Upgrade 5', cost: 1000, incomeBoost: 50 }
+        ];
+
         function earnMoney() {
             money += 1;
+            xp += 10; // Erfahrung pro verdientem Geld
+            checkLevelUp();
             checkAchievements();
             updateDisplay();
             animateMoney();
-            generateUpgrade(); // Prüft, ob Upgrades angezeigt werden sollen
+            generateUpgrades(); // Prüft, ob Upgrades angezeigt werden sollen
         }
 
-        function generateUpgrade() {
-            if (money >= 10 && upgrades.length === 0) {  // Zeigt die Upgrades erst, wenn der Betrag erreicht ist
-                let upgrade = { id: 1, cost: 10, incomeBoost: 2, count: 0 };
-                upgrades.push(upgrade);
-                let button = document.createElement("button");
-                button.className = "button";
-                button.innerHTML = `<i class="fas fa-arrow-up"></i> Upgrade 1 kaufen (${upgrade.cost}€) [+${upgrade.incomeBoost}/s]`;
-                button.onclick = () => buyUpgrade(0);
-                document.getElementById("upgrade-container").appendChild(button);
-            }
+        function generateUpgrades() {
+            upgradeConfig.forEach((upgrade, index) => {
+                if (money >= upgrade.cost && !upgrades.some(u => u.name === upgrade.name)) {
+                    let button = document.createElement("button");
+                    button.className = "button";
+                    button.innerHTML = `<i class="fas fa-arrow-up"></i> ${upgrade.name} kaufen (${upgrade.cost}€) [+${upgrade.incomeBoost}/s]`;
+                    button.onclick = () => buyUpgrade(index);
+                    document.getElementById("upgrade-container").appendChild(button);
+                    upgrades.push(upgrade);  // Upgrade zur Liste hinzufügen
+                }
+            });
         }
 
         function buyUpgrade(index) {
-            let upgrade = upgrades[index];
+            let upgrade = upgradeConfig[index];
             if (money >= upgrade.cost) {
                 money -= upgrade.cost;
-                upgrade.count++;
                 income += upgrade.incomeBoost;
                 updateDisplay();
-                generateUpgrade(); // Generiert nach jedem Upgrade ein neues
+                generateUpgrades(); // Generiert nach jedem Upgrade ein neues, wenn genug Geld vorhanden ist
             } else {
                 alert("Nicht genug Geld!");
+            }
+        }
+
+        function checkLevelUp() {
+            if (xp >= xpMax) {
+                level++;
+                xp = 0;
+                xpMax = Math.floor(xpMax * 1.2); // Erhöht die xpMax mit jedem Level-Up
+                income += 1; // Erhöht das Einkommen pro Levelaufstieg
+                updateDisplay();
+                alert(`Du bist auf Level ${level} aufgestiegen!`);
             }
         }
 
@@ -221,7 +243,7 @@
                 document.getElementById("prestige").innerText = prestigeLevel;
                 alert("Prestige aktiviert! Dein Fortschritt wurde zurückgesetzt.");
                 updateDisplay();
-                generateUpgrade();
+                generateUpgrades();
                 showPrestigeItems();
             } else {
                 alert("Du musst Level 10 erreichen, um Prestige zu aktivieren.");
@@ -278,7 +300,7 @@
             }
         }, 1000);
 
-        generateUpgrade(); // Generiert das erste Upgrade zu Spielbeginn
+        generateUpgrades(); // Generiert das erste Upgrade zu Spielbeginn
     </script>
 </body>
 </html>
