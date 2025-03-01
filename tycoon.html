@@ -137,17 +137,12 @@
         let prestigeLevel = 0;
         let prestigeCoins = 0;
         let upgrades = [];
-        let prestigeItems = [
-            { name: 'Doppelte Einkommensrate', cost: 5 },
-            { name: 'Schnelleres Level-Up', cost: 3 },
-            { name: 'Verdopple Upgrades Kosten', cost: 10 }
-        ];
         let upgradeConfig = [
-            { name: 'Upgrade 1', cost: 10, incomeBoost: 2 },
-            { name: 'Upgrade 2', cost: 50, incomeBoost: 5 },
-            { name: 'Upgrade 3', cost: 200, incomeBoost: 10 },
-            { name: 'Upgrade 4', cost: 500, incomeBoost: 20 },
-            { name: 'Upgrade 5', cost: 1000, incomeBoost: 50 }
+            { name: 'Upgrade 1', baseCost: 10, incomeBoost: 2, multiplier: 1.2, purchases: 0 },
+            { name: 'Upgrade 2', baseCost: 50, incomeBoost: 5, multiplier: 1.3, purchases: 0 },
+            { name: 'Upgrade 3', baseCost: 200, incomeBoost: 10, multiplier: 1.4, purchases: 0 },
+            { name: 'Upgrade 4', baseCost: 500, incomeBoost: 20, multiplier: 1.5, purchases: 0 },
+            { name: 'Upgrade 5', baseCost: 1000, incomeBoost: 50, multiplier: 1.6, purchases: 0 }
         ];
 
         function earnMoney() {
@@ -160,10 +155,10 @@
 
         function generateUpgrades() {
             upgradeConfig.forEach((upgrade, index) => {
-                if (money >= upgrade.cost && !upgrades.some(u => u.name === upgrade.name)) {
+                if (money >= getUpgradeCost(upgrade) && !upgrades.some(u => u.name === upgrade.name)) {
                     let button = document.createElement("button");
                     button.className = "button";
-                    button.innerHTML = `<i class="fas fa-arrow-up"></i> ${upgrade.name} kaufen (${upgrade.cost}€) [+${upgrade.incomeBoost}/s]`;
+                    button.innerHTML = `<i class="fas fa-arrow-up"></i> ${upgrade.name} kaufen (${getUpgradeCost(upgrade)}€) [+${upgrade.incomeBoost}/s]`;
                     button.onclick = () => buyUpgrade(index);
                     document.getElementById("upgrade-container").appendChild(button);
                     upgrades.push(upgrade);
@@ -171,11 +166,17 @@
             });
         }
 
+        function getUpgradeCost(upgrade) {
+            return Math.round(upgrade.baseCost * Math.pow(upgrade.multiplier, upgrade.purchases));
+        }
+
         function buyUpgrade(index) {
             let upgrade = upgradeConfig[index];
-            if (money >= upgrade.cost) {
-                money -= upgrade.cost;
+            let cost = getUpgradeCost(upgrade);
+            if (money >= cost) {
+                money -= cost;
                 income += upgrade.incomeBoost;
+                upgrade.purchases++;
                 updateDisplay();
                 generateUpgrades();
             } else {
@@ -216,6 +217,11 @@
         function showPrestigeItems() {
             let prestigeShop = document.getElementById("prestige-shop");
             prestigeShop.innerHTML = '';
+            let prestigeItems = [
+                { name: 'Doppelte Einkommensrate', cost: 5 },
+                { name: 'Schnelleres Level-Up', cost: 3 },
+                { name: 'Verdopple Upgrades Kosten', cost: 10 }
+            ];
             prestigeItems.forEach(item => {
                 let itemDiv = document.createElement("div");
                 itemDiv.className = "prestige-item";
@@ -323,11 +329,11 @@
                 };
                 reader.readAsText(file);
             } else {
-                alert("Ungültige Datei!");
+                alert("Ungültige Datei. Bitte eine JSON-Datei auswählen.");
             }
         }
 
-        loadGame(); // Automatically load the game on page load
+        loadGame();
     </script>
 </body>
 </html>
