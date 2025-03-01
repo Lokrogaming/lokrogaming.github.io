@@ -9,29 +9,30 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #121212;
+            background-color: #1a1a1a;
             color: white;
             margin: 0;
             padding: 20px;
             overflow-x: hidden;
         }
         h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
+            margin-bottom: 10px;
         }
         .button {
-            padding: 12px 20px;
+            padding: 15px 25px;
             font-size: 18px;
             margin: 10px;
             cursor: pointer;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             background: linear-gradient(45deg, #ff9800, #e68900);
             color: white;
-            transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
         .button:hover {
             transform: scale(1.1);
@@ -42,33 +43,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             margin-top: 20px;
         }
         .info-box {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
+            padding: 20px;
+            border-radius: 12px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         #money-display {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
-            transition: transform 0.2s ease;
-        }
-        #money-display.animate {
-            transform: scale(1.2);
             color: #ff9800;
         }
         #upgrade-container button {
             display: block;
             width: 80%;
-            margin: 5px auto;
-            padding: 12px 0;
+            margin: 10px auto;
+            padding: 15px 0;
             background: #4caf50;
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
@@ -77,49 +74,32 @@
             background: #45a049;
             transform: scale(1.05);
         }
-        .game-background {
-            width: 100%;
-            height: auto;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .achievement {
-            background: rgba(255, 215, 0, 0.3);
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-            transition: transform 0.2s ease;
-        }
-        .achievement.new {
-            transform: scale(1.1);
-            background: rgba(255, 215, 0, 0.7);
-        }
         .prestige-shop {
-            margin-top: 20px;
+            margin-top: 25px;
         }
         .prestige-item {
             display: flex;
             justify-content: space-between;
-            margin: 10px 0;
+            margin: 12px 0;
+        }
+        .prestige-item button {
+            background-color: #3f51b5;
         }
         @media (max-width: 600px) {
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
             .info-box {
                 width: 90%;
             }
             .button {
                 font-size: 16px;
-                padding: 10px 16px;
+                padding: 12px 18px;
             }
         }
     </style>
 </head>
 <body>
-    <img class="game-background" src="https://source.unsplash.com/1600x300/?city,future" alt="Spielhintergrund">
     <h1><i class="fas fa-coins"></i> Endlos-Tycoon</h1>
     <div class="container">
         <div class="info-box">
@@ -128,6 +108,7 @@
             <p><i class="fas fa-level-up-alt"></i> Level: <span id="level">1</span></p>
             <p><i class="fas fa-star"></i> Erfahrung: <span id="xp">0</span> / <span id="xpMax">100</span></p>
             <p><i class="fas fa-trophy"></i> Prestige-Stufe: <span id="prestige">0</span></p>
+            <p><i class="fas fa-gem"></i> Prestigemünzen: <span id="prestige-coins">0</span></p>
         </div>
         <button class="button" onclick="earnMoney()"><i class="fas fa-hand-holding-usd"></i> Geld verdienen</button>
     </div>
@@ -136,9 +117,17 @@
     <h2><i class="fas fa-sync-alt"></i> Prestige Shop</h2>
     <div class="prestige-shop" id="prestige-shop"></div>
     <button class="button" onclick="prestige()">🔄 Prestige aktivieren (Level 10 benötigt)</button>
-    <h2><i class="fas fa-award"></i> Errungenschaften</h2>
-    <div id="achievements"></div>
-    
+
+    <!-- Save, Export, and Import Buttons -->
+    <div>
+        <button class="button" onclick="saveGame()">💾 Spiel speichern</button>
+        <button class="button" onclick="exportGame()">📤 Spiel exportieren</button>
+        <button class="button" onclick="importGame()">📥 Spiel importieren</button>
+    </div>
+
+    <!-- Hidden input for importing -->
+    <input type="file" id="import-file" style="display: none;" onchange="handleFileSelect(event)">
+
     <script>
         let money = 0;
         let income = 0;
@@ -146,15 +135,13 @@
         let xp = 0;
         let xpMax = 100;
         let prestigeLevel = 0;
+        let prestigeCoins = 0;
         let upgrades = [];
-        let achievements = [];
         let prestigeItems = [
-            { name: 'Upgrade-Dauer verringern', cost: 1000 },
-            { name: 'Doppelte Einkommensrate', cost: 5000 }
+            { name: 'Doppelte Einkommensrate', cost: 5 },
+            { name: 'Schnelleres Level-Up', cost: 3 },
+            { name: 'Verdopple Upgrades Kosten', cost: 10 }
         ];
-        let prestigeUsed = false;
-
-        // Upgrade-Konfiguration (mit kosten und boosts)
         let upgradeConfig = [
             { name: 'Upgrade 1', cost: 10, incomeBoost: 2 },
             { name: 'Upgrade 2', cost: 50, incomeBoost: 5 },
@@ -165,12 +152,10 @@
 
         function earnMoney() {
             money += 1;
-            xp += 10; // Erfahrung pro verdientem Geld
+            xp += 10;
             checkLevelUp();
-            checkAchievements();
             updateDisplay();
-            animateMoney();
-            generateUpgrades(); // Prüft, ob Upgrades angezeigt werden sollen
+            generateUpgrades();
         }
 
         function generateUpgrades() {
@@ -181,7 +166,7 @@
                     button.innerHTML = `<i class="fas fa-arrow-up"></i> ${upgrade.name} kaufen (${upgrade.cost}€) [+${upgrade.incomeBoost}/s]`;
                     button.onclick = () => buyUpgrade(index);
                     document.getElementById("upgrade-container").appendChild(button);
-                    upgrades.push(upgrade);  // Upgrade zur Liste hinzufügen
+                    upgrades.push(upgrade);
                 }
             });
         }
@@ -192,7 +177,7 @@
                 money -= upgrade.cost;
                 income += upgrade.incomeBoost;
                 updateDisplay();
-                generateUpgrades(); // Generiert nach jedem Upgrade ein neues, wenn genug Geld vorhanden ist
+                generateUpgrades();
             } else {
                 alert("Nicht genug Geld!");
             }
@@ -202,49 +187,27 @@
             if (xp >= xpMax) {
                 level++;
                 xp = 0;
-                xpMax = Math.floor(xpMax * 1.2); // Erhöht die xpMax mit jedem Level-Up
-                income += 1; // Erhöht das Einkommen pro Levelaufstieg
+                xpMax = Math.floor(xpMax * 1.2);
+                income += 1;
                 updateDisplay();
                 alert(`Du bist auf Level ${level} aufgestiegen!`);
             }
         }
 
-        function checkAchievements() {
-            if (money >= 100 && !achievements.includes('100€ erreicht')) {
-                achievements.push('100€ erreicht');
-                displayAchievement('100€ erreicht');
-            }
-            if (level >= 10 && !achievements.includes('Level 10 erreicht')) {
-                achievements.push('Level 10 erreicht');
-                displayAchievement('Level 10 erreicht');
-            }
-        }
-
-        function displayAchievement(achievement) {
-            let achievementDiv = document.createElement("div");
-            achievementDiv.classList.add("achievement", "new");
-            achievementDiv.innerText = achievement;
-            document.getElementById("achievements").appendChild(achievementDiv);
-            setTimeout(() => {
-                achievementDiv.classList.remove("new");
-            }, 2000);
-        }
-
         function prestige() {
             if (level >= 10) {
                 prestigeLevel++;
+                prestigeCoins += 10;
                 level = 1;
                 xp = 0;
                 xpMax = 100;
                 income = 0;
                 money = 0;
                 upgrades = [];
-                prestigeUsed = true;
-                document.getElementById("prestige").innerText = prestigeLevel;
-                alert("Prestige aktiviert! Dein Fortschritt wurde zurückgesetzt.");
                 updateDisplay();
                 generateUpgrades();
                 showPrestigeItems();
+                alert("Prestige aktiviert! Dein Fortschritt wurde zurückgesetzt.");
             } else {
                 alert("Du musst Level 10 erreichen, um Prestige zu aktivieren.");
             }
@@ -259,7 +222,7 @@
                 itemDiv.innerHTML = `
                     <span>${item.name}</span>
                     <button class="button" onclick="buyPrestigeItem('${item.name}', ${item.cost})">
-                        Kaufen (${item.cost}€)
+                        Kaufen (${item.cost} Münzen)
                     </button>
                 `;
                 prestigeShop.appendChild(itemDiv);
@@ -267,12 +230,13 @@
         }
 
         function buyPrestigeItem(itemName, cost) {
-            if (money >= cost) {
-                money -= cost;
+            if (prestigeCoins >= cost) {
+                prestigeCoins -= cost;
                 alert(`${itemName} gekauft!`);
                 showPrestigeItems();
+                updateDisplay();
             } else {
-                alert("Nicht genug Geld für dieses Prestige-Item!");
+                alert("Nicht genug Prestigemünzen!");
             }
         }
 
@@ -283,24 +247,87 @@
             document.getElementById("xp").innerText = xp;
             document.getElementById("xpMax").innerText = xpMax;
             document.getElementById("prestige").innerText = prestigeLevel;
-        }
-
-        function animateMoney() {
-            document.getElementById("money-display").classList.add("animate");
-            setTimeout(() => {
-                document.getElementById("money-display").classList.remove("animate");
-            }, 500);
+            document.getElementById("prestige-coins").innerText = prestigeCoins;
         }
 
         setInterval(() => {
-            if (!prestigeUsed) {
-                money += income;
-                checkAchievements();
-                updateDisplay();
-            }
+            money += income;
+            updateDisplay();
         }, 1000);
 
-        generateUpgrades(); // Generiert das erste Upgrade zu Spielbeginn
+        // Save the current game state to localStorage
+        function saveGame() {
+            const gameState = {
+                money, income, level, xp, xpMax, prestigeLevel, prestigeCoins, upgrades
+            };
+            localStorage.setItem('gameState', JSON.stringify(gameState));
+            alert("Spiel gespeichert!");
+        }
+
+        // Load the game state from localStorage
+        function loadGame() {
+            const savedGame = localStorage.getItem('gameState');
+            if (savedGame) {
+                const gameState = JSON.parse(savedGame);
+                money = gameState.money;
+                income = gameState.income;
+                level = gameState.level;
+                xp = gameState.xp;
+                xpMax = gameState.xpMax;
+                prestigeLevel = gameState.prestigeLevel;
+                prestigeCoins = gameState.prestigeCoins;
+                upgrades = gameState.upgrades;
+                updateDisplay();
+                generateUpgrades();
+            }
+        }
+
+        // Export the game state as a JSON file
+        function exportGame() {
+            const gameState = {
+                money, income, level, xp, xpMax, prestigeLevel, prestigeCoins, upgrades
+            };
+            const gameStateJson = JSON.stringify(gameState);
+            const blob = new Blob([gameStateJson], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "gameState.json";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Import a game state from a JSON file
+        function importGame() {
+            document.getElementById('import-file').click();
+        }
+
+        // Handle the file selection for importing
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type === 'application/json') {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const importedData = JSON.parse(e.target.result);
+                    money = importedData.money;
+                    income = importedData.income;
+                    level = importedData.level;
+                    xp = importedData.xp;
+                    xpMax = importedData.xpMax;
+                    prestigeLevel = importedData.prestigeLevel;
+                    prestigeCoins = importedData.prestigeCoins;
+                    upgrades = importedData.upgrades;
+                    updateDisplay();
+                    generateUpgrades();
+                    alert("Spielstand erfolgreich importiert!");
+                };
+                reader.readAsText(file);
+            } else {
+                alert("Ungültige Datei!");
+            }
+        }
+
+        loadGame(); // Automatically load the game on page load
     </script>
 </body>
 </html>
