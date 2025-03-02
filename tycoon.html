@@ -132,7 +132,7 @@
     <!-- Export/Import Bereich -->
     <div class="export-import-container">
         <h3>Spielstand exportieren/importieren</h3>
-        <textarea id="export-textarea" readonly></textarea><br>
+        <textarea id="export-textarea" readonly></textarea><button class="button" onclick="copyexporttxt()">Copy to Clipboard</button>
         <button class="button" onclick="exportGame()">Spielstand exportieren</button>
         <br><br>
         <textarea id="import-textarea" placeholder="Füge hier deinen gespeicherten Spielstand ein"></textarea><br>
@@ -395,6 +395,22 @@
             document.getElementById("prestige").innerText = prestigeLevel;
             document.getElementById("prestige-coins").innerText = prestigeCoins;
         }
+function copyexporttxt() {
+  // Get the text 
+  var copyText = exportText
+
+  // Select the text 
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text 
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+
+
 
         // Initialisierung des Spiels
         loadGame();
