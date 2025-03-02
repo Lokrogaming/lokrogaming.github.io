@@ -270,20 +270,23 @@
         }
 
         // Prestige aktivieren
-        function prestige() {
-            if (level >= 10) {
-                prestigeCoins += Math.floor(money / 1000);
-                money = 0;
-                income = 0;
-                xp = 0;
-                level = 1;
-                prestigeLevel++; // Prestige-Level erhöhen
-                updateDisplay();
-                generatePrestigeItems();
-            } else {
-                alert("Du musst mindestens Level 10 erreichen, um Prestige zu aktivieren.");
-            }
-        }
+        
+function prestige() {
+    if (level >= 10) {
+        prestigeCoins += Math.floor(money / 1000);
+        money = 0;
+        income = 0;
+        xp = 0; // Hier wird XP auf 0 zurückgesetzt
+        level = 1;
+        prestigeLevel++; // Prestige-Level erhöhen
+        xpMax = 100; // XP-Grenze nach Prestige zurücksetzen
+        updateDisplay();
+        generatePrestigeItems();
+    } else {
+        alert("Du musst mindestens Level 10 erreichen, um Prestige zu aktivieren.");
+    }
+}
+
 
         // Anzeigen aktualisieren
         function updateDisplay() {
