@@ -123,11 +123,13 @@
     <h2><i class="fas fa-trophy"></i> Erfolge</h2>
     <div class="achievements" id="achievements"></div>
 
+    <!-- Speichern und Laden Buttons -->
     <div>
         <button class="button" onclick="saveGame()">Spielstand speichern</button>
         <button class="button" onclick="loadGame()">Spielstand laden</button>
     </div>
 
+    <!-- Export/Import Bereich -->
     <div class="export-import-container">
         <h3>Spielstand exportieren/importieren</h3>
         <textarea id="export-textarea" readonly></textarea><button class="button" onclick="copytxt()">Copy to Clipboard</button>
@@ -149,8 +151,8 @@
         let upgrades = [];
         let prestigeShopItems = [];
         let upgradeShopItems = [];
-        let purchasedItems = [];
-        let achievements = [];
+        let purchasedItems = []; // Array für gekaufte Effekte
+        let achievements = []; // Array für Erfolge
 
         // Lade gespeicherten Spielstand
         function loadGame() {
@@ -165,7 +167,7 @@
                 prestigeCoins = savedGame.prestigeCoins;
                 upgrades = savedGame.upgrades;
                 purchasedItems = savedGame.purchasedItems || [];
-                achievements = savedGame.achievements || [];
+                achievements = savedGame.achievements || []; // Lade Erfolge
                 updateDisplay();
             }
         }
@@ -182,7 +184,7 @@
                 prestigeCoins,
                 upgrades,
                 purchasedItems,
-                achievements
+                achievements // Speichern der Erfolge
             };
             localStorage.setItem("gameData", JSON.stringify(gameData));
         }
@@ -241,7 +243,7 @@
                 xp -= xpMax;
                 level++;
                 xpMax = Math.floor(xpMax * 1.2);
-                checkAchievements();
+                checkAchievements(); // Überprüfe Erfolge nach Level-Up
             }
         }
 
@@ -264,10 +266,10 @@
             achievementBox.classList.add("achievement", "completed");
             achievementBox.innerHTML = `<strong>${title}</strong><br>${description}`;
             document.getElementById("achievements").appendChild(achievementBox);
-            saveGame();
+            alert("Neues Achievement freigeschaltet: " + title);
         }
 
-        // Prestige-Funktion
+        // Prestige aktivieren
         function prestige() {
             if (level >= 10) {
                 prestigeCoins += Math.floor(money / 1000);
@@ -275,7 +277,7 @@
                 income = 0;
                 xp = 0;
                 level = 1;
-                prestigeLevel++;  // Prestige-Level erhöhen
+                prestigeLevel++; // Prestige-Level erhöhen
                 updateDisplay();
                 generatePrestigeItems();
             } else {
@@ -283,81 +285,7 @@
             }
         }
 
-        // Generiere Prestige-Shop-Items
-        function generatePrestigeItems() {
-            let items = [
-                { id: 1, cost: 10, description: "Einkommensboost +5€/s", effect: "income" },
-                { id: 2, cost: 20, description: "Level-Boost: +1 Level", effect: "level" }
-            ];
-
-            prestigeShopItems = items;
-            document.getElementById("prestige-shop").innerHTML = "";
-
-            items.forEach(item => {
-                if (!purchasedItems.includes(item.id)) {
-                    let button = document.createElement("button");
-                    button.className = "button";
-                    button.innerHTML = `Item ${item.id}: ${item.description} (Kosten: ${item.cost} Prestigemünzen)`;
-                    button.onclick = () => buyPrestigeItem(item);
-                    document.getElementById("prestige-shop").appendChild(button);
-                }
-            });
-        }
-
-        // Generiere Upgrade-Shop-Items
-        function generateUpgradeItems() {
-            let items = [
-                { id: 1, cost: 50, description: "Einkommensboost +1€/s", effect: "income" },
-                { id: 2, cost: 100, description: "Klick-Boost +1€ pro Klick", effect: "click" }
-            ];
-
-            upgradeShopItems = items;
-            document.getElementById("upgrade-shop").innerHTML = "";
-
-            items.forEach(item => {
-                let button = document.createElement("button");
-                button.className = "button";
-                button.innerHTML = `Item ${item.id}: ${item.description} (Kosten: ${item.cost}€)`;
-                button.onclick = () => buyUpgradeItem(item);
-                document.getElementById("upgrade-shop").appendChild(button);
-            });
-        }
-
-        // Funktion zum Kaufen von Prestige-Items
-        function buyPrestigeItem(item) {
-            if (prestigeCoins >= item.cost) {
-                prestigeCoins -= item.cost;
-                if (item.effect === "income") {
-                    income += 5;
-                } else if (item.effect === "level") {
-                    level += 1;
-                }
-                purchasedItems.push(item.id);
-                updateDisplay();
-                generatePrestigeItems();
-                displayPurchasedItems();
-            } else {
-                alert("Nicht genug Prestigemünzen.");
-            }
-        }
-
-        // Funktion zum Kaufen von Upgrade-Items
-        function buyUpgradeItem(item) {
-            if (money >= item.cost) {
-                money -= item.cost;
-                if (item.effect === "income") {
-                    income += 1;
-                } else if (item.effect === "click") {
-                    income += 1; 
-                }
-                updateDisplay();
-                generateUpgradeItems();
-            } else {
-                alert("Nicht genug Geld.");
-            }
-        }
-
-        // Anzeige aktualisieren
+        // Anzeigen aktualisieren
         function updateDisplay() {
             document.getElementById("money-display").textContent = money;
             document.getElementById("income").textContent = income;
@@ -368,27 +296,14 @@
             document.getElementById("prestige-coins").textContent = prestigeCoins;
         }
 
-        // Gekaufte Items anzeigen
-        function displayPurchasedItems() {
-            let list = document.getElementById("purchased-list");
-            list.innerHTML = "";
-            purchasedItems.forEach(item => {
-                let li = document.createElement("li");
-                li.textContent = `Item ${item}`;
-                list.appendChild(li);
-            });
-        }
-
-        // Copy Textarea to Clipboard
+        // Kopieren des Exporttextes
         function copytxt() {
-            let exportText = document.getElementById("export-textarea");
-            exportText.select();
-            document.execCommand('copy');
+            var copyText = document.getElementById("export-textarea");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Für mobile Geräte
+            document.execCommand("copy");
+            alert("Spielstand in die Zwischenablage kopiert");
         }
-
-        // Initiale Anzeige
-        generateUpgradeItems();
-        generatePrestigeItems();
     </script>
 </body>
 </html>
