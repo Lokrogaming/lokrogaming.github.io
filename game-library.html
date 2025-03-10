@@ -96,31 +96,33 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+       .dropdown-content a.active {
+            color: red;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
 
     </style>
   </head>
   <body>
     
       <div class="topnav">
-        <a class="active" href="index">Home</a>
+        <a class="active" href="index.html">Home</a>
         <a href="game-library.html">Games</a>
-        <a href="tycoon.html">Tycoon</a>
-        <a href="#about">About</a>
-        <label class="switch">
-          <input type="checkbox" id="cookieSwitch" onchange="toggleCookies()">
-          <span class="slider round"></span>
-        </label>
+        <a href="test-coupon-page.html">Test</a>
+        <a href="download-hub.html">Downloader</a>
           <div class="dropdown">
-            <a href="#" class="dropdown-btn">Games</a>
+            <a class="active" href="#" class="dropdown-btn">Games</a>
             <div class="dropdown-content">
                 <a href="tycoon.html">Tycoon</a>
-                <a href="">Discord Bot</a>
+                <a href="discord-bot.html">Discord Bot</a>
                 <a href="#">Guesser</a>
-                <a href="#">Time</a>
+                <a href="time3.html">Time</a>
             </div>
         </div>
       </div>
-    
+    <h1>Nutze das Dropdown menü um die Spiele/Apps auszuwählen!</h1>
     
     <script>
       
