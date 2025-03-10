@@ -1,83 +1,129 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Main Menu</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .menu-container {
+      body {
+        background: lightblue;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+      }
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+      }
+      input:checked + .slider {
+        background-color: #2196F3;
+      }
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+      .slider.round {
+        border-radius: 34px;
+      }
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      .topnav {
+        background-color: #333;
+        overflow: hidden;
+        padding: 10px;
+      }
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+      }
+           .dropdown {
             position: relative;
         }
-        .menu-button {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .menu-button:hover {
-            background-color: #0056b3;
-        }
-        .menu-dropdown {
-            position: absolute;
-            top: 40px;
-            left: 0;
-            background: white;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            width: 150px;
+        .dropdown-content {
             display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
         }
-        .menu-dropdown a {
-            display: block;
-            padding: 10px;
+        .dropdown-content a {
             color: black;
+            padding: 12px 16px;
             text-decoration: none;
-            font-size: 14px;
+            display: block;
         }
-        .menu-dropdown a:hover {
+        .dropdown-content a:hover {
             background-color: #ddd;
         }
-        .show {
+        .dropdown:hover .dropdown-content {
             display: block;
         }
+
     </style>
-</head>
-<body>
-
-    <div class="menu-container">
-        <button class="menu-button" onclick="toggleMenu()">Menü</button>
-        <div class="menu-dropdown" id="menuDropdown">
-            <a href="#"></a>
-            <a href="#">Option 2</a>
-            <a href="#">Option 3</a>
+  </head>
+  <body>
+    
+      <div class="topnav">
+        <a class="active" href="index">Home</a>
+        <a href="game-library.html">Games</a>
+        <a href="tycoon.html">Tycoon</a>
+        <a href="#about">About</a>
+        <label class="switch">
+          <input type="checkbox" id="cookieSwitch" onchange="toggleCookies()">
+          <span class="slider round"></span>
+        </label>
+          <div class="dropdown">
+            <a href="#" class="dropdown-btn">Games</a>
+            <div class="dropdown-content">
+                <a href="tycoon.html">Tycoon</a>
+                <a href="">Discord Bot</a>
+                <a href="#">Guesser</a>
+                <a href="#">Time</a>
+            </div>
         </div>
-    </div>
-
+      </div>
+    
+    
     <script>
-        function toggleMenu() {
-            document.getElementById("menuDropdown").classList.toggle("show");
-        }
-
-        document.addEventListener("click", function(event) {
-            let menu = document.getElementById("menuDropdown");
-            let button = document.querySelector(".menu-button");
-            if (!button.contains(event.target) && !menu.contains(event.target)) {
-                menu.classList.remove("show");
-            }
-        });
+      
     </script>
-
-</body>
+  </body>
 </html>
