@@ -7,6 +7,11 @@
   <description>News system</description>
   <item>
     <title>Test News</title>
+    <image>
+  <url>https://lokrogaming.github.io/lokrogaming/logo1.png</url>
+  <title>Lokrogamer</title>
+  <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
+</image>
     <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
     <description>Test 1234321</description>
   </item>
