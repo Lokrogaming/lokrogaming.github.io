@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+  <title>News</title>
+  <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
+  <description>News system</description>
+  <item>
+    <title>Test News</title>
+    <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
+    <description>Test 1234321</description>
+  </item>
+  <item>
+    <title>Test2</title>
+    <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
+    <description>Tests for RSS</description>
+  </item>
+</channel>
+
+</rss>
