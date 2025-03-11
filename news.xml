@@ -6,14 +6,10 @@
   <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
   <description>News system</description>
   <item>
-    <title>Test News</title>
-    <image>
-  <url>https://lokrogaming.github.io/lokrogaming/logo.png</url>
-  <title>Lokrogamer</title>
-  <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
-</image>
+    <title>Discord Server</title>
     <link>https://lokrogaming.github.io/lokrogaming/news.xml</link>
-    <description>Test 1234321</description>
+    <description>Komme jetzt auf unseren Discord Server!</description>
+    <a href="https://dcserver.link/lokrogamer">Discord</a>
   </item>
   <item>
     <title>Test2</title>
