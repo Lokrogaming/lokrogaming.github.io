@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menü</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .button-container { margin: 20px; }
+        .app-button { display: block; margin: 10px auto; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Menü</h2>
+    <input type="file" id="fileInput" accept=".csv"><br><br>
+    <div id="buttonContainer" class="button-container"></div>
+
+    <script>
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const data = e.target.result;
+                const rows = data.split('\n');
+                const buttonContainer = document.getElementById("buttonContainer");
+                buttonContainer.innerHTML = "";
+                
+                rows.forEach(row => {
+                    const columns = row.split(',');
+                    if (columns.length === 2) {
+                        const button = document.createElement("button");
+                        button.textContent = columns[0];
+                        button.className = "app-button";
+                        button.onclick = function() {
+                            window.open(columns[1].trim());
+                        };
+                        buttonContainer.appendChild(button);
+                    }
+                });
+            };
+            
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>
