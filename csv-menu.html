@@ -34,7 +34,8 @@
                         button.textContent = columns[0];
                         button.className = "app-button";
                         button.onclick = function() {
-                            window.open(columns[1].trim());
+                            const filePath = columns[1].trim();
+                            window.location.href = filePath;
                         };
                         buttonContainer.appendChild(button);
                     }
