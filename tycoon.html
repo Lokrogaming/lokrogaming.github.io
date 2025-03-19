@@ -3,310 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endlos-Tycoon mit Prestige</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>3D Tycoon Game</title>
     <style>
-        body {
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #121212;
-            color: white;
-            margin: 0;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        .button {
-            padding: 12px 20px;
-            font-size: 18px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #ff9800, #e68900);
-            color: white;
-            transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
-        }
-        .button:hover {
-            transform: scale(1.1);
-            background: linear-gradient(45deg, #e68900, #ff5722);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        #prestige-shop button, #upgrade-shop button {
-            display: block;
-            width: 80%;
-            margin: 5px auto;
-            padding: 12px 0;
-            background: #4caf50;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-        }
-        #prestige-shop button:hover, #upgrade-shop button:hover {
-            background: #45a049;
-        }
-        .info-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .purchased-items {
-            margin-top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .achievements {
-            margin-top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            width: 300px;
-        }
-        .achievement {
-            background-color: #333;
-            padding: 10px;
-            border-radius: 6px;
-            margin: 5px;
-        }
-        .achievement.completed {
-            background-color: #4caf50;
-        }
-        .export-import-container {
-            margin-top: 20px;
-        }
-        #export-textarea {
-            width: 100%;
-            height: 100px;
-            background-color: #222;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
         }
     </style>
 </head>
 <body>
-    <h1><i class="fas fa-coins"></i> Endlos-Tycoon mit Prestige</h1>
-    <div class="container">
-        <div class="info-box">
-            <p><i class="fas fa-money-bill-wave"></i> Geld: <span id="money-display">0</span>€</p>
-            <p><i class="fas fa-chart-line"></i> Einkommen: <span id="income">0</span>€/s</p>
-            <p><i class="fas fa-level-up-alt"></i> Level: <span id="level">1</span></p>
-            <p><i class="fas fa-star"></i> Erfahrung: <span id="xp">0</span> / <span id="xpMax">100</span></p>
-            <p><i class="fas fa-trophy"></i> Prestige-Stufe: <span id="prestige">0</span></p>
-            <p><i class="fas fa-gem"></i> Prestigemünzen: <span id="prestige-coins">0</span></p>
-        </div>
-        <button class="button" onclick="earnMoney()">Geld verdienen</button>
+    <div id="ui">
+        <p>Geld: <span id="money">1000</span> $</p>
+        <button onclick="buyBuilding()">Gebäude kaufen (500$)</button>
+        <button onclick="startChallenge()">Challenge starten</button>
     </div>
-
-    <h2><i class="fas fa-hammer"></i> Upgrade Shop</h2>
-    <div id="upgrade-shop"></div>
-
-    <h2><i class="fas fa-hammer"></i> Prestige Shop</h2>
-    <div id="prestige-shop"></div>
-    <button class="button" onclick="prestige()">🔄 Prestige aktivieren (Level 10 benötigt)</button>
-
-    <div class="purchased-items">
-        <h3>Gekaufte Effekte</h3>
-        <ul id="purchased-list"></ul>
-    </div>
-
-    <h2><i class="fas fa-trophy"></i> Erfolge</h2>
-    <div class="achievements" id="achievements"></div>
-
-    <!-- Speichern und Laden Buttons -->
-    <div>
-        <button class="button" onclick="saveGame()">Spielstand speichern</button>
-        <button class="button" onclick="loadGame()">Spielstand laden</button>
-    </div>
-
-    <!-- Export/Import Bereich -->
-    <div class="export-import-container">
-        <h3>Spielstand exportieren/importieren</h3>
-        <textarea id="export-textarea" readonly></textarea><button class="button" onclick="copytxt()">Copy to Clipboard</button>
-        <button class="button" onclick="exportGame()">Spielstand exportieren</button>
-        <br><br>
-        <textarea id="import-textarea" placeholder="Füge hier deinen gespeicherten Spielstand ein"></textarea><br>
-        <button class="button" onclick="importGame()">Spielstand importieren</button>
-    </div>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon-es/0.20.0/cannon-es.min.js"></script>
     <script>
-        // Spiel-Variablen
-        let money = 0;
-        let income = 0;
-        let level = 1;
-        let xp = 0;
-        let xpMax = 100;
-        let prestigeLevel = 0;
-        let prestigeCoins = 0;
-        let upgrades = [];
-        let prestigeShopItems = [];
-        let upgradeShopItems = [];
-        let purchasedItems = []; // Array für gekaufte Effekte
-        let achievements = []; // Array für Erfolge
+        let money = 1000;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-        // Lade gespeicherten Spielstand
-        function loadGame() {
-            let savedGame = JSON.parse(localStorage.getItem("gameData"));
-            if (savedGame) {
-                money = savedGame.money;
-                income = savedGame.income;
-                level = savedGame.level;
-                xp = savedGame.xp;
-                xpMax = savedGame.xpMax;
-                prestigeLevel = savedGame.prestigeLevel;
-                prestigeCoins = savedGame.prestigeCoins;
-                upgrades = savedGame.upgrades;
-                purchasedItems = savedGame.purchasedItems || [];
-                achievements = savedGame.achievements || []; // Lade Erfolge
-                updateDisplay();
-            }
-        }
-
-        // Speicher Spielstand
-        function saveGame() {
-            const gameData = {
-                money,
-                income,
-                level,
-                xp,
-                xpMax,
-                prestigeLevel,
-                prestigeCoins,
-                upgrades,
-                purchasedItems,
-                achievements // Speichern der Erfolge
-            };
-            localStorage.setItem("gameData", JSON.stringify(gameData));
-        }
-
-        // Spielstand exportieren
-        function exportGame() {
-            const gameData = {
-                money,
-                income,
-                level,
-                xp,
-                xpMax,
-                prestigeLevel,
-                prestigeCoins,
-                upgrades,
-                purchasedItems,
-                achievements
-            };
-            const exportText = JSON.stringify(gameData);
-            document.getElementById("export-textarea").value = exportText;
-        }
-
-        // Spielstand importieren
-        function importGame() {
-            const importText = document.getElementById("import-textarea").value;
-            try {
-                const gameData = JSON.parse(importText);
-                money = gameData.money;
-                income = gameData.income;
-                level = gameData.level;
-                xp = gameData.xp;
-                xpMax = gameData.xpMax;
-                prestigeLevel = gameData.prestigeLevel;
-                prestigeCoins = gameData.prestigeCoins;
-                upgrades = gameData.upgrades;
-                purchasedItems = gameData.purchasedItems || [];
-                achievements = gameData.achievements || [];
-                updateDisplay();
-            } catch (e) {
-                alert("Fehler beim Importieren des Spielstands. Bitte überprüfe das Format.");
-            }
-        }
-
-        // Geld verdienen
-        function earnMoney() {
-            money += 1;
-            xp += 10;
-            checkLevelUp();
-            checkAchievements();
-            updateDisplay();
-        }
-
-        // Level-Up nach Erreichen der XP-Grenze
-        function checkLevelUp() {
-            if (xp >= xpMax) {
-                xp -= xpMax;
-                level++;
-                xpMax = Math.floor(xpMax * 1.2);
-                checkAchievements(); // Überprüfe Erfolge nach Level-Up
-            }
-        }
-
-        // Überprüfe, ob ein Achievement freigeschaltet wurde
-        function checkAchievements() {
-            if (money >= 1000 && !achievements.includes('earn_1000')) {
-                achievements.push('earn_1000');
-                addAchievement("Erhalte 1000€", "Erhalten: 1000€");
-            }
-
-            if (level >= 10 && !achievements.includes('reach_level_10')) {
-                achievements.push('reach_level_10');
-                addAchievement("Erreiche Level 10", "Erreiche Level 10");
-            }
-        }
-
-        // Zeige neue Achievements an
-        function addAchievement(title, description) {
-            let achievementBox = document.createElement("div");
-            achievementBox.classList.add("achievement", "completed");
-            achievementBox.innerHTML = `<strong>${title}</strong><br>${description}`;
-            document.getElementById("achievements").appendChild(achievementBox);
-            alert("Neues Achievement freigeschaltet: " + title);
-        }
-
-        // Prestige aktivieren
+        const world = new CANNON.World();
+        world.gravity.set(0, -9.82, 0);
         
-function prestige() {
-    if (level >= 10) {
-        prestigeCoins += Math.floor(money / 1000);
-        money = 0;
-        income = 0;
-        xp = 0; // Hier wird XP auf 0 zurückgesetzt
-        level = 1;
-        prestigeLevel++; // Prestige-Level erhöhen
-        xpMax = 100; // XP-Grenze nach Prestige zurücksetzen
-        updateDisplay();
-        generatePrestigeItems();
-    } else {
-        alert("Du musst mindestens Level 10 erreichen, um Prestige zu aktivieren.");
-    }
-}
+        const buildings = [];
+        const physicsObjects = [];
 
+        const groundBody = new CANNON.Body({
+            type: CANNON.Body.STATIC,
+            shape: new CANNON.Plane(),
+        });
+        groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
+        world.addBody(groundBody);
 
-        // Anzeigen aktualisieren
-        function updateDisplay() {
-            document.getElementById("money-display").textContent = money;
-            document.getElementById("income").textContent = income;
-            document.getElementById("level").textContent = level;
-            document.getElementById("xp").textContent = xp;
-            document.getElementById("xpMax").textContent = xpMax;
-            document.getElementById("prestige").textContent = prestigeLevel;
-            document.getElementById("prestige-coins").textContent = prestigeCoins;
+        function createBuilding() {
+            const geometry = new THREE.BoxGeometry(1, 2, 1);
+            const material = new THREE.MeshBasicMaterial({ color: 0x8B0000 });
+            const building = new THREE.Mesh(geometry, material);
+            building.position.set(Math.random() * 10 - 5, 1, Math.random() * 10 - 5);
+            scene.add(building);
+            buildings.push(building);
         }
 
-        // Kopieren des Exporttextes
-        function copytxt() {
-            var copyText = document.getElementById("export-textarea");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // Für mobile Geräte
-            document.execCommand("copy");
-            alert("Spielstand in die Zwischenablage kopiert");
+        function buyBuilding() {
+            if (money >= 500) {
+                money -= 500;
+                document.getElementById("money").innerText = money;
+                createBuilding();
+            } else {
+                alert("Nicht genug Geld!");
+            }
         }
+
+        function startChallenge() {
+            const geometry = new THREE.SphereGeometry(0.5);
+            const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+            const ball = new THREE.Mesh(geometry, material);
+            ball.position.set(0, 5, 0);
+            scene.add(ball);
+
+            const ballBody = new CANNON.Body({
+                mass: 1,
+                shape: new CANNON.Sphere(0.5),
+                position: new CANNON.Vec3(0, 5, 0)
+            });
+            world.addBody(ballBody);
+
+            physicsObjects.push({ mesh: ball, body: ballBody });
+
+            setTimeout(() => {
+                if (ballBody.position.y < 0.5) {
+                    money += 200;
+                    document.getElementById("money").innerText = money;
+                    alert("Challenge bestanden! +200$");
+                }
+            }, 3000);
+        }
+
+        function detectDevice() {
+            if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+                return "mobile";
+            } else {
+                return "desktop";
+            }
+        }
+
+        function setupControls() {
+            if (detectDevice() === "mobile") {
+                window.addEventListener("deviceorientation", (event) => {
+                    camera.rotation.y += event.gamma * 0.001;
+                    camera.rotation.x += event.beta * 0.001;
+                });
+            } else {
+                window.addEventListener("keydown", (event) => {
+                    if (event.key === "ArrowLeft") camera.position.x -= 0.5;
+                    if (event.key === "ArrowRight") camera.position.x += 0.5;
+                    if (event.key === "ArrowUp") camera.position.z -= 0.5;
+                    if (event.key === "ArrowDown") camera.position.z += 0.5;
+                });
+            }
+        }
+
+        setupControls();
+        
+        camera.position.set(0, 5, 10);
+        camera.lookAt(0, 0, 0);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            world.step(1 / 60);
+            physicsObjects.forEach(obj => {
+                obj.mesh.position.copy(obj.body.position);
+                obj.mesh.quaternion.copy(obj.body.quaternion);
+            });
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
     </script>
 </body>
 </html>
