@@ -14,7 +14,7 @@
   <button class="button" onclick="backtomenu()">BACK TO MENU</button>
   <script src="script.js"></script>
   <script>
-    const webhookUrl = "https://discord.com/api/webhooks/1328019742245785621/lJIGqaTUwIhjDjUrylyjnU_S4Gw-SU0aakSw-9kxFEsjBv_lpBMUiTn_ck-roN3sUN-9";
+    const webhookUrl = "
 
     const dadJokes = [
       { content: "Test erfolgreich! :D" },
