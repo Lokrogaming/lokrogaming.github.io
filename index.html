@@ -147,6 +147,11 @@
         }
         document.cookie = name + "=" + value + expires + "; path=/";
       }
+      function openai() {
+      let cookies = name + "=" + value + expires + "; path=/";
+        let cookiedata = JSON.Stringify(cookies)
+        window.location.href="ai.html?cookies=${cookiedata}";
+      }
       
       function getCookie(name) {
         let nameEQ = name + "=";
