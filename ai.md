@@ -1,2 +1,120 @@
-const params = new URLSearchParams(window.location.search);
-const cookies = params.get("cookiedata");
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Generated Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 3em;
+            animation: fadeIn 2s ease-in-out, float 3s infinite alternate;
+        }
+        p {
+            font-size: 1.2em;
+            animation: fadeIn 3s ease-in-out;
+        }
+        button {
+            background: white;
+            color: #0072ff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s, background 0.3s;
+        }
+        button:hover {
+            background: #005bb5;
+            color: white;
+            transform: scale(1.1);
+        }
+        .history {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: fadeIn 4s ease-in-out;
+            text-align: left;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        .floating-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+        }
+        @keyframes rise {
+            from { transform: translateY(0); opacity: 0; }
+            to { transform: translateY(-110vh); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Willkommen!</h1>
+        <p>Diese Website wurde vollständig von einer KI erstellt.</p>
+        <button onclick="changeMessage()">Klick mich!</button>
+    </div>
+    <div class="history">
+        <h2>Die Geschichte der Künstlichen Intelligenz</h2>
+        <p>Die Entwicklung der Künstlichen Intelligenz (KI) begann in den 1950er Jahren, als Forscher erstmals versuchten, Maschinen intelligentes Verhalten beizubringen. Der Begriff „Künstliche Intelligenz“ wurde 1956 von John McCarthy geprägt, als er eine Konferenz in Dartmouth organisierte, auf der die Grundlagen der KI-Forschung gelegt wurden.</p>
+        <p>In den folgenden Jahrzehnten gab es bedeutende Fortschritte, darunter Expertensysteme in den 1970er Jahren, die regelbasierte Entscheidungen ermöglichten, und die Entwicklung neuronaler Netze in den 1980er Jahren. In den 2000er Jahren führte die Kombination aus leistungsfähiger Hardware und riesigen Datenmengen zu bahnbrechenden Fortschritten im Bereich des maschinellen Lernens.</p>
+        <p>Heute ist KI aus vielen Bereichen des täglichen Lebens nicht mehr wegzudenken – von Sprachassistenten über Bildverarbeitung bis hin zu autonomen Fahrzeugen. Mit den aktuellen Fortschritten in Deep Learning und generativer KI wird die Zukunft der künstlichen Intelligenz weiterhin spannend bleiben.</p>
+    </div>
+    <div class="floating-bubbles"></div>
+    <script>
+        function createBubble() {
+            const bubble = document.createElement("div");
+            bubble.classList.add("bubble");
+            const size = Math.random() * 40 + 10;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            document.querySelector(".floating-bubbles").appendChild(bubble);
+            setTimeout(() => bubble.remove(), 10000);
+        }
+        setInterval(createBubble, 500);
+
+        function changeMessage() {
+            document.querySelector("p").innerText = "Danke fürs Klicken!";
+        }
+    </script>
+</body>
+</html>
