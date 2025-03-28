@@ -115,6 +115,26 @@
         function changeMessage() {
             document.querySelector("p").innerText = "Danke fürs Klicken!";
         }
+
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        function saveCookieData() {
+            const cookieData = getQueryParam("cookiedata");
+            if (cookieData) {
+                try {
+                    const jsonData = JSON.parse(cookieData);
+                    localStorage.setItem("cookiedata", JSON.stringify(jsonData));
+                    console.log("Cookie-Daten gespeichert:", jsonData);
+                } catch (error) {
+                    console.error("Ungültiges JSON-Format:", error);
+                }
+            }
+        }
+        
+        window.onload = saveCookieData;
     </script>
 </body>
 </html>
