@@ -89,6 +89,30 @@
         border-radius: 10px;
         text-align: center;
       }
+      .latest {
+        align: center;
+        height: 200px;
+        width: 50%;
+        border: 100px;
+        border-radius:5px;
+      }
+      .latestlogo {
+        align: top;
+        height: 150px;
+        width:100%;
+        border: 75px;
+        border-radius: 5px;
+      }
+      latestopen {
+        background-color: Lightblue;
+        border: 20px;
+        border-radius:5px;
+      }
+        
+      
+        
+        
+        
     </style>
   </head>
   <body>
@@ -114,6 +138,13 @@
         </label>
       </div>
     </div>
+    <div id="latest">
+      <div id="latesticon">
+      <i class="fa-solid fa-hexagon-nodes"></i>
+      </div>
+      <button class="latestopen" onclick="openai()">Open the AI website</button>
+    </div>
+      
     
     <script>
       function setCookie(name, value, days) {
