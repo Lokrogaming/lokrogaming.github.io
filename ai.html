@@ -97,6 +97,7 @@
         <p>In den folgenden Jahrzehnten gab es bedeutende Fortschritte, darunter Expertensysteme in den 1970er Jahren, die regelbasierte Entscheidungen ermöglichten, und die Entwicklung neuronaler Netze in den 1980er Jahren. In den 2000er Jahren führte die Kombination aus leistungsfähiger Hardware und riesigen Datenmengen zu bahnbrechenden Fortschritten im Bereich des maschinellen Lernens.</p>
         <p>Heute ist KI aus vielen Bereichen des täglichen Lebens nicht mehr wegzudenken – von Sprachassistenten über Bildverarbeitung bis hin zu autonomen Fahrzeugen. Mit den aktuellen Fortschritten in Deep Learning und generativer KI wird die Zukunft der künstlichen Intelligenz weiterhin spannend bleiben.</p>
     </div>
+    <audio id="audioPlayer" controls autoplay></audio>
     <div class="floating-bubbles"></div>
     <script>
         function createBubble() {
@@ -133,6 +134,66 @@
                 }
             }
         }
+        function playRandomAudio() {
+    const audioFiles = [
+        "background.mp3",
+        "background1.mp3",
+        "background2.mp3",
+        "background3.mp3",
+        "background4.mp3"
+    ];
+    
+    const audioElement = document.getElementById("audioPlayer");
+    
+    function getRandomAudio() {
+        return audioFiles[Math.floor(Math.random() * audioFiles.length)];
+    }
+    
+    function playNext() {
+        audioElement.src = getRandomAudio();
+        audioElement.play();
+    }
+    
+    audioElement.onended = playNext;
+    playNext();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    playRandomAudio();
+
+    // Cookie-Handling zur Speicherung des Nutzers
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("content");
+    
+    let username = getCookie("username");
+    let birthday = getCookie("birthday");
+    
+    if (username && birthday) {
+        modal.style.display = "none";
+        content.style.display = "block";
+    }
+});
+
         
         window.onload = saveCookieData;
     </script>
