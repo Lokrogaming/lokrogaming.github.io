@@ -82,7 +82,7 @@
 
 function decode(input) {
     try {
-        return atob(decodeURIComponent(atob(atob(atob(decodeURIComponent(atob(input)))))));
+        return atob(decodeURIComponent(atob(atob(decodeURIComponent(atob(input))))));
     } catch (e) {
         return 'Fehler: Ungültige Eingabe';
     }
