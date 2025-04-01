@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verschlüsselung & Entschlüsselung</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        textarea { width: 80%; height: 100px; margin: 10px 0; }
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+    <script>
+        function encode(input) {
+            return encodeURIComponent(btoa(btoa(btoa(encodeURIComponent(input)))));
+        }
+        
+        function decode(input) {
+            try {
+                return decodeURIComponent(atob(atob(atob(decodeURIComponent(input)))));
+            } catch (e) {
+                return 'Fehler: Ungültige Eingabe';
+            }
+        }
+        
+        function process(action) {
+            let text = document.getElementById("input").value;
+            document.getElementById("output").value = action === 'encode' ? encode(text) : decode(text);
+        }
+    </script>
+</head>
+<body>
+    <h1>Verschlüsselung & Entschlüsselung</h1>
+    <textarea id="input" placeholder="Gib deinen Text ein..."></textarea><br>
+    <button onclick="process('encode')">Verschlüsseln</button>
+    <button onclick="process('decode')">Entschlüsseln</button><br>
+    <textarea id="output" readonly placeholder="Ergebnis"></textarea>
+</body>
+</html>
