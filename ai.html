@@ -97,7 +97,9 @@
         <p>In den folgenden Jahrzehnten gab es bedeutende Fortschritte, darunter Expertensysteme in den 1970er Jahren, die regelbasierte Entscheidungen ermöglichten, und die Entwicklung neuronaler Netze in den 1980er Jahren. In den 2000er Jahren führte die Kombination aus leistungsfähiger Hardware und riesigen Datenmengen zu bahnbrechenden Fortschritten im Bereich des maschinellen Lernens.</p>
         <p>Heute ist KI aus vielen Bereichen des täglichen Lebens nicht mehr wegzudenken – von Sprachassistenten über Bildverarbeitung bis hin zu autonomen Fahrzeugen. Mit den aktuellen Fortschritten in Deep Learning und generativer KI wird die Zukunft der künstlichen Intelligenz weiterhin spannend bleiben.</p>
     </div>
+    <audio id="audioPlayer" controls>Your Browser don't support music</audio>
     <div class="floating-bubbles"></div>
+    
     <script>
         function createBubble() {
             const bubble = document.createElement("div");
@@ -133,6 +135,34 @@
                 }
             }
         }
+        function playRandomAudio() {
+    const audioFiles = [
+        "background.mp3",
+        "background1.mp3",
+        "background2.mp3",
+        "background3.mp3",
+        "background4.mp3"
+    ];
+    
+    const audioElement = document.getElementById("audioPlayer");
+    
+    function getRandomAudio() {
+        return audioFiles[Math.floor(Math.random() * audioFiles.length)];
+    }
+    
+    function playNext() {
+        audioElement.src = getRandomAudio();
+        audioElement.play();
+    }
+    
+    audioElement.onended = playNext;
+    playNext();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    playRandomAudio();
+});
+
         
         window.onload = saveCookieData;
     </script>
