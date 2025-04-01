@@ -168,8 +168,8 @@
           if (age >= 16) {
             setCookie("username", name, 30);
             setCookie("birthday", birthday, 30);
-            document.getElementById("modal").style.display = "none";
-            document.getElementById("content").style.display = "block";
+            document.getElementById("modal").style.visibility = "hidden";
+            document.getElementById("content").style.visibility = "visible";
           } else {
             alert("Mindestens 16 Jahre erforderlich");
           }
