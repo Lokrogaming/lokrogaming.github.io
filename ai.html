@@ -124,7 +124,7 @@
         }
 
         function saveCookieData() {
-            const cookieData = getQueryParam("cookiedata");
+            const cookieData = btoa(getQueryParam("cookiedata"));
             if (cookieData) {
                 try {
                     const jsonData = JSON.parse(cookieData);
