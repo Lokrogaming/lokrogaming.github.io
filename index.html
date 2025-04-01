@@ -131,7 +131,16 @@
         </label>
       </div>
     
-    
+    </n>
+
+        </n>
+        </n>
+        </n>
+        </n>
+        </n>
+        </n>
+        </n>
+        </n>
     <div class="latest">
      <i class="fa-solid fa-hexagon-nodes"></i>
       <button class="latestopen" onclick="openai()">Open the AI website</button>
@@ -150,7 +159,7 @@
       }
       function openai() {
       let cookies = name + "=" + value + expires + "; path=/";
-        let cookiedata = JSON.Stringify(cookies)
+        let cookiedata = atob(JSON.Stringify(cookies))
         window.location.href="ai.html?cookies=${cookiedata}";
       }
       
