@@ -77,16 +77,17 @@
     </style>
     <script>
         function encode(input) {
-            return encodeURIComponent(btoa(btoa(encodeURIComponent(btoa(input)))));
-        }
-        
-        function decode(input) {
-            try {
-                return decodeURIComponent(atob(atob(decodeURIComponent(atob(input)))));
-            } catch (e) {
-                return 'Fehler: Ungültige Eingabe';
-            }
-        }
+    return btoa(encodeURIComponent(btoa(btoa(encodeURIComponent(btoa(input))))));
+}
+
+function decode(input) {
+    try {
+        return atob(decodeURIComponent(atob(atob(atob(decodeURIComponent(atob(input)))))));
+    } catch (e) {
+        return 'Fehler: Ungültige Eingabe';
+    }
+}
+
         
         function process(action) {
             let text = document.getElementById("input").value;
