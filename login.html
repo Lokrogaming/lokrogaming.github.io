@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+    }
+    .login-box {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+    }
+    button {
+      padding: 10px 20px;
+      background: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Benutzername"><br>
+    <input type="password" id="password" placeholder="Passwort"><br>
+    <button onclick="login()">Anmelden</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const target = urlParams.get("target") || "index.html";
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+    
+      const validUser = btoa("QWRtaW4=")
+      const validPass = btoa("MjkxMQ==")
+
+      if (user === validUser && pass === validPass) {
+        window.location.href = target + ".html?istrue=true" ;
+      } else {
+        window.location.href = target + ".html?istrue=false" ;
+      }
+    }
+  </script>
+</body>
+</html>
