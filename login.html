@@ -53,8 +53,8 @@
       const pass = document.getElementById("password").value;
 
     
-      const validUser = btoa("QWRtaW4=")
-      const validPass = btoa("MjkxMQ==")
+      const validUser = atob("QWRtaW4=")
+      const validPass = atob("MjkxMQ==")
 
       if (user === validUser && pass === validPass) {
         window.location.href = target + ".html?istrue=true" ;
