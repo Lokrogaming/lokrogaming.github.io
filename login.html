@@ -49,19 +49,18 @@
     const target = urlParams.get("target") || "index.html";
 
     function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+  const user = btoa(document.getElementById("username").value);
+  const pass = btoa(document.getElementById("password").value);
 
-    
-      const validUser = atob("QWRtaW4=")
-      const validPass = atob("MjkxMQ==")
+  const validUser = "QWRtaW4=";
+  const validPass = "MjkxMQ=="; 
 
-      if (user === validUser && pass === validPass) {
-        window.location.href = target + ".html?istrue=true" ;
-      } else {
-        window.location.href = target + ".html?istrue=false" ;
-      }
-    }
+  if (user === validUser && pass === validPass) {
+    window.location.href = target + ".html?istrue=true"
+  } else {
+    window.location.href = target + ".html?istrue=false"
+}
+
   </script>
 </body>
 </html>
