@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <style>
+    #content {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>Willkommen im Admin Panel!</h1>
+    <p>Geheimer Inhalt nur für eingeloggt Nutzer 😎</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const isTrue = params.get("istrue");
+
+    if (isTrue === "true") {
+      document.getElementById("content").style.display = "block";
+    } else {
+      window.location.href = "https://www.google.com";
+    }
+  </script>
+</body>
+</html>
