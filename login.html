@@ -49,7 +49,6 @@
     const target = urlParams.get("target") || "index.html";
 
     function login() {
-      alert("wird ausgeführt");
   const user = btoa(document.getElementById("username").value);
   const pass = btoa(document.getElementById("password").value);
 
@@ -57,10 +56,8 @@
   const validPass = "MjkxMQ=="; 
 
   if (user === validUser && pass === validPass) {
-    alert("Ok");
     window.location.href = target + ".html?istrue=true"
   } else {
-    alert("Nein");
     window.location.href = target + ".html?istrue=false"
     }
 }
