@@ -81,110 +81,39 @@
         background-color: #04AA6D;
         color: white;
       }
-      .latest {
-        position: absolute;
-        bottom: 10%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 60%;
-        height: 50%;
-        background: white;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        text-align: center;
+      .topnav a.about {
+        float: right;
       }
-      .latest i {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-      }
-      .latestopen {
-        background-color: lightblue;
-        border: none;
-        padding: 10px 20px;
+      .suggestion {
         border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
+        text-align: center;
+        background-color: white;
+        float: center;
+        
       }
+      
+     
     </style>
   </head>
   <body>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <h2>Name und Geburtstag eingeben</h2>
-        <input type="text" id="name" placeholder="Name" required><br><br>
-        <input type="date" id="birthday" required><br><br>
-        <button onclick="saveUserInfo()">Bestätigen</button>
-      </div>
-    </div>
     
-    <div id="content" style="display: none;">
       <div class="topnav">
         <a class="active" href="index">Home</a>
         <a href="game-library.html">Games</a>
         <a href="projekte.html">Projekte</a>
         <a href="ai.html">AI Website</a>
-        <a href="about-me.html">About</a>
-        <a href="login.html?target=admin" style="float: right;">Log In</a>
+        <a class="about" href="about.html">About</a>
       </div>
-    
+    </div>
+
+    <div id="suggestion">
+      <h1>Vorgeschlagen</h1>
+      <a href="about.html">About me</a>
 
     </div>
-    
+      
     <script>
-      function setCookie(name, value, days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
-      }
       
-      function getCookie(name) {
-        let nameEQ = name + "=";
-        let ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-          let c = ca[i].trim();
-          if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-      
-      function checkUserInfo() {
-        let username = getCookie("username");
-        let birthday = getCookie("birthday");
-        if (username && birthday) {
-          document.getElementById("modal").style.display = "none";
-          document.getElementById("content").style.display = "block";
-        }
-      }
-      
-      function saveUserInfo() {
-        let name = document.getElementById("name").value;
-        let birthday = document.getElementById("birthday").value;
-        if (name && birthday) {
-          let age = calculateAge(birthday);
-          if (age >= 16) {
-            setCookie("username", name, 30);
-            setCookie("birthday", birthday, 30);
-            document.getElementById("modal").style.visibility = "hidden";
-            document.getElementById("content").style.visibility = "visible";
-          } else {
-            alert("Mindestens 16 Jahre erforderlich");
-          }
-        } else {
-          alert("Alle Felder ausfüllen");
-        }
-      }
-      
-      function openai() {
-        let cookies = document.cookie;
-        let encodedCookies = btoa(cookies);
-        window.location.href = `ai.html?cookies=${encodedCookies}`;
-      }
-      
-      window.onload = checkUserInfo;
     </script>
   </body>
 </html>
