@@ -6,6 +6,8 @@ body {
         align-items: center;
         height: 100vh;
         margin: 0;
+        font-family: "Arial Rounded MT Bold";
+        font-style: normal;
       }
       .switch {
         position: relative;
