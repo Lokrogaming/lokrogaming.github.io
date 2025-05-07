@@ -1,102 +1,26 @@
-<!doctype html>
-<html lang="de">
-<head>
-    <title>Spotify Playlists für Halloween, Sankt Martin und Nikolaus</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 400px;
-        }
-        .episodes {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-        .episode {
-            min-width: max-content;
-            margin-bottom: .8rem;
-            padding: .8rem 1rem;
-            border-radius: 10px;
-            border: 0;
-            background: #191414;
-            color: #fff;
-            cursor: pointer;
-            text-align: left;
-        }
-        .episode:hover {
-            background: #1Db954;
-        }
-         
-        iframe {
-            width: 100%;
-            height: 380px;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h2>Halloween Playlist</h2>
-        <iframe src="https://open.spotify.com/embed/playlist/2bWtVAl9VX45x9gAUPiVOF?utm_source=generator&theme=0" 
-                frameborder="0" 
-                allowtransparency="true" 
-                allow="encrypted-media"></iframe>
-
-        <h2>Sankt Martin Playlist</h2>
-        <iframe src="https://open.spotify.com/embed/playlist/6rGoxwsUggA4pEHaWyBtkr?si=V1Un4BeERrG6kMHpZGLZ_Q" 
-                frameborder="0" 
-                allowtransparency="true" 
-                allow="encrypted-media"></iframe>
-
-        <h2>Nikolaus Playlist</h2>
-        <iframe src="https://open.spotify.com/embed/playlist/1MUhYw651Y9KAmLOIzlPIM?si=MFuPLmtSRT-HgX0pMrJ05w" 
-                frameborder="0" 
-                allowtransparency="true" 
-                allow="encrypted-media"></iframe>
-
-        <h3>Zusätzliche Songs</h3>
-        <div class="episodes">
-            <button class="episode" data-spotify-id="spotify:track:4PTG3Z6ehGkBFwjybzWkR8">
-                Song 1: Der 4. Song
-            </button>
-            <button class="episode" data-spotify-id="spotify:track:6Z36wt7oo6xm2uGN00PnTq">
-            Halloween Theme
-            </button>
-        </div>
-
-        <div id="embed-iframe"></div>
+<html>
+    <head>
+        <title>SPOTIFY PLAYLISTS & SONGS</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="google" content="notranslate">
+        </head>
+        <body>
+            <div class="topnav">
+        <a class="active" href="index">Home</a>
+        <a href="game-library.html">Games</a>
+        <a href="projekte.html">Projekte</a>
+        <a href="ai.html">AI Website</a>
+        <a class="about" href="about.html">About</a>
+      </div>
     </div>
-
-    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-    <script type="text/javascript">
-        window.onSpotifyIframeApiReady = (IFrameAPI) => {
-            const element = document.getElementById('embed-iframe');
-            const options = {
-                width: '100%',
-                height: '160',
-                uri: 'spotify:track:4PTG3Z6ehGkBFwjybzWkR8'
-            };
-            const callback = (EmbedController) => {
-                document.querySelectorAll('.episode').forEach(
-                    episode => {
-                        episode.addEventListener('click', () => {
-                            EmbedController.loadUri(episode.dataset.spotifyId);
-                        });
-                    });
-            };
-            IFrameAPI.createController(element, options, callback);
-        };
-        
-        function backtomenu() {
-        window.location.href="zwischenstation.html"
-        }
-    </script>
-
-</body>
+            
+            <h1>PLAYLISTS</h1><br>
+            <div id="spotify-playlist">
+           <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0zAEVnhxUyCA14lK20Evy0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+           </div>
+           <h1>SONGS</h1>
+           <div id="spotify-songs"> 
+               
+           </div>
+        </body>
 </html>
