@@ -190,3 +190,6 @@ address {
 #spotify-playlist:hover, #spotify-songs:hover {
   transform: scale(1.01);
 }
+#content {
+        align-items: center;
+}
