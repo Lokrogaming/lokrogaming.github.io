@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "ArialRounded";
+  src: url("fonts/arial-rounded-mt-bold.ttf") format("truetype");
+}
 html {
         scroll-behavior: smooth;
 }
