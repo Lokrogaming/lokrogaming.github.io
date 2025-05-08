@@ -130,7 +130,17 @@ body {
   text-align: center;
   flex-direction: column;
 }
-
+#gedenkenachtermai {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  margin-top: 100px;
+  text-align: center;
+  flex-direction: column;
+}
 address {
         border: 1px solid black;
         padding: 10px;
