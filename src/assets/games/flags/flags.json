@@ -1,1 +1,8 @@
+{
+  "./src/assets/img/flags/usa.png": "USA",
+  "./src/assets/img/flags/germany.png": "Deutschland",
+  "./src/assets/img/flags/uk.png": "Vereinigtes Königreich",
+  "./src/assets/img/flags/japan.png": "Japan",
+  "./src/assets/img/flags/canada.png": "Canada",
+}
 
