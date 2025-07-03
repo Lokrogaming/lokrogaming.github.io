@@ -13,7 +13,7 @@
 
   <script>
     async function loadFlags() {
-  const res = await fetch('/src/assets/games/flags/flags.json');
+  const res = await fetch('./src/assets/games/flags/flags.json');
   const data = await res.json();
   return data;
 }
