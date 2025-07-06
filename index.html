@@ -157,6 +157,13 @@ const ValidationCodes = [
       window.location.href = "verify.html?origin=index.html";
     }
     };
+      function redirect307() {
+        alert('Temporary Redirect: 307; Answer: Umbau der Website, Making changes on this website')
+        window.location.href="nochimumbau.html";
+      };
+      
+      window.addEventlistener('load', redirect307);
+      redirect307();
              
             
         // Snow Animation 
