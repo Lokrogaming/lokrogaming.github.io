@@ -65,18 +65,17 @@
     <p id="error"></p>
 
     <div class="custom-toast-container">
-      <div id="customToast" class="custom-toast">
-        <div class="custom-toast-header">
-          <img src="logo.png" alt="Logo" class="custom-toast-icon">
-          <strong class="custom-toast-author">Lokrogamer</strong>
-          <small id="custom-toast-time">Gerade eben</small>
-          <span class="custom-toast-close" onclick="closeToast()">×</span>
-        </div>
-        <div class="custom-toast-body" id="custom-toast-body">
-          Hallo!
-        </div>
-      </div>
+  <div id="customToast" class="custom-toast" role="alert" aria-live="assertive">
+    <div class="custom-toast-header">
+      <img src="logo.png" alt="Logo" class="custom-toast-icon">
+      <strong class="custom-toast-author">Lokrogamer</strong>
+      <span id="custom-toast-time">Gerade eben</span>
+      <button class="custom-toast-close" onclick="closeToast()" aria-label="Schließen">&times</button>
     </div>
+    <div class="custom-toast-body" id="custom-toast-body">Hallo!</div>
+  </div>
+</div>
+
 
     <script>
       
