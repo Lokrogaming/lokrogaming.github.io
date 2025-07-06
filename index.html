@@ -134,9 +134,14 @@
       }
 
       function search() {
-        const query = document.getElementById('searchinput').value;
-        alert("Suche nach: " + query);
-        // Hier kann die Suchfunktion erweitert werden
+        const searchinput = getElementById("searchinput").value;
+if ( searchinput !== "" ) {
+alert("Search: ${searchinput}");
+const request = encodeURIcomponent(searchinput);
+window.location.href = "s.html?request=${request}";
+} else {
+alert("Search can't be empty!"):
+}
       }
     </script>
   </body>
