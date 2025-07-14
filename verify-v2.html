@@ -35,6 +35,19 @@
   <p id="status"></p>
 
   <script>
+    fetch('/src/JSON/Projects/settings.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
+    return response.json();
+  })
+  .then(data => {
+    if (data.quarantine === true) {
+      window.location.href = 'nochimumbau.html';
+    }
+  })
+  .catch(error => {
+    console.error('Fehler beim Laden der JSON-Datei:', error);
+  });
     const verifycodes = [
   "867239104582", "109238475610", "384920175623", "758302947162", "204938475610",
   "392847561092", "182736450982", "572839104758", "908172635472", "762839104756",

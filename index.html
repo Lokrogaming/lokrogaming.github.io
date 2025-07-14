@@ -58,7 +58,7 @@
         <p style="color: black;">ReuFnR</p>
       </button>
       <button class="partnerbtn" onclick="window.location.href='https://lokrogaming.github.io/sit4paws'">
-        <img src="https://lokrogaming.github.io/sit4paws/logo.png" class="avatar">
+        <img src="https://lokrogaming.github.io/sit4paws/logo.png"  class="avatar">
         <p style="color: black;">Sit4Paws</p>
       </button>
     </div>
@@ -76,21 +76,34 @@
 
     <div class="custom-toast-container">
       <div id="customToast" class="custom-toast">
-        <div class="custom-toast-header">
-          <img src="logo.png" alt="Logo" class="custom-toast-icon">
-          <strong class="custom-toast-author">Lokrogamer</strong>
+    <div class="custom-toast-header">
+      <img src="logo.png" alt="Logo" class="custom-toast-icon">
+      <strong class="custom-toast-author">Lokrogamer</strong>
           <small id="custom-toast-time">Gerade eben</small>
           <span class="custom-toast-close" onclick="closeToast()">×</span>
-        </div>
+    </div>
         <div class="custom-toast-body" id="custom-toast-body">
           Hallo!
         </div>
-      </div>
-    </div>
+  </div>
+</div>
+
 
     <script>
       
-     // window.location.href = "nochimumbau.html";
+     fetch('/src/JSON/Projects/settings.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
+    return response.json();
+  })
+  .then(data => {
+    if (data.quarantine === true) {
+      window.location.href = 'nochimumbau.html';
+    }
+  })
+  .catch(error => {
+    console.error('Fehler beim Laden der JSON-Datei:', error);
+  });
 
       // Nachfolgender Code wird bei Weiterleitung nicht mehr ausgeführt, außer der Umbau-Link existiert nicht
       window.onload = function () {

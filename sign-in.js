@@ -34,3 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 });
+fetch('/src/JSON/Projects/settings.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
+    return response.json();
+  })
+  .then(data => {
+    if (data.quarantine === true) {
+      window.location.href = 'nochimumbau.html';
+    }
+  })
+  .catch(error => {
+    console.error('Fehler beim Laden der JSON-Datei:', error);
+  });
