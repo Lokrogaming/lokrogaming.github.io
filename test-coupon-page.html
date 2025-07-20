@@ -1,39 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Meine Website</title>
+  <link rel="stylesheet" href="test-styles.css">
 </head>
 <body>
-​
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-    More
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item disabled" href="index.html">Home</a></li>
-    <li><a class="dropdown-item active" href="game-library.html">Games</a></li>
-    <li><a class="dropdown-item active" href="projects/latein/verben-gruppen-projekt/downloader.html">Latin Project for school</a></li>
-  </ul>
-</div>
-</nav>
-<script>fetch('/src/JSON/Projects/settings.json')
-  .then(response => {
-    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
-    return response.json();
-  })
-  .then(data => {
-    if (data.quarantine === true) {
-      window.location.href = 'nochimumbau.html';
-    }
-  })
-  .catch(error => {
-    console.error('Fehler beim Laden der JSON-Datei:', error);
-  });</script>
+  <nav id="navigation">Navigation</nav>
+  <main>
+    <h1>Willkommen!</h1>
+    <p>Dies ist deine personalisierte Seite.</p>
+    <button onclick="openSettings()">⚙️ Einstellungen</button>
+  </main>
+
+  <div id="settings" style="display: none;">
+    <h2>⚙️ Einstellungen</h2>
+    <label>Hintergrundfarbe:
+      <input type="color" id="bgColor">
+    </label><br>
+    <label>Schriftfarbe:
+      <input type="color" id="textColor">
+    </label><br>
+    <label>Schriftart:
+      <select id="fontSelect">
+        <option value="Arial">Arial</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Courier New">Courier New</option>
+      </select>
+    </label><br>
+    <label>Navigation:
+      <select id="navPosition">
+        <option value="top">Oben</option>
+        <option value="side">Links</option>
+      </select>
+    </label><br><br>
+    <button onclick="saveSettings()">✅ Speichern</button>
+    <button onclick="closeSettings()">❌ Schließen</button>
+  </div>
+
+  <script src="test-script.js"></script>
 </body>
 </html>
-
