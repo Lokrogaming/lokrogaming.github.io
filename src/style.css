@@ -1,57 +1,83 @@
 @font-face {
   font-family: "ArialRoundedMTBold";
-  src: url("/fonts/arial-rounded-mt-bold.ttf") format("truetype");
-
-
+  src: url("\fonts\arial-rounded-mt-bold.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Bitcount Prop Double Light";
+  src: url("\fonts\BitcountPropDouble-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Varela Round";
+  src: url("\fonts\VarelaRound-Regular.ttf") format("truetype");
+}
+
 html {
         scroll-behavior: smooth;
 }
 body {
-        background: gray;
+        background: black;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
-        font-family: "ArialRoundedMTBold";
+        font-family: "Varela Round";
         font-style: normal;
       }
       
-      .topnav {
+.topnav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
+  background-color: black;
   border: 2px solid black;
-  overflow: hidden;
   padding: 10px;
   z-index: 999;
-  font-style: normal;
-  border-color: black;
- 
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
+  font-family: "Bitcount Prop Double";
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* falls du viele Links hast */
+}
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-      .topnav a {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 17px;
-      }
-      .topnav a:hover {
-        background-color: #ddd;
-        color: black;
-      }
-      .topnav a.active {
-        background-color: #04AA6D;
-        color: white;
-      }
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+}
+
+
+.topnav a {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  padding: 14px 16px;
+  display: inline-block;
+}
+
+.topnav a:hover {
+  background-color: white;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #333;
+  color: white;
+}
+
  .topnav a.about {
         float: right;
+      }
+      .searchbtn {
+        border: solid 1px lightgray
       }
            .dropdown {
             position: relative;
@@ -83,28 +109,23 @@ body {
             text-decoration: none;
             display: block;
         }
-#suggestion {
-  background-color: white;
-  border-radius: 15px;
-  border-color: #f2f2f2;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
-  margin-top: 100px;
-  text-align: center;
-  flex-direction: column;
-}
+        img.logo-lg{
+          width: 200px;
+           filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
+        }
+        div.suggested {
+        font-size: 125%;
+        }
+#suggestion,
 #gedenkenachtermai {
-  background-color: white;
+  background-color: grey;
   border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 600px;
-  margin-top: 100px;
+  width: 75%;
+  padding: 15px;
+  margin-top: 50px;
   text-align: center;
   flex-direction: column;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* <--- Schatten */
 }
 address {
         border: 1px solid black;
@@ -144,18 +165,7 @@ address {
   max-width: 600px;
   margin-top: 100px;
 }
-#projekte button.projektbtn {
-  width: 100%;
-  background-color: lightgray;
-  border: none;
-  color: black;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 16px;
-  box-sizing: border-box;
-}
+
 
 #spotify-playlist, #spotify-songs {
   display: flex;
@@ -232,15 +242,7 @@ address {
   .captcha-container {
     margin-top: 10px;
 }
-  .login-container button.button {
-  background-color: royalblue;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
+  
 .toast {
   position: fixed;
   bottom: 10px;
@@ -303,7 +305,7 @@ address {
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #ccc; 
+      border: 3px solid #191414; 
     }
 #partners {
   display: grid;
@@ -317,20 +319,9 @@ address {
   max-width: 600px;
   margin-top: 100px;
 }
-#partners button.partnerbtn {
-  width: 100%;
-  background-color: lightgray;
-  border: none;
-  color: black;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 16px;
-  box-sizing: border-box;
-  font-family: "ArialRoundedMTBold";
+
   
-}
+
 #partners ul {
   list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
@@ -355,3 +346,73 @@ canvas.snow {
         }
 
 
+a {
+  color: rgba(0, 0, 0, 1);
+}
+/*BUTTONS*/
+button.adbtn {
+  width: 100%;
+  background-color: darkslategrey;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-family: "Varela Round";
+  margin-bottom: 20px; /* <- Abstand zwischen den Buttons */
+}
+
+button.adbtn p {
+  font-size: 150%;
+}
+#partners button.partnerbtn {
+  width: 100%;
+  background-color: lightgray;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-family: "ArialRoundedMTBold";
+
+}
+.login-container button.button {
+  background-color: royalblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+#projekte button.projektbtn {
+  width: 100%;
+  background-color: lightgray;
+  border: none;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+   .button {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
+}
