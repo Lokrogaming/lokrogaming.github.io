@@ -70,6 +70,26 @@
 </div>
       <h1>Werbung</h1>
       
+   <!-- Add a placeholder for the Twitch embed -->
+<div id="twitch-embed"></div>
+
+<!-- Load the Twitch embed script -->
+<script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+<!-- Create a Twitch.Player object. This will render within the placeholder div -->
+<script type="text/javascript">
+  new Twitch.Player("twitch-embed", {
+    channel: "lokrogamer"
+  });
+</script>
+
+    <iframe
+  id="chat_embed"
+  src="https://www.twitch.tv/embed/black0815xx/chat?parent=lokrogaming.github.io"
+  height="500"
+  width="350">
+</iframe>
+
       <button class="adbtn" onclick="window.location.href='https://twitch.tv/reufnr'">
         <img src="https://lokrogaming.github.io/reufnr/reufnr-logo.jpg" class="avatar">
         <p style="color: black;">ReuFnR</p>
