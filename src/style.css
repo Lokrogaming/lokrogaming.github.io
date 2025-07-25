@@ -307,6 +307,13 @@ address {
       object-fit: cover;
       border: 3px solid #191414; 
     }
+    .main-name-lg {
+  text-align: center;
+  align-self: center;
+  color: white;
+}
+  
+
 #partners {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -416,4 +423,75 @@ button.adbtn p {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 16px;
+}
+/*TEXT EFFECTS*/  
+.glow-white {
+  color: white;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+}
+
+.glow-blue {
+  color: #00f;
+  text-shadow: 0 0 5px #00f, 0 0 10px #00f, 0 0 20px #00f;
+}
+
+.glow-red {
+  color: #f00;
+  text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 20px #f00;
+}
+
+.glow-green {
+  color: #0f0;
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
+}
+
+/* DIMMED EFFECTS */
+.glow-white-dim {
+  color: white;
+  text-shadow: 0 0 2px white, 0 0 5px rgba(255,255,255,0.5);
+}
+
+.glow-blue-dim {
+  color: #99f;
+  text-shadow: 0 0 2px #66f, 0 0 4px rgba(0,0,255,0.4);
+}
+
+.glow-red-dim {
+  color: #f99;
+  text-shadow: 0 0 2px #f66, 0 0 4px rgba(255,0,0,0.4);
+}
+
+.glow-green-dim {
+  color: #9f9;
+  text-shadow: 0 0 2px #6f6, 0 0 4px rgba(0,255,0,0.4);
+}
+/* ANIMATED EFFECTS */
+.glow-rainbow {
+  color: white;
+  font-weight: bold;
+  animation: rainbowGlow 2.5s linear infinite;
+}
+
+@keyframes rainbowGlow {
+  0%   { text-shadow: 0 0 10px red, 0 0 20px red; }
+  20%  { text-shadow: 0 0 10px orange, 0 0 20px orange; }
+  40%  { text-shadow: 0 0 10px yellow, 0 0 20px yellow; }
+  60%  { text-shadow: 0 0 10px green, 0 0 20px green; }
+  80%  { text-shadow: 0 0 10px blue, 0 0 20px blue; }
+  100% { text-shadow: 0 0 10px violet, 0 0 20px violet; }
+}
+
+/* DIMMED ANIMATED EFFECTS*/
+.glow-rainbow-dim {
+  color: white;
+  animation: rainbowGlowDim 2.5s linear infinite;
+}
+
+@keyframes rainbowGlowDim {
+  0%   { text-shadow: 0 0 3px red; }
+  20%  { text-shadow: 0 0 3px orange; }
+  40%  { text-shadow: 0 0 3px yellow; }
+  60%  { text-shadow: 0 0 3px green; }
+  80%  { text-shadow: 0 0 3px blue; }
+  100% { text-shadow: 0 0 3px violet; }
 }
