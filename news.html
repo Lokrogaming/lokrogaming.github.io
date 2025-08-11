@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nachrichten Kanal (Dark Mode)</title>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<style>
+  /* Loader CSS */
+  .loader-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .container {
+    position: relative;
+    border-radius: 50%;
+    height: 96px;
+    width: 96px;
+    animation: rotate_3922 1.2s linear infinite;
+    background: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+  .container span {
+    position: absolute;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+  .container span:nth-of-type(1) { filter: blur(5px); }
+  .container span:nth-of-type(2) { filter: blur(10px); }
+  .container span:nth-of-type(3) { filter: blur(25px); }
+  .container span:nth-of-type(4) { filter: blur(50px); }
+  .container::after {
+    content: "";
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    background-color: #121212;
+    border: solid 5px #121212;
+    border-radius: 50%;
+  }
+  @keyframes rotate_3922 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Dark Mode */
+  body {
+    background-color: #121212;
+    color: #eee;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  a {
+    color: #84cdfa;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  #content {
+    display: none;
+    max-width: 700px;
+    margin: auto;
+  }
+  .message-box {
+    background: #222;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 8px #0008;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    animation: fadeIn 0.7s ease forwards;
+    word-break: break-word;
+  }
+  .message-box.urgent {
+    border: 2px solid #e74c3c;
+  }
+  .message-icon {
+    font-size: 1.8rem;
+    color: #84cdfa;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+  .message-content {
+    flex-grow: 1;
+  }
+  .message-author {
+    font-style: italic;
+    color: #bbb;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+  }
+  /* Popup Styles */
+  #popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #222;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #000a;
+    max-width: 320px;
+    padding: 1rem 1.5rem 1rem 1rem;
+    display: none;
+    z-index: 10000;
+    animation: slideIn 0.5s ease forwards;
+    color: #eee;
+    word-break: break-word;
+  }
+  #popup.urgent {
+    border: 2px solid #e74c3c;
+  }
+  #popup .close-btn {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #bbb;
+    user-select: none;
+  }
+  #popup .message-icon {
+    font-size: 1.6rem;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    color: #84cdfa;
+  }
+  #popup .message-author {
+    font-style: italic;
+    color: #bbb;
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  /* Settings Panel */
+  #settings {
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  #settings label {
+    margin-right: 1rem;
+    user-select: none;
+  }
+  #settings input[type=checkbox] {
+    margin-right: 0.3rem;
+  }
+
+  /* Popup List Button */
+  #popup-list-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: #eee;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 0 10px #000a;
+    z-index: 10000;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes slideIn {
+    from {opacity: 0; transform: translateX(100%);}
+    to {opacity: 1; transform: translateX(0);}
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #bbb;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader" class="loader-container" role="alert" aria-live="assertive" aria-busy="true" aria-label="Lädt">
+  <div class="container">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- Hauptinhalt -->
+<div id="content" tabindex="-1">
+  <a href="index.html" class="close-btn">&times;</a>
+  <h1>Nachrichten</h1>
+
+  <!-- Einstellungen -->
+  <div id="settings" aria-label="Nachrichten Einstellungen">
+    <label><input type="checkbox" id="togglePopups"> Popups anzeigen</label>
+  </div>
+
+  <!-- Nachrichten Container -->
+  <div id="messages"></div>
+</div>
+
+<!-- Popup -->
+<div id="popup" role="alert" aria-live="assertive" aria-atomic="true">
+  <span class="close-btn" aria-label="Popup schließen" tabindex="0">&times;</span>
+  <div><i class="message-icon bi"></i><span id="popup-text"></span></div>
+  <div class="message-author" id="popup-author"></div>
+</div>
+
+<!-- Button zum Öffnen Popup Liste, wenn Popups deaktiviert sind -->
+<button id="popup-list-btn" title="Popup-Liste anzeigen" aria-label="Popup-Liste anzeigen">📋</button>
+
+<script>
+(() => {
+  const API_URL = "https://news-bf99.onrender.com/news.json";
+
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+  const messagesDiv = document.getElementById("messages");
+  const popup = document.getElementById("popup");
+  const popupText = document.getElementById("popup-text");
+  const popupAuthor = document.getElementById("popup-author");
+  const popupIcon = popup.querySelector(".message-icon");
+  const closeBtn = popup.querySelector(".close-btn");
+  const popupListBtn = document.getElementById("popup-list-btn");
+  const togglePopupsCheckbox = document.getElementById("togglePopups");
+
+  let messages = [];
+  let currentPopupIndex = 0;
+
+  // Einstellungen laden oder default
+  let settings = {
+    popupsEnabled: true,
+  };
+
+  function loadSettings() {
+    try {
+      const saved = localStorage.getItem("newsSettings");
+      if (saved) {
+        settings = JSON.parse(saved);
+      }
+    } catch {}
+    togglePopupsCheckbox.checked = settings.popupsEnabled;
+  }
+
+  function saveSettings() {
+    localStorage.setItem("newsSettings", JSON.stringify(settings));
+  }
+
+  // Icons per Bootstrap Icons class map
+  // Fallback bi-info-circle
+  function getIconClass(name) {
+    if (!name) return "bi-info-circle";
+    const knownIcons = [
+      "alarm", "bell", "chat", "info-circle", "exclamation-triangle", "exclamation-circle",
+      "check-circle", "calendar", "calendar-event", "envelope", "star", "gear", "person",
+      "chat-dots", "patch-exclamation", "patch-check", "megaphone", "bell-fill"
+    ];
+    return knownIcons.includes(name) ? "bi-" + name : "bi-info-circle";
+  }
+
+  // Nachricht HTML bauen
+  function createMessageBox(msg) {
+    const box = document.createElement("div");
+    box.classList.add("message-box");
+    if (msg.urgent) box.classList.add("urgent");
+
+    // Icon
+    const icon = document.createElement("i");
+    icon.className = "message-icon bi " + getIconClass(msg.icon);
+    box.appendChild(icon);
+
+    // Content
+    const content = document.createElement("div");
+    content.classList.add("message-content");
+
+    const textNode = document.createElement("div");
+    textNode.textContent = msg.message || "Kein Text vorhanden";
+    content.appendChild(textNode);
+
+    const authorNode = document.createElement("div");
+    authorNode.classList.add("message-author");
+    authorNode.textContent = msg.author || "Unbekannter Autor";
+    content.appendChild(authorNode);
+
+    box.appendChild(content);
+
+    return box;
+  }
+
+  // Popup anzeigen
+  function showPopup(index) {
+    if (!settings.popupsEnabled) return;
+    if (index >= messages.length) {
+      popup.style.display = "none";
+      return;
+    }
+    const msg = messages[index];
+    popupText.textContent = msg.message || "";
+    popupAuthor.textContent = msg.author || "";
+    popup.className = "urgent" in msg && msg.urgent ? "urgent" : "";
+    popupIcon.className = "message-icon bi " + getIconClass(msg.icon);
+    popup.style.display = "block";
+    currentPopupIndex = index;
+  }
+
+  // Popup schließen
+  function closePopup() {
+    popup.style.display = "none";
+  }
+
+  // Nächste Popup-Nachricht anzeigen
+  function nextPopup() {
+    let nextIndex = currentPopupIndex + 1;
+    if (nextIndex >= messages.length) {
+      nextIndex = 0;
+    }
+    showPopup(nextIndex);
+  }
+
+  // Popup Liste anzeigen, wenn Popups deaktiviert sind
+  function showPopupList() {
+    if (messages.length === 0) return;
+    let listText = "";
+    messages.forEach((msg, i) => {
+      listText += `${i + 1}. ${msg.message} — ${msg.author}\n`;
+    });
+    alert("Nachrichten:\n\n" + listText);
+  }
+
+  // Nachrichten laden und anzeigen
+  async function loadMessages() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Netzwerkfehler");
+      const data = await res.json();
+      messages = Array.isArray(data) ? data : [];
+      messagesDiv.innerHTML = "";
+      messages.forEach(msg => {
+        const box = createMessageBox(msg);
+        messagesDiv.appendChild(box);
+      });
+
+      // Wenn Popups aktiviert sind, erstes Popup zeigen
+      if (settings.popupsEnabled && messages.length > 0) {
+        showPopup(0);
+      }
+    } catch (e) {
+      messagesDiv.textContent = "Fehler beim Laden der Nachrichten.";
+    } finally {
+      loader.style.display = "none";
+      content.style.display = "block";
+      content.focus();
+    }
+  }
+
+  // Event Listener
+  closeBtn.addEventListener("click", closePopup);
+  closeBtn.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      closePopup();
+    }
+  });
+
+  popupListBtn.addEventListener("click", showPopupList);
+
+  togglePopupsCheckbox.addEventListener("change", () => {
+    settings.popupsEnabled = togglePopupsCheckbox.checked;
+    saveSettings();
+    if (settings.popupsEnabled) {
+      popupListBtn.style.display = "none";
+      if (messages.length > 0) showPopup(0);
+    } else {
+      popup.style.display = "none";
+      popupListBtn.style.display = "block";
+    }
+  });
+
+  // Popup automatisch alle 7 Sekunden weiterschalten, wenn aktiviert
+  setInterval(() => {
+    if (settings.popupsEnabled && messages.length > 0 && popup.style.display === "block") {
+      nextPopup();
+    }
+  }, 7000);
+
+  // Init
+  loadSettings();
+  loadMessages();
+})();
+</script>
+
+</body>
+</html>
