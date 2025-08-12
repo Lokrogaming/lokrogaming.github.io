@@ -49,6 +49,75 @@
     </div>
 
     <canvas id="snow"></canvas>
+    <button id="message-count-btn" aria-label="Anzahl der Nachrichten anzeigen" 
+        style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background-color: #5865F2;
+          color: white;
+          font-size: 28px;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(88,101,242,0.6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10001;
+          user-select: none;
+          transition: background-color 0.3s ease;
+        ">
+  <i class="bi bi-chat-dots"></i>
+  <span id="message-count-badge" 
+        style="
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          min-width: 20px;
+          height: 20px;
+          background-color: #f04747;
+          color: white;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 20px;
+          border-radius: 9999px;
+          padding: 0 6px;
+          text-align: center;
+          box-shadow: 0 0 0 2px #5865F2;
+          pointer-events: none;
+          user-select: none;
+          display: none;
+        ">0</span>
+</button>
+
+<script>
+  const API_URL = "https://news-bf99.onrender.com/news.json"; // Deine News-API
+
+  const btn = document.getElementById("message-count-btn");
+  const badge = document.getElementById("message-count-badge");
+
+  async function updateMessageCount() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Netzwerkfehler");
+      const data = await res.json();
+      const count = Array.isArray(data) ? data.length : 0;
+      badge.textContent = count;
+      badge.style.display = count > 0 ? "inline-block" : "none";
+    } catch (e) {
+      badge.style.display = "none"; // Fehler: Badge verstecken
+    }
+  }
+
+  btn.addEventListener("click", () => {
+    window.location.href = "news.html"; // Hier deine News-Seite URL eintragen
+  });
+
+  updateMessageCount();
+</script>
     <div style="display: block;" class="gtranslate_wrapper"></div>
     <script>
       window.gtranslateSettings = {
