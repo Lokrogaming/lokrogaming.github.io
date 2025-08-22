@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Error Page</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    #error {
+      background: #1e1e1e;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .errorH1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #aaa;
+    }
+  </style>
+
+  <!-- Wenn JS deaktiviert ist, redirect -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=error.html?reason=javascript_disabled">
+  </noscript>
+</head>
+<body>
+  <div id="error"></div>
+  <script>
+    const div = document.getElementById("error");
+
+    const Params = new URLSearchParams(window.location.search);
+    let reason = Params.get("reason");
+
+    if (!reason) {
+      if (!navigator.onLine) {
+        reason = "network"; // offline
+      } else {
+        reason = "no_error"; // kein Fehler
+      }
+    }
+
+    // Titel-Mapping
+    const errorTitles = {
+      "404": "Seite nicht gefunden",
+      "403": "Zugriff verweigert",
+      "401": "Nicht autorisiert",
+      "500": "Interner Serverfehler",
+      "502": "Bad Gateway",
+      "503": "Service nicht verfügbar",
+      "504": "Gateway Timeout",
+      "timeout": "Zeitüberschreitung",
+      "network": "Netzwerk-Fehler",
+      "javascript_disabled": "JavaScript deaktiviert",
+      "invalid_input": "Ungültige Eingabe",
+      "missing_parameter": "Fehlender Parameter",
+      "not_found": "Element nicht gefunden",
+      "db_error": "Datenbankfehler",
+      "syntax_error": "Verarbeitungsfehler",
+      "unknown": "Unbekannter Fehler",
+      "no_error": "Kein Fehler erkannt",
+      "session_expired": "Zeitlimit erreicht",
+      "rickroll": "Du wurdest gerickrolled"
+    };
+
+    // Subtitle-Mapping
+    const errorSubtitles = {
+      "404": "Die angeforderte Seite wurde nicht gefunden.",
+      "403": "Bitte melde dich an oder prüfe deine Berechtigungen.",
+      "401": "Bitte erneut einloggen.",
+      "500": "Versuche es später erneut.",
+      "502": "Der Server hat keine gültige Antwort erhalten.",
+      "503": "Der Service ist derzeit nicht verfügbar.",
+      "504": "Der Server hat zu lange gebraucht, um zu antworten.",
+      "timeout": "Die Verbindung hat zu lange gedauert.",
+      "network": "Du bist offline. Bitte überprüfe deine Internetverbindung.",
+      "javascript_disabled": "Bitte aktiviere JavaScript, um die Seite zu nutzen.",
+      "invalid_input": "Die eingegebenen Daten sind ungültig.",
+      "missing_parameter": "Ein erforderlicher Parameter fehlt.",
+      "not_found": "Das angeforderte Element existiert nicht.",
+      "db_error": "Fehler bei der Datenbankverbindung.",
+      "syntax_error": "Es gab einen Fehler in der Verarbeitung der Anfrage.",
+      "unknown": "Ein unbekannter Fehler ist aufgetreten.",
+      "no_error": "Alles funktioniert einwandfrei ✅",
+      "session_expired": "Du wurdest getrennt um Bandbreite zu sparen und inaktive Nutzer zu reinigen. Bitte öffne die Seite erneut",
+      "rickroll": "Du wurdest soeben Opfer eines Streiches! Aber wait... Ist es wirklich April?"
+    };
+
+    // Titel & Subtitle auswählen
+    const title = errorTitles[reason] || "Fehler";
+    const subtitle = errorSubtitles[reason] || "Bitte überprüfe deine Eingabe oder versuche es erneut.";
+
+    // Farben & Shadow bestimmen
+    const isNoError = (reason === "no_error");
+    const errorColor = isNoError ? "lightgreen" : "#ff5555";
+    const shadowColor = isNoError ? "rgba(0, 255, 0, 0.6)" : "rgba(255, 85, 85, 0.6)";
+
+    const displayCode = `
+      <h1 class='errorH1' style="color: ${errorColor}">${title}</h1>
+      <p class="subtitle">${subtitle}</p>
+    `;
+
+    div.innerHTML = displayCode;
+    div.style.boxShadow = `0 0 20px ${shadowColor}`;
+
+    // Dynamische Weiterleitung falls offline
+    window.addEventListener("offline", () => {
+      window.location.href = "error.html?reason=network";
+    });
+  </script>
+</body>
+</html>
