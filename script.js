@@ -53,7 +53,7 @@ fetch('/src/JSON/Projects/settings.json')
   })
   .then(data => {
     if (data.quarantine === true) {
-      window.location.href = 'nochimumbau.html';
+      window.location.href = 'error.html?reason=503';
     }
   })
   .catch(error => {

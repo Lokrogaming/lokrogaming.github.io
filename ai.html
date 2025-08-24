@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
   .then(data => {
     if (data.quarantine === true) {
-      window.location.href = 'nochimumbau.html';
+      window.location.href = 'error.html?reason=503';
     }
   })
   .catch(error => {
