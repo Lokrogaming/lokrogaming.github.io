@@ -188,6 +188,8 @@
 
 
     <script>
+
+    
      // window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
      fetch('/src/JSON/Projects/settings.json')
   .then(response => {
@@ -265,6 +267,10 @@ window.location.href = "s.html?request=${request}";
 aler("Search can't be empty!");
 
 }
+      }
+      function anti_inactive() {
+       setTimeout(3000000);
+       window.location.href="error.html?reason=session_expired"
       }
     </script>
   </body>
