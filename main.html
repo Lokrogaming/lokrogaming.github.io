@@ -41,7 +41,7 @@
 </svg></a>
 </div>
 <input class="searchinput" id="searchinput" placeholer="Search...">
-<a onclick="search()" class="searchbtn">Search</a>
+<button onclick="search()" class="searchbtn">Search</button>
  
 <div class="nav-right">
     <a href="about.html" class="about">About</a>
@@ -186,8 +186,32 @@
   </div>
 </div>
 
+<script>
+let inactivityTimer;
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer); 
+    inactivityTimer = setTimeout(() => {
+        window.location.href = "error.html?reason=session_expired";
+    }, 300000); // 300.000 ms = 5 Minuten
+}
+
+function anti_inactive() {
+    // bei Benutzer-Aktivität Timer zurücksetzen
+    window.addEventListener("mousemove", resetInactivityTimer);
+    window.addEventListener("keydown", resetInactivityTimer);
+    window.addEventListener("click", resetInactivityTimer);
+    window.addEventListener("scroll", resetInactivityTimer);
+
+    // Timer direkt starten
+    resetInactivityTimer();
+}
+
+window.addEventListener("DOMContentLoaded", anti_inactive);
+</script>
 
     <script>
+     
       
      // window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
      fetch('/src/JSON/Projects/settings.json')
@@ -203,7 +227,7 @@
   .catch(error => {
     console.error('Fehler beim Laden der JSON-Datei:', error);
   });
-
+     
       // Nachfolgender Code wird bei Weiterleitung nicht mehr ausgeführt, außer der Umbau-Link existiert nicht
       window.onload = function () {
         const heute = new Date();
@@ -255,22 +279,21 @@
         document.getElementById('customToast').style.display = "none";
       }
 
-      function search() {
-        const searchinput = getElementById("searchinput").value;
-if ( searchinput !== "" ) {
-alert("Search: ${searchinput}");
-const request = encodeURIcomponent(searchinput);
-window.location.href = "s.html?request=${request}";
-} else {
-
-aler("Search can't be empty!");
-
-}
-      }
-      function anti_inactive() {
-       setTimeout(3000000);
-       window.location.href="error.html?reason=session_expired"
-      }
+      
     </script>
+   <script>
+function search() {
+  const searchinput = document.getElementById("searchinput").value;
+  if (searchinput !== "") {
+    alert(`Search: ${searchinput}`);
+    const request = encodeURIComponent(searchinput);
+    window.location.href = `s.html?request=${request}`;
+  } else {
+    alert("Search can't be empty!");
+  }
+}
+</script>
+
+
   </body>
 </html>

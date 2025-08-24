@@ -55,23 +55,31 @@ body {
 }
 
 
-.topnav a {
+.topnav a,
+.topnav button {
   color: white;
   text-decoration: none;
   font-size: 17px;
   padding: 14px 16px;
   display: inline-block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Bitcount Prop Double";
 }
 
-.topnav a:hover {
+.topnav a:hover,
+.topnav button:hover {
   background-color: white;
   color: black;
 }
 
-.topnav a.active {
+.topnav a.active,
+.topnav button.active {
   background-color: #333;
   color: white;
 }
+
 
  .topnav a.about {
         float: right;

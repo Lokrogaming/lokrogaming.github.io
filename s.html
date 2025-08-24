@@ -58,22 +58,7 @@
   <div id="results"></div>
 
   <script>
-    window.location.href = "nochimumbau.html";
-    const allowedCodes = [
-      "1342", "2057", "3869", "4790", "5182",
-      "6203", "7318", "8420", "9531", "0647",
-      "1783", "2940", "3501", "4672", "5893",
-      "6019", "7205", "8436", "9104", "3285"
-    ];
-
-    const code = sessionStorage.getItem("validationCode");
-
-    if (!allowedCodes.includes(code)) {
-      // Ungültiger Code → Umleitung
-      alert("Ungültiger Zugriff. Du wirst zur Startseite weitergeleitet.");
-      window.location.href = "index.html";
-    }
-
+    
     const suchDaten = {
       "discord": "https://dcs.lol/lokrogaming",
       "games": "https://lokrogaming.github.io/game-library.html",
@@ -82,6 +67,10 @@
       "black0815xx": "https://lokrogaming.github.io/black0815xx",
       "cookieclicker": "https://lokrogaming.github.io/cc/",
       "partner": "https://lokrogaming.github.io/partner.html",
+      "portfoleez": "https://lokrogaming.github.io/portfoleez",
+      "nodea": "https://lokrogaming.github.io/nodea",
+      "twitch": "https://twitch.tv/lokrogamer",
+      "tiktok": "https://tiktok.me/lokrogaming"
     };
 
     function treffQuote(query, key) {
