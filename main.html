@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 <title>Lokrogamer</title>
 </head>
   <body>
@@ -49,6 +51,75 @@
     </div>
 
     <canvas id="snow"></canvas>
+    <button id="message-count-btn" aria-label="Anzahl der Nachrichten anzeigen" 
+        style="
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background-color: #5865F2;
+          color: white;
+          font-size: 28px;
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(88,101,242,0.6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10001;
+          user-select: none;
+          transition: background-color 0.3s ease;
+        ">
+  <i class="bi bi-chat-dots"></i>
+  <span id="message-count-badge" 
+        style="
+          position: absolute;
+          top: 4px;
+          right: 4px;
+          min-width: 20px;
+          height: 20px;
+          background-color: #f04747;
+          color: white;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 20px;
+          border-radius: 9999px;
+          padding: 0 6px;
+          text-align: center;
+          box-shadow: 0 0 0 2px #5865F2;
+          pointer-events: none;
+          user-select: none;
+          display: none;
+        ">0</span>
+</button>
+
+<script>
+  const API_URL = "https://lokrogaming.github.io/news/news.json"; // Deine News-API
+
+  const btn = document.getElementById("message-count-btn");
+  const badge = document.getElementById("message-count-badge");
+
+  async function updateMessageCount() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error("Netzwerkfehler");
+      const data = await res.json();
+      const count = Array.isArray(data) ? data.length : 0;
+      badge.textContent = count;
+      badge.style.display = count > 0 ? "inline-block" : "none";
+    } catch (e) {
+      badge.style.display = "none"; // Fehler: Badge verstecken
+    }
+  }
+
+  btn.addEventListener("click", () => {
+    window.location.href = "https://lokrogaming.github.io/news/"; // Hier deine News-Seite URL eintragen
+  });
+
+  updateMessageCount();
+</script>
     <div style="display: block;" class="gtranslate_wrapper"></div>
     <script>
       window.gtranslateSettings = {
@@ -63,11 +134,6 @@
     <h1 class="main-name-lg glow-rainbow">Lokrogamer - Streamer, Developer</h1>
 
     <div id="suggestion" style="display: block">
-      <h1>Vorgeschlagen</h1>
-      <div class="suggested">
-      <h1 class="glow-rainbow">Probiere jetzt unser neues Tool aus:</h1><br>
-      <a href="portfoleez/index.html?source=maintree"><img src="https:/lokrogaming.github.io/portfoleez/src/img/logo-portfoleez.png" class="avatar "width="12">Portfoleez</a>
-</div>
       <h1>Werbung</h1>
       
    <!-- Add a placeholder for the Twitch embed -->
@@ -122,7 +188,12 @@
 
 
     <script>
+<<<<<<< HEAD
       
+=======
+
+    
+>>>>>>> 14e01b3288a7ee9e717432bedfe6bcc31d227f03
      // window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
      fetch('/src/JSON/Projects/settings.json')
   .then(response => {
