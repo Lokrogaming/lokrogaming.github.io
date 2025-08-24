@@ -40,7 +40,8 @@
     <button class="projektbtn" onclick="window.location.href='/reufnr'">ReuFnR (auch ein guter Freund)</button>
     <button class="projektbtn" onclick="window.location.href='projects/latein/verben-gruppen-projekt/downloader.html'">Latein Grammatik</button>
   </div>
-    <script>fetch('/src/JSON/Projects/settings.json')
+   <script>// window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
+     fetch('src/JSON/Projects/settings.json')
   .then(response => {
     if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
     return response.json();
@@ -52,7 +53,8 @@
   })
   .catch(error => {
     console.error('Fehler beim Laden der JSON-Datei:', error);
-  });</script>
+  });
+     </script>
     
   </body>
 </html>
