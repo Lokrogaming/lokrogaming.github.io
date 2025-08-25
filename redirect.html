@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // Mapping der Targets zu den echten Links
+    const redirects = {
+      github: "https://github.com/Lokrogaming",
+      twitch: "https://www.twitch.tv/lokrogamer",
+      discord: "https://dcs.lol/lokrogaming",
+      whatsapp: "https://whatsapp.com/channel/0029VbAJwgOI7BeHXOWkiR1c"
+    };
+
+    window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const target = params.get("target");
+
+      if (target && redirects[target]) {
+        // Umleitung durchführen
+        window.location.href = redirects[target];
+      } else {
+        // Fallback: zurück zur Startseite
+        document.body.innerHTML = "<h1>Ungültiger Redirect-Link</h1><p><a href='/'>Zurück zur Startseite</a></p>";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Weiterleitung läuft...</p>
+</body>
+</html>
