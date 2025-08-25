@@ -282,10 +282,15 @@ window.addEventListener("DOMContentLoaded", anti_inactive);
       
     </script>
    <script>
+     document.getElementById("searchinput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        search();
+      }
+    }
+  );
 function search() {
   const searchinput = document.getElementById("searchinput").value;
   if (searchinput !== "") {
-    alert(`Search: ${searchinput}`);
     const request = encodeURIComponent(searchinput);
     window.location.href = `s.html?request=${request}`;
   } else {
