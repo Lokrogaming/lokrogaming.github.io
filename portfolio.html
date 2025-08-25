@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <title>Mein Portfolio</title>
+         <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link rel="stylesheet" href="src/style.css">
+   <link rel="icon" href="/src/assets/icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+            /* From Uiverse.io by EmmaxPlay */ 
+.card {
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  background-color: #011522;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card__content {
+  flex: 1; /* füllt den Platz unter der Tool-Leiste */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Header oben mittig, Text darunter */
+  padding: 10px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  flex: 1; /* nimmt den restlichen Platz ein */
+  overflow-y: auto; /* falls Text zu lang */
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.tools {
+ display: flex;
+ align-items: center;
+ padding: 9px;
+}
+
+.circle {
+ padding: 0 4px;
+}
+
+.box {
+ display: inline-block;
+ align-items: center;
+ width: 10px;
+ height: 10px;
+ padding: 1px;
+ border-radius: 50%;
+}
+
+.red {
+ background-color: #ff605c;
+}
+
+.yellow {
+ background-color: #ffbd44;
+}
+
+.green {
+ background-color: #00ca4e;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <div class="topnav">
+            <div class="nav-right">
+                <a href="main.html">Home</a>
+                <a href="#" class="active">Portfolio</a>
+                <a href="projekte.html">Projekte</a>
+                <a href="partner.html">Partner</a>
+                </div>
+                <div class="nav-left">
+                    <a href="about.html">About</a>
+                </div>
+        </div>
+        <!-- From Uiverse.io by EmmaxPlay --> 
+<div class="card">
+  <div class="tools">
+    <div class="circle"><span class="red box"></span></div>
+    <div class="circle"><span class="yellow box"></span></div>
+    <div class="circle"><span class="green box"></span></div>
+  </div>
+
+  <div class="card__content">
+    <div class="header">
+      <h1>Meine Reise durch das Programmieren</h1>
+    </div>
+    <div class="card-body">
+      <p id="storyCardText">
+        Hi, ich bin Erik, auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
+        Hab keine, außer das Programmieren...<br>
+        Mein Interesse wurde durch einen Freund von mir geweckt. Er hat mir eines Tages vor ca. 
+      </p>
+      <h3 class="header">Was ich Anfängern raten kann</h3>
+      <p>Wenn ihr <strong>kostenlos</strong> mit einfachen Programmiersprachen, wie HTML, JS oder CSS starten wollt, kann ich euch <a href="https://mimo.org" style="color:white;">MIMO</a> empfehlen.<br>
+    Das ist keine bezahlte Werbung o.ä., sondern meine ehrliche Meinung.</p>
+     
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="tools">
+    <div class="circle"><span class="red box"></span></div>
+    <div class="circle"><span class="yellow box"></span></div>
+    <div class="circle"><span class="green box"></span></div>
+  </div>
+
+  <div class="card__content">
+    <div class="header">
+      <h1>Meine Liebe zum Streamen <i class="bi bi-heart-fill"></i></h1>
+
+    </div>
+    <div class="card-body">
+      <p id="streamStoryCardText">
+       
+      
+     
+    </div>
+  </div>
+</div>
+<script>
+    const storyCardText = document.getElementById("storyCardText");
+    const streamStoryCardText = document.getElementById("streamStoryCardText")
+    // mehrere Daten definieren
+    const targetStoryCardTime1 = new Date("2021-10-26");
+    const targetStoryCardTime2 = new Date("2022-06-15");
+    const targetStoryCardTime3 = new Date("2023-09-01");
+    const targetStreamStoryCardTime1 = new Date("") 
+
+    // Hilfsfunktion: Differenz berechnen
+    function timeSince(date) {
+        const now = new Date();
+        const diffMs = now - date;
+
+        const years = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365));
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+        return `${years} `;
+    }
+
+    // Text mit den Variablen einsetzen
+    const storyCardTextCode = `
+        Hi, ich bin Erik, auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
+        Hab keine, außer das Programmieren...<br>
+        Mein Interesse wurde durch einen Freund von mir geweckt.<br>
+        Er hat mir eines Tages vor ca. ${timeSince(targetStoryCardTime1)} Jahren die App Mimo gezeigt.<br>
+        Mit Mimo habe ich angefangen meine ersten Kenntnisse zu erarbeiten und habe meine ersten kleinen Websites erstellt. Darunter waren auch login-seiten, etc.<br>
+        Ca. 2 Jahre später habe ich Github kennengelernt und 
+        heute bin ich an diesem Punkt, um die ${timeSince(targetStoryCardTime1)} Jahre Ehrfahrung und trotzdem lerne ich immer wieder dazu.<br>
+        Alle Projekte, oder zumindest einen Teil... Findet ihr in der Navigationsleiste unter <em>PROJEKTE</em>
+    
+    `;
+    const streamStoryCardTextCode = `
+    Gegen Anfang Sommerferien (NRW), habe ich die Erlaubnis bekommen, dass ich Streamen darf. Natürlich war das ein Highlight, da ich vorher schon ein paar le gestreamt habe, aber ohne Erlaubnis. Heute bin ich stolz, dass ich 63 Follower auf Twitch habe. Das Streamen bringt mir gar kein Geld ein. Auch die Website etc nicht. Ich bin 100% non-profit. Die einzige Auszahlung, die ich habe, sind die guten Feedbacks, und auch schlechte Bewertungen nehme ich mir zu Herzen. Sollte etwas irgendwie nicht stimmen, bin ich sofort bereit den Fehler zu beheben.<br>
+    Was ich von meiner Community höre und welche Ideen immerwieder kommen, finde ich einfach nur krass und das kann man nicht anders sagen! Es ist immer wieder schön zu hören, dass irgendwer meine Website als krass oder geil anerkennt. Das stärkt mein Selbstvertrauen enorm.<br>
+    Ich möchte mich einfach von <i class="bi bi-heart"></i> bei meiner Community bedanken für die schönen Momente! 
+    `
+    function updateDisplays(){
+        storyCardText.innerHTML = storyCardTextCode;
+        streamStoryCardText.innerHTML = streamStoryCardTextCode;
+    }
+    updateDisplays();
+</script>
+
+
+    </body>
+</html>
