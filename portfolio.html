@@ -112,7 +112,7 @@
     </div>
     <div class="card-body">
       <p id="storyCardText">
-        Hi, ich bin Erik, auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
+        Hi, ich bin Erik(), auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
         Hab keine, außer das Programmieren...<br>
         Mein Interesse wurde durch einen Freund von mir geweckt. Er hat mir eines Tages vor ca. 
       </p>
@@ -149,8 +149,7 @@
     const streamStoryCardText = document.getElementById("streamStoryCardText")
     // mehrere Daten definieren
     const targetStoryCardTime1 = new Date("2021-10-26");
-    const targetStoryCardTime2 = new Date("2022-06-15");
-    const targetStoryCardTime3 = new Date("2023-09-01");
+    const targetStoryCardTime2 = new Date("2010-11-29");
     const targetStreamStoryCardTime1 = new Date("") 
 
     // Hilfsfunktion: Differenz berechnen
@@ -166,7 +165,7 @@
 
     // Text mit den Variablen einsetzen
     const storyCardTextCode = `
-        Hi, ich bin Erik, auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
+        Hi, ich bin Erik(${timeSince(targetStoryCardTime2)}) auch als Lokrogamer bekannt. Meine Hobbys sind:<br>
         Hab keine, außer das Programmieren...<br>
         Mein Interesse wurde durch einen Freund von mir geweckt.<br>
         Er hat mir eines Tages vor ca. ${timeSince(targetStoryCardTime1)} Jahren die App Mimo gezeigt.<br>
@@ -184,7 +183,10 @@
     function updateDisplays(){
         storyCardText.innerHTML = storyCardTextCode;
         streamStoryCardText.innerHTML = streamStoryCardTextCode;
-    }
+        setTimeout(() => {
+       updateDisplays(); 
+    }, 1000);
+    };
     updateDisplays();
 </script>
 
