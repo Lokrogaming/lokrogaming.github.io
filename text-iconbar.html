@@ -88,6 +88,7 @@ ul {
   fill: currentColor; /* nutzt die Textfarbe der .link */
 }
 
+
 .bottomnav .icon-content .link.active {
   background-color: #fff;
   color: #000; /* text- und iconfarbe */
@@ -108,7 +109,7 @@ ul {
   <!-- GitHub -->
   <li class="icon-content">
     <a
-      href="/main.html"
+      href="#"
       aria-label="Home"
       data-social="home"
       class="link active"
@@ -137,19 +138,19 @@ ul {
     <div class="tooltip">Partner</div>
   </li>
   <li class="icon-content">
-    <a
-      href="/projekte.html"
-      aria-label="Projekte"
-      data-social="projekte"
-      class="link"
-    >
-     <!-- Home Icon -->
-<!-- Home Icon -->
-<svg width="800px" height="800px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1H6L9 4H16V14H0V1Z" fill="currentColor"/>
-</svg>
+    <a href="#" aria-label="Projekte" class="link" id="projekteBtn">
+      <svg width="800px" height="800px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 1H6L9 4H16V14H0V1Z"/>
+      </svg>
     </a>
     <div class="tooltip">Projekte</div>
+
+    <!-- Dropup Inhalt -->
+    <div class="dropup-content" id="projekteMenu">
+      <a href="projekte.html">Alle Projekte</a>
+      <a href="projekt1.html">Projekt 1</a>
+      <a href="projekt2.html">Projekt 2</a>
+    </div>
   </li>
   <li class="icon-content">
     <a
@@ -179,7 +180,22 @@ ul {
   <!-- Twitch -->
   
 </ul>
+<script>
+// Toggle öffnen/schließen
+document.getElementById("projekteBtn").addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("projekteMenu").classList.toggle("show");
+  document.getElementById("projekteBtn").classList.toggle("active");
+});
 
+// Schließt Dropup wenn man woanders klickt
+window.addEventListener("click", function(e) {
+  if (!e.target.closest(".icon-content")) {
+    document.getElementById("projekteMenu").classList.remove("show");
+    document.getElementById("projekteBtn").classList.remove("active");
+  }
+});
+</script>
     
 
   </body>
