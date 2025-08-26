@@ -2,33 +2,196 @@
 <html>
   <head>
     
-    <link rel="stylesheet" href="https://lokrogaming.github.io/src/style.css">
-    <title>IgrisShadow</title>
-  
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link rel="stylesheet" href="/src/style.css">
+   <link rel="icon" href="/src/assets/icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Igris</title>
+  <style>
+        /* From Uiverse.io by mahiatlinux */ 
+ul {
+  list-style: none;
+}
+
+.example-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder; /* Made bolder */
+  background-color: #333; /* Black background */
+  border-radius: 30px; /* Added border-radius to make the container rounded */
+  padding: 20px; /* Added padding for better appearance */
+  height: 70px;
+  width: 300px auto;
+}
+
+.example-1 .icon-content {
+  margin: 0 10px;
+  position: relative;
+  font-weight: bolder; /* Made bolder */
+}
+/* Active State für Social Icons */
+.example-1 .icon-content .link.active {
+  background-color: #fff; /* Weißer Hintergrund */
+  color: #000; /* Schwarzes Icon */
+  transform: scale(1.2); /* Optional: leicht vergrößern */
+  transition: all 0.3s ease-in-out;
+}
+
+
+.example-1 .icon-content .tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff; /* White background */
+  color: #000; /* Black text */
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-weight: bolder; /* Made bolder */
+}
+
+.example-1 .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -50px;
+}
+
+.example-1 .icon-content .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #fff; /* White icons */
+  background-color: #000; /* Black background */
+  transition: all 0.3s ease-in-out;
+  font-weight: bolder; /* Made bolder */
+}
+
+.example-1 .icon-content .link:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+
+.example-1 .icon-content .link svg {
+  width: 60%;
+  height: auto; /* <- behält Seitenverhältnis */
+  max-height: 60%; /* damit es nicht zu groß wird */
+  fill: #fff;
+}
+
+
+.example-1 .link[data-social="youtube"]:hover {
+  color: #ff0000;
+}
+
+.example-1 .link[data-social="twitch"]:hover {
+  color: #9146ff;
+}
+
+.example-1 .link[data-social="discord"]:hover {
+  color: #5865f2;
+}
+
+
+  </style>
   </head>
   <body>
     <div class="topnav">
+      <div class="nav-left">
       <a href="https://lokrogaming.github.io/index.html">Home</a>
       <a href="https://lokrogaming.github.io/game-library.html">Games</a>
       <a href="https://lokrogaming.github.io/projekte.html">Projekte</a>
       <a class="active" href="https://lokrogaming.github.io/partner.html">Partner</a>
+      </div>
+      <div class="nav-right">
       <a class="about" href="https://lokrogaming.github.io/about.html">About</a>
+      </div>
     </div>
-    <div id="partners">
-      <h3>Igris Links</h3>
-      <ul>
-        <li><a href="https://dcs.lol/igrisshadow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-discord" viewBox="0 0 16 16">
-  <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
-</svg></a> Igris on Discord</li>
-        <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-youtube" viewBox="0 0 16 16">
-  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-</svg></a> Igris on Youtube</li>
-        <li><a  href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-twitch" viewBox="0 0 16 16">
-  <path d="M3.857 0 1 2.857v10.286h3.429V16l2.857-2.857H9.57L14.714 8V0zm9.714 7.429-2.285 2.285H9l-2 2v-2H4.429V1.143h9.142z"/>
-  <path d="M11.857 3.143h-1.143V6.57h1.143zm-3.143 0H7.571V6.57h1.143z"/>
-</svg></a> Igris</li>
-      </ul>
-    </div>
+    <img src="https://yt3.googleusercontent.com/jCu3Zg1DWC5e74_K57vU594bGUGGagkMY_k2x1TKLgSp2Xaz-RPcijrdH-bWk5fywOmUWIO8mA=s160-c-k-c0x00ffffff-no-rj" class="avatar">
+    <h1 style="color: white">Igris' Links</h1>
+     <!-- Social Icons -->
+<ul class="example-1">
+  <!-- GitHub -->
+ 
+  <!-- Twitch -->
+  <li class="icon-content">
+    <a
+      href="/redirect?targeteduser=igris&target=twitch"
+      aria-label="Twitch"
+      data-social="twitch"
+      class="link"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M4 2L3 6v15h5v3h3l3-3h4l5-5V2H4zm16 11l-3 3h-5l-3 3v-3H7V4h13v9zM14 6h2v5h-2V6zm-4 0h2v5h-2V6z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+    <div class="tooltip">Twitch</div>
+  </li>
+
+  <!-- Discord -->
+  <li class="icon-content">
+    <a
+      href="/redirect?targeteduser=igris&target=discord"
+      aria-label="Discord"
+      data-social="discord"
+      class="link"
+    >
+     <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.317 4.4921C18.7873 3.80147 17.147 3.29265 15.4319 3.00122C15.4007 2.9956 15.3695 3.00965 15.3534 3.03777C15.1424 3.40697 14.9087 3.88862 14.7451 4.26719C12.9004 3.99545 11.0652 3.99545 9.25832 4.26719C9.09465 3.8802 8.85248 3.40697 8.64057 3.03777C8.62449 3.01059 8.59328 2.99654 8.56205 3.00122C6.84791 3.29172 5.20756 3.80054 3.67693 4.4921C3.66368 4.49772 3.65233 4.5071 3.64479 4.51928C0.533392 9.09311 -0.31895 13.5545 0.0991801 17.9606C0.101072 17.9822 0.11337 18.0028 0.130398 18.0159C2.18321 19.4993 4.17171 20.3998 6.12328 20.9967C6.15451 21.0061 6.18761 20.9949 6.20748 20.9695C6.66913 20.3492 7.08064 19.6952 7.43348 19.0073C7.4543 18.967 7.43442 18.9192 7.39186 18.9033C6.73913 18.6597 6.1176 18.3626 5.51973 18.0253C5.47244 17.9981 5.46865 17.9316 5.51216 17.8997C5.63797 17.8069 5.76382 17.7104 5.88396 17.613C5.90569 17.5952 5.93598 17.5914 5.96153 17.6026C9.88928 19.3672 14.1415 19.3672 18.023 17.6026C18.0485 17.5905 18.0788 17.5942 18.1015 17.612C18.2216 17.7095 18.3475 17.8069 18.4742 17.8997C18.5177 17.9316 18.5149 17.9981 18.4676 18.0253C17.8697 18.3692 17.2482 18.6597 16.5945 18.9024C16.552 18.9183 16.533 18.967 16.5538 19.0073C16.9143 19.6942 17.3258 20.3483 17.7789 20.9686C17.7978 20.9949 17.8319 21.0061 17.8631 20.9967C19.8241 20.3998 21.8126 19.4993 23.8654 18.0159C23.8834 18.0028 23.8948 17.9831 23.8967 17.9616C24.3971 12.8676 23.0585 8.4428 20.3482 4.52021C20.3416 4.5071 20.3303 4.49772 20.317 4.4921ZM8.02002 15.2778C6.8375 15.2778 5.86313 14.2095 5.86313 12.8976C5.86313 11.5857 6.8186 10.5175 8.02002 10.5175C9.23087 10.5175 10.1958 11.5951 10.1769 12.8976C10.1769 14.2095 9.22141 15.2778 8.02002 15.2778ZM15.9947 15.2778C14.8123 15.2778 13.8379 14.2095 13.8379 12.8976C13.8379 11.5857 14.7933 10.5175 15.9947 10.5175C17.2056 10.5175 18.1705 11.5951 18.1516 12.8976C18.1516 14.2095 17.2056 15.2778 15.9947 15.2778Z" fill="currentColor"/>
+</svg>
+    </a>
+    <div class="tooltip">Discord</div>
+  </li>
+
+  <!-- WhatsApp -->
+  <li class="icon-content">
+    <a
+      href="/redirect?targeteduser=igris&target=whatsapp"
+      aria-label="Youtube"
+      data-social="youtube"
+      class="link"
+    >
+      <svg width="800px" height="800px" viewBox="0 -3 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>youtube [#168]</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+
+</defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="Dribbble-Light-Preview" transform="translate(-300.000000, -7442.000000)" fill="currentColor">
+            <g id="icons" transform="translate(56.000000, 160.000000)">
+                <path d="M251.988432,7291.58588 L251.988432,7285.97425 C253.980638,7286.91168 255.523602,7287.8172 257.348463,7288.79353 C255.843351,7289.62824 253.980638,7290.56468 251.988432,7291.58588 M263.090998,7283.18289 C262.747343,7282.73013 262.161634,7282.37809 261.538073,7282.26141 C259.705243,7281.91336 248.270974,7281.91237 246.439141,7282.26141 C245.939097,7282.35515 245.493839,7282.58153 245.111335,7282.93357 C243.49964,7284.42947 244.004664,7292.45151 244.393145,7293.75096 C244.556505,7294.31342 244.767679,7294.71931 245.033639,7294.98558 C245.376298,7295.33761 245.845463,7295.57995 246.384355,7295.68865 C247.893451,7296.0008 255.668037,7296.17532 261.506198,7295.73552 C262.044094,7295.64178 262.520231,7295.39147 262.895762,7295.02447 C264.385932,7293.53455 264.28433,7285.06174 263.090998,7283.18289" id="youtube-[#168]">
+
+</path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+    <div class="tooltip">Youtube</div>
+  </li>
+  
+</ul>
+
     <script>fetch('/src/JSON/Projects/settings.json')
   .then(response => {
     if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
@@ -36,11 +199,12 @@
   })
   .then(data => {
     if (data.quarantine === true) {
-      window.location.href = 'nochimumbau.html';
+      window.location.href = window.location.href = '/error?reason=503';
     }
   })
   .catch(error => {
     console.error('Fehler beim Laden der JSON-Datei:', error);
   });</script>
+  <h4 style="color: white;">Made with&nbsp; <i class="bi bi-heart-fill" style="color:red"></i> &nbsp;by Lokrogamer</h4>
   </body>
 </html>
