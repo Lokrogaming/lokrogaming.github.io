@@ -134,7 +134,7 @@ function checkReferrer() {
     window.addEventListener("offline", () => {
       window.location.href = "error.html?reason=network";
     });
-    window.addEventListener("DOMContentLoaded, checkReferrer()");
+    window.addEventListener("DOMContentLoaded, checkReferrer");
     function checkReferrer() {
       const referrer = document.referrer;
       if (referrer == "zz2vze.mimo.run") {
