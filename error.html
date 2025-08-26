@@ -107,7 +107,7 @@ window.addEventListener("DOMContentLoaded", checkReferrer);
 
 function checkReferrer() {
   if (new URL(referrer).hostname === "zz2vze.mimo.run") {
-  reason = "403";
+  window.location.href="error.html?reason=403";
 }
 
     console.log("Blocked referrer:", referrer);
