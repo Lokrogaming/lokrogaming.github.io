@@ -28,7 +28,8 @@ body {
       .bottomnav {
   position: fixed;
   bottom: 0;
-  width: 50% auto;
+   
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
