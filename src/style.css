@@ -24,6 +24,7 @@ body {
         margin: 0;
         font-family: "Varela Round";
         font-style: normal;
+        
       }
       .bottomnav {
   position: fixed;
@@ -482,7 +483,7 @@ address {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
-  max-width: 600px;
+  max-width: 90%;
   margin-top: 100px;
 }
 
