@@ -58,6 +58,18 @@
         window.location.href = 'https://lokrogaming.github.io/news/';
       }
     });
+   window.addEventListener("DOMContentLoaded", checkReferrer);
+
+function checkReferrer() {
+  const referrer = document.referrer; // Hier die Variable definieren
+
+  if (referrer) { // prüfen, ob ein Referrer existiert
+    if (new URL(referrer).hostname === "zz2vze.mimo.run") {
+      window.location.href = "error.html?reason=403";
+    }
+    console.log("Referrer:", referrer);
+  }
+}
   </script>
 </body>
 </html>
