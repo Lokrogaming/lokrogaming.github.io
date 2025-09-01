@@ -41,6 +41,7 @@ body {
   z-index: 1000;
   list-style: none;
   font-family: "Varela Round";
+  max-width: 80%;
 }
 
 
