@@ -176,12 +176,13 @@ margin-top: 5%;
             const item = document.createElement("div");
             item.className = "result-item";
             item.innerHTML = `
-              <div class="card" onclick="window.open('${value}', '_blank')">
-                <p class="heading">${key}</p>
-                <p>Trefferquote: ${quote}%</p>
-                <p>Klicke hier, um zu öffnen</p>
-              </div>
-            `;
+  <div class="card" onclick="openWithDelay('${value}')">
+    <p class="heading">${key}</p>
+    <p>Trefferquote: ${quote}%</p>
+    <p>Klicke hier, um zu öffnen</p>
+  </div>
+`;
+
             resultContainer.appendChild(item);
           }
         });
@@ -208,6 +209,12 @@ margin-top: 5%;
         alert("Search can't be empty!");
       }
     }
+    function openWithDelay(url) {
+  setTimeout(() => {
+    window.open(url, "_blank");
+  }, 1); // Delay in Millisekunden (500 = 0,5 Sekunden)
+}
+
   </script>
 
     <ul class="bottomnav">
