@@ -323,12 +323,16 @@ margin-top: 5%;
       }
     }
     function openWithDelay(url) {
-     content.style.display = "none";
-      loader.style.display = "block";
+  content.style.display = "none";   // Versteckt Inhalt
+  loader.style.display = "block";   // Zeigt Loader
+
   setTimeout(() => {
-    window.open(url, "_blank");
-  }, 1); // Delay in Millisekunden (500 = 0,5 Sekunden)
+    window.open(url, "_blank");     // Öffnet neuen Tab
+    loader.style.display = "none";  // Loader wieder weg
+    content.style.display = "block";
+  }, 1500); // Delay in Millisekunden (hier 1,5 Sek.)
 }
+
 
   </script>
 
