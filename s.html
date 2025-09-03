@@ -202,6 +202,9 @@ margin-top: 5%;
     transform: translateY(-400%);
   }
 }
+#searchbar {
+  width: 50%;
+}
 
   </style>
 </head>
@@ -229,7 +232,7 @@ margin-top: 5%;
     <h1>Couldn't find your search request!</h1>
   </div>
 
- <input id="searchbar" type="text" placeholder="Type in search" width="50%">
+ <input id="searchbar" type="text" placeholder="Type in search">
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
@@ -320,8 +323,8 @@ margin-top: 5%;
       }
     }
     function openWithDelay(url) {
-     content.display = "none";
-      loaders.display = "block";
+     content.style.display = "none";
+      loaders.style.display = "block";
   setTimeout(() => {
     window.open(url, "_blank");
   }, 1); // Delay in Millisekunden (500 = 0,5 Sekunden)
@@ -393,7 +396,7 @@ margin-top: 5%;
     >
      <!-- Home Icon -->
 <!-- Home Icon -->
-<?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg width="800px" height="800px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>about-filled</title>
