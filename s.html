@@ -295,7 +295,7 @@ margin-top: 5%;
         resultContainer.appendChild(item);
       });
     }
-
+    renderSuggested();
     window.onload = function () {
       const params = new URLSearchParams(window.location.search);
       const request = params.get("request");
