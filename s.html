@@ -205,23 +205,6 @@ margin-top: 5%;
 #searchbar {
   width: 50%;
 }
-#suggestions {
-  margin-top: 10px;
-  text-align: center;
-}
-.suggestion {
-  display: inline-block;
-  background: #222;
-  color: #fff;
-  padding: 8px 12px;
-  margin: 5px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.suggestion:hover {
-  background: #444;
-}
 
   </style>
 </head>
@@ -250,19 +233,12 @@ margin-top: 5%;
   </div>
 
  <input id="searchbar" type="text" placeholder="Type in search">
-<br><br>
-<div id="suggestions"></div>
-
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
  <button class="btn btn-danger" onclick="back()">< Go back</button>
 
   <script>
-    
-
-
-
     const loader = document.getElementById("loaders");
     const content = document.getElementById("content");
     document.getElementById("searchbar").addEventListener("keypress", function(e) {
@@ -294,76 +270,46 @@ margin-top: 5%;
       }
       return Math.round((match / key.length) * 100);
     }
-const suggestionsContainer = document.getElementById("suggestions");
-const keys = Object.keys(suchDaten);
 
-// Zeige 3 zufällige Vorschläge
-function showSuggestions() {
-  suggestionsContainer.innerHTML = "<p style='color:white;'>Vorgeschlagene Suchen:</p>";
-  const randomKeys = keys.sort(() => 0.5 - Math.random()).slice(0, 3);
-  randomKeys.forEach(key => {
-    const suggestion = document.createElement("div");
-    suggestion.className = "suggestion";
-    suggestion.textContent = key;
-    suggestion.onclick = () => {
-      document.getElementById("searchbar").value = key;
-      updateSearch();
-    };
-    suggestionsContainer.appendChild(suggestion);
-  });
-}
-
-// Eingabe überwachen
-document.getElementById("searchbar").addEventListener("input", function () {
-  if (this.value.trim() === "") {
-    showSuggestions();  // nur anzeigen, wenn Feld leer
-  } else {
-    suggestionsContainer.innerHTML = ""; // sonst ausblenden
-  }
-});
     window.onload = function () {
-  const params = new URLSearchParams(window.location.search);
-  const request = params.get("request");
+      const params = new URLSearchParams(window.location.search);
+      const request = params.get("request");
 
-  if (request) {
-    // dein bisheriger Such-Code
-    const searchrequest = decodeURIComponent(request).toLowerCase();
-    document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
-    
-    const resultContainer = document.getElementById("results");
-    resultContainer.innerHTML = "";
-    let foundAny = false;
+      if (request) {
+        const searchrequest = decodeURIComponent(request).toLowerCase();
+        document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
+        
+        const resultContainer = document.getElementById("results");
+        resultContainer.innerHTML = "";
+        let foundAny = false;
 
-    Object.entries(suchDaten).forEach(([key, value]) => {
-      if (key.includes(searchrequest)) {
-        foundAny = true;
-        const quote = treffQuote(searchrequest, key);
-        const item = document.createElement("div");
-        item.className = "result-item";
-        item.innerHTML = `
-          <div class="card" onclick="openWithDelay('${value}')">
-            <p class="heading">${key}</p>
-            <p>Trefferquote: ${quote}%</p>
-            <p>Klicke hier, um zu öffnen</p>
-          </div>`;
-        resultContainer.appendChild(item);
+        Object.entries(suchDaten).forEach(([key, value]) => {
+          if (key.includes(searchrequest)) {
+            foundAny = true;
+            const quote = treffQuote(searchrequest, key);
+            const item = document.createElement("div");
+            item.className = "result-item";
+            item.innerHTML = `
+  <div class="card" onclick="openWithDelay('${value}')">
+    <p class="heading">${key}</p>
+    <p>Trefferquote: ${quote}%</p>
+    <p>Klicke hier, um zu öffnen</p>
+  </div>
+`;
+
+            resultContainer.appendChild(item);
+          }
+        });
+
+        if (!foundAny) {
+          document.getElementById("error").style.display = "block";
+        }
+      } else {
+        document.getElementById("txt").innerText = "No search request provided.";
+        document.getElementById("error").style.display = "block";
+        setTimeout(back, 3000);
       }
-    });
-
-    if (!foundAny) {
-      document.getElementById("error").style.display = "block";
-    }
-
-    // ❌ KEINE Vorschläge anzeigen
-    suggestionsContainer.innerHTML = "";
-
-  } else {
-    // keine Suchanfrage -> Vorschläge anzeigen
-    showSuggestions();
-    document.getElementById("txt").innerText = "No search request provided.";
-  }
-};
-
+    };
 
     function back() {
       history.back();
