@@ -266,9 +266,9 @@ margin-top: 5%;
 
     // NEU: Vorschläge
     const suggested = {
-      "YouTube": "https://youtube.com",
-      "GitHub": "https://github.com",
-      "Google": "https://google.com"
+      "Eministar": "https://star-dev.xyz",
+      "Igris": "/partner-pages/black0815xx",
+      "ReuClopps": "/partner-pages/reufnr"
     };
 
     function treffQuote(query, key) {
@@ -281,7 +281,9 @@ margin-top: 5%;
     }
 
     function renderSuggested() {
-      resultContainer.innerHTML = "";
+      resultContainer.innerHTML = "<h3 style="color:white; text-align:center; margin-top:20px;">
+      Suggested
+    </h3>";
       Object.entries(suggested).forEach(([key, value]) => {
         const item = document.createElement("div");
         item.className = "result-item";
