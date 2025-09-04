@@ -205,6 +205,23 @@ margin-top: 5%;
 #searchbar {
   width: 50%;
 }
+#suggestions {
+  margin-top: 10px;
+  text-align: center;
+}
+.suggestion {
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.suggestion:hover {
+  background: #444;
+}
 
   </style>
 </head>
@@ -233,6 +250,9 @@ margin-top: 5%;
   </div>
 
  <input id="searchbar" type="text" placeholder="Type in search">
+<br><br>
+<div id="suggestions"></div>
+
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
@@ -272,44 +292,48 @@ margin-top: 5%;
     }
 
     window.onload = function () {
-      const params = new URLSearchParams(window.location.search);
-      const request = params.get("request");
+  const params = new URLSearchParams(window.location.search);
+  const request = params.get("request");
 
-      if (request) {
-        const searchrequest = decodeURIComponent(request).toLowerCase();
-        document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
-        
-        const resultContainer = document.getElementById("results");
-        resultContainer.innerHTML = "";
-        let foundAny = false;
+  if (request) {
+    // dein bisheriger Such-Code
+    const searchrequest = decodeURIComponent(request).toLowerCase();
+    document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
+    
+    const resultContainer = document.getElementById("results");
+    resultContainer.innerHTML = "";
+    let foundAny = false;
 
-        Object.entries(suchDaten).forEach(([key, value]) => {
-          if (key.includes(searchrequest)) {
-            foundAny = true;
-            const quote = treffQuote(searchrequest, key);
-            const item = document.createElement("div");
-            item.className = "result-item";
-            item.innerHTML = `
-  <div class="card" onclick="openWithDelay('${value}')">
-    <p class="heading">${key}</p>
-    <p>Trefferquote: ${quote}%</p>
-    <p>Klicke hier, um zu öffnen</p>
-  </div>
-`;
-
-            resultContainer.appendChild(item);
-          }
-        });
-
-        if (!foundAny) {
-          document.getElementById("error").style.display = "block";
-        }
-      } else {
-        document.getElementById("txt").innerText = "No search request provided.";
-        document.getElementById("error").style.display = "block";
-        setTimeout(back, 3000);
+    Object.entries(suchDaten).forEach(([key, value]) => {
+      if (key.includes(searchrequest)) {
+        foundAny = true;
+        const quote = treffQuote(searchrequest, key);
+        const item = document.createElement("div");
+        item.className = "result-item";
+        item.innerHTML = `
+          <div class="card" onclick="openWithDelay('${value}')">
+            <p class="heading">${key}</p>
+            <p>Trefferquote: ${quote}%</p>
+            <p>Klicke hier, um zu öffnen</p>
+          </div>`;
+        resultContainer.appendChild(item);
       }
-    };
+    });
+
+    if (!foundAny) {
+      document.getElementById("error").style.display = "block";
+    }
+
+    // ❌ KEINE Vorschläge anzeigen
+    suggestionsContainer.innerHTML = "";
+
+  } else {
+    // keine Suchanfrage -> Vorschläge anzeigen
+    showSuggestions();
+    document.getElementById("txt").innerText = "No search request provided.";
+  }
+};
+
 
     function back() {
       history.back();
