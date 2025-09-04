@@ -236,7 +236,7 @@ margin-top: 5%;
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
- <button class="btn btn-danger" onclick="back()">< Go back</button>
+ <button class="btn btn-danger" onclick="history.back()">< Go back</button>
 
   <script>
     const loader = document.getElementById("loaders");
@@ -335,9 +335,7 @@ margin-top: 5%;
       }
     };
 
-    function back() {
-      history.back();
-    }
+   
 
     function updateSearch() {
       let searchbarInput = document.getElementById("searchbar").value;
