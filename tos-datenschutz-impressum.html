@@ -61,6 +61,9 @@
         alert('Analytics wurde nach Einwilligung aktiviert.');
       };
     })();
+    function redirect(url) {
+window.open(url, "_blank");
+    };
   </script>
 </head>
 <body>
@@ -77,7 +80,7 @@
         <li><a href="#datenschutz">Datenschutzerklärung</a></li>
         <li><a href="#tos">Nutzungsbedingungen (ToS)</a></li>
       </ul>
-      <p class="notice">Hinweis: Diese Vorlage ersetzt keine Rechtsberatung. Bitte lasse sie bei Bedarf prüfen.</p>
+      <p class="notice">Wir stehen ein für ein faires Miteinander. Daher verweigern wir jeglichen Verkauf von Daten, Cookies, o.ä. Mehr unter Haftungsauschluss und Uhrheberrecht.  </p>
     </nav>
 
     <section id="impressum">
@@ -93,8 +96,8 @@
         </div>
         <div>
           <h3>Kontakt</h3>
-          <p>E‑Mail: <a href="mailto:BITTE-EINSETZEN">BITTE‑EINSETZEN</a></p>
-          <p class="muted">(Optional: Telefon hier ergänzen)</p>
+          <p>E‑Mail: <a href="mailto:lokrogamer.29@gmail.com">lokrogamer.29@gmail.com</a></p>
+          <p style="display: none;" class="muted">(Optional: Telefon hier ergänzen)</p>
           <p class="badge">Hobby‑Website · kein Verkauf</p>
         </div>
       </div>
@@ -106,6 +109,8 @@
       <h2>Haftungsausschluss & Urheberrecht</h2>
       <h3>Haftung für Inhalte</h3>
       <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8–10 TMG besteht jedoch keine Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+      <p>Ich hafte nicht für einen Missbrauch meiner Website in irgendeiner Weise. Sollte ein Missbrauch einer Funktion externer Anbieter vorfallen bzw versucht werden, behält sich der Entwickler vor, die Daten des Nutzers auszuwerten und allgemeinrechtlich zu verwenden.</p>
+      <p>Sollte ein Missbrauch oder Hackingangriff beobachtet, erfolgt oder versucht worden sein, behält sich der Entwickler vor, die IP-adresse, jegliche Daten, etc. an Google und die örtliche Polizei zu melden.</p>
       <h3>Haftung für Links</h3>
       <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte ist stets der jeweilige Anbieter verantwortlich.</p>
       <h3>Urheberrecht</h3>
@@ -178,8 +183,9 @@
       <p>
         <button onclick="enableAnalyticsAfterConsent()">Analytics nach Einwilligung aktivieren</button>
         <button onclick="gaOptout()">Google Analytics Opt‑out</button>
+        <button onclick="redirect('https://lokrogaming.github.io/redirect?targeteduser=lokrogamer&target=discord')">Sollte dir etwas aufallen, was nicht stimmen kann oder ähnliches, bitte kontaktiere uns</button>
       </p>
-      <p class="muted">Ersetze die Demo‑Buttons durch deine Cookie‑Einwilligungs‑Lösung (CMP) und blocke externe Skripte bis zur Zustimmung.</p>
+      <p style="display: none;" class="muted">Ersetze die Demo‑Buttons durch deine Cookie‑Einwilligungs‑Lösung (CMP) und blocke externe Skripte bis zur Zustimmung.</p>
     </section>
 
     <footer>
