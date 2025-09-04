@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impressum · Datenschutz · Nutzungsbedingungen</title>
+  <style>
+    :root {
+      --bg: #0b0d10; --card: #12151a; --text: #e8edf2; --muted:#9aa7b4; --accent:#4ea1ff; --border:#1e2430;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { padding: 2.5rem 1rem 1rem; text-align: center; background: linear-gradient(180deg, rgba(78,161,255,.15), transparent 60%); }
+    h1 { margin: 0 0 .5rem; font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem); }
+    .meta { color: var(--muted); font-size: .95rem; }
+    main { max-width: 920px; margin: 0 auto; padding: 1rem; }
+    nav.toc { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; margin: 1rem 0 2rem; }
+    nav.toc a { color: var(--text); text-decoration: none; }
+    nav.toc a:hover { color: var(--accent); }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin: 1rem 0 1.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; border-bottom: 1px dashed var(--border); padding-bottom: .4rem; }
+    h3 { margin-bottom: .2rem; font-size: 1.05rem; color: var(--accent); }
+    p, li { color: #d6dde6; }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .notice { background: #0f131a; border: 1px solid #223045; border-left: 4px solid var(--accent); border-radius: 12px; padding: .8rem; color:#cfe1f5; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; gap: .75rem; }
+    .two { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    a { color: var(--accent); }
+    footer { text-align: center; color: var(--muted); padding: 2rem 1rem 3rem; }
+    .top { position: fixed; right: 16px; bottom: 16px; background: var(--card); border:1px solid var(--border); color: var(--text); text-decoration: none; padding: .6rem .8rem; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    .top:hover { outline: 2px solid rgba(78,161,255,.2); }
+    .badge { display:inline-block; font-size:.8rem; padding:.2rem .5rem; border:1px solid var(--border); border-radius:999px; color:var(--muted); }
+  </style>
+  <!--
+    WICHTIG (DSGVO):
+    - Lade Google Analytics und andere Tracking-/Widget-Skripte NUR nach Einwilligung (Consent)!
+    - Ersetze G-XXXXXXX durch deine echte Measurement-ID, wenn du GA4 nutzt.
+    - Die folgende Opt‑out-Funktion setzt ein Deaktivierungs-Cookie und anonymisiert IPs.
+  -->
+  <script>
+    // Google Analytics Opt-out und Consent-Schutz (Beispiel – passe an deine Consent-Lösung an)
+    (function(){
+      var gaProperty = 'G-XXXXXXX'; // TODO: mit eigener GA-ID ersetzen
+      window['ga-disable-' + gaProperty] = localStorage.getItem('ga_optout') === 'true';
+      window.gaOptout = function(){
+        localStorage.setItem('ga_optout','true');
+        window['ga-disable-' + gaProperty] = true;
+        alert('Google Analytics wurde deaktiviert.');
+      };
+      // Minimaler Consent-Schalter (nur Demo). Binde hier deine CMP an.
+      window.enableAnalyticsAfterConsent = function(){
+        if (!window['ga-disable-' + gaProperty]) return; // bereits deaktiviert
+        // Nutzer hat zugestimmt -> Opt-out aufheben
+        localStorage.removeItem('ga_optout');
+        window['ga-disable-' + gaProperty] = false;
+        // GA Script dynamisch laden
+        var s1 = document.createElement('script'); s1.async = true; s1.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaProperty;
+        var s2 = document.createElement('script'); s2.innerHTML = "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '"+gaProperty+"', { 'anonymize_ip': true });";
+        document.head.appendChild(s1); document.head.appendChild(s2);
+        alert('Analytics wurde nach Einwilligung aktiviert.');
+      };
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Impressum · Datenschutz · Nutzungsbedingungen</h1>
+    <div class="meta">Gültig für die private Hobby‑Website von <strong>Erik Demoulin</strong> · Letzte Aktualisierung: <time datetime="2025-09-04">04.09.2025</time></div>
+  </header>
+  <main>
+    <nav class="toc">
+      <strong>Inhalt</strong>
+      <ul>
+        <li><a href="#impressum">Impressum</a></li>
+        <li><a href="#haftung">Haftungsausschluss & Urheberrecht</a></li>
+        <li><a href="#datenschutz">Datenschutzerklärung</a></li>
+        <li><a href="#tos">Nutzungsbedingungen (ToS)</a></li>
+      </ul>
+      <p class="notice">Hinweis: Diese Vorlage ersetzt keine Rechtsberatung. Bitte lasse sie bei Bedarf prüfen.</p>
+    </nav>
+
+    <section id="impressum">
+      <h2>Impressum (§ 5 TMG)</h2>
+      <div class="grid two">
+        <div>
+          <h3>Verantwortlich</h3>
+          <p>
+            Erik Demoulin<br>
+            Hollenberger Str. 30<br>
+            51766 Engelskirchen
+          </p>
+        </div>
+        <div>
+          <h3>Kontakt</h3>
+          <p>E‑Mail: <a href="mailto:BITTE-EINSETZEN">BITTE‑EINSETZEN</a></p>
+          <p class="muted">(Optional: Telefon hier ergänzen)</p>
+          <p class="badge">Hobby‑Website · kein Verkauf</p>
+        </div>
+      </div>
+      <h3>Hosting</h3>
+      <p>Diese Website wird auf <span class="mono">GitHub Pages</span> gehostet (Anbieter: GitHub, Inc., USA). Beim Aufruf werden serverseitig Logdaten (z. B. IP‑Adresse, Datum/Uhrzeit, Referrer, User‑Agent) verarbeitet.</p>
+    </section>
+
+    <section id="haftung">
+      <h2>Haftungsausschluss & Urheberrecht</h2>
+      <h3>Haftung für Inhalte</h3>
+      <p>Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8–10 TMG besteht jedoch keine Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+      <h3>Haftung für Links</h3>
+      <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte ist stets der jeweilige Anbieter verantwortlich.</p>
+      <h3>Urheberrecht</h3>
+      <p>Die auf dieser Website erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Downloads und Kopien sind nur für den privaten, nicht kommerziellen Gebrauch gestattet, sofern nicht anders gekennzeichnet.</p>
+    </section>
+
+    <section id="datenschutz">
+      <h2>Datenschutzerklärung (DSGVO)</h2>
+
+      <h3>1. Verantwortlicher</h3>
+      <p>Erik Demoulin, Hollenberger Str. 30, 51766 Engelskirchen · E‑Mail: <a href="mailto:BITTE-EINSETZEN">BITTE‑EINSETZEN</a></p>
+
+      <h3>2. Zwecke, Rechtsgrundlagen, Speicherdauer</h3>
+      <ul>
+        <li><strong>Bereitstellung der Website</strong> (Server‑Logs, Sicherheitszwecke); Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Speicherdauer: Log‑Daten werden vom Hoster nach dessen Vorgaben gelöscht.</li>
+        <li><strong>Externe Widgets/Einbettungen</strong> (z. B. Videos, Karten, externe Formulare, Kommentar‑/Social‑Widgets): Datenübermittlung an Drittanbieter beim Aufruf der Inhalte; Rechtsgrundlage: <strong>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</strong>, sofern nicht technisch erforderlich.</li>
+        <li><strong>Google Analytics (GA4)</strong> zur Reichweitenmessung; Rechtsgrundlage: <strong>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</strong>. IP‑Anonymisierung aktiviert.</li>
+        <li><strong>Externe Schriftarten</strong> (Webfonts): Abruf vom Server des Anbieters kann Ihre IP‑Adresse übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO oder lit. a bei Einwilligung.</li>
+      </ul>
+
+      <h3>3. Cookies & Einwilligungsmanagement</h3>
+      <p>Es werden nur technisch notwendige Cookies ohne Einwilligung gesetzt. Für alle anderen (z. B. Analytics, Marketing, bestimmte Widgets) holen wir vor Aktivierung eine Einwilligung ein. Sie können Ihre Auswahl jederzeit in den <a href="#" onclick="enableAnalyticsAfterConsent();return false;">Cookie‑Einstellungen</a> anpassen.</p>
+      <p>Sie können Google Analytics jederzeit deaktivieren: <a href="#" onclick="gaOptout();return false;">GA‑Opt‑out setzen</a>.</p>
+
+      <h3>4. Google Analytics</h3>
+      <p>Betreiber: Google Ireland Limited/Google LLC. Es werden pseudonyme Nutzungsdaten verarbeitet. IP‑Anonymisierung ist aktiv. Daten können in die USA übertragen werden (Standardvertragsklauseln). Bitte trage deine eigene Measurement‑ID anstelle von <span class="mono">G-XXXXXXX</span> ein und lade GA erst <em>nach</em> Einwilligung.</p>
+
+      <h3>5. Hosting & Content Delivery</h3>
+      <p>Hosting durch GitHub Pages (GitHub, Inc., USA). Dabei kann eine Übermittlung personenbezogener Daten (z. B. IP‑Adresse) in Drittländer erfolgen. GitHub setzt Sicherheitsmaßnahmen und Standardvertragsklauseln ein. Weitere Details findest du in der Datenschutzerklärung von GitHub.</p>
+
+      <h3>6. Eingebettete Inhalte und externe Dienste</h3>
+      <p>Beim Aufruf eingebetteter Inhalte (z. B. YouTube, Google Maps, Formular‑Dienste) wird Ihre IP‑Adresse an den Anbieter übertragen. Es können Cookies und weitere Technologien eingesetzt werden. Diese Inhalte werden erst nach Ihrer Einwilligung geladen, soweit sie nicht zwingend erforderlich sind.</p>
+
+      <h3>7. Externe Schriftarten</h3>
+      <p>Sofern externe Fonts (Webfonts) genutzt werden, wird beim Laden eine Verbindung zu den Servern des Anbieters hergestellt. Alternativ können Schriftarten lokal eingebunden werden, um eine Datenübermittlung zu vermeiden.</p>
+
+      <h3>8. Empfänger von Daten</h3>
+      <p>Hosting‑Anbieter (GitHub Pages), Anbieter eingebetteter Inhalte/Widgets, Google (Analytics). Eine Weitergabe an sonstige Dritte erfolgt grundsätzlich nicht.</p>
+
+      <h3>9. Ihre Rechte</h3>
+      <ul>
+        <li>Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung (Art. 15–18 DSGVO)</li>
+        <li>Widerspruch gegen Verarbeitung auf Grundlage berechtigter Interessen (Art. 21 DSGVO)</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerruf erteilter Einwilligungen mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+        <li>Beschwerderecht bei einer Aufsichtsbehörde (z. B. LDI NRW)</li>
+      </ul>
+
+      <h3>10. Minderjährige</h3>
+      <p>Dieses Angebot richtet sich nicht an Kinder unter 16 Jahren. Tracking/Marketing findet nur nach Einwilligung statt.</p>
+
+      <h3>11. Aktualität</h3>
+      <p>Wir passen diese Datenschutzerklärung an, wenn Änderungen der eingesetzten Technologien oder Rechtslagen dies erfordern.</p>
+    </section>
+
+    <section id="tos">
+      <h2>Nutzungsbedingungen (Terms of Service)</h2>
+      <ol>
+        <li><strong>Geltungsbereich.</strong> Diese Website ist ein privates Hobby‑Projekt. Es findet kein Verkauf von Waren oder Dienstleistungen statt.</li>
+        <li><strong>Nutzung auf eigene Verantwortung.</strong> Inhalte werden mit Sorgfalt erstellt, es besteht jedoch keine Gewähr für Richtigkeit, Vollständigkeit oder Aktualität.</li>
+        <li><strong>Externe Links & Inhalte.</strong> Für Inhalte Dritter wird keine Verantwortung übernommen. Abrufe externer Inhalte können Datenübermittlungen an deren Anbieter auslösen.</li>
+        <li><strong>Rechte an Inhalten.</strong> Sofern nicht anders angegeben, liegen Rechte an selbst erstellten Inhalten beim Betreiber. Fremdmaterial ist entsprechend gekennzeichnet.</li>
+        <li><strong>Änderungen.</strong> Der Betreiber kann Inhalte und diese Bedingungen jederzeit anpassen.</li>
+        <li><strong>Anwendbares Recht.</strong> Es gilt deutsches Recht. Zwingende Verbraucherschutzvorschriften bleiben unberührt.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Schnellaktionen</h2>
+      <p>
+        <button onclick="enableAnalyticsAfterConsent()">Analytics nach Einwilligung aktivieren</button>
+        <button onclick="gaOptout()">Google Analytics Opt‑out</button>
+      </p>
+      <p class="muted">Ersetze die Demo‑Buttons durch deine Cookie‑Einwilligungs‑Lösung (CMP) und blocke externe Skripte bis zur Zustimmung.</p>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Erik Demoulin · <a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutz</a> · <a href="#tos">ToS</a></p>
+    </footer>
+
+    <a class="top" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Nach oben">↑</a>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
