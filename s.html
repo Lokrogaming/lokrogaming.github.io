@@ -241,6 +241,8 @@ margin-top: 5%;
   <script>
     const loader = document.getElementById("loaders");
     const content = document.getElementById("content");
+    const resultContainer = document.getElementById("results");
+
     document.getElementById("searchbar").addEventListener("keypress", function(e) {
       if (e.key === "Enter") {
         updateSearch();
@@ -262,6 +264,13 @@ margin-top: 5%;
       "emin" : "https://star-dev.xyz"
     };
 
+    // NEU: Vorschläge
+    const suggested = {
+      "YouTube": "https://youtube.com",
+      "GitHub": "https://github.com",
+      "Google": "https://google.com"
+    };
+
     function treffQuote(query, key) {
       let match = 0;
       const minLen = Math.min(query.length, key.length);
@@ -269,6 +278,22 @@ margin-top: 5%;
         if (query[i] === key[i]) match++;
       }
       return Math.round((match / key.length) * 100);
+    }
+
+    function renderSuggested() {
+      resultContainer.innerHTML = "";
+      Object.entries(suggested).forEach(([key, value]) => {
+        const item = document.createElement("div");
+        item.className = "result-item";
+        item.innerHTML = `
+          <div class="card" onclick="openWithDelay('${value}')">
+            <p class="heading">${key}</p>
+            <p>Empfohlen/gesponsert</p>
+            <p>Klicke hier, um zu öffnen</p>
+          </div>
+        `;
+        resultContainer.appendChild(item);
+      });
     }
 
     window.onload = function () {
@@ -279,7 +304,6 @@ margin-top: 5%;
         const searchrequest = decodeURIComponent(request).toLowerCase();
         document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
         
-        const resultContainer = document.getElementById("results");
         resultContainer.innerHTML = "";
         let foundAny = false;
 
@@ -290,24 +314,24 @@ margin-top: 5%;
             const item = document.createElement("div");
             item.className = "result-item";
             item.innerHTML = `
-  <div class="card" onclick="openWithDelay('${value}')">
-    <p class="heading">${key}</p>
-    <p>Trefferquote: ${quote}%</p>
-    <p>Klicke hier, um zu öffnen</p>
-  </div>
-`;
-
+              <div class="card" onclick="openWithDelay('${value}')">
+                <p class="heading">${key}</p>
+                <p>Trefferquote: ${quote}%</p>
+                <p>Klicke hier, um zu öffnen</p>
+              </div>
+            `;
             resultContainer.appendChild(item);
           }
         });
 
         if (!foundAny) {
           document.getElementById("error").style.display = "block";
+          renderSuggested(); // wenn nichts gefunden -> Vorschläge
         }
       } else {
-        document.getElementById("txt").innerText = "No search request provided.";
+        document.getElementById("txt").innerText = "Keine Suchanfrage angegeben.";
         document.getElementById("error").style.display = "block";
-        setTimeout(back, 3000);
+        renderSuggested(); // Standardmäßig Vorschläge anzeigen
       }
     };
 
@@ -323,19 +347,19 @@ margin-top: 5%;
         alert("Search can't be empty!");
       }
     }
+
     function openWithDelay(url) {
-  content.style.display = "none";   // Versteckt Inhalt
-  loader.style.display = "block";   // Zeigt Loader
+      content.style.display = "none";   // Versteckt Inhalt
+      loader.style.display = "block";   // Zeigt Loader
 
-  setTimeout(() => {
-    window.open(url, "_blank");     // Öffnet neuen Tab
-    loader.style.display = "none";  // Loader wieder weg
-    content.style.display = "block";
-  }, 1500); // Delay in Millisekunden (hier 1,5 Sek.)
-}
+      setTimeout(() => {
+        window.open(url, "_blank");     // Öffnet neuen Tab
+        loader.style.display = "none";  // Loader wieder weg
+        content.style.display = "block";
+      }, 1500);
+    }
+</script>
 
-
-  </script>
 
     <ul class="bottomnav">
   <!-- GitHub -->
