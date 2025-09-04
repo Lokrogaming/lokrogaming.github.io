@@ -259,6 +259,36 @@ margin-top: 5%;
  <button class="btn btn-danger" onclick="back()">< Go back</button>
 
   <script>
+    const suggestionsContainer = document.getElementById("suggestions");
+const keys = Object.keys(suchDaten);
+
+// Zeige 3 zufällige Vorschläge
+function showSuggestions() {
+  suggestionsContainer.innerHTML = "<p style='color:white;'>Vorgeschlagene Suchen:</p>";
+  const randomKeys = keys.sort(() => 0.5 - Math.random()).slice(0, 3);
+  randomKeys.forEach(key => {
+    const suggestion = document.createElement("div");
+    suggestion.className = "suggestion";
+    suggestion.textContent = key;
+    suggestion.onclick = () => {
+      document.getElementById("searchbar").value = key;
+      updateSearch();
+    };
+    suggestionsContainer.appendChild(suggestion);
+  });
+}
+
+// Eingabe überwachen
+document.getElementById("searchbar").addEventListener("input", function () {
+  if (this.value.trim() === "") {
+    showSuggestions();  // nur anzeigen, wenn Feld leer
+  } else {
+    suggestionsContainer.innerHTML = ""; // sonst ausblenden
+  }
+});
+
+
+
     const loader = document.getElementById("loaders");
     const content = document.getElementById("content");
     document.getElementById("searchbar").addEventListener("keypress", function(e) {
