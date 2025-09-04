@@ -243,7 +243,7 @@ margin-top: 5%;
     const content = document.getElementById("content");
     const resultContainer = document.getElementById("results");
 
-    document.getElementById("searchbar").addEventListener("keypress", function(e) {
+    document.getElementById("searchbar").addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
         updateSearch();
       }
