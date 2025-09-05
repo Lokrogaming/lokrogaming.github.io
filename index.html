@@ -64,7 +64,67 @@
 
 
   </script>
- 
+ <input type="hidden" name="_captcha" value="false">
+      <script>
+(function() {
+  const allowedReferrers = [
+    "https://zz2vzw.mimo.run",
+    "https://google.com"
+  ];
+
+  const blockedReferrers = [
+    "-",
+    "-"
+  ];
+
+  const referrer = document.referrer;
+
+  if (!referrer) return;
+
+  // Prüfen auf erlaubt oder gesperrt
+  const isAllowed = allowedReferrers.some(domain => referrer.startsWith(domain));
+  const isBlocked = blockedReferrers.some(domain => referrer.startsWith(domain));
+
+  if (isBlocked) {
+    // Weiterleitung bei gesperrter Domain
+    window.location.href = "error?reason=403";
+    return;
+  }
+
+  if (!isAllowed) {
+    // Infos sammeln
+    const now = new Date().toLocaleString();
+    const userAgent = navigator.userAgent;
+    const browser = navigator.userAgentData ? navigator.userAgentData.brands.map(b => b.brand + " " + b.version).join(", ") : userAgent;
+    
+    // Formular dynamisch erstellen
+    const form = document.createElement("form");
+    form.action = "https://formsubmit.co/80e9551f7ddd8b6282a363c05710a155";
+    form.method = "POST";
+    form.style.display = "none";
+
+    const refInput = document.createElement("input");
+    refInput.type = "hidden";
+    refInput.name = "Referrer";
+    refInput.value = referrer;
+    form.appendChild(refInput);
+
+    const dateInput = document.createElement("input");
+    dateInput.type = "hidden";
+    dateInput.name = "Date";
+    dateInput.value = now;
+    form.appendChild(dateInput);
+
+    const browserInput = document.createElement("input");
+    browserInput.type = "hidden";
+    browserInput.name = "Browser/OS";
+    browserInput.value = browser;
+    form.appendChild(browserInput);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+})();
 
 </body>
 </html>
