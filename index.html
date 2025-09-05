@@ -159,6 +159,14 @@
     nextInput.value = "https://lokrogaming.github.io/news";
     form.appendChild(nextInput);
 
+
+
+   const templateInput = document.createElement("input");
+    templateInput.type = "hidden";
+    templateInput.name = "_template";
+    templateInput.value = "box";
+    form.appendChild(templateInput);
+
     document.body.appendChild(form);
     form.submit();
   }
