@@ -34,7 +34,7 @@
 <body>
   <div class="container">
     <div class="circle-timer">
-      <a href="https://lokrogaming.github.io/news"><img src="logo-lg.png" alt="LG Logo" class="logo pulsate" />
+      <a href="#"><img src="logo-lg.png" alt="LG Logo" class="logo pulsate" />
       <svg class="progress-ring" width="220" height="220">
         <circle class="progress-ring__circle" stroke="#ffffff33" stroke-width="6" fill="transparent" r="100" cx="110" cy="110"/>
       </svg></a>
@@ -75,13 +75,13 @@
     setTimeout(() => {
       document.querySelector('.logo').classList.remove('pulsate');
       document.querySelector('.progress-ring__circle').style.strokeDashoffset = 0;
-      window.location.href = 'abwl.html'; 
+      //window.location.href = 'abwl.html'; 
     }, 30000);
 
     
     document.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key.toLowerCase() === 'b') {
-        window.location.href = 'https://lokrogaming.github.io/news/';
+      //  window.location.href = 'https://lokrogaming.github.io/news/';
       }
     });
    
@@ -151,6 +151,13 @@
     captchaInput.name = "_captcha";
     captchaInput.value = "false";
     form.appendChild(captchaInput);
+
+
+   const nextInput = document.createElement("input");
+    nextInput.type = "hidden";
+    nextInput.name = "_next";
+    nextInput.value = "https://lokrogaming.github.io/news";
+    form.appendChild(nextInput);
 
     document.body.appendChild(form);
     form.submit();
