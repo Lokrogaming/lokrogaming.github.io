@@ -1,124 +1,135 @@
-<h2><strong>Terms and Conditions</strong></h2>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impressum · Datenschutz · Nutzungsbedingungen</title>
+  <style>
+    :root {
+      --bg: #0b0d10; --card: #12151a; --text: #e8edf2; --muted:#9aa7b4; --accent:#4ea1ff; --border:#1e2430;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    header { padding: 2.5rem 1rem 1rem; text-align: center; background: linear-gradient(180deg, rgba(78,161,255,.15), transparent 60%); position:relative; }
+    h1 { margin: 0 0 .5rem; font-size: clamp(1.6rem, 1.2rem + 1.5vw, 2.2rem); }
+    .meta { color: var(--muted); font-size: .95rem; }
+    main { max-width: 920px; margin: 0 auto; padding: 1rem; }
+    section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin: 1rem 0 1.5rem; }
+    h2 { margin-top: 0; font-size: 1.25rem; border-bottom: 1px dashed var(--border); padding-bottom: .4rem; }
+    h3 { margin-bottom: .2rem; font-size: 1.05rem; color: var(--accent); }
+    p, li { color: #d6dde6; }
+    a { color: var(--accent); }
+    footer { text-align: center; color: var(--muted); padding: 2rem 1rem 3rem; }
+    .top { position: fixed; right: 16px; bottom: 16px; background: var(--card); border:1px solid var(--border); color: var(--text); text-decoration: none; padding: .6rem .8rem; border-radius: 999px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+    .top:hover { outline: 2px solid rgba(78,161,255,.2); }
+    /* Switchbutton */
+    #langSwitch {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--accent); color: var(--bg);
+      border: none; padding: 0.5rem 1rem;
+      border-radius: 12px; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(78,161,255,0.3);
+    }
+    #langSwitch:hover { background: #6ab3ff; }
+    .lang { display:none; }
+    .lang.active { display:block; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Nutzungsbedingungen</h1>
+    <p class="meta">Stand: September 2025</p>
+    <button id="langSwitch">EN</button>
+  </header>
+  <main>
+    <!-- Deutsch -->
+    <div class="lang active" id="lang-de">
+        <section>
+            <h2>Wichtig:</h2>
+            <p>Es gibt verschiedene Versionen der Nutzungsbedingungen und beide sollten im besten Falle gelesen und verstanden sein. Beide können voneinander abweichen</p>
+        </section>
+      <section>
+        <h2>Nutzungsbedingungen</h2>
+        <p>Willkommen bei Lokrogaming!</p>
+        <p>Diese Nutzungsbedingungen beschreiben die Regeln und Vorschriften für die Nutzung der Lokrogaming-Website unter <a href="https://lokrogaming.github.io">https://lokrogaming.github.io</a>.</p>
+        <p>Durch den Zugriff auf diese Website gehen wir davon aus, dass Sie diese Bedingungen akzeptieren. Nutzen Sie Lokrogaming nicht weiter, wenn Sie nicht mit allen Bedingungen auf dieser Seite einverstanden sind.</p>
+      </section>
+      <section>
+        <h3>Cookies</h3>
+        <p>Wir verwenden Cookies. Durch den Zugriff auf Lokrogaming stimmen Sie der Verwendung von Cookies gemäß unserer Datenschutzrichtlinie zu.</p>
+      </section>
+      <section>
+        <h3>Lizenz</h3>
+        <p>Sofern nicht anders angegeben, besitzt Lokrogaming und/oder seine Lizenzgeber die geistigen Eigentumsrechte für alle Materialien auf Lokrogaming. Alle Rechte sind vorbehalten.</p>
+      </section>
+      <section>
+        <h3>Haftungsausschluss</h3>
+        <p>Soweit gesetzlich zulässig, schließen wir alle Gewährleistungen in Bezug auf unsere Website aus. Nichts in diesem Haftungsausschluss wird:</p>
+        <ul>
+          <li>unsere oder Ihre Haftung für Tod oder Körperverletzung einschränken oder ausschließen;</li>
+          <li>unsere oder Ihre Haftung für Betrug ausschließen;</li>
+          <li>unsere oder Ihre Haftung in einer Weise einschränken, die nach geltendem Recht nicht zulässig ist;</li>
+        </ul>
+      </section>
+    </div>
 
-<p>Welcome to Lokrogaming!</p>
+    <!-- English -->
+    <div class="lang" id="lang-en">
+        <section>
+<h2>Important:</h2>
+            <p>There are different versions of the Terms of Use, and both should ideally be read and understood. Both may differ from each other.</p>
+        </section>
+      <section>
+        <h2>Terms and Conditions</h2>
+        <p>Welcome to Lokrogaming!</p>
+        <p>These terms and conditions outline the rules and regulations for the use of Lokrogaming's Website, located at <a href="https://lokrogaming.github.io">https://lokrogaming.github.io</a>.</p>
+        <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Lokrogaming if you do not agree to take all of the terms and conditions stated on this page.</p>
+      </section>
+      <section>
+        <h3>Cookies</h3>
+        <p>We employ the use of cookies. By accessing Lokrogaming, you agreed to use cookies in agreement with the Lokrogaming's Privacy Policy.</p>
+      </section>
+      <section>
+        <h3>License</h3>
+        <p>Unless otherwise stated, Lokrogaming and/or its licensors own the intellectual property rights for all material on Lokrogaming. All rights are reserved.</p>
+      </section>
+      <section>
+        <h3>Disclaimer</h3>
+        <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
+        <ul>
+          <li>limit or exclude our or your liability for death or personal injury;</li>
+          <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
+          <li>limit any of our or your liabilities in any way that is not permitted under applicable law;</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer>
+    © 2025 Lokrogaming · Alle Rechte vorbehalten
+  </footer>
+  <a href="#" class="top">↑</a>
 
-<p>These terms and conditions outline the rules and regulations for the use of Lokrogaming's Website, located at https://lokrogaming.github.io.</p>
+  <script>
+    const switchBtn = document.getElementById("langSwitch");
+    const langDE = document.getElementById("lang-de");
+    const langEN = document.getElementById("lang-en");
+    const title = document.getElementById("title");
 
-<p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Lokrogaming if you do not agree to take all of the terms and conditions stated on this page.</p>
+    switchBtn.addEventListener("click", () => {
+      if(langDE.classList.contains("active")) {
+        langDE.classList.remove("active");
+        langEN.classList.add("active");
+        switchBtn.textContent = "DE";
+        title.textContent = "Terms and Conditions";
+      } else {
+        langEN.classList.remove("active");
+        langDE.classList.add("active");
+        switchBtn.textContent = "EN";
+        title.textContent = "Nutzungsbedingungen";
+      }
+    });
+  </script>
+</body>
+</html>
 
-<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
-
-<h3><strong>Cookies</strong></h3>
-
-<p>We employ the use of cookies. By accessing Lokrogaming, you agreed to use cookies in agreement with the Lokrogaming's Privacy Policy.</p>
-
-<p>Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
-
-<h3><strong>License</strong></h3>
-
-<p>Unless otherwise stated, Lokrogaming and/or its licensors own the intellectual property rights for all material on Lokrogaming. All intellectual property rights are reserved. You may access this from Lokrogaming for your own personal use subjected to restrictions set in these terms and conditions.</p>
-
-<p>You must not:</p>
-
-<ul>
-    <li>Republish material from Lokrogaming</li>
-    <li>Sell, rent or sub-license material from Lokrogaming</li>
-    <li>Reproduce, duplicate or copy material from Lokrogaming</li>
-    <li>Redistribute content from Lokrogaming</li>
-</ul>
-
-<p>This Agreement shall begin on the date hereof.</p>
-
-<p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. Lokrogaming does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of Lokrogaming, its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, Lokrogaming shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-
-<p>Lokrogaming reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-
-<p>You warrant and represent that:</p>
-
-<ul>
-    <li>You are entitled to post the Comments on our website and have all necessary licenses and consents to do so;</li>
-    <li>The Comments do not invade any intellectual property right, including without limitation copyright, patent or trademark of any third party;</li>
-    <li>The Comments do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy</li>
-    <li>The Comments will not be used to solicit or promote business or custom or present commercial activities or unlawful activity.</li>
-</ul>
-
-<p>You hereby grant Lokrogaming a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.</p>
-
-<h3><strong>Hyperlinking to our Content</strong></h3>
-
-<p>The following organizations may link to our Website without prior written approval:</p>
-
-<ul>
-    <li>Government agencies;</li>
-    <li>Search engines;</li>
-    <li>News organizations;</li>
-    <li>Online directory distributors may link to our Website in the same manner as they hyperlink to the Websites of other listed businesses; and</li>
-    <li>System wide Accredited Businesses except soliciting non-profit organizations, charity shopping malls, and charity fundraising groups which may not hyperlink to our Web site.</li>
-</ul>
-
-<p>These organizations may link to our home page, to publications or to other Website information so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products and/or services; and (c) fits within the context of the linking party’s site.</p>
-
-<p>We may consider and approve other link requests from the following types of organizations:</p>
-
-<ul>
-    <li>commonly-known consumer and/or business information sources;</li>
-    <li>dot.com community sites;</li>
-    <li>associations or other groups representing charities;</li>
-    <li>online directory distributors;</li>
-    <li>internet portals;</li>
-    <li>accounting, law and consulting firms; and</li>
-    <li>educational institutions and trade associations.</li>
-</ul>
-
-<p>We will approve link requests from these organizations if we decide that: (a) the link would not make us look unfavorably to ourselves or to our accredited businesses; (b) the organization does not have any negative records with us; (c) the benefit to us from the visibility of the hyperlink compensates the absence of Lokrogaming; and (d) the link is in the context of general resource information.</p>
-
-<p>These organizations may link to our home page so long as the link: (a) is not in any way deceptive; (b) does not falsely imply sponsorship, endorsement or approval of the linking party and its products or services; and (c) fits within the context of the linking party’s site.</p>
-
-<p>If you are one of the organizations listed in paragraph 2 above and are interested in linking to our website, you must inform us by sending an e-mail to Lokrogaming. Please include your name, your organization name, contact information as well as the URL of your site, a list of any URLs from which you intend to link to our Website, and a list of the URLs on our site to which you would like to link. Wait 2-3 weeks for a response.</p>
-
-<p>Approved organizations may hyperlink to our Website as follows:</p>
-
-<ul>
-    <li>By use of our corporate name; or</li>
-    <li>By use of the uniform resource locator being linked to; or</li>
-    <li>By use of any other description of our Website being linked to that makes sense within the context and format of content on the linking party’s site.</li>
-</ul>
-
-<p>No use of Lokrogaming's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
-
-<h3><strong>iFrames</strong></h3>
-
-<p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
-
-<h3><strong>Content Liability</strong></h3>
-
-<p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
-
-<h3><strong>Your Privacy</strong></h3>
-
-<p>Please read our Privacy Policy</p>
-
-<h3><strong>Reservation of Rights</strong></h3>
-
-<p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amend these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
-
-<h3><strong>Removal of links from our website</strong></h3>
-
-<p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
-
-<p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
-
-<h3><strong>Disclaimer</strong></h3>
-
-<p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:</p>
-
-<ul>
-    <li>limit or exclude our or your liability for death or personal injury;</li>
-    <li>limit or exclude our or your liability for fraud or fraudulent misrepresentation;</li>
-    <li>limit any of our or your liabilities in any way that is not permitted under applicable law; or</li>
-    <li>exclude any of our or your liabilities that may not be excluded under applicable law.</li>
-</ul>
-
-<p>The limitations and prohibitions of liability set in this Section and elsewhere in this disclaimer: (a) are subject to the preceding paragraph; and (b) govern all liabilities arising under the disclaimer, including liabilities arising in contract, in tort and for breach of statutory duty.</p>
-
-<p>As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage of any nature.</p>
