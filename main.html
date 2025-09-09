@@ -206,7 +206,40 @@ l49 51 23 -20 c51 -47 98 -57 67 -15 -12 16 -27 46 -34 67 -12 35 -11 43 19
 </g>
 </svg>
   
-   <div class="serverStatusOn" id="serverStatusOn"></div>
+   <!-- Status Container -->
+<div class="serverStatusOn" id="serverStatusOn">
+  Lade Serverstatus...
+</div>
+
+<script>
+async function updateServerStatus() {
+  const statusDiv = document.getElementById("serverStatusOn");
+  try {
+    const res = await fetch("https://api.mcsrvstat.us/1/example-server.com");
+    if (!res.ok) throw new Error("Netzwerkfehler");
+
+    const data = await res.json();
+
+    if (data.online) {
+      statusDiv.innerHTML = `
+        <span style="color:limegreen; font-weight:bold;">🟢 Server Online</span><br>
+        Spieler: ${data.players?.online || 0} / ${data.players?.max || 0}
+      `;
+    } else {
+      statusDiv.innerHTML = `<span style="color:red; font-weight:bold;">🔴 Server Offline</span>`;
+    }
+  } catch (e) {
+    statusDiv.innerHTML = `<span style="color:orange;">⚠ Fehler beim Laden</span>`;
+  }
+}
+
+// Beim Laden der Seite abrufen
+updateServerStatus();
+
+// Alle 60 Sekunden automatisch aktualisieren
+setInterval(updateServerStatus, 60000);
+</script>
+
     <div id="suggestion" style="display: block">
       <h1>Werbung</h1>
       
