@@ -21,7 +21,10 @@
   <style>
   body {
         background-color: black;
-    align-items: center;
+        align-items: center;
+  }
+  #txt {
+    color:lightgrey;
   }
     #error {
       display: none;
@@ -202,8 +205,8 @@ margin-top: 5%;
     transform: translateY(-400%);
   }
 }
-#searchbar {
-  width: 50%;
+#searchBar {
+  width: 75%;
 }
 
   </style>
@@ -232,7 +235,7 @@ margin-top: 5%;
     <h1>Couldn't find your search request!</h1>
   </div>
 
- <input id="searchbar" type="text" placeholder="Type in search">
+ <input id="searchBar" type="text" placeholder="Type in search">
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
@@ -243,7 +246,7 @@ margin-top: 5%;
     const content = document.getElementById("content");
     const resultContainer = document.getElementById("results");
 
-    document.getElementById("searchbar").addEventListener("keydown", function(e) {
+    document.getElementById("searchBar").addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
         updateSearch();
       }
@@ -281,9 +284,9 @@ margin-top: 5%;
     }
 
     function renderSuggested() {
-      resultContainer.innerHTML = "<h3 style="color:white; text-align:center; margin-top:20px;">
+      resultContainer.innerHTML = `<h3 style="color:white; text-align:center; margin-top:20px;">
       Suggested
-    </h3>";
+    </h3>`;
       Object.entries(suggested).forEach(([key, value]) => {
         const item = document.createElement("div");
         item.className = "result-item";
@@ -340,7 +343,7 @@ margin-top: 5%;
    
 
     function updateSearch() {
-      let searchbarInput = document.getElementById("searchbar").value;
+      let searchbarInput = document.getElementById("searchBar").value;
       if (searchbarInput) {
         window.location.href=`?request=${searchbarInput}`
       } else {
