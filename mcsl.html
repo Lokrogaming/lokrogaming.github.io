@@ -171,7 +171,20 @@ button.delete:active {
 button.delete:active:after {
   box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
 }
-
+.server-board {
+      background: #1c1f26;
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      width: auto;
+      max-width: 90vw;
+      color: white;
+      position: relative;
+      box-shadow: 0 0 20px #008542;
+      font-family: 'Minecraftia', monospace;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
     .server-card {background: #1c1f26;border: 2px solid #333;border-radius: 8px;width: 600px;padding: 16px;margin-bottom: 20px;display: flex;flex-direction: row;align-items: flex-start;gap: 15px;position: relative;}
     .server-icon {
       width: 64px;
@@ -378,12 +391,14 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
 </head>
 <body>
 <img class="bg" src="https://tse3.mm.bing.net/th/id/OIP.oQVA_GwCK2ibSksoiKd1mQHaHa?r=0&cb=ucfimgc2&rs=1&pid=ImgDetMain&o=7&rm=3" alt="BG">
+<div class="server-board">
 <h1>Minecraft Serverliste</h1>
 
 <div id="server-list"></div>
 
-<button class="mc" id="addServerBtn">Server vorschlagen</button>
 
+<button class="mc" id="addServerBtn">Server vorschlagen</button>
+</div>
 <!-- Overlay Modal -->
 <div id="serverModal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
   <div class="modal">
