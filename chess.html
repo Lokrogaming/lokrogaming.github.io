@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Schach gegen Computer</title>
+  <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #232526, #414345);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #board {
+      width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #ffce00;
+      color: black;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #ffd633;
+    }
+  </style>
+</head>
+<body>
+  <h1>♟️ Schach gegen Computer</h1>
+  <div id="board"></div>
+  <div id="status"></div>
+  <button onclick="newGame()">Neues Spiel</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.13.4/chess.min.js"></script>
+  <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+  <script>
+    import { Chess } from 'chess.js'
+    let board = null;
+    let game = new Chess();
+    const statusEl = document.getElementById("status");
+
+    function updateStatus() {
+      let status = '';
+
+      if (game.in_checkmate()) {
+        status = 'Partie beendet – ' + (game.turn() === 'w' ? 'Schwarz' : 'Weiß') + ' hat gewonnen!';
+      } else if (game.in_draw()) {
+        status = 'Unentschieden!';
+      } else {
+        status = 'Am Zug: ' + (game.turn() === 'w' ? 'Weiß' : 'Schwarz');
+        if (game.in_check()) {
+          status += ' (Schach!)';
+        }
+      }
+
+      statusEl.textContent = status;
+    }
+
+    function makeRandomMove() {
+      const possibleMoves = game.moves();
+      if (possibleMoves.length === 0) return;
+
+      const randomIdx = Math.floor(Math.random() * possibleMoves.length);
+      game.move(possibleMoves[randomIdx]);
+      board.position(game.fen());
+      updateStatus();
+    }
+
+    const config = {
+      draggable: true,
+      position: 'start',
+      onDrop: (source, target) => {
+        const move = game.move({
+          from: source,
+          to: target,
+          promotion: 'q'
+        });
+
+        if (move === null) return 'snapback';
+
+        updateStatus();
+        window.setTimeout(makeRandomMove, 500);
+      }
+    };
+
+    board = Chessboard('board', config);
+    updateStatus();
+
+    function newGame() {
+      game.reset();
+      board.start();
+      updateStatus();
+    }
+  </script>
+</body>
+</html>

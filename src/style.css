@@ -1,14 +1,14 @@
 @font-face {
   font-family: "ArialRoundedMTBold";
-  src: url("\fonts\arial-rounded-mt-bold.ttf") format("truetype");
+  src: url("https://lokrogaming.github.io/fonts/arial-rounded-mt-bold.ttf") format("truetype");
 }
 @font-face {
   font-family: "Bitcount Prop Double Light";
-  src: url("\fonts\BitcountPropDouble-Light.ttf") format("truetype");
+  src: url("https://lokrogaming.gothub.io/fonts/BitcountPropDouble-Light.ttf") format("truetype");
 }
 @font-face {
   font-family: "Varela Round";
-  src: url("\fonts\VarelaRound-Regular.ttf") format("truetype");
+  src: url("https://lokrogaming.github.io/fonts/VarelaRound-Regular.ttf") format("truetype");
 }
 
 html {
@@ -24,6 +24,7 @@ body {
         margin: 0;
         font-family: "Varela Round";
         font-style: normal;
+       color: white;
         
       }
       .bottomnav {
