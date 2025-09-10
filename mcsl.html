@@ -422,12 +422,23 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
 <script>
   const fallbackIcon = "https://orig00.deviantart.net/26db/f/2015/326/4/f/minecraft_grass_block_by_flutterspon-d9hlkmq.jpg";
 
+  // Keys für Storage
+  const LS_KEY = 'customServers';
+  const BLOCK_KEY = 'blockedServers';
+
   // Voreingestellte Server
   const defaultServers = [
     { address: 'play.hypixel.net', isDefault: true },
     { address: 'primeblocks.net', isDefault: true },
-    { address: 'yukicraft.net', isDefault: true, tag: "featured"},
-    { address: 'lg-smp.feathermc.gg', isDefault: true, tag: "featured"}
+    { address: 'yukicraft.net', isDefault: true },
+    { address: 'lg-smp.feathermc.gg', isDefault: true, tag: "featured", isRecommended: true }
+  ];
+
+  // Feste Blockliste (vom Code aus)
+  const blockedServersDefault = [
+    "-",
+    "yukicraft.net",
+    "-"
   ];
 
   // Elemente
@@ -442,23 +453,36 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
   const deleteBtn = document.getElementById('deleteBtn');
   const closeBtn = serverModal.querySelector('.close-btn');
 
-  // Speicherung: lokal und session
-  const LS_KEY = 'customServers';
-
-  // Server-Daten (vereint)
+  // Server-Daten
   let customServers = loadCustomServers();
+  let blockedServers = loadBlockedServers();
   let allServers = [...defaultServers, ...customServers];
 
-  // Aktuell bearbeiteter Server-Index in allServers
+  // Aktuell bearbeiteter Server-Index
   let editingIndex = null;
 
-  // Server laden aus Storage
+  // === Blockierte Server laden/speichern ===
+  function loadBlockedServers() {
+    const data = localStorage.getItem(BLOCK_KEY);
+    let stored = [];
+    try {
+      stored = data ? JSON.parse(data) : [];
+    } catch {
+      stored = [];
+    }
+    // feste + gespeicherte kombinieren
+    return [...new Set([...blockedServersDefault, ...stored])];
+  }
+
+  function saveBlockedServers(servers) {
+    localStorage.setItem(BLOCK_KEY, JSON.stringify(servers));
+    blockedServers = loadBlockedServers(); // neu laden
+  }
+
+  // === Custom-Server laden/speichern ===
   function loadCustomServers() {
-    // Lokal + Session auslesen, prioritär lokal
     const local = localStorage.getItem(LS_KEY);
     const session = sessionStorage.getItem(LS_KEY);
-
-    // Parse, wenn vorhanden, sonst leeres Array
     try {
       if(local) return JSON.parse(local);
       if(session) return JSON.parse(session);
@@ -468,7 +492,6 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     return [];
   }
 
-  // Server speichern in Storage (je nach remember Checkbox)
   function saveCustomServers(servers, remember) {
     if(remember) {
       localStorage.setItem(LS_KEY, JSON.stringify(servers));
@@ -479,37 +502,39 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
   }
 
-  // Alle Server (default + custom) neu rendern
+  // === Serverliste rendern ===
   function renderServerList() {
-  container.innerHTML = '';
-  allServers.forEach((server, index) => {
-    const { address, isDefault, tag, isRecommended} = server;
+    container.innerHTML = '';
+    allServers.forEach((server, index) => {
+      const { address, isDefault, tag, isRecommended} = server;
 
-    const card = document.createElement('div');
-    card.className = 'server-card';
+      // Blockierte Server überspringen
+      if (blockedServers.includes(address)) {
+        return;
+      }
 
-    // --- Tag-Container ---
-    const tagContainer = document.createElement('div');
-    tagContainer.className = 'tag-container';
+      const card = document.createElement('div');
+      card.className = 'server-card';
 
-    if(server.tag === 'featured') {
-      const crown = document.createElement('div');
-      crown.className = 'crown';
-      crown.textContent = '👑';
-      tagContainer.appendChild(crown);
-    }
+      // --- Tag-Container ---
+      const tagContainer = document.createElement('div');
+      tagContainer.className = 'tag-container';
 
-    if(isRecommended) {
-      const recommended = document.createElement('div');
-      recommended.className = 'recommended';
-      recommended.textContent = '✈️';
-      tagContainer.appendChild(recommended);
-    }
-
-    if(tagContainer.childNodes.length > 0) {
-      card.appendChild(tagContainer);
-    }
-    // --- Ende Tag-Container ---
+      if(server.tag === 'featured') {
+        const crown = document.createElement('div');
+        crown.className = 'crown';
+        crown.textContent = '👑';
+        tagContainer.appendChild(crown);
+      }
+      if(isRecommended) {
+        const recommended = document.createElement('div');
+        recommended.className = 'recommended';
+        recommended.textContent = '✈️';
+        tagContainer.appendChild(recommended);
+      }
+      if(tagContainer.childNodes.length > 0) {
+        card.appendChild(tagContainer);
+      }
 
       const icon = document.createElement('img');
       icon.className = 'server-icon';
@@ -527,7 +552,6 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
         <div class="motd"></div>
         <div class="server-footer"></div>
       `;
-
       card.appendChild(info);
 
       const nameEl = info.querySelector('.server-name');
@@ -535,26 +559,37 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
       const motdEl = info.querySelector('.motd');
       const footerEl = info.querySelector('.server-footer');
 
-      // Edit button nur bei custom (nicht default)
+      // Edit & Block-Buttons
       if(!isDefault) {
         const editBtn = document.createElement('button');
         editBtn.className = 'edit-btn';
         editBtn.title = 'Server bearbeiten';
-        editBtn.innerHTML = `
-          <svg class="edit-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.4998 5.50067L18.3282 8.3291M13 21H21M3 21.0004L3.04745 20.6683C3.21536 19.4929 3.29932 18.9052 3.49029 18.3565C3.65975 17.8697 3.89124 17.4067 4.17906 16.979C4.50341 16.497 4.92319 16.0772 5.76274 15.2377L17.4107 3.58969C18.1918 2.80865 19.4581 2.80864 20.2392 3.58969C21.0202 4.37074 21.0202 5.63707 20.2392 6.41812L8.37744 18.2798C7.61579 19.0415 7.23497 19.4223 6.8012 19.7252C6.41618 19.994 6.00093 20.2167 5.56398 20.3887C5.07171 20.5824 4.54375 20.6889 3.48793 20.902L3 21.0004Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        `;
+        editBtn.textContent = 'Bearbeiten';
         card.appendChild(editBtn);
 
         editBtn.addEventListener('click', e => {
           e.stopPropagation();
           openModal('edit', index);
         });
+
+        const blockBtn = document.createElement('button');
+        blockBtn.className = 'block-btn';
+        blockBtn.textContent = 'Blockieren';
+        card.appendChild(blockBtn);
+
+        blockBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          if (!blockedServers.includes(address)) {
+            const updated = [...blockedServers, address];
+            saveBlockedServers(updated);
+            renderServerList();
+          }
+        });
       }
 
       container.appendChild(card);
 
+      // Serverdaten laden
       fetch(`https://api.mcsrvstat.us/3/${address}`)
         .then(res => res.json())
         .then(data => {
@@ -618,7 +653,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     });
   }
 
-  // Modal öffnen: mode = 'add' oder 'edit', index optional für edit
+  // Modal öffnen
   function openModal(mode, index = null) {
     editingIndex = index;
     serverForm.reset();
@@ -635,7 +670,6 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
       deleteBtn.style.display = 'inline-block';
       if (index !== null) {
         serverAddressInput.value = allServers[index].address;
-        // Für edit ist Remember standardmäßig true, kann man anpassen wenn gewünscht
         rememberCheckbox.checked = isServerRemembered(allServers[index].address);
       }
     }
@@ -643,7 +677,6 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     serverAddressInput.focus();
   }
 
-  // Modal schließen
   function closeModal() {
     serverModal.classList.remove('show');
     editingIndex = null;
@@ -654,7 +687,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     if (e.target === serverModal) closeModal();
   });
 
-  // Prüfen, ob Server in localStorage ist (remember = localStorage)
+  // Prüfen, ob Server remembered ist
   function isServerRemembered(address) {
     const local = localStorage.getItem(LS_KEY);
     if(!local) return false;
@@ -666,50 +699,46 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
   }
 
-  // Form Submit
+  // === Form Submit ===
   serverForm.addEventListener('submit', e => {
     e.preventDefault();
     const address = serverAddressInput.value.trim();
     if(!address) return alert('Bitte gib eine Serveradresse ein.');
 
+    // Blockliste prüfen
+    if (blockedServers.includes(address)) {
+      alert("Diese Serveradresse ist blockiert und kann nicht hinzugefügt werden.");
+      return;
+    }
+
     const remember = rememberCheckbox.checked;
 
     if(editingIndex === null) {
-      // Neu hinzufügen
       if(allServers.some(s => s.address === address)) {
         alert('Server ist bereits in der Liste.');
         return;
       }
       const newServer = { address };
-
       customServers.push(newServer);
       saveCustomServers(customServers, remember);
     } else {
-      // Bearbeiten
       const oldServer = allServers[editingIndex];
       if(oldServer.isDefault) {
         alert('Voreingestellte Server können nicht bearbeitet werden.');
         closeModal();
         return;
       }
-
-      // Check ob Adresse schon existiert in anderen Servern (außer sich selbst)
       if(allServers.some((s, i) => i !== editingIndex && s.address === address)) {
         alert('Serveradresse existiert bereits in der Liste.');
         return;
       }
-
-      // Update Adresse in customServers (der Index passt, weil allServers = default + custom)
-      // customServers array hat andere Indices, deshalb erst find index:
       const csIndex = customServers.findIndex(s => s.address === oldServer.address);
       if(csIndex !== -1) {
         customServers[csIndex].address = address;
-        // Speichern nach remember
         saveCustomServers(customServers, remember);
       }
     }
 
-    // Neu laden
     customServers = loadCustomServers();
     allServers = [...defaultServers, ...customServers];
     renderServerList();
@@ -726,9 +755,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
     if(!confirm(`Willst du den Server "${server.address}" wirklich löschen?`)) return;
 
-    // Löschen aus customServers
     customServers = customServers.filter(s => s.address !== server.address);
-    // Speichern im localStorage, weil Löschen => kein Unterschied mehr
     saveCustomServers(customServers, true);
     allServers = [...defaultServers, ...customServers];
     renderServerList();
@@ -738,7 +765,7 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
   addServerBtn.addEventListener('click', () => openModal('add'));
 
   renderServerList();
-
 </script>
+
 </body>
 </html>
