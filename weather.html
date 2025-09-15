@@ -72,6 +72,7 @@
   </div>
 
   <script>
+    const apiKey = "DEIN_API_KEY"; // <-- hier deinen OpenWeatherMap API-Key einfügen
     const locationSpan = document.getElementById("location");
     const dateSpan = document.getElementById("date");
     const tempSpan = document.getElementById("temperature");
@@ -91,13 +92,11 @@
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
-      // Open-Meteo API
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=de&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => {
-          const temp = data.current_weather.temperature;
-          locationSpan.textContent = `Breite: ${lat.toFixed(2)}, Länge: ${lon.toFixed(2)}`;
-          tempSpan.textContent = Math.round(temp) + "°";
+          locationSpan.textContent = data.name + ", " + data.sys.country;
+          tempSpan.textContent = Math.round(data.main.temp) + "°";
         })
         .catch(() => locationSpan.textContent = "Fehler beim Laden");
     }
