@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deutschland-Card</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #222;
+      margin: 0;
+    }
+
+    .card {
+      width: 190px;
+      height: 254px;
+      background: #07182E;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .card h2 {
+      z-index: 2;
+      color: white;
+      font-size: 2em;
+    }
+
+    /* Basis für alle Streifen */
+    .stripe {
+      position: absolute;
+      width: 100px;
+      height: 130%;
+      animation: rotBGimg 15s linear infinite;
+      border-radius: 50%;
+    }
+
+    /* Schwarz, Rot, Gold */
+    .stripe.black { background: black; }
+    .stripe.red   { background: red;   animation-delay: -1s; }
+    .stripe.gold  { background: gold;  animation-delay: -2s; }
+
+    /* Rotations-Animation */
+    @keyframes rotBGimg {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Inneres der Card (verdeckt die Mitte) */
+    .card::after {
+      content: '';
+      position: absolute;
+      background: #07182E;
+      inset: 5px;
+      border-radius: 15px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="card" class="card">
+    <div class="stripe black"></div>
+    <div class="stripe red"></div>
+    <div class="stripe gold"></div>
+    <h2>Hier gelangst du auf den Deutschland Discord</h2>
+  </div>
+  <script>
+      const card = document.getElementById("card");
+      card.addEventListener("click", () => {
+          window.open("https://dcs.lol/deutschland", "_blank");
+      });
+  </script>
+</body>
+</html>
