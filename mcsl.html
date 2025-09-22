@@ -171,6 +171,83 @@ button.delete:active {
 button.delete:active:after {
   box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
 }
+button.delete {
+  font-size: 18px;
+  background-color: #b11d1d;
+  color: #fff;
+  text-shadow: 0 2px 0 rgb(0 0 0 / 25%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 0;
+  z-index: 1;
+  user-select: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: unset;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: 900;
+  transition: all 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+  margin: 0.5rem;
+}
+
+button.delete:before {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: "";
+  transition: 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+  z-index: -1;
+  background-color: #e92828 !important;
+  /* Rottöne in den Box-Shadows angepasst */
+  box-shadow: 
+    0 -4px rgba(255, 40, 40, 0.5) inset,    /* Helleres Rot oben */
+    0 4px rgba(177, 29, 29, 0.9) inset,      /* Dunkleres Rot unten */
+    -4px 0 rgba(177, 29, 29, 0.5) inset,     /* Dunkleres Rot links */
+    4px 0 rgba(255, 64, 64, 0.5) inset;      /* Helleres Rot rechts */
+}
+
+button.delete:after {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: "";
+  box-shadow: 0 4px 0 0 rgb(0 0 0 / 15%);
+  transition: 0.7s cubic-bezier(0, 0.8, 0.26, 0.99);
+}
+
+button.delete:hover:before {
+  box-shadow: 
+    0 -4px rgba(139, 0, 0, 0.8) inset,       /* dunkles Rot (fast Schwarz) oben */
+    0 4px rgba(255, 180, 180, 0.3) inset,     /* helles Rosa unten */
+    -4px 0 rgba(255, 180, 180, 0.3) inset,    /* helles Rosa links */
+    4px 0 rgba(139, 0, 0, 0.8) inset;         /* dunkles Rot rechts */
+}
+
+button.delete:hover:after {
+  box-shadow: 0 4px 0 0 rgb(0 0 0 / 15%);
+}
+
+button.block-btn:active {
+  transform: translateY(4px);
+}
+
+button.block-btn:active:after {
+  box-shadow: 0 0px 0 0 rgb(0 0 0 / 15%);
+}
+
+
 .server-board {
       background: #1c1f26;
       border-radius: 10px;
@@ -576,19 +653,9 @@ box-shadow: 0 0 6px rgba(0,0,0,0.6);
           openModal('edit', index);
         });
 
-        const blockBtn = document.createElement('button');
-        blockBtn.className = 'block-btn';
-        blockBtn.textContent = 'Blockieren';
-        card.appendChild(blockBtn);
+       
 
-        blockBtn.addEventListener('click', e => {
-          e.stopPropagation();
-          if (!blockedServers.includes(address)) {
-            const updated = [...blockedServers, address];
-            saveBlockedServers(updated);
-            renderServerList();
-          }
-        });
+        
       }
 
       container.appendChild(card);

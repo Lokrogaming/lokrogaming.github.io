@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lokrogamer Auctions</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #e0ffe0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #39ff14;
+      text-shadow: 0 0 10px #39ff14;
+      margin-bottom: 20px;
+    }
+    #auctions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #39ff14;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 15px #39ff14aa;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px #39ff14;
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #39ff14;
+    }
+    .card p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+      color: #cfcfcf;
+    }
+    .loading {
+      color: #39ff14;
+      font-size: 1.2rem;
+      margin-top: 50px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Lokrogamer Auctions</h1>
+  <div id="auctions"></div>
+  <div id="loading" class="loading">Lade Auktionen...</div>
+
+  <script>
+    async function loadAuctions() {
+      const loadingEl = document.getElementById("loading");
+      const auctionsEl = document.getElementById("auctions");
+
+      try {
+        const res = await fetch("https://api.donutsmp.net/auctions?seller=Lokrogamer");
+        const data = await res.json();
+
+        loadingEl.style.display = "none";
+
+        if (!data || data.length === 0) {
+          auctionsEl.innerHTML = "<p>Keine Auktionen gefunden.</p>";
+          return;
+        }
+
+        data.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h2>${item.item || "Unbekanntes Item"}</h2>
+            <p><strong>Preis:</strong> ${item.price} Coins</p>
+            <p><strong>Menge:</strong> ${item.amount || 1}</p>
+            <p><strong>Endet:</strong> ${item.end || "Unbekannt"}</p>
+          `;
+          auctionsEl.appendChild(card);
+        });
+      } catch (err) {
+        loadingEl.textContent = "Fehler beim Laden der Auktionen.";
+        console.error(err);
+      }
+    }
+
+    loadAuctions();
+  </script>
+</body>
+</html>
