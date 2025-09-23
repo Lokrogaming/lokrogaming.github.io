@@ -1,87 +1,364 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deutschland-Card</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #222;
-      margin: 0;
-      
-    }
-@font-face {
-  font-family: "Varela Round";
-  src: url("https://lokrogaming.github.io/fonts/VarelaRound-Regular.ttf") format("truetype");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://lokrogaming.github.io/lokrogaming.github.io\node_modules\bootstrap\dist\css\bootstrap.min.css">
+    <title>Deutsch Spaß-Server</title>
+    <style>
+        /* Hintergrund: Deutschland-Flagge */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://www.publicdomainpictures.net/pictures/340000/velka/flag-of-germany-1588673048vhH.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .background-dimmer {
+           
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: -99; 
+        }
+        /* Container für den Inhalt */
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        header {
+            position: fixed;
+            top: 0%;
+            height: 50px;
+            width: 100%;
+            z-index: 100;
+            
+            background: linear-gradient(45deg, rgb(0, 0, 0, 80), rgb(255, 231, 11, 80));
+            align-content: center;
+            border: solid white 1px;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            
+        }
+        header button {
+            background: transparent;
+            border: none;
+            color: white; 
+            font-size: 15px;
+        }
+        header img.servericon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            border: solid lightslategray;
+        }
+        
+        .server-icon img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            animation: pulsate 3s infinite;
+            margin-top: 100px;
+        }
+        
+        @keyframes pulsate {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    transform: scale(1.07);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+  }
 }
-    .card {
-      width: 190px;
-      height: 254px;
-      background: #07182E;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      border-radius: 20px;
-      font-family: "Varela Round";
-      font-size: 3px;
+
+
+        /* Style für den Text */
+        .text {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 10px 0;
+        }
+        
+        .invite-button {
+            background-color: #7289DA;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .invite-button:hover {
+            background-color: #5b6eae;
+        }
+
+        /* Member-Counter Style */
+        .member-counter {
+            font-size: 2rem;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            color: black;
+            font-size: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Style für den Footer */
+        footer {
+            margin-top: 40px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        section {
+    padding: 100px 20px;
+    margin: 50px auto;
+    max-width: 1000px;
+    min-width: 500px;
+    background-color: rgba(0, 0, 0, 0.6); /* halbtransparentes Schwarz */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: left;
+    backdrop-filter: blur(4px); /* leichter Glass-Effekt */
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid yellow;
+    padding-bottom: 10px;
+}
+
+section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+.bewerbenUL {
+    list-style-type: none;
+    
+    
+}
+.bewerbenUL li.jobs {
+    border: dashed 1px rgb(80, 80, 80);
+    padding: 20px;
+    border-radius: 10px;
+}
+@media (max-width: 768px) {
+    section {
+        padding: 60px 15px;
     }
 
-    .card h2 {
-      z-index: 2;
-      color: white;
-      font-size: 2em;
+    section h2 {
+        font-size: 2rem;
     }
 
-    /* Basis für alle Streifen */
-    .stripe {
-      position: absolute;
-      width: 100px;
-      height: 130%;
-      animation: rotBGimg 15s linear infinite;
-      border-radius: 50%;
+    section p {
+        font-size: 1rem;
     }
+}
 
-    /* Schwarz, Rot, Gold */
-    .stripe.black { background: black; }
-    .stripe.red   { background: red;   animation-delay: -1s; }
-    .stripe.gold  { background: gold;  animation-delay: -2s; }
-
-    /* Rotations-Animation */
-    @keyframes rotBGimg {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    /* Inneres der Card (verdeckt die Mitte) */
-    .card::after {
-      content: '';
-      position: absolute;
-      background: #07182E;
-      inset: 5px;
-      border-radius: 15px;
-      z-index: 1;
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <div id="card" class="card">
-    <div class="stripe black"></div>
-    <div class="stripe red"></div>
-    <div class="stripe gold"></div>
-    <h2>Hier gelangst du auf den Deutschland Discord</h2>
-  </div>
-  <iframe src="https://discord.com/widget?id=1416051067468382218&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-  <script>
-      const card = document.getElementById("card");
-      card.addEventListener("click", () => {
-          window.open("https://dcs.lol/deutschland", "_blank");
-      });
-  </script>
+    <div class="background-dimmer"></div>
+    <header>
+            <img class="servericon" src="https://cdn.discordapp.com/icons/1416051067468382218/3fd502446c4f0be83fe7a30530d8148e.png?size=128" alt="Server Icon">
+            &nbsp;&nbsp;&nbsp;
+            <button id="scroll-bewerben">Bewerben</button>
+            &nbsp;&nbsp;&nbsp;
+            <button id="scroll-join">Beitreten</button>
+            &nbsp;&nbsp;&nbsp;
+            <button id="scroll-rules">Regelwerk</button>
+            &nbsp;&nbsp;&nbsp;
+            <button id="scroll-team">Team</button>
+            &nbsp;&nbsp;&nbsp;
+            <button id="scroll-impressum">Impressum</button>
+        </header>
+        
+    <div class="content">
+        <!-- Server Icon -->
+        <div class="server-icon">
+            <img src="https://cdn.discordapp.com/icons/1416051067468382218/3fd502446c4f0be83fe7a30530d8148e.png?size=128" alt="Server Icon">
+        </div>
+
+        <!-- Willkommenstext -->
+        <div class="text">
+            <h1>Willkommen auf .gg/deutschland</h1>
+            <p>Der Klischee Server im Deutschformat!</p>
+        </div>
+
+        <!-- Invite Link -->
+        <a href="https://dcs.lol/deutschland" class="invite-button">Tritt uns bei!</a>
+
+        <!-- Member Counter (Dynamisch via API) -->
+        <div class="member-counter">
+            <p>Aktuell online</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                  </svg>
+                  <p id="member-count">... Wird geladen</p>
+        </div>
+    
+
+    <!-- SECTIONS -->
+<section id="bewerben" style="min-height: 100vh; padding-top: 80px;">
+        <h2>Bewerben</h2>
+        <h1>Wir suchen:</h1><br><br>
+        <ul class="bewerbenUL">
+            <li class="jobs"><h3>Ein*e Administrator*in</h3>
+            <h4>Aufgaben:</h4>
+            <ul>
+                <li>Serverseitige Einstellungen verwalten</li>
+                <li>Das Team koordinieren</li>
+            </ul>
+            <h4>Anforderungen:</h4>
+            <ul>
+                <li>Mindestens 1 Jahr Erfahrung mit Discord und Servern</li>
+                <li>Koordinatorische Grundkompetenz</li>
+                <li>Teamgeist</li>
+                <li>Stressresistent</li>
+            </ul>
+            <h4>Wichtige Hinweise:</h4>
+            <ul>
+                <li>Da alles kostenlos geschieht, gibt es auch keine Einnahmequellen, daher sind alle Ausschreibungen <strong>ehrenamtlich</strong>.</li>
+                <li>Da wir immernoch ein Discordserver sind, haben wir <strong>NICHT</strong> die höchste Priorität und somit sind alle Ausschreibungen Teilzeit und unbezahlt</li>
+            </ul>
+            </li><br><br>
+            <li class="jobs"><h3>Ein*e Administrator*in</h3>
+                <h4>Aufgaben:</h4>
+                <ul>
+                    <li>Serverseitige Einstellungen verwalten</li>
+                    <li>Das Team koordinieren</li>
+                </ul>
+                <h4>Anforderungen:</h4>
+                <ul>
+                    <li>Mindestens 1 Jahr Erfahrung mit Discord und Servern</li>
+                    <li>Koordinatorische Grundkompetenz</li>
+                    <li>Teamgeist</li>
+                    <li>Stressresistent</li>
+                </ul>
+                <h4>Wichtige Hinweise:</h4>
+                <ul>
+                    <li>Da alles kostenlos geschieht, gibt es auch keine Einnahmequellen, daher sind alle Ausschreibungen <strong>ehrenamtlich</strong>.</li>
+                    <li>Da wir immernoch ein Discordserver sind, haben wir <strong>NICHT</strong> die höchste Priorität und somit sind alle Ausschreibungen Teilzeit und unbezahlt</li>
+                </ul>
+                </li><br><br>
+        </ul>
+    </section>
+    
+    <section id="join" style="min-height: 10vh; padding-top: 80px;">
+        <h2>Beitreten</h2>
+        <p>Nutze diesen Link: https://dcs.lol/deutschland oder klicke <a href="https://lokrogaming.github.io/redirect?targeteduser=dcs&target=deutschland">hier</a>.</p>
+    </section>
+    
+    <section id="rules" style="min-height: 100vh; padding-top: 80px;">
+        <h2>Regelwerk</h2>
+        <p>Hausordnung für den deutschsprachigen Gemeinschaftsbereich<br>
+                Diese Ordnung regelt Nutzung, Verhalten und Verantwortlichkeiten innerhalb aller Bereiche (Schreibkanäle, Sprachkanäle sowie Bild- und Datenübertragungen). Mit dem Beitritt wird die Geltung uneingeschränkt anerkannt.
+                <br><br>§ 1 Sprachgebot<br><br>
+                In sämtlichen Bereichen ist ausschließlich die deutsche Sprache zu verwenden. Anderssprachige Wörter, Satzteile, Abkürzungen und Mischformen sind unzulässig. Texte, Benutzernamen, Beschriftungen und Hörbeiträge sind deutsch zu gestalten. Zuwiderhandlungen werden entfernt; Wiederholungen führen zu Maßnahmen nach § 10.
+                <br><br>§ 2 Achtung der Würde<br><br>
+                Herabsetzungen, Beleidigungen, Anfeindungen, Aufrufe zu Gewalt sowie menschenverachtende Inhalte sind untersagt. Gleiches gilt für Diskriminierungen nach Herkunft, Geschlecht, Glauben, Weltanschauung, Behinderung, Alter oder sonstigen Merkmalen.
+                <br><br> 3 Rechtskonformität<br><br>
+                Es sind alle Inhalte zu unterlassen, die gegen geltendes Recht verstoßen. Verboten sind insbesondere strafbare Äußerungen, Aufforderungen zu Rechtsbrüchen, jugendgefährdende Darstellungen, Nachbildungen verbotener Kennzeichen sowie Verweisungen auf derartige Inhalte.
+                <br><br>§ 4 Schutz personenbezogener Angaben<br><br>
+                Personenbezogene Angaben Dritter (Name, Anschrift, Abbildungen, Erreichbarkeiten u. ä.) dürfen ohne nachweisliche Einwilligung nicht veröffentlicht oder verbreitet werden. Private Nachrichten sind vertraulich zu behandeln.
+                <br><br>§ 5 Bild-, Ton- und Datenaufnahmen<br><br>
+                Aufnahmen, Mitschnitte und Weitergaben aus Wort-, Bild- oder Datenübertragungen sind nur mit ausdrücklicher Zustimmung aller Betroffenen zulässig. Veröffentlichungen Minderjähriger bedürfen besonderer Zustimmung der Sorgeberechtigten.
+                <br><br>§ 6 Benennung und Außendarstellung<br><br>
+                Benutzernamen, Abbildungen, Kurzbeschreibungen und Bildzeichen müssen unbedenklich, deutschsprachig und eindeutig lesbar sein. Täuschungen über die eigene Identität sowie Nachahmungen fremder Personen sind untersagt.
+                <br><br>§ 7 Themenordnung und Form<br><br>
+                Beiträge sind sachlich, verständlich und dem zutreffenden Themenbereich zuzuordnen. Mehrfachveröffentlichungen gleichartiger Inhalte, Störgeräusche, fortgesetzte Unterbrechungen und absichtliche Unübersichtlichkeit sind zu unterlassen.
+                <br><br>§ 8 Schutzgüter<br><br>
+                Unzulässig sind nicht jugendfreie Darstellungen, Anreize zu Glücksspielen, Verherrlichung von Rauschmitteln sowie gefährdende Handlungsanleitungen. Unterstützung bei seelischen Notlagen erfolgt nicht öffentlich, sondern geordnet über zuständige Stellen.
+                <br><br>§ 9 Automatisierte Hilfsprogramme<br><br>
+                Der Einsatz automatisierter Hilfsprogramme ist nur innerhalb freigegebener Funktionen gestattet. Eingriffe in den Betriebsablauf, massenhafte Abfragen, Ausspähungen oder Manipulationen sind untersagt und ziehen Maßnahmen nach § 10 nach sich.
+                <br><br>§ 10 Maßnahmenkatalog<br><br>
+                Je nach Schweregrad können ergriffen werden: Hinweis, Verwarnung, zeitweilige Teilnahmebeschränkung, dauerhafte Teilnahmeversagung, technische Sperre sowie Meldung an zuständige Stellen. Ein Anspruch auf Wiederzulassung besteht nicht.
+                <br><br>§ 11 Zuständigkeit und Verfahren<br><br>
+                Anordnungen der Verwaltung und der Aufsichtspersonen sind unverzüglich zu befolgen. Öffentliche Grundsatzdebatten über getroffene Maßnahmen sind zu unterlassen. Einwendungen sind geordnet, sachlich und nicht öffentlich an die Verwaltung zu richten.
+                <br><br>§ 12 Inkrafttreten und Geltung<br><br>
+                Diese Ordnung gilt ab Veröffentlichung fortlaufend. Ergänzungen und Auslegungen bleiben der Verwaltung vorbehalten. Unklare Fälle werden nach Sinn und Zweck dieser Ordnung entschieden.
+                </p>
+    </section>
+    
+    <section id="team" style="min-height: 100vh; padding-top: 80px;">
+        <h2>Team</h2>
+        <a href="https://discord.com/users/928021462386892830"><img src="https://lanyard.cnrad.dev/api/928021462386892830?hideActivity=true&hideTimestamp=true&hideSpotify=true&hideTag=true&borderRadius=15px&theme=dark" /></a>
+        <br><br><a href="https://discord.com/users/1222617763063926938"><img src="https://lanyard.cnrad.dev/api/1222617763063926938?hideActivity=true&hideTimestamp=true&hideSpotify=true&hideTag=true&borderRadius=15px&theme=dark" /></a>
+    </section>
+    
+    <section id="impressum" style="min-height: 100vh; padding-top: 80px;">
+        <h2>Impressum</h2>
+        <p>Mach nich Auge...</p>
+    </section>
+    
+</div>
+
+    <script>
+        // Holen der Server-Daten von Discord's Widget-API
+        fetch('https://discord.com/api/guilds/1416051067468382218/widget.json')
+            .then(response => response.json())
+            .then(data => {
+                // Die Mitgliederanzahl aus der API extrahieren
+                const memberCount = data.presence_count;
+                document.getElementById('member-count').innerText = memberCount;
+            })
+            .catch(error => {
+                console.error('Fehler beim Laden der Mitgliederzahl:', error);
+                document.getElementById('member-count').innerText = 'Fehler beim Laden der Mitgliederzahl.';
+            });
+    </script>
+    <script>
+            function scrollToSection(targetId) {
+                const el = document.getElementById(targetId);
+                if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        
+            // Buttons
+            document.getElementById("scroll-bewerben").addEventListener("click", () => scrollToSection("bewerben"));
+            document.getElementById("scroll-join").addEventListener("click", () => scrollToSection("join"));
+            document.getElementById("scroll-rules").addEventListener("click", () => scrollToSection("rules"));
+            document.getElementById("scroll-team").addEventListener("click", () => scrollToSection("team"));
+            document.getElementById("scroll-impressum").addEventListener("click", () => scrollToSection("impressum"));
+        </script>
+        
 </body>
 </html>
