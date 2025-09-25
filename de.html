@@ -270,7 +270,15 @@
         .logo span { font-size: 14px; }
         .server-icon { width: 140px; height: 140px; }
         .server-icon img { width: 104px; height: 104px; }
-
+        .text-gradient {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, black, red, gold);
+  -webkit-background-clip: text; /* für Safari/Chrome */
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Standard */
+  color: transparent; /* Fallback */
+}
         .cta-row .btn,
         .copy-wrap .btn { width: auto; }
         .copy-wrap { align-items: stretch; }
@@ -375,7 +383,7 @@
           </svg>
           DE-Community
         </span>
-        <h1 id="hero-title">
+        <h1 class="text-gradient" id="hero-title">
           Willkommen auf
           <span style="color: var(--accent)">.gg/deutschland</span>
         </h1>
