@@ -219,7 +219,7 @@ l49 51 23 -20 c51 -47 98 -57 67 -15 -12 16 -27 46 -34 67 -12 35 -11 43 19
 async function updateServerStatus() {
   const statusDiv = document.getElementById("serverStatusOn");
   try {
-    const res = await fetch("https://api.mcsrvstat.us/1/lokro-smp.feathermc.gg");
+    const res = await fetch("https://api.mcsrvstat.us/1/lg-smp.feathermc.gg");
     if (!res.ok) throw new Error("Netzwerkfehler");
 
     const data = await res.json();
