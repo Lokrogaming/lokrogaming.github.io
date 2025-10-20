@@ -239,7 +239,7 @@ margin-top: 5%;
  <br><br>
  <p id="txt" style="text-align:center;">Looks like nothing is there...</p>
  <div id="results"></div><br><br><br>
- <button class="btn btn-danger" onclick="history.back()">< Go back</button>
+ <button class="btn btn-danger" onclick="history.back()">&lt; Go back</button>
 
   <script>
     const loader = document.getElementById("loaders");
@@ -264,14 +264,23 @@ margin-top: 5%;
       "nodea": "https://lokrogaming.github.io/nodea",
       "twitch": "https://twitch.tv/lokrogamer",
       "tiktok": "https://tiktok.me/lokrogaming",
-      "emin" : "https://star-dev.xyz"
+      "eministar" : "https://star-dev.xyz",
+      "stardev": "https://star-dev.xyz",
+      "star-dev": "https://star-dev.xyz",
+      "eministarvr": "https://star-dev.xyz",
+      "emin": "https://star-dev.xyz",
+      "lokrogames": "https://lokrogaming.github.io/lokrogames",
+      "spotify": "https://open.spotify.com/user/31tkflugeubcaiyibgslze2gycoy?si=2a31b43490c84f7f",
+      "tiktok": "redirect.html?targeteduser=lokrogamer&target=tiktok",
+      "linktree": "redirect.html?targeteduser=lokrogamer&target=linktree"
     };
 
     // NEU: Vorschläge
     const suggested = {
       "Eministar": "https://star-dev.xyz",
       "Igris": "/partner-pages/black0815xx",
-      "ReuClopps": "/partner-pages/reufnr"
+      "ReuClopps": "/partner-pages/reufnr",
+      "Partner": "https://lokrogaming.github.io/partner"
     };
 
     function treffQuote(query, key) {
@@ -292,8 +301,8 @@ margin-top: 5%;
         item.className = "result-item";
         item.innerHTML = `
           <div class="card" onclick="openWithDelay('${value}')">
-            <p class="heading">${key}</p>
-            <p>Empfohlen/gesponsert</p>
+          <p class="heading">${key}</p>
+              <p>Empfohlen/gesponsert</p>
             <p>Klicke hier, um zu öffnen</p>
           </div>
         `;
@@ -302,43 +311,51 @@ margin-top: 5%;
     }
     
     window.onload = function () {
-      const params = new URLSearchParams(window.location.search);
-      const request = params.get("request");
+  const params = new URLSearchParams(window.location.search);
+  const request = params.get("request");
 
-      if (request) {
-        const searchrequest = decodeURIComponent(request).toLowerCase();
-        document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
-        
-        resultContainer.innerHTML = "";
-        let foundAny = false;
+  if (request) {
+    const searchrequest = decodeURIComponent(request).toLowerCase();
+    document.getElementById("txt").innerHTML = `<i class="bi bi-search"></i> &nbsp;&nbsp;&nbsp;Suchbegriff: ${searchrequest}`;
 
-        Object.entries(suchDaten).forEach(([key, value]) => {
-          if (key.includes(searchrequest)) {
-            foundAny = true;
-            const quote = treffQuote(searchrequest, key);
-            const item = document.createElement("div");
-            item.className = "result-item";
-            item.innerHTML = `
-              <div class="card" onclick="openWithDelay('${value}')">
-                <p class="heading">${key}</p>
-                <p>Trefferquote: ${quote}%</p>
-                <p>Klicke hier, um zu öffnen</p>
-              </div>
-            `;
-            resultContainer.appendChild(item);
-          }
-        });
+    resultContainer.innerHTML = "";
+    let results = [];
 
-        if (!foundAny) {
-          document.getElementById("error").style.display = "block";
-          renderSuggested(); // wenn nichts gefunden -> Vorschläge
-        }
-      } else {
-        document.getElementById("txt").innerText = "Keine Suchanfrage angegeben.";
-        document.getElementById("error").style.display = "block";
-        renderSuggested(); // Standardmäßig Vorschläge anzeigen
+    // Ergebnisse sammeln
+    Object.entries(suchDaten).forEach(([key, value]) => {
+      if (key.includes(searchrequest)) {
+        const quote = treffQuote(searchrequest, key);
+        results.push({ key, value, quote });
       }
-    };
+    });
+
+    // Nach Trefferquote sortieren (höchste zuerst)
+    results.sort((a, b) => b.quote - a.quote);
+
+    if (results.length > 0) {
+      results.forEach(({ key, value, quote }) => {
+        const item = document.createElement("div");
+        item.className = "result-item";
+        item.innerHTML = `
+          <div class="card" onclick="openWithDelay('${value}')">
+            <p class="heading">${key}</p>
+            <p>Trefferquote: ${quote}%</p>
+            <p>Klicke hier, um zu öffnen</p>
+          </div>
+        `;
+        resultContainer.appendChild(item);
+      });
+    } else {
+      document.getElementById("error").style.display = "block";
+      renderSuggested();
+    }
+  } else {
+    document.getElementById("txt").innerText = "Keine Suchanfrage angegeben.";
+    document.getElementById("error").style.display = "block";
+    renderSuggested();
+  }
+};
+
 
    
 
