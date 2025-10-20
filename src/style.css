@@ -671,9 +671,9 @@ address {
 }
 
 #partners ul li {
-  border: 1px solid #ddd; /* Add a thin border to each list item */
+  border: 1px solid #333; /* Add a thin border to each list item */
   margin-top: -1px; /* Prevent double borders */
-  background-color: #f6f6f6; /* Add a grey background color */
+  background-color: #333; /* Add a grey background color */
   padding: 12px; /* Add some padding */
 }
 canvas.snow {
@@ -713,7 +713,7 @@ button.adbtn p {
 }
 #partners button.partnerbtn {
   width: 100%;
-  background-color: lightgray;
+  background-color: lightgrey;
   border: none;
   color: black;
   padding: 20px;
@@ -724,6 +724,9 @@ button.adbtn p {
   box-sizing: border-box;
   font-family: "ArialRoundedMTBold";
 
+}
+#partners button.partnerbtn img {
+  background-color: #333;
 }
 .login-container button.button {
   background-color: royalblue;
