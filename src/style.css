@@ -649,33 +649,7 @@ address {
 }
   
 
-#partners {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  background-color: gray;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 90%;
-  margin-top: 100px;
-}
 
-  
-
-#partners ul {
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margins */
-}
-
-#partners ul li {
-  border: 1px solid #333; /* Add a thin border to each list item */
-  margin-top: -1px; /* Prevent double borders */
-  background-color: #333; /* Add a grey background color */
-  padding: 12px; /* Add some padding */
-}
 canvas.snow {
             position: fixed;
             top: 0;

@@ -2,54 +2,329 @@
 <html>
   <head>
     <title>Unsere Partner</title>
-    <link rel="stylesheet" href="src/style.css">
     <meta name="google" content="notranslate">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double:wght@300&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-<meta
-      name="description"
-      content="Lokrogamer, Webdeveloper mit Herz und Creator mit 250+ Followern auf Tiktok. Auf Twitch begeistert er viele Nutzer durch seine Angehensweise an Sachen und zeigt viele beeindruckende Einblicke in sein Leben und den Code seiner Website."
-    />
-    <meta
-      name="keywords"
-      content="Lokrogamer, Erik Demoulin, Entwickler, Streamer, Frontend, JS, HTML, LokroGaming, Portfolio, Webentwicklung, Discord, Minecraft"
-    />
-    <meta name="author" content="Lokrogamer" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="de" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+<style>
+@font-face {
+  font-family: "Varela Round";
+  src: url("https://lokrogaming.github.io/fonts/VarelaRound-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-family: "Varela Round", sans-serif;
+}
+
+.backgroundContainer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, black, red, orange);
+  position: fixed;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.backgroundContainer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.partners-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.partner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 15px 25px;
+  width: 80%;
+  max-width: 800px;
+  color: white;
+  backdrop-filter: blur(5px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.partner-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.partner-info {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.partner-info h3 {
+  margin: 0;
+}
+
+.partner-info p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.button {
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.bottomnav {
+  position: fixed;
+  bottom: 0;
+   
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  background-color: #333;
+  border-radius: 30px 30px; /* oben rund, unten gerade */
+  padding: 20px;
+  z-index: 99999;
+  list-style: none;
+  font-family: "Varela Round";
+  max-width: 80%;
+}
+
+
+
+      .bottomnav .icon-content {
+        margin: 0 10px;
+        position: relative;
+        font-weight: bolder;
+      }
+      ::marker {
+        visibility: hidden
+      }
+
+      .bottomnav .icon-content .tooltip {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        color: #000;
+        padding: 6px 10px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        font-weight: bolder;
+      }
+
+      .bottomnav .icon-content:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        top: -50px;
+      }
+
+      .bottomnav .icon-content .link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: #fff;
+        background-color: #000;
+        transition: all 0.3s ease-in-out;
+        font-weight: bolder;
+      }
+
+      .bottomnav .icon-content .link:hover {
+        box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+      }
+
+      .bottomnav .icon-content .link svg {
+        width: 60%;
+        height: auto;
+        fill: currentColor;
+      }
+
+      .bottomnav .icon-content .link.active {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .bottomnav .link:hover {
+        color: #00adfd;
+      }
+
+      /* Suche mittig in Bottomnav */
+      .searchbox {
+        display: flex;
+        align-items: center;
+        margin: 0 15px;
+      }
+
+      .searchinput {
+        padding: 6px 10px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+      }
+
+      .searchbtn {
+        margin-left: 8px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        border: none;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+      }
+      /* Dropup Menü */
+.dropup-content {
+  display: none;
+  position: absolute;
+  bottom: 60px; /* über dem Button */
+  background: #222;
+  min-width: 160px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  z-index: 1;
+  width: 200px;
+}
+
+.dropup-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropup-content a:hover {
+  background: #444;
+}
+
+/* Sichtbar wenn aktiv */
+.dropup-content.show {
+  display: block;
+}
+.dropdown-content.active {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.2);
+        transition: all 0.3s ease-in-out;
+      }
+</style>
 </head>
-  </head>
-  <body>
-    <div id="partners">
-      <h1>Unsere Partner / Befreundete</h1>
-     <button class="partnerbtn" onclick="window.location.href='partner-pages/evr.html'"><img src="https://avatars.githubusercontent.com/u/182783239?v=4" class="avatar"><p style="color: black;">EministarVR</p></button>
-     <button class="partnerbtn" onclick="window.location.href='https://dcs.lol/bkt'"><img src="IMG_0758.png" class="avatar"><p style="color: black;">BKT</p></button>
-     <button class="partnerbtn" onclick="window.location.href='/reufnr'"><img src="https://lokrogaming.github.io/reufnr/reufnr-logo.jpg" class="avatar"><p style="color: black;">ReuFnR</p></button>
-     <button class="partnerbtn" onclick="window.location.href='igrisshadow'"><img src="igris-logo.png" class="avatar"><p style="color: black">IgrisShadow</p></button>
-     <button class="partnerbtn" onclick="window.location.href='sit4paws'"><img src="logo-sit4paws.png" class="avatar"><p style="color: black">Sit4Paws</p></button>
-     <button class="partnerbtn" onclick="window.location.href='/redirect.html?targeteduser=eministar&target=star-dev'"><img src="https://star-dev.xyz/stern.png" class="avatar"><p style="color: black">Stardev</p></button>
+  
+<body>
+  <div class="backgroundContainer"></div>
+
+  <div class="partners-container">
+    <div class="partner-card">
+      <img src="https://avatars.githubusercontent.com/u/182783239?v=4" alt="EministarVR Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>EministarVR</h3>
+        <p>Content Creator und Web-Entwickler mit spannenden Projekten im Gaming-Bereich.</p>
+      </div>
+      <button class="button" onclick="window.location.href='partner-pages/evr.html'">Visit</button>
     </div>
-    <script>// window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
-     fetch('src/JSON/Projects/settings.json')
-  .then(response => {
-    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
-    return response.json();
-  })
-  .then(data => {
-    if (data.quarantine === true) {
-      window.location.href = 'error.html?reason=503';
-    }
-  })
-  .catch(error => {
-    console.error('Fehler beim Laden der JSON-Datei:', error);
-  });
-     </script>
-     
-<ul class="bottomnav">
+
+    <div class="partner-card">
+      <img src="https://cdn.discordapp.com/icons/1412668948058472471/3041d1e7cd458fe2ace7d484de1827e4.png?size=80&quality=lossless" alt="Madgames Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>Madgames</h3>
+        <p>Minecraftservernetzwerk mit einem sehr netten Team👌</p>
+      </div>
+      <button class="button" onclick="window.location.href='https://madgames.de'">Visit</button>
+    </div>
+
+    <div class="partner-card">
+      <img src="IMG_0758.png" alt="BKT Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>BKT</h3>
+        <p>Communityserver der Papaplatte(Lattenarsch) Community</p>
+      </div>
+      <button class="button" onclick="window.location.href='https://dcs.lol/bkt'">Visit</button>
+    </div>
+
+    <div class="partner-card">
+      <img src="https://lokrogaming.github.io/reufnr/reufnr-logo.jpg" alt="ReuFnR Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>ReuFnR</h3>
+        <p>Content Creator mit Fokus auf Unterhaltung, Gaming und kreative Livestreams.</p>
+      </div>
+      <button class="button" onclick="window.location.href='https://lokrogaming.github.io/reufnr'">Visit</button>
+    </div>
+
+    <div class="partner-card">
+      <img src="igris-logo.png" alt="IgrisShadow Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>IgrisShadow</h3>
+        <p>Content Creator und Streamer von Horrorgames</p>
+      </div>
+      <button class="button" onclick="window.location.href='igrisshadow'">Visit</button>
+    </div>
+
+    <div class="partner-card">
+      <img src="logo-sit4paws.png" alt="Sit4Paws Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>Sit4Paws</h3>
+        <p>Eine Ein-Mann-firma, die sich für das Wohl von Tieren einsetzt – modern und engagiert.</p>
+      </div>
+      <button class="button" onclick="window.location.href='sit4paws'">Visit</button>
+    </div>
+
+    <div class="partner-card">
+      <img src="https://star-dev.xyz/stern.png" alt="StarDev Logo" class="partner-logo">
+      <div class="partner-info">
+        <h3>StarDev</h3>
+        <p>Innovatives Entwicklerteam mit modernen Tools und Lösungen für Webprojekte.</p>
+      </div>
+      <button class="button" onclick="window.location.href='/redirect.html?targeteduser=eministar&target=star-dev'">Visit</button>
+    </div>
+  </div>
+
+  <!-- Deine bestehende Bottomnav bleibt unverändert -->
+   <ul class="bottomnav">
   <!-- GitHub -->
   <li class="icon-content">
     <a
@@ -71,13 +346,20 @@
    
     
   <li class="icon-content">
-    <a href="#" aria-label="Projekte" class="link active" id="partnerBtn">
+    <a href="#" aria-label="Projekte" class="link" id="partnerBtn">
       <svg fill="currentColor" width="800px" height="800px" viewBox="0 -64 640 640" xmlns="http://www.w3.org/2000/svg"><path d="M519.2 127.9l-47.6-47.6A56.252 56.252 0 0 0 432 64H205.2c-14.8 0-29.1 5.9-39.6 16.3L118 127.9H0v255.7h64c17.6 0 31.8-14.2 31.9-31.7h9.1l84.6 76.4c30.9 25.1 73.8 25.7 105.6 3.8 12.5 10.8 26 15.9 41.1 15.9 18.2 0 35.3-7.4 48.8-24 22.1 8.7 48.2 2.6 64-16.8l26.2-32.3c5.6-6.9 9.1-14.8 10.9-23h57.9c.1 17.5 14.4 31.7 31.9 31.7h64V127.9H519.2zM48 351.6c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16zm390-6.9l-26.1 32.2c-2.8 3.4-7.8 4-11.3 1.2l-23.9-19.4-30 36.5c-6 7.3-15 4.8-18 2.4l-36.8-31.5-15.6 19.2c-13.9 17.1-39.2 19.7-55.3 6.6l-97.3-88H96V175.8h41.9l61.7-61.6c2-.8 3.7-1.5 5.7-2.3H262l-38.7 35.5c-29.4 26.9-31.1 72.3-4.4 101.3 14.8 16.2 61.2 41.2 101.5 4.4l8.2-7.5 108.2 87.8c3.4 2.8 3.9 7.9 1.2 11.3zm106-40.8h-69.2c-2.3-2.8-4.9-5.4-7.7-7.7l-102.7-83.4 12.5-11.4c6.5-6 7-16.1 1-22.6L367 167.1c-6-6.5-16.1-6.9-22.6-1l-55.2 50.6c-9.5 8.7-25.7 9.4-34.6 0-9.3-9.9-8.5-25.1 1.2-33.9l65.6-60.1c7.4-6.8 17-10.5 27-10.5l83.7-.2c2.1 0 4.1.8 5.5 2.3l61.7 61.6H544v128zm48 47.7c-8.8 0-16-7.2-16-16s7.2-16 16-16 16 7.2 16 16c0 8.9-7.2 16-16 16z"/></svg>
     </a>
-    <div class="tooltip">Projekte</div>
+    <div class="tooltip">Partner</div>
 
+    <!-- Dropup Inhalt -->
+    <div class="dropup-content" id="partnerMenu">
+      <a href="projekte.html">Alle Partner</a>
+      <a href="/partner-pages/evr.html">Eministar</a>
+      <a href="/partner-pages/reufnr.html">ReuClopps</a>
+      <a href="/partner-pages/black0815xx.html">Igris</a>
+    </div>
   </li>
-  
+ 
   <li class="icon-content">
     <a href="#" aria-label="Projekte" class="link" id="projekteBtn">
       <svg width="800px" height="800px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -106,7 +388,7 @@
     >
      <!-- Home Icon -->
 <!-- Home Icon -->
-<?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg width="800px" height="800px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>about-filled</title>
@@ -159,6 +441,6 @@ window.addEventListener("click", function(e) {
   }
 });
 </script>
-  </body>
-    
+
+</body>
 </html>
