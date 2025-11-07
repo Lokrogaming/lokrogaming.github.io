@@ -49,6 +49,7 @@
 
     const Params = new URLSearchParams(window.location.search);
     let reason = Params.get("reason");
+    let referrer = Params.get("referrer");
 
     if (!reason) {
       if (!navigator.onLine) {
@@ -78,7 +79,8 @@
       "unknown": "Unbekannter Fehler",
       "no_error": "Kein Fehler erkannt",
       "session_expired": "Zeitlimit erreicht",
-      "rickroll": "Du wurdest gerickrolled"
+      "rickroll": "Du wurdest gerickrolled",
+      "maintenance": "Wartungsmodus"
     };
 
     // Subtitle-Mapping
@@ -101,7 +103,8 @@
       "unknown": "Ein unbekannter Fehler ist aufgetreten.",
       "no_error": "Alles funktioniert einwandfrei ✅",
       "session_expired": "Du wurdest getrennt um Bandbreite zu sparen und inaktive Nutzer zu reinigen. Bitte öffne die Seite erneut",
-      "rickroll": "Du wurdest soeben Opfer eines Streiches! Aber wait... Ist es wirklich April?"
+      "rickroll": "Du wurdest soeben Opfer eines Streiches! Aber wait... Ist es wirklich April?",
+      "maintenance": `Die Seite ${referrer || ""} befindet sich in der Wartung`
     };
 window.addEventListener("DOMContentLoaded", checkReferrer);
 
