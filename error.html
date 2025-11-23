@@ -15,6 +15,8 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      flex-direction: column;
+      gap: 150px;
     }
 
     #error {
@@ -35,6 +37,35 @@
       font-size: 1rem;
       color: #aaa;
     }
+    .retry {
+  color: white;
+  background-color: transparent;
+  border: none;
+  max-width: 50px;
+  max-height: 50px;
+  height: auto;
+  width: auto;
+  transform-origin: 50% 50%;
+  display: inline-block;
+  will-change: transform;
+}
+.retry svg {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.retry.spin {
+  animation: spin-twice 1.6s cubic-bezier(0.42, 0, 0.15, 1) both;
+}
+
+@keyframes spin-twice {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(720deg);
+  }
+}
+  
   </style>
 
   <!-- Wenn JS deaktiviert ist, redirect -->
@@ -44,13 +75,19 @@
 </head>
 <body>
   <div id="error"></div>
+  <button id="retry" class="retry" title="retry">
+    
+
+  </button>
   <script>
     const div = document.getElementById("error");
 
     const Params = new URLSearchParams(window.location.search);
     let reason = Params.get("reason");
-    let referrer = Params.get("referrer");
-
+    let page = Params.get("referrer");
+    let referrer = document.referrer;
+    
+    
     if (!reason) {
       if (!navigator.onLine) {
         reason = "network"; // offline
@@ -85,7 +122,7 @@
 
     // Subtitle-Mapping
     const errorSubtitles = {
-      "404": "Die angeforderte Seite wurde nicht gefunden.",
+      "404": `Die angeforderte Seite ${page || ""} wurde nicht gefunden.`,
       "403": "Bitte melde dich an oder prüfe deine Berechtigungen.",
       "401": "Bitte erneut einloggen.",
       "500": "Versuche es später erneut.",
@@ -104,7 +141,7 @@
       "no_error": "Alles funktioniert einwandfrei ✅",
       "session_expired": "Du wurdest getrennt um Bandbreite zu sparen und inaktive Nutzer zu reinigen. Bitte öffne die Seite erneut",
       "rickroll": "Du wurdest soeben Opfer eines Streiches! Aber wait... Ist es wirklich April?",
-      "maintenance": `Die Seite ${referrer || ""} befindet sich in der Wartung`
+      "maintenance": `Die Seite ${page || ""} befindet sich in der Wartung`
     };
 window.addEventListener("DOMContentLoaded", checkReferrer);
 
@@ -142,6 +179,14 @@ function checkReferrer() {
       window.location.href = "error.html?reason=network";
     });
     
+    //==== UI ======
+    const retryBtnEl = document.getElementById("retry");
+    retryBtnEl.addEventListener("click", () => {
+  retryBtnEl.classList.remove("spin");
+  void retryBtnEl.offsetWidth; // Reflow erzwingt Neustart der Animation
+  retryBtnEl.classList.add("spin");
+});
+
   </script>
 </body>
 </html>

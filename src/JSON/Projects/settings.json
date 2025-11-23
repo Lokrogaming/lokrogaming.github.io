@@ -2,6 +2,6 @@
   "quarantine": false,
   "maintenance": {
     "index.html": true,
-    "main.html": false
+    "main.html": true
   }
 }
