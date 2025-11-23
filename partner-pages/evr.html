@@ -13,6 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<!--- QUARANTINE  -->
+<script src="JS\modules/quarantineMode.js" defer></script>
+<!------>
 
     <title>Eministar</title>
   <style>
@@ -239,19 +242,8 @@ ul {
   </li>
 </ul>
 
-    <script>fetch('/src/JSON/Projects/settings.json')
-  .then(response => {
-    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
-    return response.json();
-  })
-  .then(data => {
-    if (data.quarantine === true) {
-      window.location.href = window.location.href = '/error?reason=503';
-    }
-  })
-  .catch(error => {
-    console.error('Fehler beim Laden der JSON-Datei:', error);
-  });</script>
+   
+ 
   <h4 style="color: white;">Made with&nbsp; <i class="bi bi-heart-fill" style="color:red"></i> &nbsp;by Lokrogamer</h4>
   </body>
 </html>

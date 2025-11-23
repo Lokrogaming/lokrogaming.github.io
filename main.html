@@ -12,7 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+<!--- QUARANTINE  -->
+<script src="JS\modules/quarantineMode.js" defer></script>
+<!------>
 <title>Lokrogamer</title>
 </head>
   <style>
@@ -322,36 +324,7 @@ function anti_inactive() {
 
 window.addEventListener("DOMContentLoaded", anti_inactive);
 </script>
-<script>// window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
-     fetch('src/JSON/Projects/settings.json')
-  .then(response => {
-    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
-    return response.json();
-  })
-  .then(data => {
-    // Quarantänemodus prüfen
-    if (data.quarantine === true) {
-      window.location.href = 'error.html?reason=503';
-      return;
-    }
 
-    // Dateinamen der aktuellen Seite ermitteln
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-
-    // Wartungsmodus prüfen
-    if (data.maintenance && typeof data.maintenance === 'object') {
-      if (data.maintenance[currentPage] === true) {
-        window.location.href = 'error.html?reason=maintenance';
-      }
-    }
-  })
-  .catch(error => {
-    console.error('Fehler beim Laden der JSON-Datei:', error);
-  });
-
-     </script>
-    
-</script>
     <script>
      
       

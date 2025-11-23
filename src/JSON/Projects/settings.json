@@ -1,7 +1,8 @@
 {
-  "quarantine": false,
+  "quarantine": true,
   "maintenance": {
-    "index.html": true,
-    "main.html": true
+    "index.html": false,
+    "main.html": false,
+    "all": false
   }
 }
