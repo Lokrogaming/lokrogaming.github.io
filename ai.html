@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <!--- QUARANTINE  -->
+    <script src="/JS/modules/lang.js"></script>
+    <!--- QUARANTINE  --
 <script src="JS\modules/quarantineMode.js" defer></script>
 <!------>
     <meta charset="UTF-8">
@@ -90,15 +91,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Willkommen!</h1>
-        <p>Diese Website wurde vollständig von einer KI erstellt.</p>
-        <button onclick="changeMessage()">Klick mich!</button>
+        <h1 data-lang-id="header.title"></h1>
+        <p data-lang-id="header.subtitle"></p>
+        <button onclick="changeMessage()" data-lang-id="header.btn"></button>
     </div>
     <div class="history">
-        <h2>Die Geschichte der Künstlichen Intelligenz</h2>
-        <p>Die Entwicklung der Künstlichen Intelligenz (KI) begann in den 1950er Jahren, als Forscher erstmals versuchten, Maschinen intelligentes Verhalten beizubringen. Der Begriff „Künstliche Intelligenz“ wurde 1956 von John McCarthy geprägt, als er eine Konferenz in Dartmouth organisierte, auf der die Grundlagen der KI-Forschung gelegt wurden.</p>
-        <p>In den folgenden Jahrzehnten gab es bedeutende Fortschritte, darunter Expertensysteme in den 1970er Jahren, die regelbasierte Entscheidungen ermöglichten, und die Entwicklung neuronaler Netze in den 1980er Jahren. In den 2000er Jahren führte die Kombination aus leistungsfähiger Hardware und riesigen Datenmengen zu bahnbrechenden Fortschritten im Bereich des maschinellen Lernens.</p>
-        <p>Heute ist KI aus vielen Bereichen des täglichen Lebens nicht mehr wegzudenken – von Sprachassistenten über Bildverarbeitung bis hin zu autonomen Fahrzeugen. Mit den aktuellen Fortschritten in Deep Learning und generativer KI wird die Zukunft der künstlichen Intelligenz weiterhin spannend bleiben.</p>
+        <h2 data-lang-id="history.h2.1"></h2>
+        <p data-lang-id="history.p.1"></p>
+        <p data-lang-id="history.p.2"></p>
+        <p data-lang-id="history.p.3"></p>
     </div>
     <audio id="audioPlayer" controls autoplay></audio>
     <div class="floating-bubbles"></div>
@@ -200,20 +201,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
         window.onload = saveCookieData;
     </script>
-    <script>// window.location.href = "https://youtu.be/ueNY30Cs8Lk?si=JsPQ_whORWTuYGJj";
-     fetch('src/JSON/Projects/settings.json')
-  .then(response => {
-    if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
-    return response.json();
-  })
-  .then(data => {
-    if (data.quarantine === true) {
-      window.location.href = 'error.html?reason=503';
-    }
-  })
-  .catch(error => {
-    console.error('Fehler beim Laden der JSON-Datei:', error);
-  });
-     </script>
+    
+     <link rel="stylesheet" href="lang-switch.css">
+
+<div class="lang-switch">
+    <select id="langSelector">
+        <option value="german.lang">Deutsch</option>
+        <option value="english.lang">English</option>
+    </select>
+</div>
+
 </body>
 </html>

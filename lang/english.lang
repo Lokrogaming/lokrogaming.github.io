@@ -3,3 +3,13 @@ p[test-langPlugin.html] {
     header.subtitle = "This is a demo page";
     button.start = "Start";
 }
+p[ai.html] {
+    history.h2.1 = "-";
+    history.p.1 = "-";
+    history.p.2 = "-";
+    history.p.3 = "-";
+    header.title = "Welcome!";
+    header.subtitle = "Not available in english, coming soon!";
+    header.btn = "Click me";
+    
+    }
