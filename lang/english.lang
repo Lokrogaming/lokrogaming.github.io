@@ -1,0 +1,5 @@
+p[test-langPlugin.html] {
+    header = "Welcome";
+    header.subtitle = "This is a demo page";
+    button.start = "Start";
+}
