@@ -19,6 +19,9 @@
       if (data.maintenance[currentPage] === true) {
         window.location.href = 'error.html?reason=maintenance';
       }
+      if (data.maintenance["all"] === true) {
+        window.location.href = 'error.html?reason=maintenance';
+      }
     }
   })
   .catch(error => {

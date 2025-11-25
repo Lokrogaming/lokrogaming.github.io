@@ -3,12 +3,13 @@
 <html lang="de">
 <head>
     <script src="/JS/modules/lang.js"></script>
-    <!--- QUARANTINE  --
+    <!--- QUARANTINE  -->
+    
 <script src="JS\modules/quarantineMode.js" defer></script>
 <!------>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Generated Website</title>
+    <title data-lang-id="head.title"></title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -118,8 +119,12 @@
         setInterval(createBubble, 500);
 
         function changeMessage() {
-            document.querySelector("p").innerText = "Danke fürs Klicken!";
-        }
+    const page = window.location.pathname.split("/").pop() || "index.html";
+    if (translations && translations[page] && translations[page]["click.message"]) {
+        document.querySelector("p").innerText = translations[page]["click.message"];
+    }
+}
+
 
         function getQueryParam(name) {
             const params = new URLSearchParams(window.location.search);

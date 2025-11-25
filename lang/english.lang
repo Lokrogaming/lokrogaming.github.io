@@ -11,5 +11,22 @@ p[ai.html] {
     header.title = "Welcome!";
     header.subtitle = "Not available in english, coming soon!";
     header.btn = "Click me";
+    click.message = "Thanks for clicking!";
+    head.title = "The History of AI";
     
     }
+    p[de.html] {
+head.title = ".lol/germany - German Fun Server";
+header.nav.title = ".lol/germany";
+nav.btn.1 = "Apply";
+nav.btn.2 = "Join";
+nav.btn.3 = "Rules";
+nav.btn.4 = "Imprint";
+nav.btn.join = "Join now";
+main.header.hero.title = "Welcome to";
+main.header.subtitle = "The cliché server in German style – well moderated, nice people, clear rules. No bullshit.";
+main.header.status.count.online = "Currently online";
+main.header.btn.join.copy = "Copy link";
+main.header.btn.join = "Join us";
+
+}

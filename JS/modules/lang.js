@@ -39,10 +39,7 @@ function parseLang(text) {
             const key = parts[0].trim().replace(";", "");
             let value = parts.slice(1).join("=").trim();
 
-            // Entferne Semikolons
             value = value.replace(/;$/, "");
-
-            // Entferne führende & endende Anführungszeichen
             value = value.replace(/^"(.*)"$/, "$1");
 
             entries[key] = value;
@@ -66,6 +63,8 @@ function applyTranslations() {
             el.innerText = translations[page][key];
         }
     });
+
+    
 }
 
 // Sprache aktivieren
@@ -81,23 +80,26 @@ async function setLanguage(langFile) {
 async function initLang() {
     const config = await loadConfig();
 
-    // Sprache aus Storage oder Default
     const saved = localStorage.getItem("lang");
     const defaultLang = saved || config.defaultLang || "german.lang";
 
-    // Dropdown korrekt setzen
     const selector = document.getElementById("langSelector");
     if (selector) selector.value = defaultLang;
 
-    // Sprache laden
     await setLanguage(defaultLang);
 
-    // Event Listener für Umschalter
     if (selector) {
         selector.addEventListener("change", () => {
             setLanguage(selector.value);
         });
     }
+
+    // btn.clicked Attribut für alle Buttons
+    document.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.setAttribute("clicked", "true");
+        });
+    });
 }
 
 // Start

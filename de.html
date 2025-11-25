@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <!--- QUARANTINE  -->
+    <!--- QUARANTINE  --
 <script src="JS\modules/quarantineMode.js" defer></script>
 <!------>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
       name="viewport"
       content="width=device-width,initial-scale=1,viewport-fit=cover"
     />
-    <title>.lol/deutschland – Deutsch Spaß-Server</title>
+    <title data-lang-id="head.title">.lol/deutschland – Deutsch Spaß-Server</title>
     <meta
       name="description"
       content="Der Deutsch Spaß-Server: Bewerben, Beitreten, Regeln & Team. Schnell, clean, responsive."
@@ -304,6 +304,7 @@
         * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       }
     </style>
+     <script src="/JS/modules/lang.js"></script>
   </head>
   <body>
     <div class="bg" aria-hidden="true"></div>
@@ -328,7 +329,7 @@
             loading="eager"
             fetchpriority="high"
           />
-          <span>.lol/deutschland</span>
+          <span data-lang-id="header.nav.title">.lol/deutschland</span>
         </a>
         <div class="spacer"></div>
 
@@ -342,18 +343,28 @@
         </button>
 
         <nav aria-label="Hauptnavigation" class="desktop-nav">
-          <button class="nav-btn" data-target="bewerben">Bewerben</button>
-          <button class="nav-btn" data-target="join">Beitreten</button>
-          <button class="nav-btn" data-target="rules">Regelwerk</button>
+          <button class="nav-btn" data-target="bewerben" data-lang-id="nav.btn.1">Bewerben</button>
+          <button class="nav-btn" data-target="join" data-lang-id="nav.btn.2">Beitreten</button>
+          <button class="nav-btn" data-target="rules" data-lang-id="nav.btn.3">Regelwerk</button>
           <button class="nav-btn" data-target="team">Team</button>
-          <button class="nav-btn" data-target="impressum">Impressum</button>
+          <button class="nav-btn" data-target="impressum" data-lang-id="nav.btn.4">Impressum</button>
           <a
+          data-lang-id="nav.btn.join"
             class="btn btn-primary mobile-only"
             href="https://dcs.lol/deutschland"
             target="_blank"
             rel="noopener"
             >Jetzt beitreten</a
           >
+               <link rel="stylesheet" href="lang-switch.css">
+
+<div class="lang-switch">
+    <select id="langSelector">
+        <option value="german.lang">Deutsch / German</option>
+        <option value="english.lang">English / Englisch</option>
+    </select>
+</div>
+
         </nav>
       </div>
 
@@ -371,6 +382,12 @@
             rel="noopener"
             >Jetzt beitreten</a
           >
+          <div class="lang-switch">
+    <select id="langSelector">
+        <option value="german.lang">Deutsch / German</option>
+        <option value="english.lang">English / Englisch</option>
+    </select>
+</div>
         </nav>
       </div>
     </header>
@@ -386,21 +403,22 @@
           </svg>
           DE-Community
         </span>
-        <h1 id="hero-title">
+        <h1 id="hero-title" >
           Willkommen auf
           <span style="color: var(--accent)">.lol/deutschland</span>
         </h1>
-        <p class="sub">
-          Der Klischee-Server im Deutschformat – sauber moderiert, nice Leute,
-          klare Regeln. Kein Bullshit.
+        <p class="sub" data-lang-id="main.header.subtitle">
+         
         </p>
         <div class="cta-row">
           <a
+            
             class="btn btn-primary"
             href="https://dcs.lol/deutschland"
             target="_blank"
             rel="noopener"
             aria-label="Discord Einladung öffnen"
+            style="height: 45px;"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -408,15 +426,16 @@
                 d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.2.356-.43.83-.589 1.205a18.27 18.27 0 0 0-7.937 0c-.16-.375-.39-.85-.59-1.205A19.736 19.736 0 0 0 3.682 4.37C1.2 8.216.533 11.94.81 15.61a19.9 19.9 0 0 0 6.087 3.11c.469-.64.885-1.32 1.235-2.033a12.77 12.77 0 0 1-1.947-.744c.16-.117.316-.24.467-.367 3.75 1.741 7.81 1.741 11.53 0 .152.127.309.25.468.367c-.62.297-1.27.54-1.95.744.35.713.766 1.392 1.236 2.033a19.9 19.9 0 0 0 6.086-3.11c.29-3.67-.38-7.393-2.86-11.24ZM9.3 14.19c-1.05 0-1.91-1.02-1.91-2.27c0-1.25.85-2.27 1.91-2.27s1.92 1.02 1.92 2.27c0 1.25-.86 2.27-1.92 2.27m5.4 0c-1.05 0-1.91-1.02-1.91-2.27c0-1.25.85-2.27 1.91-2.27s1.92 1.02 1.92 2.27c0 1.25-.86 2.27-1.92 2.27"
               />
             </svg>
-            Tritt uns bei
+            <p data-lang-id="main.header.btn.join"></p>
           </a>
           <button
+            data-lang-id="main.header.btn.join.copy"
             class="btn btn-ghost"
             id="copy-invite"
             data-copy="https://dcs.lol/deutschland"
             aria-live="polite"
           >
-            Link kopieren
+            
           </button>
         </div>
 
@@ -432,7 +451,7 @@
             </div>
             <div>
               <div class="kpi-num skeleton" id="member-count">000</div>
-              <div class="kpi-label">Aktuell online</div>
+              <div data-lang-id="main.header.status.count.online" class="kpi-label"></div>
             </div>
           </div>
           <div class="kpi-item" title="Widget Status">
@@ -450,6 +469,7 @@
             </div>
           </div>
         </div>
+        <p class="note">The page wont be translated further</p>
       </section>
 
       <aside class="right card section-card" aria-label="Serverlogo">
@@ -762,5 +782,9 @@
         if (e.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") closeDrawer();
       });
     </script>
+        
+
+
+
   </body>
 </html>
