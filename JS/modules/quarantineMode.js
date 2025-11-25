@@ -1,5 +1,5 @@
 
-     fetch('src/JSON/Projects/settings.json')
+     fetch('/src/JSON/Projects/settings.json')
   .then(response => {
     if (!response.ok) throw new Error("Datei konnte nicht geladen werden.");
     return response.json();

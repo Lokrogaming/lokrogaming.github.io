@@ -1,8 +1,36 @@
 {
   "quarantine": false,
   "maintenance": {
-    "index.html": false,
-    "main.html": false,
-    "all": false
+    "index.html": true,
+    "main.html": true,
+    "benchmark.html": true,
+    "about.html.html": true,
+    "870178.html": true,
+    "chess.html": true,
+    "Discord.html": true,
+    "exchangerk.html": true,
+    "game-library.html": true,
+    "login.html": true,
+    "lol.html": true,
+    "mcsl.html": true,
+    "message-coding.html": true,
+    "musicplayer.html": true,
+    "news.html": true,
+    "nochimumbau.html": true,
+    "optout.html": true,
+    "partner.html": true,
+    "portfolio.html": true,
+    "redirect.html": true,
+    "s.html": true,
+    "spotify-fav.html": true,
+    "tac.html": true,
+    "test-langPlugin.html": true,
+    "text-iconbar.html": true,
+    "tos-datenschutz-impressum.html": true,
+    "weather.html": true,
+    "whatsapp.html": false,
+    "de.html": false,
+
+      "all": false
   }
 }
