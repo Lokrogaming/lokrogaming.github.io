@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 120px);
+      grid-template-rows: repeat(3, 120px);
+      gap: 8px;
+      margin: 0 auto 20px auto;
+    }
+    .cell {
+      width: 120px;
+      height: 120px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 15px;
+      font-size: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .cell:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.05);
+    }
+    #message {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
+    #restart {
+      background: #ffce00;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transition: background 0.2s;
+    }
+    #restart:hover {
+      background: #ffd633;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tic Tac Toe</h1>
+  <div id="board"></div>
+  <p id="message"></p>
+  <button id="restart" onclick="startGame()">Neustart</button>
+
+  <script>
+  let board, activePlayer;
+  const boardDiv = document.getElementById("board");
+  const msg = document.getElementById("message");
+
+  function startGame() {
+    board = Array(9).fill(0);
+    activePlayer = 1;
+    msg.textContent = "";
+    renderBoard();
+  }
+
+  function renderBoard() {
+    boardDiv.innerHTML = "";
+    board.forEach((val, i) => {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.dataset.index = i;
+      cell.textContent = val === 1 ? "X" : val === 2 ? "O" : "";
+      cell.addEventListener("click", handleClick);
+      boardDiv.appendChild(cell);
+    });
+  }
+
+  function handleClick(e) {
+    const idx = parseInt(e.target.dataset.index);
+    if (board[idx] !== 0 || activePlayer !== 1) return;
+
+    board[idx] = 1;
+    if (checkWin(board, 1)) {
+      renderBoard();
+      msg.textContent = "🎉 Der Spieler hat gewonnen!";
+      return;
+    }
+    if (isFull(board)) {
+      renderBoard();
+      msg.textContent = "🤝 Unentschieden!";
+      return;
+    }
+    activePlayer = 2;
+    renderBoard();
+
+    setTimeout(computerMove, 300);
+  }
+
+  function computerMove() {
+    const move = bestMove();
+    board[move] = 2;
+    if (checkWin(board, 2)) {
+      renderBoard();
+      msg.textContent = "🤖 Der Computer hat gewonnen!";
+      return;
+    }
+    if (isFull(board)) {
+      renderBoard();
+      msg.textContent = "🤝 Unentschieden!";
+      return;
+    }
+    activePlayer = 1;
+    renderBoard();
+  }
+
+  function isFull(b) {
+    return b.every(cell => cell !== 0);
+  }
+
+  function checkWin(b, player) {
+    const wins = [
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
+    ];
+    return wins.some(combo => combo.every(i => b[i] === player));
+  }
+
+  // Bester Zug mit Alpha-Beta-Pruning
+  function bestMove() {
+    let bestScore = -Infinity;
+    let move;
+    for (let i = 0; i < 9; i++) {
+      if (board[i] === 0) {
+        board[i] = 2;
+        let score = minimax(board, 0, false, -Infinity, Infinity);
+        board[i] = 0;
+        if (score > bestScore) {
+          bestScore = score;
+          move = i;
+        }
+      }
+    }
+    return move;
+  }
+
+  const scores = {2: 10, 1: -10, tie: 0};
+
+  function minimax(b, depth, isMax, alpha, beta) {
+    if (checkWin(b, 2)) return scores[2] - depth;
+    if (checkWin(b, 1)) return scores[1] + depth;
+    if (isFull(b)) return scores["tie"];
+
+    if (isMax) {
+      let maxEval = -Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (b[i] === 0) {
+          b[i] = 2;
+          let evalScore = minimax(b, depth + 1, false, alpha, beta);
+          b[i] = 0;
+          maxEval = Math.max(maxEval, evalScore);
+          alpha = Math.max(alpha, evalScore);
+          if (beta <= alpha) break; // Cutoff
+        }
+      }
+      return maxEval;
+    } else {
+      let minEval = Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (b[i] === 0) {
+          b[i] = 1;
+          let evalScore = minimax(b, depth + 1, true, alpha, beta);
+          b[i] = 0;
+          minEval = Math.min(minEval, evalScore);
+          beta = Math.min(beta, evalScore);
+          if (beta <= alpha) break; // Cutoff
+        }
+      }
+      return minEval;
+    }
+  }
+
+  // Autostart
+  window.onload = startGame;
+</script>
+
+</body>
+</html>
