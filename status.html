@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Status</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Farben, je nach Ping oder Offline */
+        .ping-green { background: #d4f8d4; }   /* Sehr gut */
+        .ping-yellow { background: #fff8c4; }  /* Normal */
+        .ping-orange { background: #ffe1b3; }  /* Schlecht */
+        .ping-red { background: #ffb3b3; }     /* Offline / Sehr hoch */
+    </style>
+
+</head>
+<body>
+
+<h1>Server Status</h1>
+
+<div class="grid" id="serverGrid"></div>
+
+<p id="lastUpdate" style="text-align:center; margin-top:20px; color:#555;">
+    Wird geladen…
+</p>
+
+<script>
+    const servers = [
+        { name: "LokroGaming", url: "https://lokrogaming.github.io/" },
+        { name: "GitHub API", url: "https://api.github.com/" },
+        { name: "Cloudflare", url: "https://cloudflare.com/" },
+        { name: "GitHub", url: "https://github.com"},
+        { name: "Github Pages", url: "https://github.io"},
+        { name: "Discord", url: "https://discord.com"},
+        { name: "Discord API", url: "https://discord.com/api"},
+        { name: "LG Ping Status", url: "https://lokrogaming.github.io/status"}
+    ];
+    
+    // Ping messen
+    async function pingServer(url) {
+        const start = performance.now();
+        try {
+            await fetch(url, { method: "HEAD", mode: "no-cors" });
+            const end = performance.now();
+            return { ping: end - start, online: true };
+        } catch {
+            return { ping: Infinity, online: false };
+        }
+    }
+    
+    // Eine leere Ladekarte erzeugen
+    function createLoadingCard(server) {
+        const card = document.createElement("div");
+        card.classList.add("card", "ping-yellow"); // neutrales gelb für Ladezustand
+    
+        card.innerHTML = `
+            <div class="title">${server.name}</div>
+            <div>Ping: <i>wird geladen...</i></div>
+            <div class="status"><i>Bitte warten...</i></div>
+        `;
+        return card;
+    }
+    
+    // Karte aktualisieren
+    function updateCard(card, result) {
+        // alte Farbkategorien entfernen
+        card.classList.remove("ping-green", "ping-yellow", "ping-orange", "ping-red");
+    
+        // neue Farbe setzen
+        if (!result.online) card.classList.add("ping-red");
+        else if (result.ping < 120) card.classList.add("ping-green");
+        else if (result.ping < 250) card.classList.add("ping-yellow");
+        else if (result.ping < 500) card.classList.add("ping-orange");
+        else card.classList.add("ping-red");
+    
+        // Text ersetzen
+        card.innerHTML = `
+            <div class="title">${card.dataset.name}</div>
+            <div>Ping: ${result.online ? Math.round(result.ping) + " ms" : "-"}</div>
+            <div class="status">${result.online ? "Online" : "Offline"}</div>
+        `;
+    }
+    
+    // Aktualisieren
+    async function update() {
+        const grid = document.getElementById("serverGrid");
+        grid.innerHTML = "";
+    
+        const cards = [];
+    
+        // 1) Erst alle Lade-Karten anzeigen
+        for (const server of servers) {
+            const card = createLoadingCard(server);
+            card.dataset.name = server.name; // merken
+            grid.appendChild(card);
+            cards.push({ card, server });
+        }
+    
+        // 2) Dann asynchron pingen & Karten aktualisieren
+        for (const obj of cards) {
+            const result = await pingServer(obj.server.url);
+            updateCard(obj.card, result);
+        }
+    
+        document.getElementById("lastUpdate").textContent =
+            "Letzte Aktualisierung: " + new Date().toLocaleTimeString();
+    }
+    
+    // Erstmaliger Aufruf
+    update();
+    
+    // Alle 10 Sekunden aktualisieren
+    setInterval(update, 300000);
+    </script>
+    
+
+</body>
+</html>
