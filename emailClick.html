@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Opt-out Formular</title>
+  <!--- QUARANTINE  -->
+<script src="JS\modules/quarantineMode.js" defer></script>
+<!------>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #313338;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <h2>Email Verifizierung</h2>
+  <p>Bitte gib die erforderlichen Informationen an:</p>
+  <small>Die Bearbeitung und Antwort kann bis zu 24 Stunden und länger andauern</small></br>
+
+  <form id="optoutForm" method="POST">
+    <input type="hidden" name="_subject" id="subjectReason">
+    <div id="inputs"></div>
+    <label id="reasonLabel" for="reason">Grund / Anlass:</label>
+    <textarea id="reason" name="reason" required></textarea>
+    <button type="submit">Senden</button>
+  </form>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const inputsParam = urlParams.get("input");
+    const reasonParam = urlParams.get("c");
+    const form = document.getElementById("optoutForm");
+    const subjectParam = urlParams.get("subject");
+
+    // Deine FormSubmit-Adresse hier einfügen:
+    const formEmail = "https://formsubmit.co/80e9551f7ddd8b6282a363c05710a155";
+    form.action = formEmail;
+
+    // Eingabefelder aus ?input=... erzeugen
+    if (inputsParam) {
+      const fields = inputsParam.split(",");
+      const container = document.getElementById("inputs");
+      fields.forEach(f => {
+        const label = document.createElement("label");
+        label.textContent = f.charAt(0).toUpperCase() + f.slice(1) + ":";
+        const input = document.createElement("input");
+        input.type = f === "email" ? "email" : "text";
+        input.name = f;
+        input.required = true;
+        container.appendChild(label);
+        container.appendChild(input);
+      });
+    }
+
+    // Falls ?c= angegeben → Text ins Textfeld schreiben
+    if (reasonParam) {
+      document.getElementById("reason").value = reasonParam;
+    } else {
+        document.getElementById("reason").style.display = "none";
+        document.getElementById("reasonLabel").style.display = "none";
+    }
+    // Falls ?subject= angegeben → Text als Subject nehmenm
+    if (subjectParam) {
+        document.getElementById("subjectReason").value = subjectParam;
+    } else {
+       document.getElementById("subjectReason").value = "Subject not given"; 
+    }
+  </script>
+</body>
+</html>
