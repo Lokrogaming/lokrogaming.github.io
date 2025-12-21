@@ -2,6 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   <title>Opt-out Formular</title>
   <!--- QUARANTINE  -->
 <script src="JS\modules/quarantineMode.js" defer></script>
@@ -40,28 +43,55 @@
       border: none;
     }
     button:hover { background: #0056b3; }
+
+    #successWindow {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: green;
+        font-size: 80px;
+        font-weight: bold;
+        font-family: "varela round";
+        gap: 100px
+    }
   </style>
 </head>
 <body>
+    <div id="formDiv">
   <h2>Email Verifizierung</h2>
   <p>Bitte gib die erforderlichen Informationen an:</p>
-  <small>Die Bearbeitung und Antwort kann bis zu 24 Stunden und länger andauern</small></br>
+  <small>Die Bearbeitung und Antwort kann bis zu 24 Stunden und länger andauern</small>
+<br><br>
 
   <form id="optoutForm" method="POST">
     <input type="hidden" name="_subject" id="subjectReason">
     <div id="inputs"></div>
     <label id="reasonLabel" for="reason">Grund / Anlass:</label>
     <textarea id="reason" name="reason" required></textarea>
-    <button type="submit">Senden</button>
+    <button id="formSubmitBtn">Senden</button>
   </form>
-
+</div>
+<div id="successWindow">
+    <img width="50px" src="src\assets\svg\correct-checklist-list-document-extension-format-folder-svgrepo-com.svg">
+<p>Erfolgreich!</p>
+</div>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const inputsParam = urlParams.get("input");
     const reasonParam = urlParams.get("c");
     const form = document.getElementById("optoutForm");
     const subjectParam = urlParams.get("subject");
+    const formDiv = document.getElementById("formDiv");
+    const successDiv = document.getElementById("successWindow");
+    const formBtn = document.getElementById("formSubmitBtn");
 
+    //======= UI HELPER ==========
+    formBtn.addEventListener("click", ()=>{
+        form.submit;
+        formDiv.style.display = "none";
+        successDiv.style.display = "flex";
+    })
     // Deine FormSubmit-Adresse hier einfügen:
     const formEmail = "https://formsubmit.co/80e9551f7ddd8b6282a363c05710a155";
     form.action = formEmail;
