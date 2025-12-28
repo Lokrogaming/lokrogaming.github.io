@@ -1,0 +1,23 @@
+{
+  "timedModeration": [
+    { "hour": 1, "files": ["moderation/mod.mp3"]},
+    { "hour": 18, "files": ["moderation/timed6pm.mp3"] }
+  ],
+  "bezugModeration": [
+    { "song": "music/a4abb29e-d730-4743-8763-f4b6fffa7099.mp3", "file": "moderation/bmGetaway.mp3" }
+  ],
+  "fallbackModeration": [
+    "moderation/mod4.mp3",
+    "moderation/mod5.mp3"
+  ],
+  "specials": [
+    {
+      "date": "12-25",
+      "file": "specials/christmas.mp3"
+    },
+    {
+      "date": "07-03",
+      "file": "specials/birthday.mp3"
+    }
+  ]
+}
