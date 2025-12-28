@@ -1,4 +1,12 @@
-const music = [
+/********************
+ * SETTINGS
+ ********************/
+const MOD_EVERY_SONGS = 3;
+
+/********************
+ * MUSIC + SHUFFLE
+ ********************/
+let originalMusic = [
     "music/1c51dc48-0b6c-4999-a52a-755b8c6813b8.mp3",
     "music/551cffa1-cd13-437f-a25d-32948c04c3a5.mp3",
     "music/bca5239f-16aa-49b6-848d-48db236cee8e.mp3",
@@ -17,129 +25,190 @@ const music = [
     "music/642f3a68-48b4-48de-a901-f45e7f36a981.mp3",
     "music/5f58717c-25a7-4f17-be4e-0a59b51cc33c.mp3",
     "music/526d9066-156f-4c24-8f79-005189a88623.mp3",
-    "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3",
-    "music/56122be3-d9cc-4e7a-ae74-130ca59d93d8.mp3"
+    "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3"
 ];
 
+// Duplikate entfernen
+originalMusic = [...new Set(originalMusic)];
 
-let config;
-fetch("config.json")
-    .then(res => res.json())
-    .then(data => config = data);
+let music = [];
+let musicIndex = 0;
 
+function shuffleMusic() {
+    music = [...originalMusic];
+    for (let i = music.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [music[i], music[j]] = [music[j], music[i]];
+    }
+    musicIndex = 0;
+}
+
+/********************
+ * CONFIG
+ ********************/
+let config = {};
+fetch("radioConfig.json")
+    .then(r => r.json())
+    .then(j => config = j);
+
+/********************
+ * AUDIO
+ ********************/
 const audio = new Audio();
 audio.volume = 0.7;
-
-let musicIndex = 0;
-let songsPlayed = 0;
 let playingModeration = false;
+let songsSinceLastMod = 0;
 
-// Für Timed-Mod: tracken, welche Stunden schon gespielt wurden
-let timedPlayedToday = [];
+/********************
+ * STATS (daily)
+ ********************/
+let stats = {
+    date: "",
+    songsPlayed: 0,
+    moderationPlayed: 0,
+    uniqueSongs: new Set()
+};
 
-const status = document.getElementById("status");
-const volume = document.getElementById("volume");
+function resetStatsIfNeeded() {
+    const today = new Date().toISOString().split("T")[0];
+    if (stats.date !== today) {
+        stats = {
+            date: today,
+            songsPlayed: 0,
+            moderationPlayed: 0,
+            uniqueSongs: new Set()
+        };
+    }
+}
 
+/********************
+ * TIMED MOD (1x/day per hour)
+ ********************/
+let timedPlayed = { date: "", hours: [] };
+
+function resetTimedIfNeeded() {
+    const today = new Date().toISOString().split("T")[0];
+    if (timedPlayed.date !== today) {
+        timedPlayed = { date: today, hours: [] };
+    }
+}
+
+function getTimedModeration() {
+    resetTimedIfNeeded();
+    const hour = new Date().getHours();
+
+    if (timedPlayed.hours.includes(hour)) return null;
+
+    const entry = config.timedModeration?.find(t => t.hour === hour);
+    if (!entry || !entry.files?.length) return null;
+
+    timedPlayed.hours.push(hour);
+    return entry.files[Math.floor(Math.random() * entry.files.length)];
+}
+
+/********************
+ * SPECIALS (dates)
+ ********************/
+function getSpecial() {
+    const d = new Date();
+    const key = `${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    return config.specials?.find(s => s.date === key)?.file || null;
+}
+
+/********************
+ * PLAY FUNCTIONS
+ ********************/
 function playMusic() {
-    audio.src = music[musicIndex];
-    status.textContent = "🎵 Musik läuft";
+    resetStatsIfNeeded();
+
+    const song = music[musicIndex];
+    audio.src = song;
     audio.play();
+
+    stats.songsPlayed++;
+    stats.uniqueSongs.add(song);
+
+    console.log("🎵 Song:", song);
 }
 
 function playModeration(file) {
+    resetStatsIfNeeded();
+
     audio.src = file;
-    status.textContent = "🎙 Moderation";
     playingModeration = true;
     audio.play();
+
+    stats.moderationPlayed++;
+    console.log("🎙 Moderation:", file);
 }
 
-// Reset Timed-Mod Tracker täglich um Mitternacht
-function checkResetTimed() {
-    const now = new Date();
-    const dateStr = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
-    if (timedPlayedToday.lastReset !== dateStr) {
-        timedPlayedToday = { lastReset: dateStr, hours: [] };
+function nextSong() {
+    musicIndex++;
+    if (musicIndex >= music.length) {
+        shuffleMusic();
     }
 }
 
-function checkTimedModeration() {
-    checkResetTimed();
-    const now = new Date();
-    const hour = now.getHours();
-
-    // schon gespielt?
-    if (timedPlayedToday.hours.includes(hour)) return null;
-
-    const entry = config?.timedModeration?.find(t => t.hour === hour);
-    if (entry && entry.files?.length > 0) {
-        const randomIndex = Math.floor(Math.random() * entry.files.length);
-        timedPlayedToday.hours.push(hour);
-        return entry.files[randomIndex];
-    }
-    return null;
-}
-
-function checkSpecials() {
-    const now = new Date();
-    const dateStr = `${String(now.getMonth() + 1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
-    return config?.specials?.find(s => s.date === dateStr)?.file;
-}
-
+/********************
+ * CORE RADIO LOGIC
+ ********************/
 audio.addEventListener("ended", () => {
+
+    // Nach Moderation zurück zur Musik
     if (playingModeration) {
         playingModeration = false;
+        songsSinceLastMod = 0;
+        nextSong();
         playMusic();
         return;
     }
 
-    songsPlayed++;
+    songsSinceLastMod++;
     const currentSong = music[musicIndex];
+    const modTriggered = songsSinceLastMod >= MOD_EVERY_SONGS;
 
-    // Specials zuerst
-    const specialFile = checkSpecials();
-    if (specialFile) {
-        playModeration(specialFile);
-        return;
+    if (modTriggered) {
+
+        const special = getSpecial();
+        if (special) return playModeration(special);
+
+        const timed = getTimedModeration();
+        if (timed) return playModeration(timed);
+
+        const bezug = config.bezugModeration?.find(b => b.song === currentSong);
+        if (bezug) return playModeration(bezug.file);
+
+        if (config.fallbackModeration?.length) {
+            const r = Math.floor(Math.random() * config.fallbackModeration.length);
+            return playModeration(config.fallbackModeration[r]);
+        }
     }
 
-    // Timed Moderation zufällig, max 1x pro Tag
-    const timedFile = checkTimedModeration();
-    if (timedFile) {
-        playModeration(timedFile);
-        return;
-    }
-
-    // Bezug-Mod
-    const bezug = config?.bezugModeration.find(b => b.song === currentSong);
-    if (bezug && songsPlayed % 3 === 0) {
-        playModeration(bezug.file);
-        return;
-    }
-
-    // Fallback
-    if (songsPlayed % 3 === 0 && config?.fallbackModeration?.length > 0) {
-        const random = Math.floor(Math.random() * config.fallbackModeration.length);
-        playModeration(config.fallbackModeration[random]);
-        return;
-    }
-
-    // Normaler Ablauf
-    musicIndex = (musicIndex + 1) % music.length;
+    nextSong();
     playMusic();
 });
 
-/* Controls */
+/********************
+ * CONTROLS
+ ********************/
 document.getElementById("play").onclick = () => {
-    if (!audio.src) playMusic();
-    else audio.play();
+    if (!audio.src) {
+        shuffleMusic();
+        playMusic();
+    } else audio.play();
 };
+
 document.getElementById("pause").onclick = () => audio.pause();
+
 document.getElementById("stop").onclick = () => {
     audio.pause();
     audio.currentTime = 0;
 };
-document.getElementById("skip").onclick = () => audio.dispatchEvent(new Event("ended"));
 
-volume.oninput = () => {
-    audio.volume = volume.value / 100;
+document.getElementById("skip").onclick = () => {
+    audio.dispatchEvent(new Event("ended"));
+};
+
+document.getElementById("volume").oninput = e => {
+    audio.volume = e.target.value / 100;
 };
