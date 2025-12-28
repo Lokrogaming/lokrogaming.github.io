@@ -11,6 +11,13 @@ const music = [
     "music/fbf566fd-9b20-4699-a4e4-4e7ce2a8f27d.mp3",
     "music/671093ad-18b5-481a-a3f6-82f949a8de6b.mp3",
     "music/6fda93ad-efc7-4eb4-bfa4-d56e576ca02c.mp3",
+    "music/003a96ec-1806-4d2d-a027-048a74c60ade.mp3",
+    "music/bb794e60-6061-4eb8-ae5e-d0a44afcd757.mp3",
+    "music/b619b1d2-b4dd-45a1-8b9a-7bfe9408f20c.mp3",
+    "music/642f3a68-48b4-48de-a901-f45e7f36a981.mp3",
+    "music/5f58717c-25a7-4f17-be4e-0a59b51cc33c.mp3",
+    "music/526d9066-156f-4c24-8f79-005189a88623.mp3",
+    "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3",
     "music/56122be3-d9cc-4e7a-ae74-130ca59d93d8.mp3"
 ];
 

@@ -1,6 +1,6 @@
 {
   "timedModeration": [
-    { "hour": 1, "files": ["moderation/mod.mp3"]},
+    { "hour": 20, "files": ["moderation/timed8pm.mp3"]},
     { "hour": 18, "files": ["moderation/timed6pm.mp3"] }
   ],
   "bezugModeration": [
