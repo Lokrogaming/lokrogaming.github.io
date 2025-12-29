@@ -28,7 +28,7 @@ let originalMusic = [
     "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3"
 ];
 
-// Duplikate entfernen
+
 originalMusic = [...new Set(originalMusic)];
 
 let music = [];
