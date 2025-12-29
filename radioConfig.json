@@ -7,7 +7,8 @@
     { "song": "music/a4abb29e-d730-4743-8763-f4b6fffa7099.mp3", "file": "moderation/bmGetaway.mp3" }
   ],
   "fallbackModeration": [
-    "moderation/mod1.mp3"
+    "moderation/mod1.mp3",
+    "moderation/mod2.mp3"
   ],
   "specials": [
     {
