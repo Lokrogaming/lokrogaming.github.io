@@ -25,7 +25,8 @@ let originalMusic = [
     "music/642f3a68-48b4-48de-a901-f45e7f36a981.mp3",
     "music/5f58717c-25a7-4f17-be4e-0a59b51cc33c.mp3",
     "music/526d9066-156f-4c24-8f79-005189a88623.mp3",
-    "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3"
+    "music/a114571b-164a-4ca2-947e-897cbc09ad80.mp3",
+    "music/473124bf-f8f4-4119-8e7e-71b948280659.mp3"
 ];
 
 
