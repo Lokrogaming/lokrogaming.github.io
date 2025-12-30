@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLICK // AT YOUR OWN RISK</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --green: #00ff88;
+  --dark: #050505;
+  --panel: #0b0b0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--dark);
+  color: var(--green);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* HEADER */
+header {
+  padding: 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--green);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px var(--green);
+}
+
+header p {
+  opacity: 0.8;
+}
+
+/* SECTIONS */
+section {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid var(--green);
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0,255,136,0.15);
+}
+
+h2 {
+  margin-top: 0;
+  border-bottom: 1px dashed var(--green);
+  padding-bottom: 5px;
+}
+
+/* LISTS */
+ul {
+  padding-left: 20px;
+}
+
+li::marker {
+  color: var(--green);
+}
+
+/* TERMINAL BOX */
+.terminal {
+  background: black;
+  padding: 15px;
+  border: 1px solid var(--green);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* STATS */
+.stats div {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+.stat {
+  color: #ff5555;
+  text-shadow: 0 0 8px red;
+}
+
+/* GLITCH EFFECT */
+.glitch {
+  position: relative;
+}
+
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  color: red;
+  opacity: 0.7;
+  clip-path: inset(0 0 50% 0);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 class="glitch" data-text="CLICK // AT YOUR OWN RISK">
+    CLICK // AT YOUR OWN RISK
+  </h1>
+  <p>Cyber Awareness • Link Security • Digital Survival</p>
+</header>
+
+<section>
+  <h2>⚠ SYSTEM WARNING</h2>
+  <p>
+    Jeder Klick auf einen unbekannten Link kann dein System kompromittieren.
+    Phishing, Malware und Identitätsdiebstahl beginnen oft mit <b>einem einzigen Klick</b>.
+  </p>
+</section>
+
+<section>
+  <h2>🧪 REAL-WORLD EXAMPLES</h2>
+  <ul>
+    <li><b>secure-paypal-login[.]ru</b> → Passwortdiebstahl</li>
+    <li><b>free-cracks.exe</b> → Trojaner + Keylogger</li>
+    <li><b>bit.ly/3X9H</b> → Weiterleitung auf Exploit-Seite</li>
+  </ul>
+</section>
+
+<section>
+  <h2>📡 FACTS FROM THE DARK WEB</h2>
+  <div class="terminal">
+    > 90% aller Phishing-Angriffe nutzen gefälschte Links<br>
+    > Kurzlinks verschleiern das eigentliche Ziel<br>
+    > Ein kompromittierter Klick reicht für Remote-Zugriff<br>
+    > URLs können täuschend echt aussehen (IDN / Unicode)
+  </div>
+</section>
+
+<section class="stats">
+  <h2>📊 LIVE THREAT MONITOR (Demo)</h2>
+  <div>🔴 Malware-Links entdeckt: <span class="stat" id="m">...</span></div>
+  <div>🟠 Phishing-Angriffe heute: <span class="stat" id="p">...</span></div>
+  <div>🟢 Unsichere URLs gescannt: <span class="stat" id="u">...</span></div>
+</section>
+
+<footer>
+  © 2025 • CYBER AWARENESS NODE • trust nothing
+</footer>
+
+<script>
+/* Fake Live-Stats (Demo) */
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+function updateStats() {
+  document.getElementById("m").textContent = rand(12000, 16000);
+  document.getElementById("p").textContent = rand(4000, 7000);
+  document.getElementById("u").textContent = rand(90000, 130000);
+}
+
+updateStats();
+setInterval(updateStats, 4000);
+</script>
+
+</body>
+</html>
