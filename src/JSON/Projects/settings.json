@@ -1,5 +1,5 @@
 {
-  "quarantine": true,
+  "quarantine": false,
   "maintenance": {
     "index.html": false,
     "main.html": false,
@@ -31,6 +31,6 @@
     "whatsapp.html": false,
     "de.html": false,
 
-      "all": true
+      "all": false
   }
 }
