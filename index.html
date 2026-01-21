@@ -1,286 +1,304 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
- <link rel="icon" href="/src/assets/icon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lokrogaming</title>
-  <link rel="stylesheet" href="\src\verify-style.css" />
- <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
- <!--- QUARANTINE  -->
-<script src="JS\modules/quarantineMode.js" defer></script>
-<!------>
- <meta
-      name="description"
-      content="Lokrogamer, Webdeveloper mit Herz und Creator mit 250+ Followern auf Tiktok. Auf Twitch begeistert er viele Nutzer durch seine Angehensweise an Sachen und zeigt viele beeindruckende Einblicke in sein Leben und den Code seiner Website."
-    />
-    <meta
-      name="keywords"
-      content="Lokrogamer, Erik Demoulin, Entwickler, Streamer, Frontend, JS, HTML, LokroGaming, Portfolio, Webentwicklung, Discord, Minecraft"
-    />
-    <meta name="author" content="Lokrogamer" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="de" />
- <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "Speichert Lokrogaming deine Daten?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Nein, auf die Daten von Dritten habe ich allerdings keinen Zugriff"
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Wo kann ich mich \u00fcber die Nutzungsbedingungen informieren?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Unter https://lokrogaming.github.io/tac "
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lokrogamer | Stream Starting Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9146FF; /* Twitch Purple */
+            --accent: #00FFCC;
+            --bg-dark: #0e0e10;
+            --card-bg: rgba(24, 24, 27, 0.9);
+            --text: #efeff1;
         }
-    ]
-}
-</script>
- <noscript>
-    <meta http-equiv="refresh" content="0; url=error.html?reason=javascript_disabled">
-  </noscript>
- <style>
-  /* From Uiverse.io by cssbuttons-io */ 
-form button {
- --glow-color: rgb(217, 176, 255);
- --glow-spread-color: rgba(191, 123, 255, 0.781);
- --enhanced-glow-color: rgb(231, 206, 255);
- --btn-color: rgb(100, 61, 136);
- border: .25em solid var(--glow-color);
- padding: 1em 3em;
- color: var(--glow-color);
- font-size: 15px;
- font-weight: bold;
- background-color: var(--btn-color);
- border-radius: 1em;
- outline: none;
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 1em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
- text-shadow: 0 0 .5em var(--glow-color);
- position: relative;
- transition: all 0.3s;
-}
 
-form button::after {
- pointer-events: none;
- content: "";
- position: absolute;
- top: 120%;
- left: 0;
- height: 100%;
- width: 100%;
- background-color: var(--glow-spread-color);
- filter: blur(2em);
- opacity: .7;
- transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-form button:hover {
- color: var(--btn-color);
- background-color: var(--glow-color);
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-form button:active {
- box-shadow: 0 0 0.6em .25em var(--glow-color),
-        0 0 2.5em 2em var(--glow-spread-color),
-        inset 0 0 .5em .25em var(--glow-color);
-}
- </style>
+        /* Animated Background Gradient */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, #0e0e10, #1a1a2e, #2d1b4e, #0e0e10);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: moveParticles 20s linear infinite;
+        }
+
+        @keyframes moveParticles {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50px); }
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(12px);
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            max-width: 800px;
+            width: 95%;
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Fixed Clock Container */
+        .clock-wrapper {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock-icon {
+            display: block;
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 10px rgba(145, 70, 255, 0.5));
+        }
+        
+        #hand {
+            transform-origin: 12px 12px; /* Center of the 24x24 viewBox */
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            background: rgba(145, 70, 255, 0.15);
+            border: 1px solid var(--primary);
+            border-radius: 100px;
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
+        }
+
+        .countdown {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            margin: 2.5rem 0;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.04);
+            flex: 1;
+            min-width: 120px;
+            max-width: 140px;
+            padding: 1.5rem 0.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--primary);
+        }
+
+        .time-value {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--text);
+            opacity: 0.5;
+        }
+
+        .twitch-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 3rem;
+            border-radius: 16px;
+            font-weight: 800;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px -10px rgba(145, 70, 255, 0.6);
+        }
+
+        .twitch-btn:hover {
+            background-color: #a970ff;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 15px 35px -10px rgba(145, 70, 255, 0.8);
+        }
+
+        .twitch-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 650px) {
+            .countdown { gap: 0.75rem; }
+            .time-box { min-width: 80px; padding: 1rem 0.2rem; }
+            .time-value { font-size: 1.75rem; }
+            .container { padding: 2rem 1rem; }
+            .clock-icon { width: 60px; height: 60px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div style="display: none;" class="circle-timer">
-      <a href="https://lokrogaming.github.io/news"><img src="logo-lg.png" alt="LG Logo" class="logo pulsate" />
-      <svg class="progress-ring" width="220" height="220">
-        <circle class="progress-ring__circle" stroke="#ffffff33" stroke-width="6" fill="transparent" r="100" cx="110" cy="110"/>
-      </svg></a>
 
-    </div>
-   <form id="demo-form">
-    
-    
-    <!-- Cloudflare Turnstile Widget -->
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2mejB5e4DeNL-G"></div><br><br>
-    
-    <button onclick="window.location.href='https://lokrogaming.github.io/news'" id="formSubmitBtn" type="submit">Absenden</button>
-  </form>
-    <p class="info-text">CTRL + B drücken um auf die Seite zu gelangen</p><br>
-    
-    <!-- Elfsight Cookie Consent | Untitled Cookie Consent -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-0a6af0da-ab35-400c-b597-6522a6fc6280" data-elfsight-app-lazy></div>
-  </div>
+    <div class="animated-bg"></div>
+    <div class="particles"></div>
 
-  <script>
-   document.getElementById("demo-form").addEventListener("submit", async e => {
-  e.preventDefault();
+    <main class="container">
+        <!-- Centered SVG Clock -->
+        <div class="clock-wrapper">
+            <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="#9146FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14" id="hand"></polyline>
+            </svg>
+        </div>
 
-  const formData = new FormData(e.target);
-  const token = formData.get('cf-turnstile-response');
+        <div class="status-badge">STREAMING SOON</div>
+        <h1>lokrogamer</h1>
+        
+        <div class="countdown" id="timer">
+            <div class="time-box">
+                <span class="time-value" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Min</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Sec</span>
+            </div>
+        </div>
 
-  if (!token) {
-    alert("Bitte bestätige, dass du kein Bot bist!");
-    return;
-  }
+        <a href="https://twitch.tv/lokrogamer" class="twitch-btn" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
+            Follow on Twitch
+        </a>
+    </main>
 
-  // Token an Worker senden und Ergebnis abwarten
-  const resp = await fetch("https://captcha.lokrogamer29.workers.dev/verify", {
-    method: "POST",
-    body: formData
-  });
+    <script>
+        // Target Date: March 1, 2026
+        const targetDate = new Date("March 1, 2026 00:00:00").getTime();
 
-  const text = await resp.text();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-  if (text.includes("OK")) {
-    window.location.href = "https://lokrogaming.github.io/news/";
-  } else {
-    alert("Turnstile-Check fehlgeschlagen: " + text);
-  }
-});
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
 
-    
-   
-  /*  const circle = document.querySelector('.progress-ring__circle');
-    const radius = circle.r.baseVal.value;
-    const circumference = 2 * Math.PI * radius;
-    circle.style.strokeDasharray = `${circumference}`;
-    circle.style.strokeDashoffset = `${circumference}`;
-
-    function animateProgress(duration) {
-      let start = null;
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-        circle.style.strokeDashoffset = circumference * (1 - progress);
-        if (progress < 1) {
-          requestAnimationFrame(step);
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("timer").innerHTML = "<h3 style='color: var(--accent); font-size: 2rem; width: 100%'>STREAM IS LIVE!</h3>";
+            }
         }
-      }
-      requestAnimationFrame(step);
-    }
 
-    animateProgress(30000);
-
-    
-    setTimeout(() => {
-      document.querySelector('.logo').classList.remove('pulsate');
-      document.querySelector('.progress-ring__circle').style.strokeDashoffset = 0;
-      //window.location.href = 'abwl.html'; 
-    }, 30000);
-
-    
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key.toLowerCase() === 'b') {
-       window.location.href = 'https://lokrogaming.github.io/news/';
-      }
-    });
-   
-*/
-
-  </script>
-<script>
-(function() {
-  const allowedReferrers = [
-    "https://zz2vze.mimo.run",
-    "https://google.com",
-    "https://lokrogaming.github.io",
-    "https://www.google.com",
-   "android-app://com.google.android.googlequicksearchbox"
-   
-  ];
-
-  const blockedReferrers = [
-    "https://clr785.mimo.run",
-    "www.facebook.com",
-    "facebook.com"
-  ];
-
-  const referrer = document.referrer;
-
-  if (!referrer) return;
-
-  // Prüfen auf erlaubt oder gesperrt
-  const isAllowed = allowedReferrers.some(domain => referrer.startsWith(domain));
-  const isBlocked = blockedReferrers.some(domain => referrer.startsWith(domain));
-
-  if (isBlocked) {
-    // Weiterleitung bei gesperrter Domain
-    window.location.href = "error?reason=403";
-    return;
-  }
-
-  if (!isAllowed) {
-    // Infos sammeln
-    const now = new Date().toLocaleString();
-    const userAgent = navigator.userAgent;
-    const browser = navigator.userAgentData ? navigator.userAgentData.brands.map(b => b.brand + " " + b.version).join(", ") : userAgent;
-    
-    // Formular dynamisch erstellen
-    const form = document.createElement("form");
-    form.action = "https://formsubmit.co/80e9551f7ddd8b6282a363c05710a155";
-    form.method = "POST";
-    form.style.display = "none";
-
-    const refInput = document.createElement("input");
-    refInput.type = "hidden";
-    refInput.name = "Referrer";
-    refInput.value = referrer;
-    form.appendChild(refInput);
-
-    const dateInput = document.createElement("input");
-    dateInput.type = "hidden";
-    dateInput.name = "Date";
-    dateInput.value = now;
-    form.appendChild(dateInput);
-
-    const browserInput = document.createElement("input");
-    browserInput.type = "hidden";
-    browserInput.name = "Browser/OS";
-    browserInput.value = browser;
-    form.appendChild(browserInput);
-
-    // Captcha deaktivieren
-    const captchaInput = document.createElement("input");
-    captchaInput.type = "hidden";
-    captchaInput.name = "_captcha";
-    captchaInput.value = "false";
-    form.appendChild(captchaInput);
-
-
-   const nextInput = document.createElement("input");
-    nextInput.type = "hidden";
-    nextInput.name = "_next";
-    nextInput.value = "https://lokrogaming.github.io/news";
-    form.appendChild(nextInput);
-
-
-
-   const templateInput = document.createElement("input");
-    templateInput.type = "hidden";
-    templateInput.name = "_template";
-    templateInput.value = "box";
-    form.appendChild(templateInput);
-
-    document.body.appendChild(form);
-    form.submit();
-  }
-})();
-</script>
-
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>
