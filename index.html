@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lokrogamer | Stream Starting Soon</title>
+    <title>Erik Demoulin | lokrogamer</title>
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #9146FF; /* Twitch Purple */
+            --primary: #9146FF;
             --accent: #00FFCC;
-            --bg-dark: #0e0e10;
-            --card-bg: rgba(24, 24, 27, 0.9);
-            --text: #efeff1;
+            --bg-dark: #0a0a0c;
+            --card-bg: #16161a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -23,19 +28,34 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
-            color: var(--text);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- LOADING OVERLAY (FIXED CENTERING) --- */
+        #countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100vh;
-            overflow: hidden;
+            background-color: var(--bg-dark);
+            z-index: 9999;
+            /* Centralizing logic */
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
-        /* Animated Background Gradient */
         .animated-bg {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -52,63 +72,32 @@
             100% { background-position: 0% 50%; }
         }
 
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(var(--primary) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.1;
-            animation: moveParticles 20s linear infinite;
-        }
-
-        @keyframes moveParticles {
-            from { transform: translateY(0); }
-            to { transform: translateY(-50px); }
-        }
-
-        .container {
-            position: relative;
+        .clock-container {
             text-align: center;
-            z-index: 1;
-            padding: 3rem 2rem;
+            padding: 3rem;
+            background: rgba(24, 24, 27, 0.9);
             backdrop-filter: blur(12px);
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            max-width: 800px;
-            width: 95%;
-            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            width: calc(100% - 40px);
+            margin: auto; /* Extra insurance for centering */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Fixed Clock Container */
-        .clock-wrapper {
-            margin-bottom: 2rem;
+        .clock-icon-wrapper {
+            margin-bottom: 0.5rem;
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
         .clock-icon {
-            display: block;
-            width: 80px;
-            height: 80px;
-            filter: drop-shadow(0 0 10px rgba(145, 70, 255, 0.5));
+            width: 60px;
+            height: 60px;
         }
         
         #hand {
-            transform-origin: 12px 12px; /* Center of the 24x24 viewBox */
+            transform-origin: 12px 12px;
             animation: rotate 4s linear infinite;
         }
 
@@ -117,29 +106,155 @@
             to { transform: rotate(360deg); }
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            background: linear-gradient(to right, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .countdown-grid {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 2rem 0;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 0.6rem 1.8rem;
-            background: rgba(145, 70, 255, 0.15);
-            border: 1px solid var(--primary);
-            border-radius: 100px;
-            color: var(--primary);
-            font-weight: 800;
+        .time-box {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1rem;
+            border-radius: 12px;
+            flex: 1;
+            max-width: 100px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .time-value {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .time-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+
+        /* --- MAIN PORTFOLIO CONTENT --- */
+        #portfolio-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+            visibility: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            width: 100%;
+        }
+
+        #portfolio-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        header { text-align: center; margin-bottom: 5rem; }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), #8b5cf6);
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        
+        .location { color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .badge-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
             font-size: 0.85rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        h2 { color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem;}
+
+        .org-card {
+            background: rgba(0,0,0,0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .website-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer { text-align: center; margin-top: auto; color: var(--text-muted); padding: 4rem 2rem 2rem; }
+
+        @media (max-width: 768px) {
+            .main-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .countdown-grid { flex-wrap: wrap; }
+            .time-box { min-width: 70px; padding: 0.75rem; }
+            .time-value { font-size: 1.4rem; }
         }
 
         @keyframes pulse {
@@ -147,158 +262,151 @@
             70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
             100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
         }
-
-        .countdown {
-            display: flex;
-            gap: 1.25rem;
-            justify-content: center;
-            margin: 2.5rem 0;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.04);
-            flex: 1;
-            min-width: 120px;
-            max-width: 140px;
-            padding: 1.5rem 0.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .time-box:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-        }
-
-        .time-value {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .time-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            color: var(--text);
-            opacity: 0.5;
-        }
-
-        .twitch-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 1.2rem 3rem;
-            border-radius: 16px;
-            font-weight: 800;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px -10px rgba(145, 70, 255, 0.6);
-        }
-
-        .twitch-btn:hover {
-            background-color: #a970ff;
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 15px 35px -10px rgba(145, 70, 255, 0.8);
-        }
-
-        .twitch-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        @media (max-width: 650px) {
-            .countdown { gap: 0.75rem; }
-            .time-box { min-width: 80px; padding: 1rem 0.2rem; }
-            .time-value { font-size: 1.75rem; }
-            .container { padding: 2rem 1rem; }
-            .clock-icon { width: 60px; height: 60px; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="animated-bg"></div>
-    <div class="particles"></div>
+    <!-- COUNTDOWN OVERLAY -->
+    <div id="countdown-overlay">
+        <div class="animated-bg"></div>
+        <div class="clock-container">
+            <div class="clock-icon-wrapper">
+                <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="#9146FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14" id="hand"></polyline>
+                </svg>
+            </div>
+            
+            <div style="  
+                display: inline-block;
+                padding: 0.5rem 1.4rem;
+                background: rgba(145, 70, 255, 0.15);
+                border: 1px solid var(--primary);
+                border-radius: 100px;
+                color: var(--primary);
+                font-weight: 800;
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+                margin-bottom: 1.5rem;
+                animation: pulse 2s infinite;
+            ">UNVEILING SOON</div>
 
-    <main class="container">
-        <!-- Centered SVG Clock -->
-        <div class="clock-wrapper">
-            <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="#9146FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14" id="hand"></polyline>
-            </svg>
+            <h1 style="font-size: clamp(2rem, 8vw, 2.8rem); background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">lokrogamer</h1>
+            
+            <div class="countdown-grid">
+                <div class="time-box"><span class="time-value" id="days">00</span><span class="time-label">Days</span></div>
+                <div class="time-box"><span class="time-value" id="hours">00</span><span class="time-label">Hours</span></div>
+                <div class="time-box"><span class="time-value" id="minutes">00</span><span class="time-label">Min</span></div>
+                <div class="time-box"><span class="time-value" id="seconds">00</span><span class="time-label">Sec</span></div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Portfolio unlocks when the timer reaches zero.</p>
         </div>
+    </div>
 
-        <div class="status-badge">STREAMING SOON</div>
-        <h1>lokrogamer</h1>
-        
-        <div class="countdown" id="timer">
-            <div class="time-box">
-                <span class="time-value" id="days">00</span>
-                <span class="time-label">Days</span>
+    <!-- MAIN PORTFOLIO -->
+    <div id="portfolio-content">
+        <header>
+            <div class="profile-img"><i class="fa-solid fa-code"></i></div>
+            <h1>Erik Demoulin</h1>
+            <div class="location"><i class="fa-solid fa-location-dot"></i> NRW, Germany</div>
+            <div class="badge-container">
+                <span class="badge">Streamer</span>
+                <span class="badge">Developer</span>
             </div>
-            <div class="time-box">
-                <span class="time-value" id="hours">00</span>
-                <span class="time-label">Hours</span>
-            </div>
-            <div class="time-box">
-                <span class="time-value" id="minutes">00</span>
-                <span class="time-label">Min</span>
-            </div>
-            <div class="time-box">
-                <span class="time-value" id="seconds">00</span>
-                <span class="time-label">Sec</span>
-            </div>
-        </div>
+        </header>
 
-        <a href="https://twitch.tv/lokrogamer" class="twitch-btn" target="_blank">
-            <svg viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/></svg>
-            Follow on Twitch
-        </a>
-    </main>
+        <main class="main-grid">
+            <section>
+                <h2><i class="fa-solid fa-layer-group"></i> Tech Stack</h2>
+                <div class="badge-container" style="justify-content: flex-start;">
+                    <span class="badge">HTML5</span><span class="badge">CSS3</span>
+                    <span class="badge">JavaScript</span><span class="badge">TypeScript</span>
+                    <span class="badge">React</span>
+                </div>
+                <h2 style="margin-top: 2rem;"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</h2>
+                <div class="badge-container" style="justify-content: flex-start;">
+                    <span class="badge">VS Code</span><span class="badge">GitHub</span>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-briefcase"></i> Organizations</h2>
+                <div class="org-card">Lokrogamer</div>
+                <div class="org-card">LokroGaming</div>
+                <div class="org-card">LGG</div>
+                <a href="https://lokrogaming.github.io" class="website-link" target="_blank">
+                    <i class="fa-solid fa-globe"></i> Visit Official Website
+                </a>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-hashtag"></i> Connect</h2>
+                <div class="social-links">
+                    <a href="https://github.com/Lokrogaming" class="social-btn" target="_blank"><i class="fa-brands fa-github"></i><br>GitHub</a>
+                    <a href="https://twitch.tv/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-twitch"></i><br>Twitch</a>
+                    <a href="https://instagram.com/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-instagram"></i><br>Insta</a>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
+                <p><strong>Discord:</strong> lokrogamer</p>
+                <p style="margin-top: 1rem"><strong>Hobbies:</strong> Streamer & Developer</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Erik Demoulin | Built with Passion</p>
+        </footer>
+    </div>
 
     <script>
-        // Target Date: March 1, 2026
+        // TARGET DATE
         const targetDate = new Date("March 1, 2026 00:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-
-            if (distance < 0) {
+            if (distance <= 0) {
                 clearInterval(interval);
-                document.getElementById("timer").innerHTML = "<h3 style='color: var(--accent); font-size: 2rem; width: 100%'>STREAM IS LIVE!</h3>";
+                revealPortfolio();
+                return;
             }
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const dEl = document.getElementById("days");
+            const hEl = document.getElementById("hours");
+            const mEl = document.getElementById("minutes");
+            const sEl = document.getElementById("seconds");
+
+            if(dEl) dEl.innerText = d.toString().padStart(2, '0');
+            if(hEl) hEl.innerText = h.toString().padStart(2, '0');
+            if(mEl) mEl.innerText = m.toString().padStart(2, '0');
+            if(sEl) sEl.innerText = s.toString().padStart(2, '0');
+        }
+
+        function revealPortfolio() {
+            const overlay = document.getElementById('countdown-overlay');
+            const content = document.getElementById('portfolio-content');
+            
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                content.classList.add('visible');
+                document.body.style.overflow = 'auto';
+            }, 800);
         }
 
         const interval = setInterval(updateCountdown, 1000);
         updateCountdown();
+        
+        // Prevent scroll while overlay is active
+        document.body.style.overflow = 'hidden';
     </script>
 </body>
 </html>
