@@ -38,7 +38,6 @@
             flex-direction: column;
         }
 
-        /* --- LOADING OVERLAY (FIXED CENTERING) --- */
         #countdown-overlay {
             position: fixed;
             top: 0;
@@ -47,7 +46,6 @@
             height: 100vh;
             background-color: var(--bg-dark);
             z-index: 9999;
-            /* Centralizing logic */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -81,7 +79,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             max-width: 600px;
             width: calc(100% - 40px);
-            margin: auto; /* Extra insurance for centering */
+            margin: auto;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
@@ -137,7 +135,6 @@
             letter-spacing: 1px;
         }
 
-        /* --- MAIN PORTFOLIO CONTENT --- */
         #portfolio-content {
             opacity: 0;
             transform: translateY(20px);
@@ -249,6 +246,12 @@
 
         footer { text-align: center; margin-top: auto; color: var(--text-muted); padding: 4rem 2rem 2rem; }
 
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
+        }
+
         @media (max-width: 768px) {
             .main-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.5rem; }
@@ -256,17 +259,10 @@
             .time-box { min-width: 70px; padding: 0.75rem; }
             .time-value { font-size: 1.4rem; }
         }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
-        }
     </style>
 </head>
 <body>
 
-    <!-- COUNTDOWN OVERLAY -->
     <div id="countdown-overlay">
         <div class="animated-bg"></div>
         <div class="clock-container">
@@ -304,7 +300,6 @@
         </div>
     </div>
 
-    <!-- MAIN PORTFOLIO -->
     <div id="portfolio-content">
         <header>
             <div class="profile-img"><i class="fa-solid fa-code"></i></div>
@@ -362,15 +357,19 @@
     </div>
 
     <script>
-        // TARGET DATE
         const targetDate = new Date("March 1, 2026 00:00:00").getTime();
+        const dEl = document.getElementById("days");
+        const hEl = document.getElementById("hours");
+        const mEl = document.getElementById("minutes");
+        const sEl = document.getElementById("seconds");
+        const msEl = document.getElementById("milliseconds");
 
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = targetDate - now;
 
             if (distance <= 0) {
-                clearInterval(interval);
+                cancelAnimationFrame(animationFrameId);
                 revealPortfolio();
                 return;
             }
@@ -379,16 +378,20 @@
             const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Calculate milliseconds and round to the nearest 10 (showing every 10th ms)
+            // We use modulo 1000 to get the ms remainder, then divide by 10/multiply by 10 to floor to tens.
+            const rawMs = distance % 1000;
+            const ms = Math.floor(rawMs / 10) * 10;
 
-            const dEl = document.getElementById("days");
-            const hEl = document.getElementById("hours");
-            const mEl = document.getElementById("minutes");
-            const sEl = document.getElementById("seconds");
+            dEl.innerText = d.toString().padStart(2, '0');
+            hEl.innerText = h.toString().padStart(2, '0');
+            mEl.innerText = m.toString().padStart(2, '0');
+            sEl.innerText = s.toString().padStart(2, '0');
+            // Ensure 3 digits for consistent width, or 2 if you prefer 10, 20...90
+            msEl.innerText = ms.toString().padStart(2, '0');
 
-            if(dEl) dEl.innerText = d.toString().padStart(2, '0');
-            if(hEl) hEl.innerText = h.toString().padStart(2, '0');
-            if(mEl) mEl.innerText = m.toString().padStart(2, '0');
-            if(sEl) sEl.innerText = s.toString().padStart(2, '0');
+            animationFrameId = requestAnimationFrame(updateCountdown);
         }
 
         function revealPortfolio() {
@@ -403,10 +406,7 @@
             }, 800);
         }
 
-        const interval = setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
-        // Prevent scroll while overlay is active
+        let animationFrameId = requestAnimationFrame(updateCountdown);
         document.body.style.overflow = 'hidden';
     </script>
 </body>
