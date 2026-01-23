@@ -7,13 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #5865F2;
+            --primary: #5865F2; /* Discord Blue */
             --accent: #ffcc00;
             --bg-dark: #0f1218;
             --bg-card: #1a1e26;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
             --gradient: linear-gradient(135deg, #5865F2 0%, #3a44a7 100%);
+            --discord: #5865F2;
         }
 
         * {
@@ -32,8 +33,8 @@
 
         /* Hero Section */
         header {
-            height: 80vh;
-            background: linear-gradient(rgba(15, 18, 24, 0.7), rgba(15, 18, 24, 0.9)), 
+            height: 85vh;
+            background: linear-gradient(rgba(15, 18, 24, 0.75), rgba(15, 18, 24, 0.95)), 
                         url('https://images.unsplash.com/photo-1627373119858-c035bea97c88?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -50,7 +51,7 @@
             letter-spacing: 5px;
             color: var(--text-main);
             margin-bottom: 10px;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            text-shadow: 0 5px 25px rgba(0,0,0,0.6);
         }
 
         .server-ip-box {
@@ -62,13 +63,37 @@
             align-items: center;
             gap: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 20px;
         }
 
         .server-ip-box:hover {
             transform: scale(1.05);
             background: var(--primary);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .discord-btn {
+            background: #ffffff;
+            color: var(--discord);
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        .discord-btn:hover {
+            background: var(--discord);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .status-badge {
@@ -91,22 +116,37 @@
 
         .dot.online { background-color: #00ff88; box-shadow: 0 0 10px #00ff88; }
 
-        /* Content Sections */
+        /* Container & Content */
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 0 20px 80px 20px;
         }
 
-        section {
-            margin-bottom: 80px;
+        .stat-banner {
+            background: var(--gradient);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            margin: -40px auto 60px auto;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .player-count {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 2.5rem;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-align: center;
             position: relative;
         }
@@ -114,10 +154,10 @@
         h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--primary);
         }
@@ -125,75 +165,93 @@
         /* Rules Grid */
         .rules-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
         .rule-card {
             background: var(--bg-card);
-            padding: 30px;
+            padding: 35px;
             border-radius: 15px;
-            border-left: 5px solid var(--primary);
-            transition: transform 0.3s ease;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .rule-card:hover {
-            transform: translateY(-5%) rotate(1deg);
+            transform: translateY(-10px);
+            border-bottom-color: var(--primary);
+            background: #232832;
         }
 
         .rule-num {
             font-family: 'Oswald', sans-serif;
             color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
             display: block;
+            opacity: 0.8;
+        }
+
+        .rule-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
         }
 
         .rule-card p {
             color: var(--text-muted);
-        }
-
-        /* Player Counter */
-        .stat-banner {
-            background: var(--gradient);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .player-count {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 0.95rem;
         }
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
             background: #080a0d;
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        .footer-socials {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--primary);
         }
 
         .copy-toast {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: var(--accent);
             color: #000;
-            padding: 10px 25px;
-            border-radius: 5px;
-            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 900;
             display: none;
             z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { bottom: -50px; opacity: 0; }
+            to { bottom: 30px; opacity: 1; }
         }
 
         @media (max-width: 768px) {
+            header { height: 75vh; }
             .rules-grid { grid-template-columns: 1fr; }
+            .logo-text { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -201,20 +259,28 @@
 
     <header>
         <div class="logo-text">TovariaMC</div>
-        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.8;">Join the most epic survival community</p>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; max-width: 600px;">The Ultimate Community-Driven Survival Experience</p>
         
-        <div class="server-ip-box" onclick="copyIP()">
-            <span id="ip-text">tovariamc.de</span>
+        <div class="server-ip-box" onclick="copyIP()" title="Click to copy IP">
+            <span id="ip-text" style="font-weight: 700; letter-spacing: 1px;">tovariamc.de</span>
             <div class="status-badge">
                 <div id="status-dot" class="dot"></div>
-                <span id="player-status">Pinging...</span>
+                <span id="player-status">PINGING...</span>
             </div>
         </div>
+
+        <!-- Discord Invitation Link -->
+        <a href="https://discord.gg/q4NZ8Wqukm" target="_blank" class="discord-btn">
+            <svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor">
+                <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.06,72.06,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.73,32.98-1.86,57.21.35,81.12a105.66,105.66,0,0,0,32.5,16.23,77.7,77.7,0,0,0,7.07-11.59,67.43,67.43,0,0,1-11.35-5.42c.85-.62,1.71-1.29,2.54-1.99a74.82,74.82,0,0,0,64.03,0c.84.7,1.69,1.37,2.54,1.99a67.31,67.31,0,0,1-11.35,5.42,77.84,77.84,0,0,0,7.07,11.59,105.09,105.09,0,0,0,32.5-16.23C130,51.2,121.77,27.31,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5.17-12.71,11.43-12.71S54,46,53.87,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.17-12.71,11.44-12.71S96.23,46,96.11,53,91,65.69,84.69,65.69Z"/>
+            </svg>
+            Join Discord
+        </a>
     </header>
 
     <div class="container">
         <div class="stat-banner">
-            <span class="player-count" id="detailed-status">Fetching server data from the void...</span>
+            <span class="player-count" id="detailed-status">Establishing connection to TovariaMC...</span>
         </div>
 
         <section id="rules">
@@ -223,49 +289,56 @@
                 <div class="rule-card">
                     <span class="rule-num">01</span>
                     <h3>Respect Everyone</h3>
-                    <p>Treat all players with respect. Harassment, racism, sexism, or hate speech will result in an immediate ban.</p>
+                    <p>Treat all players with respect. Harassment, racism, sexism, or hate speech will result in an immediate and permanent ban.</p>
                 </div>
                 <div class="rule-card">
                     <span class="rule-num">02</span>
                     <h3>No Cheating</h3>
-                    <p>X-ray, flying, auto-clickers, or any third-party clients that provide an unfair advantage are strictly forbidden.</p>
+                    <p>X-ray, flying, auto-clickers, or any third-party clients that provide an unfair advantage are strictly forbidden and tracked.</p>
                 </div>
                 <div class="rule-card">
                     <span class="rule-num">03</span>
                     <h3>No Griefing</h3>
-                    <p>Do not destroy or modify other players' builds without permission. We value creativity and effort.</p>
+                    <p>Do not destroy or modify other players' builds without permission. We value the creativity and effort of our community.</p>
                 </div>
                 <div class="rule-card">
                     <span class="rule-num">04</span>
                     <h3>No Spamming</h3>
-                    <p>Keep the chat clean. Avoid excessive caps, repeated messages, or advertising other servers.</p>
+                    <p>Keep the chat clean and readable. Avoid excessive caps, repeated messages, or advertising other servers.</p>
                 </div>
                 <div class="rule-card">
                     <span class="rule-num">05</span>
                     <h3>Fair Economy</h3>
-                    <p>Do not exploit bugs or glitches to gain items or currency. Report any bugs to the staff immediately.</p>
+                    <p>Do not exploit bugs or glitches to gain items or currency. Report any issues to the staff immediately for a reward.</p>
                 </div>
                 <div class="rule-card">
                     <span class="rule-num">06</span>
-                    <h3>Staff Decisions</h3>
-                    <p>Staff members have the final say in disputes. If you feel a decision was unfair, appeal on our Discord.</p>
+                    <h3>Staff Authority</h3>
+                    <p>Staff members have the final say in disputes. If you feel a decision was unfair, submit an appeal on our Discord server.</p>
                 </div>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2023 TovariaMC. Not affiliated with Mojang AB.</p>
+        <p>&copy; 2023-2024 TovariaMC Server Network. All rights reserved.</p>
+        <p>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</p>
+        <div class="footer-socials">
+            <a href="https://discord.gg/your-invite-link">Discord</a>
+            <a href="#">Support</a>
+            <a href="#">Wiki</a>
+        </div>
     </footer>
 
-    <div id="toast" class="copy-toast">IP Copied to Clipboard!</div>
+    <div id="toast" class="copy-toast">IP ADDRESS COPIED!</div>
 
     <script>
-        const IP = "tovariamc.de";
+        const SERVER_IP = "tovariamc.de";
 
         async function fetchStatus() {
             try {
-                const response = await fetch(`https://api.mcsrvstat.us/3/${IP}`);
+                // Using mc-api.net or mcsrvstat.us as public APIs
+                const response = await fetch(`https://api.mcsrvstat.us/3/${SERVER_IP}`);
                 const data = await response.json();
                 
                 const dot = document.getElementById('status-dot');
@@ -275,30 +348,32 @@
                 if (data.online) {
                     dot.classList.add('online');
                     playerStatus.innerText = "ONLINE";
-                    detailedStatus.innerText = `${data.players.online} / ${data.players.max} Explorers currently online`;
+                    detailedStatus.innerHTML = `<strong>${data.players.online}</strong> / ${data.players.max} Explorers currently exploring the wild!`;
                 } else {
                     dot.classList.remove('online');
                     playerStatus.innerText = "OFFLINE";
-                    detailedStatus.innerText = "The server is currently undergoing maintenance.";
+                    detailedStatus.innerText = "The server is currently sleeping. Check Discord for maintenance updates.";
                 }
             } catch (error) {
                 console.error("Failed to fetch server status", error);
-                document.getElementById('player-status').innerText = "ERROR";
+                document.getElementById('player-status').innerText = "UNREACHABLE";
             }
         }
 
         function copyIP() {
-            navigator.clipboard.writeText(IP);
-            const toast = document.getElementById('toast');
-            toast.style.display = 'block';
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 2000);
+            navigator.clipboard.writeText(SERVER_IP).then(() => {
+                const toast = document.getElementById('toast');
+                toast.style.display = 'block';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 2500);
+            });
         }
 
-        // Initial fetch and set interval
+        // Initialize
         fetchStatus();
-        setInterval(fetchStatus, 30000);
+        // Update every 60 seconds
+        setInterval(fetchStatus, 60000);
     </script>
 </body>
 </html>
