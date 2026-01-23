@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TovariaMC | Ultimate Survival Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5865F2;
+            --accent: #ffcc00;
+            --bg-dark: #0f1218;
+            --bg-card: #1a1e26;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --gradient: linear-gradient(135deg, #5865F2 0%, #3a44a7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(15, 18, 24, 0.7), rgba(15, 18, 24, 0.9)), 
+                        url('https://images.unsplash.com/photo-1627373119858-c035bea97c88?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .server-ip-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--primary);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .server-ip-box:hover {
+            transform: scale(1.05);
+            background: var(--primary);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: #555;
+        }
+
+        .dot.online { background-color: #00ff88; box-shadow: 0 0 10px #00ff88; }
+
+        /* Content Sections */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        /* Rules Grid */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .rule-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5%) rotate(1deg);
+        }
+
+        .rule-num {
+            font-family: 'Oswald', sans-serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .rule-card p {
+            color: var(--text-muted);
+        }
+
+        /* Player Counter */
+        .stat-banner {
+            background: var(--gradient);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .player-count {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #080a0d;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .copy-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .rules-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">TovariaMC</div>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.8;">Join the most epic survival community</p>
+        
+        <div class="server-ip-box" onclick="copyIP()">
+            <span id="ip-text">tovariamc.de</span>
+            <div class="status-badge">
+                <div id="status-dot" class="dot"></div>
+                <span id="player-status">Pinging...</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stat-banner">
+            <span class="player-count" id="detailed-status">Fetching server data from the void...</span>
+        </div>
+
+        <section id="rules">
+            <h2>Server Rules</h2>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <span class="rule-num">01</span>
+                    <h3>Respect Everyone</h3>
+                    <p>Treat all players with respect. Harassment, racism, sexism, or hate speech will result in an immediate ban.</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-num">02</span>
+                    <h3>No Cheating</h3>
+                    <p>X-ray, flying, auto-clickers, or any third-party clients that provide an unfair advantage are strictly forbidden.</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-num">03</span>
+                    <h3>No Griefing</h3>
+                    <p>Do not destroy or modify other players' builds without permission. We value creativity and effort.</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-num">04</span>
+                    <h3>No Spamming</h3>
+                    <p>Keep the chat clean. Avoid excessive caps, repeated messages, or advertising other servers.</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-num">05</span>
+                    <h3>Fair Economy</h3>
+                    <p>Do not exploit bugs or glitches to gain items or currency. Report any bugs to the staff immediately.</p>
+                </div>
+                <div class="rule-card">
+                    <span class="rule-num">06</span>
+                    <h3>Staff Decisions</h3>
+                    <p>Staff members have the final say in disputes. If you feel a decision was unfair, appeal on our Discord.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 TovariaMC. Not affiliated with Mojang AB.</p>
+    </footer>
+
+    <div id="toast" class="copy-toast">IP Copied to Clipboard!</div>
+
+    <script>
+        const IP = "tovariamc.de";
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch(`https://api.mcsrvstat.us/3/${IP}`);
+                const data = await response.json();
+                
+                const dot = document.getElementById('status-dot');
+                const playerStatus = document.getElementById('player-status');
+                const detailedStatus = document.getElementById('detailed-status');
+
+                if (data.online) {
+                    dot.classList.add('online');
+                    playerStatus.innerText = "ONLINE";
+                    detailedStatus.innerText = `${data.players.online} / ${data.players.max} Explorers currently online`;
+                } else {
+                    dot.classList.remove('online');
+                    playerStatus.innerText = "OFFLINE";
+                    detailedStatus.innerText = "The server is currently undergoing maintenance.";
+                }
+            } catch (error) {
+                console.error("Failed to fetch server status", error);
+                document.getElementById('player-status').innerText = "ERROR";
+            }
+        }
+
+        function copyIP() {
+            navigator.clipboard.writeText(IP);
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        }
+
+        // Initial fetch and set interval
+        fetchStatus();
+        setInterval(fetchStatus, 30000);
+    </script>
+</body>
+</html>
