@@ -352,62 +352,10 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 Erik Demoulin | Built with Passion</p>
+            <p>&copy; 2026 Lokrogamer | Built with Passion</p>
         </footer>
     </div>
 
-    <script>
-        const targetDate = new Date("March 1, 2026 00:00:00").getTime();
-        const dEl = document.getElementById("days");
-        const hEl = document.getElementById("hours");
-        const mEl = document.getElementById("minutes");
-        const sEl = document.getElementById("seconds");
-        const msEl = document.getElementById("milliseconds");
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance <= 0) {
-                cancelAnimationFrame(animationFrameId);
-                revealPortfolio();
-                return;
-            }
-
-            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            // Calculate milliseconds and round to the nearest 10 (showing every 10th ms)
-            // We use modulo 1000 to get the ms remainder, then divide by 10/multiply by 10 to floor to tens.
-            const rawMs = distance % 1000;
-            const ms = Math.floor(rawMs / 10) * 10;
-
-            dEl.innerText = d.toString().padStart(2, '0');
-            hEl.innerText = h.toString().padStart(2, '0');
-            mEl.innerText = m.toString().padStart(2, '0');
-            sEl.innerText = s.toString().padStart(2, '0');
-            // Ensure 3 digits for consistent width, or 2 if you prefer 10, 20...90
-            msEl.innerText = ms.toString().padStart(2, '0');
-
-            animationFrameId = requestAnimationFrame(updateCountdown);
-        }
-
-        function revealPortfolio() {
-            const overlay = document.getElementById('countdown-overlay');
-            const content = document.getElementById('portfolio-content');
-            
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                content.classList.add('visible');
-                document.body.style.overflow = 'auto';
-            }, 800);
-        }
-
-        let animationFrameId = requestAnimationFrame(updateCountdown);
-        document.body.style.overflow = 'hidden';
-    </script>
+    
 </body>
 </html>
