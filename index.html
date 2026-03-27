@@ -136,7 +136,7 @@
         }
 
         #portfolio-content {
-            opacity: 0;
+            opacity: 1;
             transform: translateY(20px);
             transition: var(--transition);
             visibility: visible;
@@ -144,12 +144,6 @@
             margin: 0 auto;
             padding: 4rem 2rem;
             width: 100%;
-        }
-
-        #portfolio-content.visible {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
         }
 
         header { text-align: center; margin-bottom: 5rem; }
@@ -262,43 +256,6 @@
     </style>
 </head>
 <body>
-
-    <div id="countdown-overlay">
-        <div class="animated-bg"></div>
-        <div class="clock-container">
-            <div class="clock-icon-wrapper">
-                <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="#9146FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14" id="hand"></polyline>
-                </svg>
-            </div>
-            
-            <div style="  
-                display: inline-block;
-                padding: 0.5rem 1.4rem;
-                background: rgba(145, 70, 255, 0.15);
-                border: 1px solid var(--primary);
-                border-radius: 100px;
-                color: var(--primary);
-                font-weight: 800;
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-                margin-bottom: 1.5rem;
-                animation: pulse 2s infinite;
-            ">UNVEILING SOON</div>
-
-            <h1 style="font-size: clamp(2rem, 8vw, 2.8rem); background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;">lokrogamer</h1>
-            
-            <div class="countdown-grid">
-                <div class="time-box"><span class="time-value" id="days">00</span><span class="time-label">Days</span></div>
-                <div class="time-box"><span class="time-value" id="hours">00</span><span class="time-label">Hours</span></div>
-                <div class="time-box"><span class="time-value" id="minutes">00</span><span class="time-label">Min</span></div>
-                <div class="time-box"><span class="time-value" id="seconds">00</span><span class="time-label">Sec</span></div>
-                <div class="time-box"><span class="time-value" id="milliseconds">00</span><span class="time-label">Ms</span></div>
-            </div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Portfolio unlocks when the timer reaches zero.</p>
-        </div>
-    </div>
 
     <div id="portfolio-content">
         <header>
