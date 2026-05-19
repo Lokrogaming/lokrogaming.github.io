@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
  <link rel="icon" href="/src/assets/icon.png" type="image/png">
   <meta charset="UTF-8" />
@@ -42,245 +42,299 @@
                 "text": "Unter https://lokrogaming.github.io/tac "
             }
         }
-    ]
-}
-</script>
- <noscript>
-    <meta http-equiv="refresh" content="0; url=error.html?reason=javascript_disabled">
-  </noscript>
- <style>
-  /* From Uiverse.io by cssbuttons-io */ 
-form button {
- --glow-color: rgb(217, 176, 255);
- --glow-spread-color: rgba(191, 123, 255, 0.781);
- --enhanced-glow-color: rgb(231, 206, 255);
- --btn-color: rgb(100, 61, 136);
- border: .25em solid var(--glow-color);
- padding: 1em 3em;
- color: var(--glow-color);
- font-size: 15px;
- font-weight: bold;
- background-color: var(--btn-color);
- border-radius: 1em;
- outline: none;
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 1em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
- text-shadow: 0 0 .5em var(--glow-color);
- position: relative;
- transition: all 0.3s;
-}
 
-form button::after {
- pointer-events: none;
- content: "";
- position: absolute;
- top: 120%;
- left: 0;
- height: 100%;
- width: 100%;
- background-color: var(--glow-spread-color);
- filter: blur(2em);
- opacity: .7;
- transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-form button:hover {
- color: var(--btn-color);
- background-color: var(--glow-color);
- box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
-}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-form button:active {
- box-shadow: 0 0 0.6em .25em var(--glow-color),
-        0 0 2.5em 2em var(--glow-spread-color),
-        inset 0 0 .5em .25em var(--glow-color);
-}
- </style>
+        #countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--bg-dark);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, #0e0e10, #1a1a2e, #2d1b4e, #0e0e10);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .clock-container {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(24, 24, 27, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            width: calc(100% - 40px);
+            margin: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .clock-icon-wrapper {
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .clock-icon {
+            width: 60px;
+            height: 60px;
+        }
+        
+        #hand {
+            transform-origin: 12px 12px;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .countdown-grid {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1rem;
+            border-radius: 12px;
+            flex: 1;
+            max-width: 100px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .time-value {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .time-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+
+        #portfolio-content {
+            opacity: 1;
+            transform: translateY(20px);
+            transition: var(--transition);
+            visibility: visible;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            width: 100%;
+        }
+
+        header { text-align: center; margin-bottom: 5rem; }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), #8b5cf6);
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        
+        .location { color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .badge-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        h2 { color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem;}
+
+        .org-card {
+            background: rgba(0,0,0,0.2);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--primary);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            color: var(--text-main);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+            color: white;
+        }
+
+        .website-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer { text-align: center; margin-top: auto; color: var(--text-muted); padding: 4rem 2rem 2rem; }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .countdown-grid { flex-wrap: wrap; }
+            .time-box { min-width: 70px; padding: 0.75rem; }
+            .time-value { font-size: 1.4rem; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div style="display: none;" class="circle-timer">
-      <a href="https://lokrogaming.github.io/news"><img src="logo-lg.png" alt="LG Logo" class="logo pulsate" />
-      <svg class="progress-ring" width="220" height="220">
-        <circle class="progress-ring__circle" stroke="#ffffff33" stroke-width="6" fill="transparent" r="100" cx="110" cy="110"/>
-      </svg></a>
 
+    <div id="portfolio-content">
+        <header>
+            <div class="profile-img"><i class="fa-solid fa-code"></i></div>
+            <h1>Lokrogamer</h1>
+            <div class="location"><i class="fa-solid fa-location-dot"></i> NRW, Germany</div>
+            <div class="badge-container">
+                <span class="badge">Streamer</span>
+                <span class="badge">Developer</span>
+            </div>
+        </header>
+
+        <main class="main-grid">
+            <section>
+                <h2><i class="fa-solid fa-layer-group"></i> Tech Stack</h2>
+                <div class="badge-container" style="justify-content: flex-start;">
+                    <span class="badge">HTML5</span><span class="badge">CSS3</span>
+                    <span class="badge">JavaScript</span><span class="badge">TypeScript</span>
+                    <span class="badge">React</span>
+                </div>
+                <h2 style="margin-top: 2rem;"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</h2>
+                <div class="badge-container" style="justify-content: flex-start;">
+                    <span class="badge">VS Code</span><span class="badge">GitHub</span>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-briefcase"></i> Organizations</h2>
+                <div class="org-card">Lokrogamer</div>
+                <div class="org-card">LokroGaming</div>
+                <div class="org-card">LGG</div>
+                <a href="https://lokrogaming.github.io" class="website-link" target="_blank">
+                    <i class="fa-solid fa-globe"></i> Visit Official Website
+                </a>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-hashtag"></i> Connect</h2>
+                <div class="social-links">
+                    <a href="https://github.com/Lokrogaming" class="social-btn" target="_blank"><i class="fa-brands fa-github"></i><br>GitHub</a>
+                    <a href="https://twitch.tv/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-twitch"></i><br>Twitch</a>
+                    <a href="https://instagram.com/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-instagram"></i><br>Insta</a>
+                </div>
+            </section>
+
+            <section>
+                <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
+                <p><strong>Discord:</strong> lokrogamer</p>
+                <p style="margin-top: 1rem"><strong>Hobbies:</strong> Streamer & Developer</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Lokrogamer | Built with Passion</p>
+        </footer>
     </div>
-   <form id="demo-form">
-    
-    
-    <!-- Cloudflare Turnstile Widget -->
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB2mejB5e4DeNL-G"></div><br><br>
-    
-    <button onclick="window.location.href='https://lokrogaming.github.io/news'" id="formSubmitBtn" type="submit">Absenden</button>
-  </form>
-    <p class="info-text">CTRL + B drücken um auf die Seite zu gelangen</p><br>
-    
-    <!-- Elfsight Cookie Consent | Untitled Cookie Consent -->
-<script src="https://elfsightcdn.com/platform.js" async></script>
-<div class="elfsight-app-0a6af0da-ab35-400c-b597-6522a6fc6280" data-elfsight-app-lazy></div>
-  </div>
-
-  <script>
-   document.getElementById("demo-form").addEventListener("submit", async e => {
-  e.preventDefault();
-
-  const formData = new FormData(e.target);
-  const token = formData.get('cf-turnstile-response');
-
-  if (!token) {
-    alert("Bitte bestätige, dass du kein Bot bist!");
-    return;
-  }
-
-  // Token an Worker senden und Ergebnis abwarten
-  const resp = await fetch("https://captcha.lokrogamer29.workers.dev/verify", {
-    method: "POST",
-    body: formData
-  });
-
-  const text = await resp.text();
-
-  if (text.includes("OK")) {
-    window.location.href = "https://lokrogaming.github.io/news/";
-  } else {
-    alert("Turnstile-Check fehlgeschlagen: " + text);
-  }
-});
-
 
     
-   
-  /*  const circle = document.querySelector('.progress-ring__circle');
-    const radius = circle.r.baseVal.value;
-    const circumference = 2 * Math.PI * radius;
-    circle.style.strokeDasharray = `${circumference}`;
-    circle.style.strokeDashoffset = `${circumference}`;
-
-    function animateProgress(duration) {
-      let start = null;
-      function step(timestamp) {
-        if (!start) start = timestamp;
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / duration, 1);
-        circle.style.strokeDashoffset = circumference * (1 - progress);
-        if (progress < 1) {
-          requestAnimationFrame(step);
-        }
-      }
-      requestAnimationFrame(step);
-    }
-
-    animateProgress(30000);
-
-    
-    setTimeout(() => {
-      document.querySelector('.logo').classList.remove('pulsate');
-      document.querySelector('.progress-ring__circle').style.strokeDashoffset = 0;
-      //window.location.href = 'abwl.html'; 
-    }, 30000);
-
-    
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.key.toLowerCase() === 'b') {
-       window.location.href = 'https://lokrogaming.github.io/news/';
-      }
-    });
-   
-*/
-
-  </script>
-<script>
-(function() {
-  const allowedReferrers = [
-    "https://zz2vze.mimo.run",
-    "https://google.com",
-    "https://lokrogaming.github.io",
-    "https://www.google.com",
-   "android-app://com.google.android.googlequicksearchbox"
-   
-  ];
-
-  const blockedReferrers = [
-    "https://clr785.mimo.run",
-    "www.facebook.com",
-    "facebook.com"
-  ];
-
-  const referrer = document.referrer;
-
-  if (!referrer) return;
-
-  // Prüfen auf erlaubt oder gesperrt
-  const isAllowed = allowedReferrers.some(domain => referrer.startsWith(domain));
-  const isBlocked = blockedReferrers.some(domain => referrer.startsWith(domain));
-
-  if (isBlocked) {
-    // Weiterleitung bei gesperrter Domain
-    window.location.href = "error?reason=403";
-    return;
-  }
-
-  if (!isAllowed) {
-    // Infos sammeln
-    const now = new Date().toLocaleString();
-    const userAgent = navigator.userAgent;
-    const browser = navigator.userAgentData ? navigator.userAgentData.brands.map(b => b.brand + " " + b.version).join(", ") : userAgent;
-    
-    // Formular dynamisch erstellen
-    const form = document.createElement("form");
-    form.action = "https://formsubmit.co/80e9551f7ddd8b6282a363c05710a155";
-    form.method = "POST";
-    form.style.display = "none";
-
-    const refInput = document.createElement("input");
-    refInput.type = "hidden";
-    refInput.name = "Referrer";
-    refInput.value = referrer;
-    form.appendChild(refInput);
-
-    const dateInput = document.createElement("input");
-    dateInput.type = "hidden";
-    dateInput.name = "Date";
-    dateInput.value = now;
-    form.appendChild(dateInput);
-
-    const browserInput = document.createElement("input");
-    browserInput.type = "hidden";
-    browserInput.name = "Browser/OS";
-    browserInput.value = browser;
-    form.appendChild(browserInput);
-
-    // Captcha deaktivieren
-    const captchaInput = document.createElement("input");
-    captchaInput.type = "hidden";
-    captchaInput.name = "_captcha";
-    captchaInput.value = "false";
-    form.appendChild(captchaInput);
-
-
-   const nextInput = document.createElement("input");
-    nextInput.type = "hidden";
-    nextInput.name = "_next";
-    nextInput.value = "https://lokrogaming.github.io/news";
-    form.appendChild(nextInput);
-
-
-
-   const templateInput = document.createElement("input");
-    templateInput.type = "hidden";
-    templateInput.name = "_template";
-    templateInput.value = "box";
-    form.appendChild(templateInput);
-
-    document.body.appendChild(form);
-    form.submit();
-  }
-})();
-</script>
-
 </body>
 </html>
