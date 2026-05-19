@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Discord bot dashboard</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #161b26;
+      --border: #2a3142;
+      --text: #e6e9ef;
+      --muted: #8b95a8;
+      --accent: #5865f2;
+      --accent-hover: #4752c4;
+      --ok: #3ba55d;
+      --warn: #faa81a;
+      --bad: #ed4245;
+      --radius: 12px;
+      --font: system-ui, "Segoe UI", Roboto, sans-serif;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f6fb;
+        --surface: #fff;
+        --border: #d8dee9;
+        --text: #1a1d26;
+        --muted: #5c6578;
+        --accent: #4752c4;
+        --accent-hover: #3c45a5;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-hover); }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0;
+      flex: 1 1 auto;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+    }
+    button:hover { border-color: var(--accent); }
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    button.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .status .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    .status.online .dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+    .status.offline .dot { background: var(--bad); }
+    .status.unknown .dot { background: var(--warn); }
+    .meta { font-size: 0.8rem; color: var(--muted); width: 100%; }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-bottom: 1.25rem;
+    }
+    section h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      background: var(--border);
+      color: var(--muted);
+    }
+    .error {
+      color: var(--bad);
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+    .servers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .server-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .server-head {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+    }
+    .server-head img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .server-head .placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #7289da);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .server-title { font-weight: 700; font-size: 1rem; margin: 0; }
+    .kv {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.25rem 0.65rem;
+      font-size: 0.85rem;
+    }
+    .kv dt { color: var(--muted); margin: 0; }
+    .kv dd { margin: 0; word-break: break-word; }
+    .announce-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .announce-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.9rem;
+    }
+    .announce-item pre {
+      margin: 0.5rem 0 0;
+      overflow: auto;
+      font-size: 0.78rem;
+      background: var(--bg);
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .json-block {
+      margin: 0;
+      padding: 0.75rem;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      overflow: auto;
+      max-height: 420px;
+    }
+    .hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .view-hidden {
+      display: none !important;
+    }
+    #viewOffline {
+      text-align: center;
+      padding: 3rem 1rem;
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+    #viewOffline .offline-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+    }
+    #viewOffline .offline-detail {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 1.25rem;
+      word-break: break-word;
+    }
+    #viewOffline .offline-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div id="viewOffline" aria-live="polite">
+      <p id="offlineTitle" class="offline-title">Checking the bot…</p>
+      <p id="offlineDetail" class="offline-detail">Trying to reach the bot service…</p>
+      <div class="toolbar" style="justify-content: center; margin-bottom: 1rem">
+        <button type="button" class="primary" id="btnRefreshOffline">Check now</button>
+      </div>
+      <p id="offlineMeta" class="offline-meta"></p>
+    </div>
+
+    <div id="viewOnline" class="view-hidden">
+      <header>
+        <h1>Discord bot dashboard</h1>
+        <div id="botStatus" class="status unknown" aria-live="polite">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="botStatusText">Checking bot…</span>
+        </div>
+        <div class="toolbar">
+          <button type="button" class="primary" id="btnRefresh">Refresh</button>
+        </div>
+        <p class="meta" id="lastUpdated"></p>
+      </header>
+
+      <section id="secAnnouncements">
+        <h2>Announcements <span class="badge" id="announceBadge">—</span></h2>
+        <div id="announcementsBody"></div>
+      </section>
+
+      <section id="secServers">
+        <h2>Servers <span class="badge" id="serversBadge">—</span></h2>
+        <div id="serversBody"></div>
+      </section>
+
+      <p class="hint" id="configHint"></p>
+      <footer>
+        Static dashboard · data refreshes every 30 seconds · see README for URL options
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const defaultBot = "http://192.168.178.101:3298";
+      const defaultJson = "http://192.168.178.101:3299";
+
+      const BOT_BASE = (params.get("bot") || params.get("botBase") || defaultBot).replace(/\/$/, "");
+      const JSON_BASE = (params.get("json") || params.get("jsonBase") || defaultJson).replace(/\/$/, "");
+      const BOT_HEALTH_PATH = params.get("botPath") || "/";
+      const FETCH_TIMEOUT_MS = Math.min(Math.max(Number(params.get("timeoutMs")) || 8000, 2000), 60000);
+      const POLL_MS = Math.min(Math.max(Number(params.get("pollMs")) || 30000, 5000), 300000);
+
+      const el = (id) => document.getElementById(id);
+
+      function withTimeout(url, options = {}) {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
+        return fetch(url, { ...options, signal: ctrl.signal }).finally(() => clearTimeout(t));
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function setHint() {
+        const isDefault = BOT_BASE === defaultBot && JSON_BASE === defaultJson;
+        el("configHint").innerHTML =
+          "API bases: <strong>bot</strong> <code>" +
+          escapeHtml(BOT_BASE) +
+          "</code> · <strong>JSON</strong> <code>" +
+          escapeHtml(JSON_BASE) +
+          "</code>" +
+          (isDefault
+            ? " · Override with <code>?json=https://your-proxy.example</code> and <code>?bot=…</code> if needed."
+            : "");
+      }
+
+      function setViews(online) {
+        el("viewOnline").classList.toggle("view-hidden", !online);
+        el("viewOffline").classList.toggle("view-hidden", online);
+      }
+
+      async function probeBot() {
+        const statusEl = el("botStatus");
+        const textEl = el("botStatusText");
+        statusEl.className = "status unknown";
+        textEl.textContent = "Checking bot…";
+
+        const url = BOT_BASE + (BOT_HEALTH_PATH.startsWith("/") ? BOT_HEALTH_PATH : "/" + BOT_HEALTH_PATH);
+
+        try {
+          const res = await withTimeout(url, { method: "GET", cache: "no-store" });
+          if (res.ok) {
+            statusEl.className = "status online";
+            textEl.textContent = "Bot online (HTTP " + res.status + ")";
+            return { online: true };
+          }
+          statusEl.className = "status offline";
+          textEl.textContent = "Bot offline (HTTP " + res.status + ")";
+          return {
+            online: false,
+            detail: "The bot did not respond with success (got HTTP " + res.status + ").",
+          };
+        } catch (e) {
+          const msg = e && e.name === "AbortError" ? "Connection timed out." : (e && e.message) || String(e);
+          statusEl.className = "status offline";
+          textEl.textContent = "Bot offline";
+          return { online: false, detail: msg };
+        }
+      }
+
+      function formatPollHint() {
+        return "This page checks again every " + Math.round(POLL_MS / 1000) + " seconds.";
+      }
+      function renderServerCard(id, s) {
+        const name = escapeHtml(s.name || id);
+        const icon = s.icon;
+        const initials = (s.name || id).replace(/\s+/g, " ").trim().slice(0, 2).toUpperCase();
+        const imgHtml = icon
+          ? '<img src="' + escapeHtml(icon) + '" alt="" width="48" height="48" loading="lazy" />'
+          : '<div class="placeholder" aria-hidden="true">' + escapeHtml(initials) + "</div>";
+
+        const rows = [];
+        function row(label, val) {
+          if (val === undefined || val === null || val === "") return;
+          rows.push("<dt>" + escapeHtml(label) + "</dt><dd>" + val + "</dd>");
+        }
+
+        row("ID", "<code>" + escapeHtml(String(s.id || id)) + "</code>");
+        row("Members", escapeHtml(String(s.memberCount ?? "—")));
+        row("Online", escapeHtml(String(s.onlineCount ?? "—")));
+        if (s.invite) {
+          row(
+            "Invite",
+            '<a href="' + escapeHtml(s.invite) + '" rel="noopener noreferrer">Open invite</a>'
+          );
+        }
+        if (s.inviteCreator && typeof s.inviteCreator === "object") {
+          row("Invite creator", escapeHtml(s.inviteCreator.tag || s.inviteCreator.id || JSON.stringify(s.inviteCreator)));
+        } else if (s.inviteCreator === null) {
+          row("Invite creator", "<em>null</em>");
+        }
+        if (s.newsletter !== undefined) {
+          row("Newsletter", escapeHtml(String(s.newsletter)));
+        }
+        if (s.newsletterChannelId !== undefined) {
+          row("Newsletter channel", s.newsletterChannelId ? "<code>" + escapeHtml(String(s.newsletterChannelId)) + "</code>" : "<em>null</em>");
+        }
+        row("Created", escapeHtml(String(s.createdAt ?? "—")));
+        row("Updated", escapeHtml(String(s.updatedAt ?? "—")));
+
+        const extraKeys = Object.keys(s).filter(
+          (k) =>
+            ![
+              "id",
+              "name",
+              "icon",
+              "memberCount",
+              "onlineCount",
+              "invite",
+              "inviteCreator",
+              "newsletter",
+              "newsletterChannelId",
+              "createdAt",
+              "updatedAt",
+            ].includes(k)
+        );
+        extraKeys.forEach((k) => {
+          const v = s[k];
+          const display =
+            typeof v === "object" && v !== null
+              ? "<pre class=\"json-block\" style=\"max-height:180px;margin:0\">" +
+                escapeHtml(JSON.stringify(v, null, 2)) +
+                "</pre>"
+              : escapeHtml(JSON.stringify(v));
+          row(k, display);
+        });
+
+        return (
+          '<article class="server-card">' +
+          '<div class="server-head">' +
+          imgHtml +
+          "<div><p class=\"server-title\">" +
+          name +
+          "</p></div></div>" +
+          '<dl class="kv">' +
+          rows.join("") +
+          "</dl></article>"
+        );
+      }
+
+      function renderServers(data) {
+        const body = el("serversBody");
+        if (!data || typeof data !== "object" || Array.isArray(data)) {
+          body.innerHTML =
+            '<p class="error">Expected an object of guild id → guild. Raw:</p><pre class="json-block">' +
+            escapeHtml(JSON.stringify(data, null, 2)) +
+            "</pre>";
+          el("serversBadge").textContent = "?";
+          return;
+        }
+        const entries = Object.entries(data);
+        el("serversBadge").textContent = String(entries.length);
+        if (entries.length === 0) {
+          body.innerHTML = "<p>No servers in JSON.</p>";
+          return;
+        }
+        body.innerHTML = '<div class="servers-grid">' + entries.map(([id, s]) => renderServerCard(id, s)).join("") + "</div>";
+      }
+
+      function renderAnnouncements(data) {
+        const body = el("announcementsBody");
+        if (data === null || data === undefined) {
+          body.innerHTML = "<p>No data.</p>";
+          el("announceBadge").textContent = "0";
+          return;
+        }
+        if (Array.isArray(data)) {
+          el("announceBadge").textContent = String(data.length);
+          if (data.length === 0) {
+            body.innerHTML = "<p>Empty array.</p>";
+            return;
+          }
+          body.innerHTML =
+            '<div class="announce-list">' +
+            data
+              .map(function (item, i) {
+                if (typeof item === "object" && item !== null) {
+                  const date = new Date(item.at).toLocaleString();
+
+return `
+  <div class="announce-item">
+    <strong>${date}</strong><br>
+    <div>${escapeHtml(item.message)}</div>
+    <small>Source: ${escapeHtml(item.source)} · Delivered: ${item.delivered}</small>
+  </div>
+`;
+                }
+                return (
+                  '<div class="announce-item"><strong>#' +
+                  (i + 1) +
+                  "</strong> " +
+                  escapeHtml(String(item)) +
+                  "</div>"
+                );
+              })
+              .join("") +
+            "</div>";
+          return;
+        }
+        if (typeof data === "object") {
+          const keys = Object.keys(data);
+          el("announceBadge").textContent = keys.length ? String(keys.length) + " keys" : "0";
+          body.innerHTML =
+            '<pre class="json-block">' + escapeHtml(JSON.stringify(data, null, 2)) + "</pre>";
+          return;
+        }
+        el("announceBadge").textContent = "1";
+        body.innerHTML = "<p>" + escapeHtml(String(data)) + "</p>";
+      }
+
+      async function loadJson(path, label) {
+        const url = JSON_BASE.replace(/\/$/, "") + "/" + path.replace(/^\//, "");
+        try {
+          const res = await withTimeout(url, { method: "GET", cache: "no-store" });
+          if (!res.ok) {
+            throw new Error(label + ": HTTP " + res.status);
+          }
+          const text = await res.text();
+          try {
+            return JSON.parse(text);
+          } catch {
+            throw new Error(label + ": invalid JSON");
+          }
+        } catch (e) {
+          const msg = e && e.name === "AbortError" ? "Request timed out" : (e && e.message) || String(e);
+          throw new Error(msg);
+        }
+      }
+
+      let lastBotOnline = false;
+
+      async function refreshAll() {
+        if (!lastBotOnline) {
+          el("offlineTitle").textContent = "Checking the bot…";
+          el("offlineDetail").textContent = "Trying to reach the bot service…";
+          setViews(false);
+        }
+
+        const bot = await probeBot();
+        const checkedAt = new Date().toLocaleString();
+
+        if (!bot.online) {
+          lastBotOnline = false;
+          el("offlineTitle").textContent = "The Discord bot is currently offline.";
+          el("offlineDetail").textContent = bot.detail || "The bot could not be reached.";
+          el("offlineMeta").textContent = "Last checked: " + checkedAt + " · " + formatPollHint();
+          setViews(false);
+          return;
+        }
+
+        lastBotOnline = true;
+        setViews(true);
+        el("lastUpdated").textContent = "";
+
+        try {
+          const announcements = await loadJson("announcements.json", "announcements.json");
+          renderAnnouncements(announcements);
+          el("secAnnouncements").querySelector(".error")?.remove();
+        } catch (e) {
+          el("announcementsBody").innerHTML = '<p class="error">' + escapeHtml(e.message) + "</p>";
+          el("announceBadge").textContent = "—";
+        }
+
+        try {
+          const servers = await loadJson("servers.json", "servers.json");
+          renderServers(servers);
+        } catch (e) {
+          el("serversBody").innerHTML = '<p class="error">' + escapeHtml(e.message) + "</p>";
+          el("serversBadge").textContent = "—";
+        }
+
+        el("lastUpdated").textContent =
+          "Last updated: " + checkedAt + " · Next refresh in " + Math.round(POLL_MS / 1000) + "s";
+      }
+
+      let pollTimer = null;
+      function startPolling() {
+        if (pollTimer) clearInterval(pollTimer);
+        pollTimer = setInterval(function () {
+          refreshAll();
+        }, POLL_MS);
+      }
+
+      el("btnRefresh").addEventListener("click", function () {
+        refreshAll();
+      });
+      el("btnRefreshOffline").addEventListener("click", function () {
+        refreshAll();
+      });
+
+      setHint();
+      refreshAll();
+      startPolling();
+    })();
+  </script>
+</body>
+</html>
