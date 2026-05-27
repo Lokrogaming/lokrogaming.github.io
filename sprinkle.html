@@ -9,8 +9,9 @@
         .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
         label { display: block; margin-top: 10px; font-weight: bold; }
         textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-        button { background: #007bff; color: white; border: none; padding: 10px 15px; margin-top: 15px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
-        button:hover { background: #0056b3; }
+        button.btn { background: #007bff; color: white; border: none; padding: 10px 15px; margin-top: 15px; border-radius: 14px; cursor: pointer; width: 100%; font-size: 16px; }
+        button.btn:hover { background: #0056b3; }
+        button.copyBtn { background: lightgrey; color: black; border-radius: 10px; border: none; padding: 5px; margin-top: 15px; border-radius}
         .output { background: #e9ecef; padding: 10px; border-radius: 4px; word-break: break-all; margin-top: 10px; white-space: pre-wrap; font-family: monospace; }
         .error { color: red; font-weight: bold; margin-top: 10px; }
     </style>
@@ -25,11 +26,11 @@
         <label>Klartext:</label>
         <textarea id="encText" rows="3">Hallo von GitHub Pages! Jedes Mal entsteht ein neuer Key.</textarea>
         
-        <button id="btnEncrypt">Verschlüsseln & Shuffeln</button>
+        <button class="btn" id="btnEncrypt">Verschlüsseln & Shuffeln</button>
         
         <label>Ergebnis (Enthält Config + geshuffelten Key & Text):</label>
         <button onclick='copy("encrypt")' class="copyBtn"><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></button>
         <div id="encOutput" class="output">-</div>
@@ -41,11 +42,11 @@
         <label>Verschlüsselter String ([config][geshuffelt]):</label>
         <textarea id="decInput" rows="3" placeholder="Hier verschlüsselten Text einfügen..."></textarea>
         
-        <button id="btnDecrypt">Unshuffeln & Entschlüsseln</button>
+        <button class="btn" id="btnDecrypt">Unshuffeln & Entschlüsseln</button>
         
         <label>Ergebnis:</label>
         <button onclick="copy('decrypt')" class="copyBtn"><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></button>
         <div id="decOutput" class="output">-</div>
