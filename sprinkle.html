@@ -71,8 +71,7 @@
                 
                 const result = await decoder(input);
                 outputDiv.innerHTML = `
-                    <strong>Config (ausgelesen):</strong> ${result.config}<br>
-                    <strong>Key (extrahiert):</strong> ${result.extractedKey}<br><br>
+                    
                     <strong>Entschlüsselter Text:</strong><br>${result.text}
                 `;
                 outputDiv.classList.remove('error');
