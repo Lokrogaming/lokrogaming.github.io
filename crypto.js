@@ -142,5 +142,5 @@ export async function decoder(fullEncryptedStr) {
     const shuffledPart = fullEncryptedStr.substring(2);
     const { keyStr, encryptedBody } = unshuffleData(shuffledPart);
     const decryptedText = await aesDecrypt(encryptedBody, keyStr);
-    return { config, text: decryptedText, extractedKey: keyStr };
+    return { config, text: decryptedText };
 }
