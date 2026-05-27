@@ -96,8 +96,20 @@ function unshuffleData(shuffledPart) {
     return { keyStr, encryptedBody };
 }
 
+/**
+ * Generiert 16 Bit (2 Zeichen) zufällige Config-Daten
+ */
+function generateRandomConfig() {
+    const buffer = new Uint8Array(2);
+    crypto.getRandomValues(buffer);
+    
+    return String.fromCharCode(
+        (buffer[0] % 94) + 33, // ASCII 33 bis 126
+        (buffer[1] % 94) + 33
+    );
+}
 export async function encoder(text, key, config) {
-    if (config.length !== 2) throw new Error("Config muss exakt 2 Zeichen lang sein.");
+    const config = generateRandomConfig();
     const encryptedBody = await aesEncrypt(text, key);
     return `${config}${shuffleData(key, encryptedBody)}`;
 }
