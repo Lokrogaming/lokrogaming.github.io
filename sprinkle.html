@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test site</title>
+  </head>
+  <body>
+    <p>Encrypted:</p></br>
+    <p id="outputEncrypted"></p></br>
+    <p>Decrypted:</p></br>
+    <p id="outputConfig"></p></br>
+    <p id="outputDecrypted"></p>
+  <script>
+    import { encoder, decoder } from './api/crypt/sprinkle/v0.5/sprinkle.js';
+
+const myKey = "aB3cD4eF5gH6hI7jK8lL9mN0oP1qR2sT";
+const myConfig = "XY";
+const message = "Geheime Nachricht";
+
+// 1. Verschlüsseln
+const encrypted = await encoder(message, myKey, myConfig);
+outputEncrypted.innerText = encrypted;
+
+// 2. Entschlüsseln
+const decrypted = await decoder(encrypted);
+outputConfig.innerText = decrypted.config; // "XY"
+outputDecrypted.innerText = decrypted.text;     // "Geheime Nachricht"
+
+  </script>
+  </body>
+</html>
