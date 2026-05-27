@@ -44,8 +44,6 @@ async function aesDecrypt(base64Str, keyStr) {
 }
 
 function shuffleData(keyStr, encryptedBody) {
-    if (keyStr.length !== 32) throw new Error("Key muss exakt 32 Stellen haben.");
-
     let shuffledPart = "";
     let keyIdx = 0;
     let bodyIdx = 0;
@@ -96,28 +94,53 @@ function unshuffleData(shuffledPart) {
     return { keyStr, encryptedBody };
 }
 
-/**
- * Generiert 16 Bit (2 Zeichen) zufällige Config-Daten
- */
 function generateRandomConfig() {
     const buffer = new Uint8Array(2);
     crypto.getRandomValues(buffer);
-    
     return String.fromCharCode(
-        (buffer[0] % 94) + 33, // ASCII 33 bis 126
+        (buffer[0] % 94) + 33, 
         (buffer[1] % 94) + 33
     );
 }
-export async function encoder(text, key, config) {
-    const config = generateRandomConfig();
-    const encryptedBody = await aesEncrypt(text, key);
-    return `${config}${shuffleData(key, encryptedBody)}`;
+
+/**
+ * Interne Funktion zur Key-Generierung (a-zA-Z0-9)
+ */
+function generateRandomKey() {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const buffer = new Uint8Array(32);
+    crypto.getRandomValues(buffer);
+    
+    let key = "";
+    for (let i = 0; i < 32; i++) {
+        key += chars[buffer[i] % chars.length];
+    }
+    return key;
 }
 
+/**
+ * Verschlüsselt Text und formatiert das Ergebnis zu [config][geshuffelter-teil]
+ * Der 32-stellige Key wird hierbei vollautomatisch intern generiert.
+ * @param {string} text - Der zu verschlüsselnde Klartext
+ * @returns {Promise<string>}
+ */
+export async function encoder(text) {
+    const randomKey = generateRandomKey();
+    const config = generateRandomConfig();
+    const encryptedBody = await aesEncrypt(text, randomKey);
+    return `${config}${shuffleData(randomKey, encryptedBody)}`;
+}
+
+/**
+ * Entschlüsselt einen String im Format [config-block][geshuffelter-teil]
+ * Extrahiert Config, Key und Krypto-Text selbstständig aus der Struktur.
+ * @param {string} fullEncryptedStr - Der komplette verschlüsselte String
+ * @returns {Promise<{config: string, text: string, extractedKey: string}>}
+ */
 export async function decoder(fullEncryptedStr) {
     const config = fullEncryptedStr.substring(0, 2);
     const shuffledPart = fullEncryptedStr.substring(2);
     const { keyStr, encryptedBody } = unshuffleData(shuffledPart);
     const decryptedText = await aesDecrypt(encryptedBody, keyStr);
-    return { config, text: decryptedText };
+    return { config, text: decryptedText, extractedKey: keyStr };
 }
