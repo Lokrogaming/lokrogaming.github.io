@@ -1,30 +1,95 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Test site</title>
-  </head>
-  <body>
-    <p>Encrypted:</p></br>
-    <p id="outputEncrypted"></p></br>
-    <p>Decrypted:</p></br>
-    <p id="outputConfig"></p></br>
-    <p id="outputDecrypted"></p>
-  <script>
-    import { encoder, decoder } from './api/crypt/sprinkle/v0.5/module.js';
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES-GCM Shuffler</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; background: #f4f4f9; color: #333; }
+        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; margin-top: 15px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background: #0056b3; }
+        .output { background: #e9ecef; padding: 10px; border-radius: 4px; word-break: break-all; margin-top: 10px; white-space: pre-wrap; font-family: monospace; }
+        .error { color: red; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
 
-const myKey = "aB3cD4eF5gH6hI7jK8lL9mN0oP1qR2sT";
-const myConfig = "XY";
-const message = "Geheime Nachricht";
+    <h2>AES-GCM Verschlüsselung & Shuffling</h2>
 
-// 1. Verschlüsseln
-const encrypted = await encoder(message, myKey, myConfig);
-outputEncrypted.innerText = encrypted;
+    <!-- ENCODER BOX -->
+    <div class="box">
+        <h3>Encoder (Verschlüsseln)</h3>
+        <label>32-Stellen Key:</label>
+        <input type="text" id="encKey" value="aB3cD4eF5gH6hI7jK8lL9mN0oP1qR2sT" maxlength="32">
+        
+        <label>2-Stellen Config (16-Bit):</label>
+        <input type="text" id="encConfig" value="XY" maxlength="2">
+        
+        <label>Klartext:</label>
+        <textarea id="encText" rows="3">Hallo von GitHub Pages!</textarea>
+        
+        <button id="btnEncrypt">Verschlüsseln & Shuffeln</button>
+        
+        <label>Ergebnis:</label>
+        <div id="encOutput" class="output">-</div>
+    </div>
 
-// 2. Entschlüsseln
-const decrypted = await decoder(encrypted);
-outputConfig.innerText = decrypted.config; // "XY"
-outputDecrypted.innerText = decrypted.text;     // "Geheime Nachricht"
+    <!-- DECODER BOX -->
+    <div class="box">
+        <h3>Decoder (Entschlüsseln)</h3>
+        <label>Verschlüsselter String ([config][geshuffelt]):</label>
+        <textarea id="decInput" rows="3" placeholder="Hier verschlüsselten Text einfügen..."></textarea>
+        
+        <button id="btnDecrypt">Unshuffeln & Entschlüsseln</button>
+        
+        <label>Ergebnis:</label>
+        <div id="decOutput" class="output">-</div>
+    </div>
 
-  </script>
-  </body>
+    <!-- JavaScript Einbindung als Modul -->
+    <script type="module">
+        import { encoder, decoder } from './crypto.js';
+
+        // Event-Listener für Verschlüsselung
+        document.getElementById('btnEncrypt').addEventListener('click', async () => {
+            const text = document.getElementById('encText').value;
+            const key = document.getElementById('encKey').value;
+            const config = document.getElementById('encConfig').value;
+            const outputDiv = document.getElementById('encOutput');
+
+            try {
+                if(key.length !== 32) throw new Error("Der Key muss exakt 32 Zeichen lang sein!");
+                if(config.length !== 2) throw new Error("Die Config muss exakt 2 Zeichen lang sein!");
+                
+                const result = await encoder(text, key, config);
+                outputDiv.textContent = result;
+                outputDiv.classList.remove('error');
+            } catch (err) {
+                outputDiv.textContent = "Fehler: " + err.message;
+                outputDiv.classList.add('error');
+            }
+        });
+
+        // Event-Listener für Entschlüsselung
+        document.getElementById('btnDecrypt').addEventListener('click', async () => {
+            const input = document.getElementById('decInput').value.trim();
+            const outputDiv = document.getElementById('decOutput');
+
+            try {
+                if(!input) throw new Error("Bitte verschlüsselten Text eingeben.");
+                
+                const result = await decoder(input);
+                outputDiv.innerHTML = `<strong>Config:</strong> ${result.config}<br><strong>Text:</strong> ${result.text}`;
+                outputDiv.classList.remove('error');
+            } catch (err) {
+                outputDiv.textContent = "Fehler beim Entschlüsseln. Falscher Key, manipulierte Daten oder ungültiges Format.";
+                outputDiv.classList.add('error');
+            }
+        });
+    </script>
+</body>
 </html>
+
