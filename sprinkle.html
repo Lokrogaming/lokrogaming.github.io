@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AES-GCM Shuffler</title>
+    <title>AES-GCM Shuffler (Zero-Config / Auto-Key)</title>
     <style>
         body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; background: #f4f4f9; color: #333; }
         .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
         label { display: block; margin-top: 10px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
         button { background: #007bff; color: white; border: none; padding: 10px 15px; margin-top: 15px; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
         button:hover { background: #0056b3; }
         .output { background: #e9ecef; padding: 10px; border-radius: 4px; word-break: break-all; margin-top: 10px; white-space: pre-wrap; font-family: monospace; }
@@ -17,23 +17,17 @@
 </head>
 <body>
 
-    <h2>AES-GCM Verschlüsselung & Shuffling</h2>
+    <h2>AES-GCM mit vollautomatischer Schlüsselverwaltung</h2>
 
     <!-- ENCODER BOX -->
     <div class="box">
         <h3>Encoder (Verschlüsseln)</h3>
-        <label>32-Stellen Key:</label>
-        <input type="text" id="encKey" value="aB3cD4eF5gH6hI7jK8lL9mN0oP1qR2sT" maxlength="32">
-        
-        <label>2-Stellen Config (16-Bit):</label>
-        <input type="text" id="encConfig" value="XY" maxlength="2">
-        
         <label>Klartext:</label>
-        <textarea id="encText" rows="3">Hallo von GitHub Pages!</textarea>
+        <textarea id="encText" rows="3">Hallo von GitHub Pages! Jedes Mal entsteht ein neuer Key.</textarea>
         
         <button id="btnEncrypt">Verschlüsseln & Shuffeln</button>
         
-        <label>Ergebnis:</label>
+        <label>Ergebnis (Enthält Config + geshuffelten Key & Text):</label>
         <div id="encOutput" class="output">-</div>
     </div>
 
@@ -49,22 +43,16 @@
         <div id="decOutput" class="output">-</div>
     </div>
 
-    <!-- JavaScript Einbindung als Modul -->
     <script type="module">
         import { encoder, decoder } from './crypto.js';
 
         // Event-Listener für Verschlüsselung
         document.getElementById('btnEncrypt').addEventListener('click', async () => {
             const text = document.getElementById('encText').value;
-            const key = document.getElementById('encKey').value;
-            const config = document.getElementById('encConfig').value;
             const outputDiv = document.getElementById('encOutput');
 
             try {
-                if(key.length !== 32) throw new Error("Der Key muss exakt 32 Zeichen lang sein!");
-                if(config.length !== 2) throw new Error("Die Config muss exakt 2 Zeichen lang sein!");
-                
-                const result = await encoder(text, key, config);
+                const result = await encoder(text);
                 outputDiv.textContent = result;
                 outputDiv.classList.remove('error');
             } catch (err) {
@@ -82,14 +70,17 @@
                 if(!input) throw new Error("Bitte verschlüsselten Text eingeben.");
                 
                 const result = await decoder(input);
-                outputDiv.innerHTML = `<strong>Config:</strong> ${result.config}<br><strong>Text:</strong> ${result.text}`;
+                outputDiv.innerHTML = `
+                    <strong>Config (ausgelesen):</strong> ${result.config}<br>
+                    <strong>Key (extrahiert):</strong> ${result.extractedKey}<br><br>
+                    <strong>Entschlüsselter Text:</strong><br>${result.text}
+                `;
                 outputDiv.classList.remove('error');
             } catch (err) {
-                outputDiv.textContent = "Fehler beim Entschlüsseln. Falscher Key, manipulierte Daten oder ungültiges Format.";
+                outputDiv.textContent = "Fehler beim Entschlüsseln. Das Format ist ungültig oder der String wurde manipuliert.";
                 outputDiv.classList.add('error');
             }
         });
     </script>
 </body>
 </html>
-
