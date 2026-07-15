@@ -7,7 +7,7 @@
   .then(data => {
     // Quarantänemodus prüfen
     if (data.quarantine === true) {
-      window.location.href = 'error.html?reason=503';
+      window.location.href = '../error.html?reason=503';
       return;
     }
 
