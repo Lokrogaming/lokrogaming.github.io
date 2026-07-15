@@ -7,7 +7,7 @@
   .then(data => {
     // Quarantänemodus prüfen
     if (data.quarantine === true) {
-      window.location.href = '../error.html?reason=503';
+      window.location.href = 'https://lokro.dev/error.html?reason=503';
       return;
     }
 
@@ -17,10 +17,10 @@
     // Wartungsmodus prüfen
     if (data.maintenance && typeof data.maintenance === 'object') {
       if (data.maintenance[currentPage] === true) {
-        window.location.href = 'error.html?reason=maintenance';
+        window.location.href = 'https://lokro.dev/error.html?reason=maintenance';
       }
       if (data.maintenance["all"] === true) {
-        window.location.href = 'error.html?reason=maintenance';
+        window.location.href = 'https://lokro.dev/error.html?reason=maintenance';
       }
     }
   })
