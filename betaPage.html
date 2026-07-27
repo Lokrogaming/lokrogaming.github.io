@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokrogamer | Streamer & Developer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@latest/dist/flowbite.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Ballet:opsz@16..72&family=Fruktur:ital@0;1&family=Manufacturing+Consent&family=Medula+One&family=Monsieur+La+Doulaise&family=Pirata+One&family=Press+Start+2P&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
+   :root {
+    --font-archivo: font-family("Archivo Black", sans-serif);
+    --font-quantico: font-family("Quantico", sans-serif);
+    --font-press: "Press Start 2P", cursive;
+    --font-fruktur: "Fruktur", cursive;
+    --font-medula: "Medula One", sans-serif;
+    --font-unifraktur: "UnifrakturCook", cursive;
+    --font-pirata: "Pirata One", cursive;
+    --font-manufacturing: "Manufacturing Consent", sans-serif;
+    --font-ballet: "Ballet", cursive;
+    --font-monsieur: "Monsieur La Doulaise", cursive;
+    --cursor: url("assets/logo-white.png");
+   }
+   body {
+    cursor: url("assets/cursor.png") 64 63, auto;
+   }
+   button {
+    cursor: url("assets/cursor.png") 64 63, auto;
+   }
+   .quantico-regular {
+  font-family: "Quantico", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.quantico-bold {
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.quantico-regular-italic {
+  font-family: "Quantico", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quantico-bold-italic {
+  font-family: "Quantico", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.fruktur-regular {
+  font-family: "Fruktur", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.fruktur-regular-italic {
+  font-family: "Fruktur", system-ui;
+  font-weight: 400;
+  font-style: italic;
+}
+.medula-one-regular {
+  font-family: "Medula One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.unifrakturcook-bold {
+  font-family: "UnifrakturCook", cursive;
+  font-weight: 700;
+  font-style: normal;
+}
+.pirata-one-regular {
+  font-family: "Pirata One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.manufacturing-consent-regular {
+  font-family: "Manufacturing Consent", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ballet-KHGE {
+  font-family: "Ballet", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.monsieur-la-doulaise-regular {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.rainbow-text {
+  background: linear-gradient(to right, #ef4444, #22c55e, #3b82f6, #ef4444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+.night-text {
+  background: linear-gradient(to bottom right, #1e3a8a, #4338ca, #7c3aed, #1e3a8a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+.ocean-text {
+  background: linear-gradient(to right, #06b6d4, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 900;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+.sunset-text {
+  background: linear-gradient(to right, #f97316, #ec4899, #8b5cf6, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 900;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+.fire-text {
+  background: linear-gradient(to right, #ef4444, #f97316, #fbbf24, #ef4444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 900;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+.aurora-text {
+  background: linear-gradient(to right, #a855f7, #6366f1, #06b6d4, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 36px;
+  font-weight: 900;
+  background-size: 200% auto;
+  animation: gradient-shift 5s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1000ms ease-in-out 300ms infinite normal;
+}
+  </style>
+  </head>
+    <body class="absolute scroll-smooth bg-black font-quantico text-white scrollbar-none overflow-x-hidden select-none cursor-default">
+    <div class="fixed -z-1 h-screen w-screen bg-slate-700/20"></div>
+        <div class="z-2">
+            <section id="home"></section>
+            <div class="my-50 flex flex-col min-h-screen gap-10 items-center max-w-screen">
+                <div class="flex flex-col items-center w-screen">
+                    <div class="p-[6px] rounded-full bg-gradient-to-r from-slate-800 to-blue-900 mb-10">
+                        <div class="bg-black rounded-full p-3">
+                    <img src="/assets/logo-white.png" class="w-50 h-50">
+                </div>
+                </div>
+                <p class="quantico-bold text-5xl">Lokrogamer</p>
+                <p class="text-slate-500 archivo-black-regular my-3">Streamer | Developer</p>
+            </div>
+        
+              <section>
+                <div class="p-[3px] m-6 lg:max-w-5xl bg-gradient-to-r rounded-xl from-black to-red-700 mb-10 shadow-xl shadow-red-700">
+                    <div class="bg-black rounded-xl">
+                <img src="assets/banner-red.png" class="w-full rounded-xl">
+                </div>
+                </div>
+              </section>
+        </div>
+        <!-- Section with divider -->
+<section class="bg-[#0a0d11]">
+    <!-- Your content here -->
+    <div class="py-20 px-4 flex flex-col items-center">
+      <h2 class="text-white text-4xl font-bold archivo-black-regular">Home</h2>
+    </div>
+  </section>
+  
+  <!-- Next section with top divider -->
+  <section class="relative bg-[#1d293d]">
+    <!-- Top divider -->
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+      <svg class="relative block w-full h-[130px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 130" preserveAspectRatio="none">
+        <path d="M0,130 C200,26 400,130 600,65 C800,0 1000,104 1200,39 L1200,130 L0,130 Z" fill="#0a0d11"></path>
+      </svg>
+    </div>
+  
+    <div class="pt-[130px] py-20 px-4 flex flex-col items-center">
+      <h2 class="text-4xl font-bold archivo-black-regular">Timeline</h2>
+    </div>
+  </section>
+  <section class="p-10 bg-slate-800 min-h-screen">
+   
+<ol class="relative border-s border-s-4 border-default">                  
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-2 border-buffer"></div>
+        <time class="text-sm font-normal leading-none text-body">September 2021</time>
+        <h3 class="text-lg font-semibold text-heading my-2">Lokro created his first website on Mimo</h3>
+        <p class="mb-4 text-base font-normal text-body">A school friend showed him Mimo and from then on, he couldn't stop learning and creating new sites</p>
+        <a href="https://mimo.org" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Mimo
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="text-sm font-normal leading-none text-body">January 2025</time>
+        <h3 class="text-lg font-semibold text-heading my-2">His first website went online, hosted on GitHub under the Name "Lokrogamer".</h3>
+        <p class="text-base font-normal text-body">He copied the code from Mimo and deployed it on GitHub. An old Version is still available. Click on the button to take a look!</p>
+        <a href="https://github.com/Lokrogaming/Lokrogamer" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            GitHub repo
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+        <a href="https://lokro.dev/Lokrogamer" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Website
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-body">April 2025</time>
+        <h3 class="text-lg font-semibold text-heading my-2">lokrogaming.github.io went online</h3>
+        <p class="text-base font-normal text-body">Users were now able to view the site on https://lokrogaming.github.io instead on lokrogaming.github.io/Lokrogamer it's funny because actually you are on lokrogaming.github.io...</p>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-body">December 2025</time>
+        <h3 class="text-lg font-semibold text-heading my-2">lokrogames was created. Lokro's first and til today the most popular website</h3>
+        <p class="text-base font-normal text-body">In december 2025 created, LokroGames is til today with over 4k views Lokro's most viewed website!</p>
+        <a href="https://lokrogames.lovable.app" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            LokroGames
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-body">January 2026</time>
+        <h3 class="text-lg font-semibold text-heading my-2">LGG was founded in january 2026 and has over 3k views</h3>
+        <p class="text-base font-normal text-body">At first it looked like LGG was a total disaster because nobody wanted to use it, but in April 2026 everything changed. It gained many servers and users and is till today 100% free</p>
+        <a href="https://lgg.lovable.app" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            LGG
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-body">Fabuary 2026</time>
+        <h3 class="text-lg font-semibold text-heading my-2">Sec-Chat was created by Lokro</h3>
+        <p class="text-base font-normal text-body">Lokro wanted his very own messenger service. He decided to use AES256-GCM because it is for his purposes the most efficient encryption algorythmh </p>
+        <a href="https://sec-chat.lovable.app" target="_blank" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-2 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+            Sec-Chat
+            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
+        </a>
+    </li>
+    <li class="mb-10 ms-4">
+        <div class="absolute w-3 h-3 bg-neutral-quaternary rounded-full mt-1.5 -start-1.5 border border-buffer"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-body">July 2026</time>
+        <h3 class="text-lg font-semibold text-heading my-2">Lokrogaming.github.io changed to lokro.dev</h3>
+        <p class="text-base font-normal text-body">From then on, lokrogaming.github.io changed to lokro.dev. It is still hosted with GitHub. Only the domain had changed.</p>
+    </li>
+</ol>
+
+
+  </section>
+    <!-- Section with divider -->
+<section class="bg-[#1d293d]">
+    <!-- Your content here -->
+    <div class="py-20 px-4 flex flex-col items-center">
+      <h2 class="text-white text-4xl font-bold archivo-black-regular">Timeline</h2>
+    </div>
+  </section>
+  
+  <!-- Next section with top divider -->
+  <section class="relative bg-[#111827]">
+    <!-- Top divider -->
+    <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
+      <svg class="relative block w-full h-[130px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 130" preserveAspectRatio="none">
+        <path d="M0,130 C200,26 400,130 600,65 C800,0 1000,104 1200,39 L1200,130 L0,130 Z" fill="#1e293b"></path>
+      </svg>
+    </div>
+  
+    <div class="pt-[130px] py-20 px-4 flex flex-col items-center">
+      <h2 class="text-4xl font-bold archivo-black-regular">Projects</h2>
+    </div>
+  </section>
+  <section class="py-10 bg-gray-900 min-h-screen" id="projects">
+   <div class="grid grid-cols-1 gap-6 p-10 md:grid-cols-3 justify-center">
+    <div data-dest="https://lgg.lovable.app/s/lokrogang" class="projectcard rounded-xl h-60 border flex flex-col items-center justify-center group hover:scale-105 hover:-translate-y-5 transform duration-300 ease-in-out"><p class="text-white quantico-bold text-4xl transform duration-300 ease-in-out rainbow-text">LokroGang</p><p class="text-slate-300 text-sm archivo-black-regular">Click me</p></div>
+    <div data-dest="https://lokrogames.lovable.app" class="projectcard rounded-xl h-60 border flex flex-col items-center justify-center group hover:scale-105 hover:-translate-y-5 transform duration-300 ease-in-out"><p class="text-white quantico-bold text-4xl transform duration-300 ease-in-out ocean-text">LokroGames</p><p class="text-slate-300 text-sm archivo-black-regular">Click me</p></div>
+    <div data-dest="https://sec-chat.lovable.app" class="projectcard rounded-xl h-60 border flex flex-col items-center justify-center group hover:scale-105 hover:-translate-y-5 transform duration-300 ease-in-out"><p class="text-white quantico-bold text-4xl transform duration-300 ease-in-out sunset-text">Sec-Chat</p><p class="text-slate-300 text-sm archivo-black-regular">Click me</p></div>
+    <div data-dest="https://mail.lokro.dev" class="projectcard rounded-xl h-60 border flex flex-col items-center justify-center group hover:scale-105 hover:-translate-y-5 transform duration-300 ease-in-out"><p class="text-white quantico-bold text-4xl transform duration-300 ease-in-out aurora-text">LokroMAIL</p><p class="text-slate-300 text-sm archivo-black-regular">Click me</p></div>
+ </div>
+  </section>
+    <!-- Section with divider -->
+<section class="relative bg-[#111827]">
+    <!-- Your content here -->
+    <div class="py-20 px-4 flex flex-col items-center">
+      <h2 class="text-white text-4xl font-bold">Projects</h2>
+    </div>
+  
+    <!-- Bottom divider -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+        <path d="M0,100 C200,20 400,100 600,50 C800,0 1000,80 1200,30 L1200,100 L0,100 Z" fill="#020617"></path>
+      </svg>
+    </div>
+  </section>
+  
+  
+  <!-- Next section -->
+  <section class="bg-[#020617]">
+    <div class="py-[230px] flex items-center text-sm text-stone-800 before:flex-1 before:border-t before:border-stone-200 before:me-6 after:flex-1 after:border-t after:border-stone-200 after:ms-6 dark:text-neutral-200 dark:before:border-neutral-600 dark:after:border-neutral-600">Footer</div>
+  </section>
+  <section class="bg-slate-950 py-25 flex flex-col items-center">
+
+    <p class="fire-text text-xl medula-one-regular flex flex-row gap-7">Made with <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-box2-heart-fill" viewBox="0 0 16 16">
+        <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1zM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+      </svg> by Lokro</p>
+
+  </section>
+  
+     </div>
+<div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white-/30 backdrop-blur-xl border border-default rounded-full bottom-4 left-1/2">
+    <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
+        <button data-tooltip-target="tooltip-home" type="button" onclick="scrollToId('home')" class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-slate-900/50 transform duration-300 ease-in-out group">
+            <svg class="w-6 h-6 mb-1 text-slate-500 group-hover:text-white transform duration-300 ease-in-out" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/></svg>
+            <span class="sr-only">Home</span>
+        </button>
+        <div id="tooltip-home" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            Home
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button data-tooltip-target="tooltip-wallet" type="button" onclick="scrollToId('projects')" class="inline-flex flex-col items-center justify-center px-5 hover:bg-slate-900/50 transform duration-300 ease-in-out group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-slate-500 group-hover:text-white transform duration-300 ease-in-out" viewBox="0 0 16 16">
+                <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0 1 12.733 15H3.266a2.5 2.5 0 0 1-2.481-2.19l-.64-5.124A1.5 1.5 0 0 1 1 6.14zM2 6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5a.5.5 0 0 0-.5.5zm-.367 1a.5.5 0 0 0-.496.562l.64 5.124A1.5 1.5 0 0 0 3.266 14h9.468a1.5 1.5 0 0 0 1.489-1.314l.64-5.124A.5.5 0 0 0 14.367 7z"/>
+              </svg>
+            <span class="sr-only">Projects</span>
+        </button>
+        <div id="tooltip-wallet" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            Projects
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <div class="flex items-center justify-center">
+            <button data-tooltip-target="tooltip-new" onclick="" type="button" class="group inline-flex items-center justify-center text-white hover:bg-slate-900/50 transform duration-300 ease-in-out focus:ring-4 focus:ring-brand-medium shadow-xs w-full h-full focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-slate-500 group-hover:text-white transform duration-300 ease-in-out" viewBox="0 0 16 16">
+                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+                  </svg>
+                <span class="sr-only">Socials</span>
+            </button>
+        </div>
+        <div id="tooltip-new" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            Socials
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button data-tooltip-target="tooltip-settings" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-slate-900/50 transform duration-300 ease-in-out hover:bg-neutral-secondary-medium group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="transform duration-300 ease-in-out w-6 h-6 mb-1 text-slate-500 group-hover:text-white" viewBox="0 0 16 16">
+                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
+              </svg>
+            <span class="sr-only">Honored</span>
+        </button>
+        <div id="tooltip-settings" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            Honored
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <button data-tooltip-target="tooltip-profile" type="button" class="inline-flex flex-col items-center justify-center px-5 rounded-e-full hover:bg-slate-900/50 transform duration-300 ease-in-out group">
+            <svg class="w-6 h-6 mb-1 text-slate-500 transform duration-300 ease-in-out group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+            <span class="sr-only">About</span>
+        </button>
+        <div id="tooltip-profile" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-dark rounded-base shadow-xs opacity-0 tooltip">
+            About
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+    const projects = document.querySelectorAll(".projectcard");
+
+    projects.forEach((project) => {
+        project.addEventListener("click", () => {
+            handleLink(project.dataset.dest);
+        });
+    });
+});
+    const scrollToId = (id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+    
+        el.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    };
+    function handleLink(dest) {
+        alert(`Redirecting to '${dest}'`)
+        // window.open(dest, "blank_");
+    }
+    </script>
+</body>
+</html>
