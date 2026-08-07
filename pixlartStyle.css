@@ -1,0 +1,45 @@
+body {
+    background:#111;
+    color:white;
+    font-family:Arial, sans-serif;
+    padding:30px;
+}
+
+
+h1 {
+    text-align:center;
+}
+
+
+input {
+    margin:20px 0;
+}
+
+
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+
+th {
+    background:#333;
+}
+
+
+td, th {
+    border:1px solid #555;
+    padding:10px;
+    text-align:center;
+}
+
+
+tr.done {
+    opacity:0.5;
+    text-decoration:line-through;
+}
+
+
+button {
+    cursor:pointer;
+}

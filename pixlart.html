@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pixelart Material Checkliste</title>
+
+<link rel="stylesheet" href="pixlartStyle.css">
+</head>
+
+<body>
+
+<h1>🎨 Pixelart Material Checkliste</h1>
+
+<input type="file" id="csvFile" accept=".csv">
+
+<div id="stats">
+    <p>Fortschritt: <span id="progress">0%</span></p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Block</th>
+<th>Menge</th>
+<th>Stacks</th>
+<th>Shulker</th>
+<th>Doppelkisten</th>
+</tr>
+</thead>
+
+<tbody id="tableBody">
+</tbody>
+
+</table>
+
+
+<script src="pixlartScript.js"></script>
+
+</body>
+</html>
