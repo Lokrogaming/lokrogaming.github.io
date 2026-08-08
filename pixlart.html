@@ -1,40 +1,211 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pixelart Material Checkliste</title>
+    <title>Minecraft Pixelart Materialliste</title>
 
-<link rel="stylesheet" href="pixlartStyle.css">
+    <link rel="stylesheet" href="pixlartStyle.css">
 </head>
 
 <body>
 
-<h1>🎨 Pixelart Material Checkliste</h1>
+<header class="header">
+    <div>
+        <h1>⛏️ Minecraft Pixelart</h1>
+        <p>Materialliste & Baufortschritt</p>
+    </div>
 
-<input type="file" id="csvFile" accept=".csv">
+    <div class="header-actions">
+        <label class="upload-button">
+            📁 CSV laden
+            <input type="file" id="csvFile" accept=".csv" hidden>
+        </label>
 
-<div id="stats">
-    <p>Fortschritt: <span id="progress">0%</span></p>
-</div>
+        <button id="printButton">
+            🖨️ Drucken
+        </button>
+    </div>
+</header>
 
-<table>
-<thead>
-<tr>
-<th>✔</th>
-<th>Block</th>
-<th>Menge</th>
-<th>Stacks</th>
-<th>Shulker</th>
-<th>Doppelkisten</th>
-</tr>
-</thead>
 
-<tbody id="tableBody">
-</tbody>
+<main>
 
-</table>
+    <!-- Datei -->
+    <section class="card file-card">
+        <div>
+            <h2>Pixelart-Datei</h2>
+            <p id="fileName">Keine CSV geladen</p>
+        </div>
+
+        <div id="fileStatus" class="status">
+            ⏳ Warte auf CSV
+        </div>
+    </section>
+
+
+    <!-- Statistik -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <span class="stat-icon">🧱</span>
+            <div>
+                <span class="stat-title">Gesamtblöcke</span>
+                <strong id="totalItems">0</strong>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <span class="stat-icon">📦</span>
+            <div>
+                <span class="stat-title">Stacks</span>
+                <strong id="totalStacks">0</strong>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <span class="stat-icon">🟪</span>
+            <div>
+                <span class="stat-title">Shulkerkisten</span>
+                <strong id="totalShulkers">0</strong>
+            </div>
+        </div>
+
+
+        <div class="stat-card">
+            <span class="stat-icon">📦</span>
+            <div>
+                <span class="stat-title">Doppelkisten</span>
+                <strong id="totalChests">0</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- Fortschritt -->
+    <section class="card progress-card">
+
+        <div class="progress-header">
+            <div>
+                <h2>Baufortschritt</h2>
+                <p>
+                    <span id="completedCount">0</span>
+                    von
+                    <span id="materialCount">0</span>
+                    Materialien erledigt
+                </p>
+            </div>
+
+            <strong id="progressPercent">0%</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div id="progressFill"></div>
+        </div>
+
+    </section>
+
+
+    <!-- Pixelart Vorschau -->
+    <section class="card preview-card">
+
+        <div class="section-header">
+            <div>
+                <h2>🎨 Pixelart-Vorschau</h2>
+                <p id="dimensions">Keine Pixelart geladen</p>
+            </div>
+        </div>
+
+        <div class="pixel-wrapper">
+            <canvas id="pixelCanvas"></canvas>
+        </div>
+
+    </section>
+
+
+    <!-- Materialliste -->
+    <section class="card material-card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>🧱 Materialliste</h2>
+                <p>Alle benötigten Minecraft-Blöcke</p>
+            </div>
+
+            <div class="controls">
+
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="🔎 Block suchen..."
+                >
+
+                <select id="sort">
+                    <option value="amount-desc">
+                        Menge ↓
+                    </option>
+
+                    <option value="amount-asc">
+                        Menge ↑
+                    </option>
+
+                    <option value="name-asc">
+                        Name A-Z
+                    </option>
+
+                    <option value="name-desc">
+                        Name Z-A
+                    </option>
+
+                    <option value="unchecked">
+                        Offene zuerst
+                    </option>
+
+                    <option value="checked">
+                        Erledigte zuerst
+                    </option>
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th class="check-column">✓</th>
+                        <th>Block</th>
+                        <th>Menge</th>
+                        <th>Stacks</th>
+                        <th>Shulker</th>
+                        <th>Doppelkiste</th>
+                    </tr>
+                </thead>
+
+                <tbody id="materialTable">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    Minecraft Pixelart Material Manager
+</footer>
 
 
 <script src="pixlartScript.js"></script>
