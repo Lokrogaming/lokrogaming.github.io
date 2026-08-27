@@ -1,360 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
- <link rel="icon" href="/src/assets/icon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lokrogamer</title>
-  
- <!--- QUARANTINE  -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOKRO — Ein Netzwerk für alle</title>
+<meta name="description" content="LOKRO ist ein 100% non-profit Projekt-Netzwerk mit über 100 kostenlosen Tools, Spielen und Communities.">
+<link rel="icon" type="image/png" href="/assets/lokro-black.png">
 
-<!------>
- <meta
-      name="description"
-      content="Lokrogamer, Webdeveloper mit Herz und Creator mit 370+ Followern auf Tiktok. Auf Twitch begeistert er viele Nutzer durch seine Angehensweise an Sachen und zeigt viele beeindruckende Einblicke in sein Leben und den Code seiner Website. Großer Dank geht an sein Management bei LS | Leon Sprenger."
-    />
-    <meta
-      name="keywords"
-      content="Lokrogamer, Erik Demoulin, Entwickler, Streamer, Frontend, JS, HTML, LokroGaming, Portfolio, Webentwicklung, Discord, Minecraft"
-    />
-    <meta name="author" content="Lokrogamer" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="de" />
- <link rel="canonical" href="https://lokro.dev/">
- <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "Speichert Lokrogaming deine Daten?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Nein, auf die Daten von Dritten habe ich allerdings keinen Zugriff"
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Wo kann ich mich \u00fcber die Nutzungsbedingungen informieren?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Unter https://lokrogaming.github.io/tac "
-            }
-        }
-  ]
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elev: #111113;
+    --bg-elev-2: #17171a;
+    --fg: #f2f2f0;
+    --fg-muted: #9a9a9e;
+    --fg-dim: #626266;
+    --border: rgba(255,255,255,0.09);
+    --border-strong: rgba(255,255,255,0.16);
+    --grid-line: rgba(255,255,255,0.055);
+    --grid-line-strong: rgba(255,255,255,0.09);
+    --accent: #7fe3b4;
+    --accent-dim: rgba(127,227,180,0.14);
   }
- </script>
- <style>
-   :root {
-            --primary: #9146FF;
-            --accent: #00FFCC;
-            --bg-dark: #0a0a0c;
-            --card-bg: #16161a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  html.light {
+    --bg: #f7f7f5;
+    --bg-elev: #ffffff;
+    --bg-elev-2: #efefec;
+    --fg: #0d0d0e;
+    --fg-muted: #55555a;
+    --fg-dim: #8a8a8e;
+    --border: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --grid-line: rgba(0,0,0,0.06);
+    --grid-line-strong: rgba(0,0,0,0.1);
+    --accent: #0f9e64;
+    --accent-dim: rgba(15,158,100,0.1);
+  }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  * { scroll-behavior: smooth; }
 
-        #countdown-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: var(--bg-dark);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    transition: background-color .35s ease, color .35s ease;
+  }
 
-        .animated-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(125deg, #0e0e10, #1a1a2e, #2d1b4e, #0e0e10);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
 
-        .clock-container {
-            text-align: center;
-            padding: 3rem;
-            background: rgba(24, 24, 27, 0.9);
-            backdrop-filter: blur(12px);
-            border-radius: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 600px;
-            width: calc(100% - 40px);
-            margin: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
+  .hero-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+  }
 
-        .clock-icon-wrapper {
-            margin-bottom: 0.5rem;
-            display: flex;
-            justify-content: center;
-        }
+  /* Signature chamfer — echoes the cut corners in the LOKRO wordmark */
+  .chamfer {
+    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  }
+  .chamfer-sm {
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  .chamfer-lg {
+    clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+  }
 
-        .clock-icon {
-            width: 60px;
-            height: 60px;
-        }
-        
-        #hand {
-            transform-origin: 12px 12px;
-            animation: rotate 4s linear infinite;
-        }
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    transition: border-color .25s ease, transform .25s ease, background-color .25s ease;
+  }
+  .card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+  }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+    font-weight: 600;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover { opacity: .85; transform: translateY(-1px); }
 
-        .countdown-grid {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
+  .btn-ghost {
+    border: 1px solid var(--border-strong);
+    color: var(--fg);
+    transition: background-color .2s ease, transform .2s ease;
+  }
+  .btn-ghost:hover { background: var(--bg-elev); transform: translateY(-1px); }
 
-        .time-box {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 1rem;
-            border-radius: 12px;
-            flex: 1;
-            max-width: 100px;
-            border-bottom: 3px solid var(--primary);
-        }
+  .dot-live {
+    display: inline-block; width: 6px; height: 6px; border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
 
-        .time-value {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.8rem;
-            color: var(--accent);
-            font-weight: 700;
-        }
+  .muted { color: var(--fg-muted); }
+  .dim { color: var(--fg-dim); }
+  .border-c { border-color: var(--border); }
 
-        .time-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            opacity: 0.6;
-            letter-spacing: 1px;
-        }
+  .node-line {
+    stroke: var(--grid-line-strong);
+    stroke-width: 1;
+  }
+  .node-dot {
+    fill: var(--fg);
+  }
+  .node-dot-accent {
+    fill: var(--accent);
+  }
 
-        #portfolio-content {
-            opacity: 1;
-            transform: translateY(20px);
-            transition: var(--transition);
-            visibility: visible;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            width: 100%;
-        }
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-        header { text-align: center; margin-bottom: 5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .card:hover, .btn-primary:hover, .btn-ghost:hover { transform: none; }
+  }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary), #8b5cf6);
-            margin-bottom: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            box-shadow: 0 0 30px rgba(145, 70, 255, 0.3);
-        }
+  .theme-toggle-track {
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+  }
 
-        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.5rem; }
-        
-        .location { color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
-
-        .badge-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
-
-        .badge {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-        }
-
-        section:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        h2 { color: var(--primary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem;}
-
-        .org-card {
-            background: rgba(0,0,0,0.2);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            margin-bottom: 0.5rem;
-            border-left: 3px solid var(--primary);
-        }
-
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 0.75rem;
-        }
-
-        .social-btn {
-            background: rgba(255, 255, 255, 0.03);
-            text-decoration: none;
-            color: var(--text-main);
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-            transform: scale(1.05);
-            color: white;
-        }
-
-        .website-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        footer { text-align: center; margin-top: auto; color: var(--text-muted); padding: 4rem 2rem 2rem; }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(145, 70, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(145, 70, 255, 0); }
-        }
-
-        @media (max-width: 768px) {
-            .main-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-            .countdown-grid { flex-wrap: wrap; }
-            .time-box { min-width: 70px; padding: 0.75rem; }
-            .time-value { font-size: 1.4rem; }
-        }
-  
-    </style>
- <script src="https://kit.fontawesome.com/dccf12b8ac.js" crossorigin="anonymous"></script>
+  ::selection { background: var(--accent-dim); color: var(--fg); }
+</style>
 </head>
-<body>
 
-    <div id="portfolio-content">
-        <header>
-            <div class="profile-img"><i class="fa-solid fa-code"></i></div>
-            <h1>Lokrogamer</h1>
-            <div class="location"><i class="fa-solid fa-location-dot"></i> NRW, Germany</div>
-            <div class="badge-container">
-                <span class="badge">Streamer</span>
-                <span class="badge">Developer</span>
-            </div>
-        </header>
+<body class="antialiased">
 
-        <main class="main-grid">
-            <section>
-                <h2><i class="fa-solid fa-layer-group"></i> Tech Stack</h2>
-                <div class="badge-container" style="justify-content: flex-start;">
-                    <span class="badge">HTML5</span><span class="badge">CSS3</span>
-                    <span class="badge">JavaScript</span><span class="badge">TypeScript</span>
-                    <span class="badge">React</span>
-                </div>
-                <h2 style="margin-top: 2rem;"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</h2>
-                <div class="badge-container" style="justify-content: flex-start;">
-                    <span class="badge">VS Code</span><span class="badge">GitHub</span>
-                </div>
-            </section>
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2">
+      <img src="/assets/lokro-white.png" alt="LOKRO" class="h-5 w-auto hidden dark-logo">
+      <img src="/assets/lokro-black.png" alt="LOKRO" class="h-5 w-auto hidden light-logo">
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-mono muted">
+      <a href="#mission" class="hover:opacity-70 transition">Mission</a>
+      <a href="#projects" class="hover:opacity-70 transition">Projekte</a>
+      <a href="#team" class="hover:opacity-70 transition">Team</a>
+      <a href="#community" class="hover:opacity-70 transition">Community</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" aria-label="Farbschema wechseln" class="theme-toggle-track relative w-12 h-7 rounded-full flex items-center px-1 chamfer-sm">
+        <span id="theme-knob" class="block w-5 h-5 rounded-full transition-transform duration-300" style="background: var(--fg);"></span>
+      </button>
+      <a href="#community" class="btn-primary chamfer-sm px-4 py-2 text-sm hidden sm:inline-block">Discord</a>
+    </div>
+  </div>
+</header>
 
-            <section>
-                <h2><i class="fa-solid fa-briefcase"></i> Organizations</h2>
-                <div class="org-card">Lokrogamer</div>
-                <div class="org-card">LokroGaming</div>
-                <div class="org-card">LGG</div>
-                <a href="https://lokrogaming.github.io" class="website-link" target="_blank">
-                    <i class="fa-solid fa-globe"></i> Visit Official Website
-                </a>
-            </section>
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-28 overflow-hidden">
+  <div class="absolute inset-0 bg-grid hero-fade"></div>
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="flex items-center gap-2 font-mono text-xs tracking-widest muted mb-8">
+      <span class="dot-live"></span>
+      COMMUNITY-NETZWERK · 100% NON-PROFIT · STAND 26.08.2026
+    </div>
+    <h1 class="font-display font-semibold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">
+      Das Internet gehört<br>allen<span style="color:var(--accent)">.</span>
+    </h1>
+    <p class="mt-8 max-w-xl text-lg muted leading-relaxed">
+      LOKRO ist ein gewachsenes Netzwerk aus über 100 kostenlosen Projekten, Tools und Communities.
+      Kein Investor, keine Paywall, kein Abo — nur Software, gebaut für Menschen, die sich Premium
+      nicht leisten können oder wollen.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="#community" class="btn-primary chamfer px-6 py-3.5 text-sm">Discord beitreten</a>
+      <a href="#projects" class="btn-ghost chamfer px-6 py-3.5 text-sm">Projekte entdecken</a>
+    </div>
+  </div>
 
-            <section>
-                <h2><i class="fa-solid fa-hashtag"></i> Connect</h2>
-                <div class="social-links">
-                    <a href="https://github.com/Lokrogaming" class="social-btn" target="_blank"><i class="fa-brands fa-github"></i><br>GitHub</a>
-                    <a href="https://twitch.tv/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-twitch"></i><br>Twitch</a>
-                    <a href="https://instagram.com/lokrogamer" class="social-btn" target="_blank"><i class="fa-brands fa-instagram"></i><br>Insta</a>
-                </div>
-            </section>
+  <!-- Stats bar -->
+  <div class="relative max-w-6xl mx-auto px-6 mt-24">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px card chamfer-lg overflow-hidden" style="background: var(--border);">
+      <div class="bg-[var(--bg-elev)] p-6 sm:p-8" style="background: var(--bg-elev);">
+        <div class="font-display text-3xl sm:text-4xl font-semibold">100+</div>
+        <div class="font-mono text-xs muted mt-2 tracking-wide">SUBPROJEKTE</div>
+      </div>
+      <div class="p-6 sm:p-8" style="background: var(--bg-elev);">
+        <div class="font-display text-3xl sm:text-4xl font-semibold">1.000+</div>
+        <div class="font-mono text-xs muted mt-2 tracking-wide">NUTZER / MONAT<br>BEI MEHREREN PROJEKTEN</div>
+      </div>
+      <div class="p-6 sm:p-8" style="background: var(--bg-elev);">
+        <div class="font-display text-3xl sm:text-4xl font-semibold">100%</div>
+        <div class="font-mono text-xs muted mt-2 tracking-wide">KOSTENLOS</div>
+      </div>
+      <div class="p-6 sm:p-8" style="background: var(--bg-elev);">
+        <div class="font-display text-3xl sm:text-4xl font-semibold" style="color:var(--accent)">0%</div>
+        <div class="font-mono text-xs muted mt-2 tracking-wide">PROFIT</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <section>
-                <h2><i class="fa-solid fa-paper-plane"></i> Contact</h2>
-                <p><strong>Discord:</strong> lokrogamer</p>
-                <p style="margin-top: 1rem"><strong>Hobbies:</strong> Streamer & Developer</p>
-            </section>
-
-        </main>
-    </br>
-          <h2 style="align:center;"><i class="fa-solid fa-people-group"></i> Visitor Counter</h2>
-          <img style="align:center" src="https://count.getloli.com/@lokrogamerWebCounter?name=lokrogamerWebCounter&theme=morden-num&padding=5&offset=10&align=center&scale=2&pixelated=0&darkmode=1" alt="LokrogamerWebCounter" />
-         
-        
-
-        <footer>
-            <p>&copy; 2026 Lokrogamer | Built with Passion</p>
-        </footer>
+<!-- MISSION -->
+<section id="mission" class="py-28 border-t border-c">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <div class="font-mono text-xs tracking-widest muted mb-4">WARUM LOKRO</div>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">
+        Zugang ist kein Luxus.
+      </h2>
+      <p class="mt-6 muted leading-relaxed">
+        Vieles im Netz kostet heute Abo-Gebühren, verlangt Werbe-Tracking oder versteckt sich hinter
+        Bezahlschranken. LOKRO geht den anderen Weg: Wir bauen Tools, Spiele und Communities, die
+        jeder nutzen kann — unabhängig vom Geldbeutel.
+      </p>
+      <p class="mt-4 muted leading-relaxed">
+        Jedes Projekt entsteht aus einem echten Bedürfnis der Community und wird von Grund auf
+        selbst entwickelt: von der Infrastruktur bis zum letzten Feature. Kein Projekt ist zu klein,
+        um es kostenlos zu halten.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Selbst entwickelt</span>
+        <span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Community-getrieben</span>
+        <span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Für immer kostenlos</span>
+      </div>
     </div>
 
-    
+    <div class="reveal">
+      <svg viewBox="0 0 480 380" class="w-full h-auto">
+        <line x1="240" y1="60" x2="90" y2="150" class="node-line"></line>
+        <line x1="240" y1="60" x2="240" y2="170" class="node-line"></line>
+        <line x1="240" y1="60" x2="390" y2="150" class="node-line"></line>
+        <line x1="90" y1="150" x2="90" y2="270" class="node-line"></line>
+        <line x1="240" y1="170" x2="90" y2="270" class="node-line"></line>
+        <line x1="240" y1="170" x2="390" y2="270" class="node-line"></line>
+        <line x1="390" y1="150" x2="390" y2="270" class="node-line"></line>
+        <line x1="90" y1="270" x2="240" y2="340" class="node-line"></line>
+        <line x1="390" y1="270" x2="240" y2="340" class="node-line"></line>
+
+        <circle cx="240" cy="60" r="7" class="node-dot-accent"></circle>
+        <text x="240" y="38" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:11px;">LOKRO</text>
+
+        <circle cx="90" cy="150" r="5" class="node-dot"></circle>
+        <text x="60" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">MAIL</text>
+
+        <circle cx="240" cy="170" r="5" class="node-dot"></circle>
+        <text x="240" y="195" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GAMES</text>
+
+        <circle cx="390" cy="150" r="5" class="node-dot"></circle>
+        <text x="420" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GANG</text>
+
+        <circle cx="90" cy="270" r="5" class="node-dot"></circle>
+        <text x="60" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">LGG</text>
+
+        <circle cx="390" cy="270" r="5" class="node-dot"></circle>
+        <text x="420" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">+95</text>
+
+        <circle cx="240" cy="340" r="6" class="node-dot"></circle>
+        <text x="240" y="365" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:10px;">…und mehr</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-28 border-t border-c">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal mb-16">
+      <div class="font-mono text-xs tracking-widest muted mb-4">AUSGEWÄHLTE PROJEKTE</div>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">
+        Ein Netzwerk, viele Werkzeuge.
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card chamfer p-7 reveal">
+        <div class="flex items-center justify-between mb-6">
+          <span class="dot-live"></span>
+          <span class="font-mono text-xs dim">PRIVACY</span>
+        </div>
+        <h3 class="font-display text-xl font-semibold">LokroMAIL</h3>
+        <p class="mt-3 text-sm muted leading-relaxed">
+          E-Mail-Weiterleitung über Cloudflare, die deine echte Adresse verschleiert — für Anmeldungen,
+          Newsletter und Formulare, ohne deine echte Mailbox preiszugeben.
+        </p>
+      </div>
+
+      <div class="card chamfer p-7 reveal">
+        <div class="flex items-center justify-between mb-6">
+          <span class="dot-live"></span>
+          <span class="font-mono text-xs dim">ENTERTAINMENT</span>
+        </div>
+        <h3 class="font-display text-xl font-semibold">LokroGames</h3>
+        <p class="mt-3 text-sm muted leading-relaxed">
+          Eine Sammlung von Retro-Spielen direkt im Browser. Kein Account, kein Download,
+          keine Werbung — einfach spielen.
+        </p>
+      </div>
+
+      <div class="card chamfer p-7 reveal">
+        <div class="flex items-center justify-between mb-6">
+          <span class="dot-live"></span>
+          <span class="font-mono text-xs dim">COMMUNITY</span>
+        </div>
+        <h3 class="font-display text-xl font-semibold">LokroGang</h3>
+        <p class="mt-3 text-sm muted leading-relaxed">
+          Der offizielle Discord-Server von LOKRO. Hier entstehen neue Projekte, wird Feedback
+          gesammelt und das Netzwerk wächst gemeinsam mit der Community.
+        </p>
+      </div>
+
+      <div class="card chamfer p-7 reveal">
+        <div class="flex items-center justify-between mb-6">
+          <span class="dot-live"></span>
+          <span class="font-mono text-xs dim">DIRECTORY</span>
+        </div>
+        <h3 class="font-display text-xl font-semibold">LGG</h3>
+        <p class="mt-3 text-sm muted leading-relaxed">
+          Eine Discord-Serverliste zum Entdecken neuer Communities — kuratiert, kostenlos
+          und ohne versteckte Bezahl-Platzierungen.
+        </p>
+      </div>
+
+      <div class="card chamfer p-7 reveal sm:col-span-2 lg:col-span-2 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="font-mono text-xs dim">UND VIELES MEHR</span>
+          </div>
+          <h3 class="font-display text-xl font-semibold">+ 95 weitere Projekte</h3>
+          <p class="mt-3 text-sm muted leading-relaxed max-w-md">
+            Von kleinen internen Tools bis zu Projekten mit über 1.000 monatlichen Nutzern —
+            das gesamte Netzwerk wächst ständig weiter. Die vollständige Liste findest du
+            auf unserem Discord und GitHub.
+          </p>
+        </div>
+        <a href="#community" class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">
+          Alle Projekte ansehen →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-28 border-t border-c">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal mb-16">
+      <div class="font-mono text-xs tracking-widest muted mb-4">DIE MENSCHEN DAHINTER</div>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">
+        Gebaut von zwei, für alle.
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="card chamfer p-8 reveal">
+        <div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LG</div>
+        <h3 class="font-display text-lg font-semibold">Lokrogamer</h3>
+        <div class="font-mono text-xs dim mt-1 mb-4">FOUNDER &amp; DEVELOPER</div>
+        <p class="text-sm muted leading-relaxed">
+          Gründer von LOKRO und hauptverantwortlich für Entwicklung, Infrastruktur und Tooling
+          im gesamten Netzwerk — von der ersten Zeile Code bis zum Deployment.
+        </p>
+      </div>
+
+      <div class="card chamfer p-8 reveal">
+        <div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LS</div>
+        <h3 class="font-display text-lg font-semibold">Leon Sprenger</h3>
+        <div class="font-mono text-xs dim mt-1 mb-4">MANAGER &amp; PARTNER</div>
+        <p class="text-sm muted leading-relaxed">
+          Co-Owner von LOKRO. Unterstützt das Netzwerk mit Management-Erfahrung und Finanzierung
+          und hilft dabei, LOKRO als seriöse Marke im Netz zu etablieren.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY / CTA -->
+<section id="community" class="py-28 border-t border-c relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid hero-fade opacity-60"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center reveal">
+    <div class="font-mono text-xs tracking-widest muted mb-4">MITMACHEN</div>
+    <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">
+      Werde Teil von LOKRO.
+    </h2>
+    <p class="mt-6 muted leading-relaxed max-w-xl mx-auto">
+      Ob als Nutzer, Contributor oder einfach nur zum Austausch — auf LokroGang ist jeder
+      willkommen, der an ein offeneres, zugänglicheres Internet glaubt.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4 justify-center">
+      <a href="#" class="btn-primary chamfer px-7 py-3.5 text-sm">LokroGang beitreten</a>
+      <a href="#" class="btn-ghost chamfer px-7 py-3.5 text-sm">LOKRO auf GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-c py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <img src="/assets/lokro-white.png" alt="LOKRO" class="h-4 w-auto dark-logo hidden">
+      <img src="/assets/lokro-black.png" alt="LOKRO" class="h-4 w-auto light-logo hidden">
+    </div>
+    <p class="font-mono text-xs dim max-w-md leading-relaxed">
+      LOKRO ist ein 100% non-profit Projekt-Netzwerk. Alle Angebote sind kostenlos nutzbar.
+      Stand: 26.08.2026.
+    </p>
+    <div class="flex gap-6 font-mono text-xs muted">
+      <a href="#" class="hover:opacity-70 transition">Discord</a>
+      <a href="#" class="hover:opacity-70 transition">GitHub</a>
+      <a href="#projects" class="hover:opacity-70 transition">Projekte</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Theme handling
+  const root = document.documentElement;
+  const knob = document.getElementById('theme-knob');
+  const toggle = document.getElementById('theme-toggle');
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.classList.add('light');
+      knob.style.transform = 'translateX(20px)';
+      document.querySelectorAll('.dark-logo').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.light-logo').forEach(el => el.classList.remove('hidden'));
+    } else {
+      root.classList.remove('light');
+      knob.style.transform = 'translateX(0)';
+      document.querySelectorAll('.light-logo').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.dark-logo').forEach(el => el.classList.remove('hidden'));
+    }
+  }
+
+  const stored = localStorage.getItem('lokro-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(stored || (prefersLight ? 'light' : 'dark'));
+
+  toggle.addEventListener('click', () => {
+    const next = root.classList.contains('light') ? 'dark' : 'light';
+    localStorage.setItem('lokro-theme', next);
+    applyTheme(next);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
+
