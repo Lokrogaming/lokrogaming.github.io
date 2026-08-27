@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbungsportal — LOKRO</title>
+<meta name="description" content="Werde Teil des LOKRO-Teams. Alle Positionen sind ehrenamtlich und unbezahlt.">
+<link rel="icon" type="image/png" href="/assets/lokro-black.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elev: #111113;
+    --bg-elev-2: #17171a;
+    --fg: #f2f2f0;
+    --fg-muted: #9a9a9e;
+    --fg-dim: #626266;
+    --border: rgba(255,255,255,0.09);
+    --border-strong: rgba(255,255,255,0.16);
+    --grid-line: rgba(255,255,255,0.055);
+    --grid-line-strong: rgba(255,255,255,0.09);
+    --accent: #7fe3b4;
+    --accent-dim: rgba(127,227,180,0.14);
+    --warn: #e3b97f;
+    --warn-dim: rgba(227,185,127,0.12);
+  }
+  html.light {
+    --bg: #f7f7f5;
+    --bg-elev: #ffffff;
+    --bg-elev-2: #efefec;
+    --fg: #0d0d0e;
+    --fg-muted: #55555a;
+    --fg-dim: #8a8a8e;
+    --border: rgba(0,0,0,0.09);
+    --border-strong: rgba(0,0,0,0.16);
+    --grid-line: rgba(0,0,0,0.06);
+    --grid-line-strong: rgba(0,0,0,0.1);
+    --accent: #0f9e64;
+    --accent-dim: rgba(15,158,100,0.1);
+    --warn: #9a6a1f;
+    --warn-dim: rgba(154,106,31,0.1);
+  }
+
+  * { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    transition: background-color .35s ease, color .35s ease;
+  }
+
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .hero-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 100%);
+  }
+
+  .chamfer { clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px); }
+  .chamfer-sm { clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px); }
+  .chamfer-lg { clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px); }
+
+  .card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    transition: border-color .25s ease, transform .25s ease, background-color .25s ease;
+  }
+  .card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+
+  .btn-primary {
+    background: var(--fg); color: var(--bg); font-weight: 600;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover { opacity: .85; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+
+  .btn-ghost {
+    border: 1px solid var(--border-strong); color: var(--fg);
+    transition: background-color .2s ease, transform .2s ease;
+  }
+  .btn-ghost:hover { background: var(--bg-elev); transform: translateY(-1px); }
+
+  .dot-live { display:inline-block; width:6px; height:6px; border-radius:999px; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+  .dot-closed { display:inline-block; width:6px; height:6px; border-radius:999px; background: var(--fg-dim); }
+
+  .muted { color: var(--fg-muted); }
+  .dim { color: var(--fg-dim); }
+  .border-c { border-color: var(--border); }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .card:hover, .btn-primary:hover, .btn-ghost:hover { transform: none; }
+  }
+
+  .theme-toggle-track { background: var(--bg-elev-2); border: 1px solid var(--border); }
+
+  .notice-box {
+    background: var(--warn-dim);
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent);
+  }
+
+  .field-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: .04em; color: var(--fg-muted); text-transform: uppercase; }
+
+  .input-field, .textarea-field, .select-field {
+    width: 100%;
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    color: var(--fg);
+    padding: 0.75rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .input-field:focus, .textarea-field:focus, .select-field:focus { border-color: var(--fg-dim); }
+  .textarea-field { min-height: 110px; resize: vertical; }
+
+  select.select-field { appearance: none; -webkit-appearance: none; background-image: none; }
+
+  ::selection { background: var(--accent-dim); color: var(--fg); }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/index.html" class="flex items-center gap-2">
+      <img src="/assets/lokro-white.png" alt="LOKRO" class="h-5 w-auto hidden dark-logo">
+      <img src="/assets/lokro-black.png" alt="LOKRO" class="h-5 w-auto hidden light-logo">
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-mono muted">
+      <a href="/index.html" class="hover:opacity-70 transition">Startseite</a>
+      <a href="#listings" class="hover:opacity-70 transition">Offene Positionen</a>
+      <a href="#faq" class="hover:opacity-70 transition">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" aria-label="Farbschema wechseln" class="theme-toggle-track relative w-12 h-7 rounded-full flex items-center px-1 chamfer-sm">
+        <span id="theme-knob" class="block w-5 h-5 rounded-full transition-transform duration-300" style="background: var(--fg);"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative pt-40 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-grid hero-fade"></div>
+  <div class="relative max-w-6xl mx-auto px-6">
+    <div class="flex items-center gap-2 font-mono text-xs tracking-widest muted mb-8">
+      <span class="dot-live"></span>
+      BEWERBUNGSPORTAL
+    </div>
+    <h1 class="font-display font-semibold text-5xl sm:text-6xl leading-[1.05] max-w-3xl">
+      Werde Teil<br>des Teams<span style="color:var(--accent)">.</span>
+    </h1>
+    <p class="mt-8 max-w-xl text-lg muted leading-relaxed">
+      LOKRO wächst durch Menschen, die mitgestalten wollen. Wähle unten eine Position und
+      schick uns deine Bewerbung direkt über dieses Formular.
+    </p>
+  </div>
+</section>
+
+<!-- NOTICE -->
+<section class="relative pb-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="notice-box chamfer p-6 sm:p-7 reveal">
+      <div class="flex items-start gap-4">
+        <div class="font-mono text-xs font-medium tracking-widest shrink-0 pt-0.5" style="color: var(--warn);">WICHTIG</div>
+        <p class="text-sm leading-relaxed" style="color: var(--fg);">
+          Alle Positionen bei LOKRO sind <strong>ehrenamtlich</strong>. LOKRO ist ein 100% non-profit
+          Projekt-Netzwerk — es findet <strong>keine Bezahlung, kein Lohn und keine Auszahlung</strong> in
+          jeglicher Form statt. Du engagierst dich freiwillig, in deiner eigenen Zeit und ohne
+          Anspruch auf Vergütung. Bitte bewirb dich nur, wenn du damit einverstanden bist.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section id="listings" class="py-4 border-t border-c">
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="reveal mb-16">
+      <div class="font-mono text-xs tracking-widest muted mb-4">OFFENE POSITIONEN</div>
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">
+        Wo wir gerade Hilfe suchen.
+      </h2>
+    </div>
+
+    <div id="listings-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  </div>
+</section>
+
+<!-- APPLICATION FORM (hidden until a listing is chosen) -->
+<section id="application" class="py-24 border-t border-c hidden">
+  <div class="max-w-3xl mx-auto px-6">
+    <button id="back-to-listings" class="font-mono text-xs muted mb-10 inline-flex items-center gap-2 hover:opacity-70 transition">
+      ← Zurück zur Übersicht
+    </button>
+
+    <div class="reveal in">
+      <div id="app-tag" class="font-mono text-xs dim mb-3"></div>
+      <h2 id="app-title" class="font-display text-3xl sm:text-4xl font-semibold leading-tight"></h2>
+      <p id="app-desc" class="mt-5 muted leading-relaxed"></p>
+
+      <div id="app-requirements" class="mt-6"></div>
+
+      <div class="notice-box chamfer mt-10 p-5">
+        <p class="text-sm leading-relaxed" style="color: var(--fg);">
+          Mit dem Absenden bestätigst du, dass diese Tätigkeit <strong>ehrenamtlich und unbezahlt</strong> ist.
+        </p>
+      </div>
+
+      <form id="application-form" action="https://formsubmit.co/apply@lokro.dev" method="POST" class="mt-10 space-y-6">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" id="form-subject" value="Neue Bewerbung bei LOKRO">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="Position" id="form-position" value="">
+        <!-- Honeypot spam trap -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div>
+          <label class="field-label block mb-2">Name *</label>
+          <input class="input-field chamfer-sm" type="text" name="Name" required>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label class="field-label block mb-2">E-Mail *</label>
+            <input class="input-field chamfer-sm" type="email" name="Email" required>
+          </div>
+          <div>
+            <label class="field-label block mb-2">Discord-Username</label>
+            <input class="input-field chamfer-sm" type="text" name="Discord" placeholder="name#0000">
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label block mb-2">Alter</label>
+          <input class="input-field chamfer-sm" type="number" name="Alter" min="13" max="120">
+        </div>
+
+        <!-- Dynamically generated question fields per listing -->
+        <div id="dynamic-fields" class="space-y-6"></div>
+
+        <label class="flex items-start gap-3 pt-2">
+          <input type="checkbox" name="Ehrenamtliche_Taetigkeit_bestaetigt" value="Ja, verstanden und akzeptiert" required class="mt-1">
+          <span class="text-sm muted leading-relaxed">
+            Ich habe verstanden, dass diese Position bei LOKRO <strong>freiwillig und ehrenamtlich</strong> ist
+            und <strong>keinerlei Bezahlung, Lohn oder Auszahlung</strong> erfolgt.
+          </span>
+        </label>
+
+        <button type="submit" class="btn-primary chamfer px-7 py-3.5 text-sm">Bewerbung absenden</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 border-t border-c">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="reveal mb-12">
+      <div class="font-mono text-xs tracking-widest muted mb-4">HÄUFIGE FRAGEN</div>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold leading-tight">Bevor du dich bewirbst.</h2>
+    </div>
+
+    <div class="space-y-6 reveal">
+      <div class="card chamfer p-6">
+        <h3 class="font-display font-semibold">Wird die Tätigkeit bezahlt?</h3>
+        <p class="mt-2 text-sm muted leading-relaxed">
+          Nein. LOKRO ist zu 100% non-profit. Alle Positionen sind ehrenamtlich, es erfolgt keine
+          Bezahlung, kein Lohn und keine Auszahlung in irgendeiner Form.
+        </p>
+      </div>
+      <div class="card chamfer p-6">
+        <h3 class="font-display font-semibold">Wie viel Zeit muss ich investieren?</h3>
+        <p class="mt-2 text-sm muted leading-relaxed">
+          Das entscheidest du selbst. Die meisten Positionen sind flexibel und passen sich an
+          deine verfügbare Zeit an — sprich einfach offen an, was realistisch für dich ist.
+        </p>
+      </div>
+      <div class="card chamfer p-6">
+        <h3 class="font-display font-semibold">Was passiert nach der Bewerbung?</h3>
+        <p class="mt-2 text-sm muted leading-relaxed">
+          Deine Bewerbung geht direkt an <span class="font-mono">apply@lokro.dev</span>. Wir melden
+          uns per E-Mail oder Discord bei dir, meist innerhalb weniger Tage.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-c py-12">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <img src="/assets/lokro-white.png" alt="LOKRO" class="h-4 w-auto dark-logo hidden">
+      <img src="/assets/lokro-black.png" alt="LOKRO" class="h-4 w-auto light-logo hidden">
+    </div>
+    <p class="font-mono text-xs dim max-w-md leading-relaxed">
+      Alle Positionen bei LOKRO sind ehrenamtlich und unbezahlt. LOKRO ist ein 100% non-profit
+      Projekt-Netzwerk.
+    </p>
+    <div class="flex gap-6 font-mono text-xs muted">
+      <a href="/index.html" class="hover:opacity-70 transition">Startseite</a>
+      <a href="#listings" class="hover:opacity-70 transition">Positionen</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ------------------------------------------------------------------
+     OFFENE POSITIONEN — hier neue Ausschreibungen eintragen.
+     status: "open" oder "closed"
+     questions: type kann "text", "textarea" oder "select" sein
+       - bei "select" wird ein "options"-Array erwartet
+  ------------------------------------------------------------------- */
+  const listings = [
+    {
+      id: "bot-dev",
+      title: "Discord-Bot Developer",
+      team: "LokroBot",
+      status: "open",
+      summary: "Du entwickelst mit uns an LokroBot / lokro-content-bot: Content-Builder-Commands, Embeds und mehr.",
+      requirements: [
+        "Erfahrung mit Node.js und discord.js",
+        "Sauberer, wartbarer Code",
+        "Eigeninitiative bei kleinen Features"
+      ],
+      questions: [
+        {
+          id: "erfahrung_nodejs",
+          label: "Wie viel Erfahrung hast du mit Node.js?",
+          type: "select",
+          options: ["Anfänger", "Fortgeschritten", "Sehr erfahren"],
+          required: true
+        },
+        {
+          id: "github",
+          label: "Link zu deinem GitHub-Profil (optional)",
+          type: "text",
+          required: false
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "infra-helfer",
+      title: "Infrastruktur & Hosting Helfer",
+      team: "Infrastructure",
+      status: "open",
+      summary: "Unterstütze uns beim Betrieb von Servern, Deployments und der CDN-Infrastruktur rund um lokro.dev.",
+      requirements: [
+        "Grundkenntnisse Linux / CLI",
+        "Interesse an Deployment & Hosting",
+        "Zuverlässigkeit bei laufenden Diensten"
+      ],
+      questions: [
+        {
+          id: "erfahrung_linux",
+          label: "Wie viel Erfahrung hast du mit Linux / CLI?",
+          type: "select",
+          options: ["Anfänger", "Fortgeschritten", "Sehr erfahren"],
+          required: true
+        },
+        {
+          id: "verfuegbarkeit",
+          label: "Wie viele Stunden pro Woche kannst du etwa einbringen?",
+          type: "text",
+          required: true
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "moderator",
+      title: "Community Moderator",
+      team: "LokroGang",
+      status: "open",
+      summary: "Du hilfst dabei, die LokroGang freundlich, sicher und aktiv zu halten.",
+      requirements: [
+        "Erfahrung als Moderator von Vorteil",
+        "Freundlicher, ruhiger Umgangston",
+        "Regelmäßige Aktivität im Discord"
+      ],
+      questions: [
+        {
+          id: "mod_erfahrung",
+          label: "Hast du bereits Erfahrung als Moderator?",
+          type: "select",
+          options: ["Ja", "Nein"],
+          required: true
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "design-helfer",
+      title: "UI / Grafik Helfer",
+      team: "Design",
+      status: "closed",
+      summary: "Unterstützung bei UI-Design und grafischen Assets für verschiedene LOKRO-Projekte.",
+      requirements: [
+        "Erfahrung mit Figma o.ä.",
+        "Gespür für klares, reduziertes Design"
+      ],
+      questions: [
+        {
+          id: "portfolio",
+          label: "Link zu deinem Portfolio",
+          type: "text",
+          required: true
+        }
+      ]
+    }
+  ];
+
+  const grid = document.getElementById('listings-grid');
+
+  function renderListings() {
+    grid.innerHTML = '';
+    listings.forEach(listing => {
+      const isOpen = listing.status === 'open';
+      const card = document.createElement('div');
+      card.className = 'card chamfer p-7 reveal in flex flex-col justify-between';
+      card.innerHTML = `
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="${isOpen ? 'dot-live' : 'dot-closed'}"></span>
+            <span class="font-mono text-xs dim">${listing.team.toUpperCase()}</span>
+          </div>
+          <h3 class="font-display text-xl font-semibold">${listing.title}</h3>
+          <p class="mt-3 text-sm muted leading-relaxed">${listing.summary}</p>
+        </div>
+        <button data-id="${listing.id}" class="listing-btn ${isOpen ? 'btn-ghost' : ''} chamfer-sm px-4 py-2.5 text-sm mt-6 font-mono text-xs ${isOpen ? '' : 'opacity-40 cursor-not-allowed'}" ${isOpen ? '' : 'disabled'}>
+          ${isOpen ? 'Bewerben →' : 'Geschlossen'}
+        </button>
+      `;
+      grid.appendChild(card);
+    });
+
+    document.querySelectorAll('.listing-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        openApplication(btn.getAttribute('data-id'));
+      });
+    });
+  }
+
+  const appSection = document.getElementById('application');
+  const listingsSection = document.getElementById('listings');
+
+  function openApplication(id) {
+    const listing = listings.find(l => l.id === id);
+    if (!listing) return;
+
+    document.getElementById('app-tag').textContent = listing.team.toUpperCase();
+    document.getElementById('app-title').textContent = listing.title;
+    document.getElementById('app-desc').textContent = listing.summary;
+    document.getElementById('form-subject').value = 'Neue Bewerbung: ' + listing.title;
+    document.getElementById('form-position').value = listing.title + ' (' + listing.team + ')';
+
+    const reqWrap = document.getElementById('app-requirements');
+    reqWrap.innerHTML = '<div class="field-label mb-3">ERWARTUNGEN</div>' +
+      '<ul class="space-y-2">' +
+      listing.requirements.map(r => `<li class="text-sm muted flex gap-2"><span style="color:var(--accent)">·</span>${r}</li>`).join('') +
+      '</ul>';
+
+    const dyn = document.getElementById('dynamic-fields');
+    dyn.innerHTML = '';
+    listing.questions.forEach(q => {
+      const wrap = document.createElement('div');
+      const req = q.required ? 'required' : '';
+      const reqMark = q.required ? ' *' : '';
+      let fieldHtml = '';
+
+      if (q.type === 'textarea') {
+        fieldHtml = `<textarea class="textarea-field chamfer-sm" name="${q.label}" ${req}></textarea>`;
+      } else if (q.type === 'select') {
+        const opts = q.options.map(o => `<option value="${o}">${o}</option>`).join('');
+        fieldHtml = `<select class="select-field chamfer-sm" name="${q.label}" ${req}><option value="" disabled selected>Bitte wählen</option>${opts}</select>`;
+      } else {
+        fieldHtml = `<input class="input-field chamfer-sm" type="text" name="${q.label}" ${req}>`;
+      }
+
+      wrap.innerHTML = `<label class="field-label block mb-2">${q.label}${reqMark}</label>${fieldHtml}`;
+      dyn.appendChild(wrap);
+    });
+
+    listingsSection.classList.add('hidden');
+    appSection.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.getElementById('back-to-listings').addEventListener('click', () => {
+    appSection.classList.add('hidden');
+    listingsSection.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  renderListings();
+
+  // Theme handling
+  const root = document.documentElement;
+  const knob = document.getElementById('theme-knob');
+  const toggle = document.getElementById('theme-toggle');
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.classList.add('light');
+      knob.style.transform = 'translateX(20px)';
+      document.querySelectorAll('.dark-logo').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.light-logo').forEach(el => el.classList.remove('hidden'));
+    } else {
+      root.classList.remove('light');
+      knob.style.transform = 'translateX(0)';
+      document.querySelectorAll('.light-logo').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.dark-logo').forEach(el => el.classList.remove('hidden'));
+    }
+  }
+
+  const stored = localStorage.getItem('lokro-theme');
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(stored || (prefersLight ? 'light' : 'dark'));
+
+  toggle.addEventListener('click', () => {
+    const next = root.classList.contains('light') ? 'dark' : 'light';
+    localStorage.setItem('lokro-theme', next);
+    applyTheme(next);
+  });
+
+  // Scroll reveal (for elements not already in view)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+
