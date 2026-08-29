@@ -1,0 +1,114 @@
+[
+    {
+      id: "bot-dev",
+      title: "Discord-Bot Developer",
+      team: "LokroBot",
+      status: "open",
+      summary: "Du entwickelst mit uns an LokroBot / lokro-content-bot: Content-Builder-Commands, Embeds und mehr.",
+      requirements: [
+        "Erfahrung mit Node.js und discord.js",
+        "Sauberer, wartbarer Code",
+        "Eigeninitiative bei kleinen Features"
+      ],
+      questions: [
+        {
+          id: "erfahrung_nodejs",
+          label: "Wie viel Erfahrung hast du mit Node.js?",
+          type: "select",
+          options: ["Anfänger", "Fortgeschritten", "Sehr erfahren"],
+          required: true
+        },
+        {
+          id: "github",
+          label: "Link zu deinem GitHub-Profil (optional)",
+          type: "text",
+          required: false
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "infra-helfer",
+      title: "Infrastruktur & Hosting Helfer",
+      team: "Infrastructure",
+      status: "open",
+      summary: "Unterstütze uns beim Betrieb von Servern, Deployments und der CDN-Infrastruktur rund um lokro.dev.",
+      requirements: [
+        "Grundkenntnisse Linux / CLI",
+        "Interesse an Deployment & Hosting",
+        "Zuverlässigkeit bei laufenden Diensten"
+      ],
+      questions: [
+        {
+          id: "erfahrung_linux",
+          label: "Wie viel Erfahrung hast du mit Linux / CLI?",
+          type: "select",
+          options: ["Anfänger", "Fortgeschritten", "Sehr erfahren"],
+          required: true
+        },
+        {
+          id: "verfuegbarkeit",
+          label: "Wie viele Stunden pro Woche kannst du etwa einbringen?",
+          type: "text",
+          required: true
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "moderator",
+      title: "Community Moderator",
+      team: "LokroGang",
+      status: "open",
+      summary: "Du hilfst dabei, die LokroGang freundlich, sicher und aktiv zu halten.",
+      requirements: [
+        "Erfahrung als Moderator von Vorteil",
+        "Freundlicher, ruhiger Umgangston",
+        "Regelmäßige Aktivität im Discord"
+      ],
+      questions: [
+        {
+          id: "mod_erfahrung",
+          label: "Hast du bereits Erfahrung als Moderator?",
+          type: "select",
+          options: ["Ja", "Nein"],
+          required: true
+        },
+        {
+          id: "motivation",
+          label: "Warum möchtest du bei LOKRO mitmachen?",
+          type: "textarea",
+          required: true
+        }
+      ]
+    },
+    {
+      id: "design-helfer",
+      title: "UI / Grafik Helfer",
+      team: "Design",
+      status: "closed",
+      summary: "Unterstützung bei UI-Design und grafischen Assets für verschiedene LOKRO-Projekte.",
+      requirements: [
+        "Erfahrung mit Figma o.ä.",
+        "Gespür für klares, reduziertes Design"
+      ],
+      questions: [
+        {
+          id: "portfolio",
+          label: "Link zu deinem Portfolio",
+          type: "text",
+          required: true
+        }
+      ]
+    }
+  ]
