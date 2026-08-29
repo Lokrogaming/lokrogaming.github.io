@@ -335,8 +335,30 @@
      questions: type kann "text", "textarea" oder "select" sein
        - bei "select" wird ein "options"-Array erwartet
   ------------------------------------------------------------------- */
-  const listings = fetch("/applications.json");
+  let listings = [];
 
+fetch("/applications.json")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    listings = data;
+    renderListings();
+  })
+  .catch(error => {
+    console.error("Fehler beim Laden der Bewerbungen:", error);
+
+    grid.innerHTML = `
+      <div class="card chamfer p-7 sm:col-span-2 lg:col-span-3">
+        <p class="text-sm muted">
+          Die offenen Positionen konnten momentan nicht geladen werden.
+        </p>
+      </div>
+    `;
+  });
   const grid = document.getElementById('listings-grid');
 
   function renderListings() {
