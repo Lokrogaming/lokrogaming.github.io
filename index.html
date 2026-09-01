@@ -145,6 +145,45 @@
     border: 1px solid var(--border);
   }
 
+  /* Bottom navigation — deliberately fully rounded, distinct from the
+     chamfered brand shape, since it's persistent app-like chrome. */
+  .bottom-nav {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.4rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-elev) 90%, transparent);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.45);
+  }
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    color: var(--fg-dim);
+    transition: background-color .2s ease, color .2s ease;
+  }
+  .bottom-nav-item svg { width: 19px; height: 19px; }
+  .bottom-nav-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: .02em;
+  }
+  .bottom-nav-item:hover { color: var(--fg); background: var(--bg-elev-2); }
+  .bottom-nav-item.active { color: var(--bg); background: var(--fg); }
+  .bottom-nav-item.active .bottom-nav-label { color: var(--bg); }
+
   ::selection { background: var(--accent-dim); color: var(--fg); }
 </style>
 </head>
@@ -413,7 +452,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="border-t border-c py-12">
+<footer class="border-t border-c pt-12 pb-32">
   <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
     <div class="flex items-center gap-2">
       <img src="https://lokro.dev/assets/lokro-white.png" alt="LOKRO" class="h-4 w-auto dark-logo hidden">
@@ -430,6 +469,26 @@
     </div>
   </div>
 </footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" aria-label="Hauptnavigation">
+  <a href="/index.html#top" class="bottom-nav-item active" aria-label="Startseite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5L12 4l8 6.5"/><path d="M6 9.5V20h5v-5h2v5h5V9.5"/></svg>
+    <span class="bottom-nav-label">Home</span>
+  </a>
+  <a href="/bewerbung.html" class="bottom-nav-item" aria-label="Bewerben">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12h18"/></svg>
+    <span class="bottom-nav-label">Bewerben</span>
+  </a>
+  <a href="/hall-of-fame.html" class="bottom-nav-item" aria-label="Hall of Fame">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></svg>
+    <span class="bottom-nav-label">Hall of Fame</span>
+  </a>
+  <a href="https://discord.lokro.dev" class="bottom-nav-item" aria-label="Discord Community">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12c0 4.4-4 8-9 8-1.2 0-2.4-.2-3.4-.6L3 20l1-4.2C3.4 14.4 3 13.2 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg>
+    <span class="bottom-nav-label">Community</span>
+  </a>
+</nav>
 
 <script>
   // Theme handling
@@ -480,3 +539,4 @@
   </script>
 </body>
 </html>
+
