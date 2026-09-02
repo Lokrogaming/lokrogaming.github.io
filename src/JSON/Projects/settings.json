@@ -1,5 +1,5 @@
 {
-  "quarantine": false,
+  "quarantine": true,
   "maintenance": {
     "index.html": false,
     "main.html": false,
