@@ -1,58 +1,13 @@
 [
   {
-    "version": "2.1.0",
+    "id": "https://autochangelog.com/changelog/lokrogaming/lokrogaming-github-io/new-content-and-navigation-enhancements",
+    "slug": "",
+    "title": "New Content and Navigation Enhancements",
+    "version": "",
     "date": "2026-09-12",
-    "title": "Le journal est arrivé",
-    "summary": "Toutes les modifications de lokro.dev apparaissent désormais ici automatiquement.",
-    "changes": [
-      {
-        "type": "added",
-        "text": "Nouvelle page journal en 7 langues avec recherche et frise des versions"
-      },
-      {
-        "type": "added",
-        "text": "Entrées automatiques : chaque modification de lokro.dev déclenche une version mineure via webhook"
-      }
-    ]
-  },
-  {
-    "version": "2.0.1",
-    "date": "2026-09-12",
-    "title": "LOKRO Dev. V2.0.1",
-    "summary": "Grande relance : le site complet en sept langues.",
-    "changes": [
-      {
-        "type": "added",
-        "text": "Site en 7 langues : allemand, anglais, français, italien, espagnol, turc et latin"
-      },
-      {
-        "type": "added",
-        "text": "Nouveau portail de candidature avec les postes ouverts issus de données JSON"
-      },
-      {
-        "type": "added",
-        "text": "Hall of Fame avec données par langue, sitemap et page 404 personnalisée"
-      },
-      {
-        "type": "added",
-        "text": "Ressources partagées (site.css / site.js) pour toutes les langues"
-      }
-    ]
-  },
-  {
-    "version": "2.0.0",
-    "date": "2026-09-01",
-    "title": "Base & navigation",
-    "summary": "Première étape d’extension du nouveau site.",
-    "changes": [
-      {
-        "type": "added",
-        "text": "Navigation basse pour toutes les pages"
-      },
-      {
-        "type": "added",
-        "text": "sitemap.xml et robots.txt pour les moteurs de recherche"
-      }
-    ]
+    "summary": "We're excited to share a range of updates that enhance both the content and navigation of our site. This version introduces new files and improves existing pages, making it easier for users to find what they need. New Features We've added several new components to improve your browsing experience: …",
+    "content_html": "",
+    "tags": [],
+    "url": "https://autochangelog.com/changelog/lokrogaming/lokrogaming-github-io/new-content-and-navigation-enhancements"
   }
 ]

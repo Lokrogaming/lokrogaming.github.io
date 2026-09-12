@@ -180,7 +180,7 @@ function renderList() {
     const card = document.createElement('article');
     card.className = 'card chamfer p-7 sm:p-8 reveal in';
     card.id = entryId(e, i);
-    let html = '<div class="flex flex-wrap items-center gap-3 mb-4"><span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm" style="color:var(--accent)">v' + esc(String(e.version || '').replace(/^v/i, '')) + '</span><span class="font-mono text-xs dim">' + esc(e.date || '') + '</span></div>';
+    let html = '<div class="flex flex-wrap items-center gap-3 mb-4">' + (e.version ? '<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm" style="color:var(--accent)">v' + esc(String(e.version).replace(/^v/i, '')) + '</span>' : '') + '<span class="font-mono text-xs dim">' + esc(e.date || '') + '</span></div>';
     html += '<h3 class="font-display text-xl font-semibold">' + esc(e.title) + '</h3>';
     if (e.summary) html += '<p class="mt-2 text-sm muted leading-relaxed">' + esc(e.summary) + '</p>';
     (e.changes || []).forEach(function (c) {

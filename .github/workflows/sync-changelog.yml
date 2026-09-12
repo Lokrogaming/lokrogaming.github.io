@@ -1,17 +1,16 @@
 name: Sync Changelog
 
-# Pulls published entries from the AutoChangelog REST API into
+# Pulls published entries from AutoChangelog into
 # changelog.json (+ per-language copies) so the static
 # /{lang}/changelog.html pages stay up to date without a backend.
 #
-# Setup (one time, repo owner only):
-#   1. AutoChangelog Pro/Team: request API access (Settings > API Access),
-#      create a key once approved.
-#   2. GitHub repo: Settings > Secrets and variables > Actions >
-#      New repository secret named AUTOCHANGELOG_API_KEY with that key.
-#      Optional repository variables: AUTOCHANGELOG_OWNER / AUTOCHANGELOG_REPO
-#      (defaults track Lokrogaming/lokrogaming.github.io).
-# The key is only used inside this workflow and never lands in the repo.
+# Default source is the public RSS feed (no key needed, Free plan OK).
+# Optional repository variables:
+#   CHANGELOG_SOURCE=rss|api (default rss)
+#   CHANGELOG_RSS_URL (default: LOKRO feed)
+#   For api mode: secret AUTOCHANGELOG_API_KEY (+ optional
+#   AUTOCHANGELOG_OWNER / AUTOCHANGELOG_REPO).
+# Keys/secrets are only used inside this workflow and never land in the repo.
 
 on:
   push:
@@ -33,6 +32,8 @@ jobs:
       - name: Fetch entries from AutoChangelog
         env:
           AUTOCHANGELOG_API_KEY: ${{ secrets.AUTOCHANGELOG_API_KEY }}
+          CHANGELOG_SOURCE: ${{ vars.CHANGELOG_SOURCE }}
+          CHANGELOG_RSS_URL: ${{ vars.CHANGELOG_RSS_URL }}
         run: python .github/workflows/sync_changelog.py
       - name: Commit if changed
         run: |
