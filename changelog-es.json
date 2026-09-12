@@ -1,0 +1,58 @@
+[
+  {
+    "version": "2.1.0",
+    "date": "2026-09-12",
+    "title": "El registro ya está aquí",
+    "summary": "Todos los cambios de lokro.dev aparecen ahora aquí automáticamente.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Nueva página de registro en 7 idiomas con búsqueda y cronología de versiones"
+      },
+      {
+        "type": "added",
+        "text": "Entradas automáticas: cada cambio en lokro.dev activa una versión menor vía webhook"
+      }
+    ]
+  },
+  {
+    "version": "2.0.1",
+    "date": "2026-09-12",
+    "title": "LOKRO Dev. V2.0.1",
+    "summary": "Gran relanzamiento: el sitio completo en siete idiomas.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Sitio en 7 idiomas: alemán, inglés, francés, italiano, español, turco y latín"
+      },
+      {
+        "type": "added",
+        "text": "Nuevo portal de postulación con vacantes abiertas desde datos JSON"
+      },
+      {
+        "type": "added",
+        "text": "Salón de la fama con datos por idioma, sitemap y página 404 personalizada"
+      },
+      {
+        "type": "added",
+        "text": "Recursos compartidos (site.css / site.js) para todos los idiomas"
+      }
+    ]
+  },
+  {
+    "version": "2.0.0",
+    "date": "2026-09-01",
+    "title": "Base y navegación",
+    "summary": "Primera fase de ampliación del nuevo sitio.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Navegación inferior para todas las páginas"
+      },
+      {
+        "type": "added",
+        "text": "sitemap.xml y robots.txt para los buscadores"
+      }
+    ]
+  }
+]

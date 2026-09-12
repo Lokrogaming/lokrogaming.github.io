@@ -1,0 +1,58 @@
+[
+  {
+    "version": "2.1.0",
+    "date": "2026-09-12",
+    "title": "Changelog ist da",
+    "summary": "Alle Änderungen an lokro.dev erscheinen ab sofort automatisch hier im Changelog.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Neue Changelog-Seite in allen 7 Sprachen mit Suche und Versions-Timeline"
+      },
+      {
+        "type": "added",
+        "text": "Automatische Einträge: Bei jedem Change an lokro.dev wird per Webhook ein Minor-Bump ausgelöst"
+      }
+    ]
+  },
+  {
+    "version": "2.0.1",
+    "date": "2026-09-12",
+    "title": "LOKRO Dev. V2.0.1",
+    "summary": "Großer Relaunch: die komplette Website in sieben Sprachen.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Website in 7 Sprachen: Deutsch, Englisch, Französisch, Italienisch, Spanisch, Türkisch und Latein"
+      },
+      {
+        "type": "added",
+        "text": "Neues Bewerbungsportal mit offenen Positionen aus JSON-Daten"
+      },
+      {
+        "type": "added",
+        "text": "Hall of Fame mit sprachspezifischen Daten, Sitemap und eigene 404-Seite"
+      },
+      {
+        "type": "added",
+        "text": "Geteilte Assets (site.css / site.js) für alle Sprachen"
+      }
+    ]
+  },
+  {
+    "version": "2.0.0",
+    "date": "2026-09-01",
+    "title": "Grundgerüst & Navigation",
+    "summary": "Erste Ausbaustufe der neuen Website.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Bottom-Navigation für alle Seiten"
+      },
+      {
+        "type": "added",
+        "text": "sitemap.xml und robots.txt für Suchmaschinen"
+      }
+    ]
+  }
+]

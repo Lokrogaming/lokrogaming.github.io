@@ -1,0 +1,58 @@
+[
+  {
+    "version": "2.1.0",
+    "date": "2026-09-12",
+    "title": "Changelog is here",
+    "summary": "Every change to lokro.dev now shows up here automatically.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "New changelog page in all 7 languages with search and version timeline"
+      },
+      {
+        "type": "added",
+        "text": "Automatic entries: every change to lokro.dev triggers a minor bump via webhook"
+      }
+    ]
+  },
+  {
+    "version": "2.0.1",
+    "date": "2026-09-12",
+    "title": "LOKRO Dev. V2.0.1",
+    "summary": "Major relaunch: the complete website in seven languages.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Website in 7 languages: German, English, French, Italian, Spanish, Turkish and Latin"
+      },
+      {
+        "type": "added",
+        "text": "New application portal with open positions from JSON data"
+      },
+      {
+        "type": "added",
+        "text": "Hall of Fame with per-language data, sitemap and custom 404 page"
+      },
+      {
+        "type": "added",
+        "text": "Shared assets (site.css / site.js) for all languages"
+      }
+    ]
+  },
+  {
+    "version": "2.0.0",
+    "date": "2026-09-01",
+    "title": "Foundation & navigation",
+    "summary": "First expansion stage of the new website.",
+    "changes": [
+      {
+        "type": "added",
+        "text": "Bottom navigation for all pages"
+      },
+      {
+        "type": "added",
+        "text": "sitemap.xml and robots.txt for search engines"
+      }
+    ]
+  }
+]
