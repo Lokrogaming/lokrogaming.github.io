@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Lokrogamer",
+    "role": "Kurucu & Geliştirici",
+    "description": "LOKRO'nun kurucusu. Geliştirme, altyapı ve tüm ağın arkasındaki vizyondan sorumlu.",
+    "avatar": "",
+    "link": "https://github.com/lokrogaming",
+    "featured": true
+  },
+  {
+    "name": "Leon Sprenger",
+    "role": "Müdür & Ortak (LS)",
+    "description": "LOKRO'nun ortak sahibi. Yönetim deneyimi ve desteğiyle LOKRO'nun ciddi bir marka olarak yerleşmesine katkı sağlar.",
+    "avatar": "",
+    "link": "",
+    "featured": true
+  },
+  {
+    "name": "Gretaj512",
+    "role": "Destekçi",
+    "description": "1. günden beri bizi destekliyor",
+    "avatar": "",
+    "link": "https://instagram.com/gretaj512",
+    "featured": true
+  }
+]

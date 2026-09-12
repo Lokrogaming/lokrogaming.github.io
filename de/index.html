@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOKRO — Ein Netzwerk für alle</title>
+<meta name="description" content="LOKRO ist ein 100% non-profit Projekt-Netzwerk mit über 100 kostenlosen Tools, Spielen und Communities. Kein Abo, keine Paywall — nur Software für alle.">
+<link rel="canonical" href="https://lokro.dev/de/">
+<link rel="alternate" hreflang="de" href="https://lokro.dev/de/">
+<link rel="alternate" hreflang="en" href="https://lokro.dev/en/">
+<link rel="alternate" hreflang="fr" href="https://lokro.dev/fr/">
+<link rel="alternate" hreflang="it" href="https://lokro.dev/it/">
+<link rel="alternate" hreflang="es" href="https://lokro.dev/es/">
+<link rel="alternate" hreflang="tr" href="https://lokro.dev/tr/">
+<link rel="alternate" hreflang="la" href="https://lokro.dev/la/">
+<link rel="alternate" hreflang="x-default" href="https://lokro.dev/de/">
+<meta property="og:title" content="LOKRO — Ein Netzwerk für alle">
+<meta property="og:description" content="Über 100 kostenlose Projekte, Tools und Communities. 100% non-profit.">
+<meta property="og:image" content="https://lokro.dev/assets/lokro-white.png">
+<meta property="og:url" content="https://lokro.dev/de/">
+<meta property="og:locale" content="de_DE">
+<link rel="icon" type="image/png" href="/assets/lokro-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="antialiased">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-3">
+<a href="./" class="flex items-center gap-2" aria-label="LOKRO Startseite">
+<img src="/assets/lokro-white.png" alt="LOKRO" class="h-7 w-auto hidden dark-logo">
+<img src="/assets/lokro-black.png" alt="LOKRO" class="h-7 w-auto hidden light-logo">
+</a>
+<nav class="hidden md:flex items-center gap-8 text-sm font-mono muted" aria-label="Hauptnavigation">
+<a href="#mission" class="hover:opacity-70 transition">Mission</a>
+<a href="#projekte" class="hover:opacity-70 transition">Projekte</a>
+<a href="#werte" class="hover:opacity-70 transition">Werte</a>
+<a href="#team" class="hover:opacity-70 transition">Team</a>
+<a href="#community" class="hover:opacity-70 transition">Community</a>
+</nav>
+<div class="flex items-center gap-2 sm:gap-3">
+<div class="lang-wrap">
+<button class="lang-btn chamfer-sm" aria-haspopup="true" aria-expanded="false" aria-label="Sprache wählen">DE <span class="lang-caret">▼</span></button>
+<div class="lang-menu chamfer-sm" role="menu">
+<a class="lang-option current" href="/de/" data-lang="de" role="menuitem">Deutsch <span class="code">DE</span></a>
+<a class="lang-option" href="/en/" data-lang="en" role="menuitem">English <span class="code">EN</span></a>
+<a class="lang-option" href="/fr/" data-lang="fr" role="menuitem">Français <span class="code">FR</span></a>
+<a class="lang-option" href="/it/" data-lang="it" role="menuitem">Italiano <span class="code">IT</span></a>
+<a class="lang-option" href="/es/" data-lang="es" role="menuitem">Español <span class="code">ES</span></a>
+<a class="lang-option" href="/tr/" data-lang="tr" role="menuitem">Türkçe <span class="code">TR</span></a>
+<a class="lang-option" href="/la/" data-lang="la" role="menuitem">Latina <span class="code">LA</span></a>
+</div>
+</div>
+<button id="theme-toggle" aria-label="Farbschema wechseln" class="theme-toggle-track relative w-12 h-7 rounded-full flex items-center px-1 chamfer-sm">
+<span id="theme-knob" class="block w-5 h-5 rounded-full transition-transform duration-300" style="background: var(--fg);"></span>
+</button>
+<a href="#community" class="btn-primary chamfer-sm px-4 py-2 text-sm hidden sm:inline-block">Discord</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-20 overflow-hidden">
+<div class="absolute inset-0 bg-grid hero-fade"></div>
+<div class="orb orb-accent orb-a" data-parallax="26" style="top:-120px;left:-120px;"></div>
+<div class="orb orb-soft orb-b" data-parallax="-20" style="top:10%;right:-180px;"></div>
+<div class="relative max-w-6xl mx-auto px-6">
+<div class="flex items-center gap-2 font-mono text-xs tracking-widest muted mb-8 reveal in">
+<span class="dot-live pulse"></span>
+COMMUNITY-NETZWERK · 100% NON-PROFIT
+</div>
+<h1 class="font-display font-semibold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">Das Internet gehört<br>allen<span style="color:var(--accent)">.</span></h1>
+<p class="mt-8 max-w-xl text-lg muted leading-relaxed">LOKRO ist ein gewachsenes Netzwerk aus über 100 kostenlosen Projekten, Tools und Communities. Kein Investor, keine Paywall, kein Abo — nur Software, gebaut für Menschen, die sich Premium nicht leisten können oder wollen.</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="chip chamfer-sm">Über 100 Projekte</span>
+<span class="chip chamfer-sm">100% kostenlos</span>
+<span class="chip chamfer-sm">Community-getrieben</span>
+</div>
+<div class="mt-10 flex flex-wrap gap-4">
+<a href="#community" class="btn-primary chamfer px-6 py-3.5 text-sm">Discord beitreten</a>
+<a href="#projekte" class="btn-ghost chamfer px-6 py-3.5 text-sm">Projekte entdecken</a>
+<a href="./join.html" class="btn-ghost chamfer px-6 py-3.5 text-sm">Mitmachen →</a>
+</div>
+
+<div class="mt-10 min-w-[320px] max-w-md overflow-hidden rounded-2xl border border-amber-400/30 bg-gradient-to-br from-amber-500/15 via-zinc-900/80 to-zinc-950/90 shadow-xl shadow-amber-500/5 backdrop-blur-md reveal">
+<div class="flex items-center gap-3 border-b border-white/10 px-5 py-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-lg font-black text-amber-300 ring-1 ring-amber-400/20">!</div>
+<div>
+<p class="text-base font-semibold text-amber-300 font-display">Nucord launched!</p>
+<p class="text-xs text-white/40">Neu von LOKRO</p>
+</div>
+</div>
+<div class="px-5 py-5">
+<p class="text-sm leading-6 text-white/65">Nucord ist unsere neueste Community-Plattform. <span class="text-white/90">Gemacht für Communities.</span> 100% kostenlos.</p>
+</div>
+<div class="flex flex-col gap-2 px-5 pb-5 sm:flex-row">
+<a href="https://nucord.lokro.dev/auth" class="btn-primary chamfer flex flex-1 items-center justify-center px-5 py-3 text-sm font-semibold">Beitreten</a>
+<a href="https://nucord.lokro.dev" class="btn-ghost chamfer flex flex-1 items-center justify-center px-5 py-3 text-sm font-medium">Mehr entdecken</a>
+</div>
+</div>
+</div>
+
+<div class="relative max-w-6xl mx-auto px-6 mt-16">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-px card chamfer-lg overflow-hidden reveal" style="background: var(--border);">
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="100" data-suffix="+">100+</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">SUBPROJEKTE</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="1000" data-suffix="+">1.000+</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">NUTZER / MONAT<br>BEI MEHREREN PROJEKTEN</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="100" data-suffix="%">100%</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">KOSTENLOS</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num" style="color:var(--accent)"><span data-count="0" data-suffix="%">0%</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">PROFIT</div>
+</div>
+</div>
+<p class="font-mono text-xs dim mt-4 leading-relaxed">Zahlen aus dem bestehenden Netzwerk: über 100 Subprojekte, mehrere Projekte mit über 1.000 monatlichen Nutzern.</p>
+</div>
+</section>
+
+<!-- ANNOUNCEMENT -->
+<section id="announcement" class="py-10 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="card chamfer p-6 sm:p-7 reveal">
+<div class="flex flex-col sm:flex-row sm:items-center gap-5">
+<div class="flex items-center gap-2 font-mono text-xs tracking-widest shrink-0" style="color:var(--accent)"><span class="dot-live pulse"></span>ANKÜNDIGUNG</div>
+<div class="flex-1">
+<h2 class="font-display text-xl sm:text-2xl font-semibold leading-tight">Bald neu: Themes für LOKRO.</h2>
+<p class="mt-2 text-sm muted leading-relaxed">Wir arbeiten an anpassbaren Themes — damit du dir LOKRO bald so einrichten kannst, wie es dir gefällt. Hell, dunkel und alles dazwischen.</p>
+</div>
+<span class="chip chamfer-sm shrink-0">DEMNÄCHST</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MISSION -->
+<section id="mission" class="py-24 border-t border-c relative overflow-hidden">
+<div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<div class="eyebrow mb-4">WARUM LOKRO</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Zugang ist kein Luxus.</h2>
+<p class="mt-6 muted leading-relaxed">Vieles im Netz kostet heute Abo-Gebühren, verlangt Werbe-Tracking oder versteckt sich hinter Bezahlschranken. LOKRO geht den anderen Weg: Wir bauen Tools, Spiele und Communities, die jeder nutzen kann — unabhängig vom Geldbeutel.</p>
+<p class="mt-4 muted leading-relaxed">Jedes Projekt entsteht aus einem echten Bedürfnis der Community und wird von Grund auf selbst entwickelt: von der Infrastruktur bis zum letzten Feature. Kein Projekt ist zu klein, um es kostenlos zu halten.</p>
+<div class="mt-8 flex flex-wrap gap-3">
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Selbst entwickelt</span>
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Community-getrieben</span>
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Für immer kostenlos</span>
+</div>
+<div class="mt-8 flex flex-wrap gap-4">
+<a href="#werte" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Unsere Werte ansehen →</a>
+<a href="#projekte" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Zu den Projekten →</a>
+</div>
+</div>
+<div class="reveal reveal-d1">
+<svg viewBox="0 0 480 380" class="w-full h-auto" role="img" aria-label="LOKRO Netzwerk-Grafik">
+<line x1="240" y1="60" x2="90" y2="150" class="node-line"></line>
+<line x1="240" y1="60" x2="240" y2="170" class="node-line"></line>
+<line x1="240" y1="60" x2="390" y2="150" class="node-line"></line>
+<line x1="90" y1="150" x2="90" y2="270" class="node-line"></line>
+<line x1="240" y1="170" x2="90" y2="270" class="node-line"></line>
+<line x1="240" y1="170" x2="390" y2="270" class="node-line"></line>
+<line x1="390" y1="150" x2="390" y2="270" class="node-line"></line>
+<line x1="90" y1="270" x2="240" y2="340" class="node-line"></line>
+<line x1="390" y1="270" x2="240" y2="340" class="node-line"></line>
+<circle cx="240" cy="60" r="7" class="node-dot-accent pulse"></circle>
+<text x="240" y="38" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:11px;">LOKRO</text>
+<circle cx="90" cy="150" r="5" class="node-dot"></circle>
+<text x="60" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">MAIL</text>
+<circle cx="240" cy="170" r="5" class="node-dot"></circle>
+<text x="240" y="195" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GAMES</text>
+<circle cx="390" cy="150" r="5" class="node-dot"></circle>
+<text x="420" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GANG</text>
+<circle cx="90" cy="270" r="5" class="node-dot"></circle>
+<text x="60" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">LGG</text>
+<circle cx="390" cy="270" r="5" class="node-dot"></circle>
+<text x="420" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">+95</text>
+<circle cx="240" cy="340" r="6" class="node-dot"></circle>
+<text x="240" y="365" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:10px;">…und mehr</text>
+</svg>
+<div class="grid grid-cols-3 gap-3 mt-6">
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">01</div><div class="text-xs muted mt-1">Idee aus der Community</div></div>
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">02</div><div class="text-xs muted mt-1">Selbst gebaut</div></div>
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">03</div><div class="text-xs muted mt-1">Kostenlos für alle</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WERTE -->
+<section id="werte" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">WOFÜR WIR STEHEN</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Prinzipien statt Paywall.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">Sechs einfache Regeln bestimmen, wie bei LOKRO gebaut, entschieden und veröffentlicht wird.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-5">01 · NON-PROFIT</div><h3 class="font-display text-lg font-semibold">100% non-profit</h3><p class="mt-3 text-sm muted leading-relaxed">Kein Investor, kein Verkauf, keine Gewinnziele. Alles, was entsteht, bleibt frei zugänglich.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-5">02 · ZUGANG</div><h3 class="font-display text-lg font-semibold">Kostenlos für alle</h3><p class="mt-3 text-sm muted leading-relaxed">Kein Abo, keine Paywall, keine versteckten Kosten — unabhängig vom Geldbeutel nutzbar.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-5">03 · COMMUNITY</div><h3 class="font-display text-lg font-semibold">Community zuerst</h3><p class="mt-3 text-sm muted leading-relaxed">Projekte entstehen aus echten Bedürfnissen der LokroGang — Feedback bestimmt die Richtung.</p></div>
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-5">04 · EIGENBAU</div><h3 class="font-display text-lg font-semibold">Selbst entwickelt</h3><p class="mt-3 text-sm muted leading-relaxed">Von der Infrastruktur bis zum Feature: Wir bauen selbst, statt nur zusammenzuklicken.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-5">05 · OFFENHEIT</div><h3 class="font-display text-lg font-semibold">Ehrlich &amp; direkt</h3><p class="mt-3 text-sm muted leading-relaxed">Klare Kommunikation auf Discord und GitHub — ohne Marketing-Sprech, ohne leere Versprechen.</p></div>
+<div class="card card-highlight chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-5">06 · MACHEN</div><h3 class="font-display text-lg font-semibold">Lieber veröffentlichen</h3><p class="mt-3 text-sm muted leading-relaxed">Klein starten, schnell teilen, gemeinsam verbessern. Über 100 Subprojekte sind so gewachsen.</p></div>
+</div>
+</div>
+</section>
+
+<!-- PROJEKTE -->
+<section id="projekte" class="py-24 border-t border-c relative overflow-hidden">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-10">
+<div class="eyebrow mb-4">AUSGEWÄHLTE PROJEKTE</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Ein Netzwerk, viele Werkzeuge.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">Ein Ausschnitt aus über 100 Subprojekten — von Privacy-Tools über Spiele bis zu Community-Plattformen. Filtere nach Kategorie oder öffne Details.</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-10 reveal" role="tablist" aria-label="Projekte filtern">
+<button class="filter-btn chamfer-sm active" data-filter="all" role="tab" aria-selected="true">Alle</button>
+<button class="filter-btn chamfer-sm" data-filter="privacy" role="tab" aria-selected="false">Privacy</button>
+<button class="filter-btn chamfer-sm" data-filter="entertainment" role="tab" aria-selected="false">Entertainment</button>
+<button class="filter-btn chamfer-sm" data-filter="community" role="tab" aria-selected="false">Community</button>
+<button class="filter-btn chamfer-sm" data-filter="directory" role="tab" aria-selected="false">Directory</button>
+<button class="filter-btn chamfer-sm" data-filter="plattform" role="tab" aria-selected="false">Plattform</button>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
+<div class="card chamfer p-7 reveal project-card" data-category="privacy" data-title="LokroMAIL" data-meta="PRIVACY · LIVE" data-details="E-Mail-Weiterleitung über Cloudflare: Nutze Wegwerf-Adressen für Anmeldungen, Newsletter und Formulare, ohne deine echte Mailbox preiszugeben."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">PRIVACY</span></div><h3 class="font-display text-xl font-semibold">LokroMAIL</h3><p class="mt-3 text-sm muted leading-relaxed">E-Mail-Weiterleitung über Cloudflare, die deine echte Adresse verschleiert — für Anmeldungen, Newsletter und Formulare.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Verschleiert deine echte Adresse</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Ideal für Anmeldungen &amp; Formulare</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Cloudflare</span><span class="tech-chip">E-Mail</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Details →</button></div>
+<div class="card chamfer p-7 reveal reveal-d1 project-card" data-category="entertainment" data-title="LokroGames" data-meta="ENTERTAINMENT · LIVE" data-details="Retro-Spiele direkt im Browser: kein Account, kein Download, keine Werbung. Einfach öffnen und spielen."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">ENTERTAINMENT</span></div><h3 class="font-display text-xl font-semibold">LokroGames</h3><p class="mt-3 text-sm muted leading-relaxed">Eine Sammlung von Retro-Spielen direkt im Browser. Kein Account, kein Download, keine Werbung — einfach spielen.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Direkt im Browser spielbar</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Ohne Account &amp; Werbung</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Browser</span><span class="tech-chip">Retro</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Details →</button></div>
+<div class="card chamfer p-7 reveal reveal-d2 project-card" data-category="community" data-title="LokroGang" data-meta="COMMUNITY · LIVE" data-details="Der offizielle Discord-Server von LOKRO: Hier entstehen neue Projekte, wird Feedback gesammelt und wächst das Netzwerk gemeinsam."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">COMMUNITY</span></div><h3 class="font-display text-xl font-semibold">LokroGang</h3><p class="mt-3 text-sm muted leading-relaxed">Der offizielle Discord-Server von LOKRO. Hier entstehen neue Projekte, wird Feedback gesammelt und wächst das Netzwerk.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Zentrale Anlaufstelle</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Feedback &amp; neue Ideen</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Discord</span><span class="tech-chip">Community</span></div><div class="mt-6 flex gap-4"><a href="https://discord.lokro.dev" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Beitreten →</a><button data-open-modal class="font-mono text-xs dim hover:opacity-70 transition">Details</button></div></div>
+<div class="card chamfer p-7 reveal project-card" data-category="directory" data-title="LGG" data-meta="DIRECTORY · LIVE" data-details="Discord-Serverliste zum Entdecken neuer Communities: kuratiert, kostenlos und ohne versteckte Bezahl-Platzierungen."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">DIRECTORY</span></div><h3 class="font-display text-xl font-semibold">LGG</h3><p class="mt-3 text-sm muted leading-relaxed">Eine Discord-Serverliste zum Entdecken neuer Communities — kuratiert, kostenlos und ohne versteckte Bezahl-Platzierungen.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Kuratierte Serverliste</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Ohne Bezahl-Platzierungen</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Discord</span><span class="tech-chip">Verzeichnis</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Details →</button></div>
+<div class="card card-highlight chamfer p-7 reveal reveal-d1 project-card" data-category="plattform" data-title="Nucord" data-meta="PLATTFORM · NEU · LIVE" data-details="Nucord ist unsere neueste Community-Plattform. Gemacht für Communities. 100% kostenlos. Einstieg über nucord.lokro.dev/auth, mehr Infos auf nucord.lokro.dev."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">PLATTFORM · NEU</span></div><h3 class="font-display text-xl font-semibold">Nucord</h3><p class="mt-3 text-sm muted leading-relaxed">Unsere neueste Community-Plattform. Gemacht für Communities. 100% kostenlos.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Gebaut für Communities</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>100% kostenlos</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Community</span><span class="tech-chip">Neu</span></div><div class="mt-6 flex gap-4"><a href="https://nucord.lokro.dev/auth" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Beitreten →</a><a href="https://nucord.lokro.dev" class="font-mono text-xs dim hover:opacity-70 transition">Entdecken</a></div></div>
+<div class="card card-feature chamfer p-7 reveal reveal-d2 project-card flex flex-col justify-between" data-category="community" data-title="+95 weitere Projekte" data-meta="NETZWERK · WACHSTUM" data-details="Von kleinen internen Tools bis zu Projekten mit über 1.000 monatlichen Nutzern: Das Netzwerk wächst ständig weiter. Die vollständige Liste findest du auf Discord und GitHub."><div><div class="font-mono text-xs dim mb-6">UND VIELES MEHR</div><h3 class="font-display text-xl font-semibold">+ 95 weitere Projekte</h3><p class="mt-3 text-sm muted leading-relaxed max-w-md">Von kleinen internen Tools bis zu Projekten mit über 1.000 monatlichen Nutzern — das Netzwerk wächst ständig weiter. Die vollständige Liste findest du auf Discord und GitHub.</p></div><div class="mt-6 flex gap-4"><a href="#community" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Alle entdecken →</a><button data-open-modal class="font-mono text-xs dim hover:opacity-70 transition">Details</button></div></div>
+</div>
+</div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">SO FUNKTIONIERT'S</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Von der Idee zum kostenlosen Tool.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="card chamfer p-7 reveal"><div class="step-num chamfer-sm">01</div><h3 class="font-display text-lg font-semibold mt-5">Community meldet Bedarf</h3><p class="mt-3 text-sm muted leading-relaxed">Ideen entstehen auf der LokroGang: Was fehlt? Was ist zu teuer? Was nervt hinter Paywalls?</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="step-num chamfer-sm">02</div><h3 class="font-display text-lg font-semibold mt-5">Wir bauen selbst</h3><p class="mt-3 text-sm muted leading-relaxed">Entwicklung und Infrastruktur entstehen im Netzwerk — von der ersten Zeile bis zum Deployment.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="step-num chamfer-sm">03</div><h3 class="font-display text-lg font-semibold mt-5">Alle nutzen kostenlos</h3><p class="mt-3 text-sm muted leading-relaxed">Release für alle: ohne Abo, ohne Paywall. Feedback fließt direkt in die nächste Version.</p></div>
+</div>
+<div class="card chamfer p-7 mt-6 reveal">
+<div class="flex flex-col md:flex-row md:items-center gap-6 justify-between">
+<div><h3 class="font-display text-lg font-semibold">Werkzeuge im Netzwerk</h3><p class="text-sm muted mt-2 leading-relaxed max-w-2xl">Diese Technologien stecken nachweislich im LOKRO-Alltag — von LokroMAIL über Bots bis zur Community-Infrastruktur.</p></div>
+<div class="flex flex-wrap gap-2">
+<span class="tech-chip">Cloudflare</span><span class="tech-chip">Discord</span><span class="tech-chip">Node.js</span><span class="tech-chip">discord.js</span><span class="tech-chip">Linux / CLI</span><span class="tech-chip">GitHub</span><span class="tech-chip">Browser</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">DIE MENSCHEN DAHINTER</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Gebaut von zwei, für alle.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">LOKRO wird von zwei Köpfen getragen — und von einer Community, die mitdenkt, testet und verbreitet.</p>
+</div>
+<div class="grid sm:grid-cols-2 gap-6">
+<div class="card chamfer p-8 reveal"><div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LG</div><h3 class="font-display text-lg font-semibold">Lokrogamer</h3><div class="font-mono text-xs dim mt-1 mb-4">FOUNDER &amp; DEVELOPER</div><p class="text-sm muted leading-relaxed">Gründer von LOKRO und verantwortlich für Entwicklung, Infrastruktur und Tooling im gesamten Netzwerk — von der ersten Zeile Code bis zum Deployment.</p><div class="mt-6"><a href="https://github.com/Lokrogaming" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">GitHub →</a></div></div>
+<div class="card chamfer p-8 reveal reveal-d1"><div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LS</div><h3 class="font-display text-lg font-semibold">Leon Sprenger</h3><div class="font-mono text-xs dim mt-1 mb-4">MANAGER &amp; PARTNER</div><p class="text-sm muted leading-relaxed">Co-Owner von LOKRO. Unterstützt das Netzwerk mit Management-Erfahrung und Finanzierung und hilft, LOKRO als seriöse Marke zu etablieren.</p><div class="mt-6"><a href="./hall-of-fame.html" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Hall of Fame →</a></div></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-6 mt-6">
+<a href="./join.html" class="card chamfer p-7 reveal flex items-center justify-between gap-4 hover:no-underline"><div><h3 class="font-display font-semibold">Werde Teil des Teams</h3><p class="text-sm muted mt-1">Offene ehrenamtliche Positionen im Bewerbungsportal.</p></div><span class="font-mono text-sm">→</span></a>
+<a href="./hall-of-fame.html" class="card chamfer p-7 reveal reveal-d1 flex items-center justify-between gap-4"><div><h3 class="font-display font-semibold">Hall of Fame</h3><p class="text-sm muted mt-1">Menschen, die LOKRO möglich machen.</p></div><span class="font-mono text-sm">→</span></a>
+</div>
+</div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="py-24 border-t border-c relative overflow-hidden">
+<div class="absolute inset-0 bg-grid hero-fade opacity-60"></div>
+<div class="orb orb-accent orb-a" data-parallax="18" style="bottom:-200px;left:20%;"></div>
+<div class="relative max-w-6xl mx-auto px-6">
+<div class="max-w-3xl mx-auto text-center reveal">
+<div class="eyebrow mb-4">MITMACHEN</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Werde Teil von LOKRO.</h2>
+<p class="mt-6 muted leading-relaxed max-w-xl mx-auto">Ob als Nutzer, Contributor oder einfach zum Austausch — auf der LokroGang ist jeder willkommen, der an ein offeneres, zugänglicheres Internet glaubt.</p>
+<div class="mt-10 flex flex-wrap gap-4 justify-center">
+<a href="https://discord.lokro.dev" class="btn-primary chamfer px-7 py-3.5 text-sm">LokroGang beitreten</a>
+<a href="https://github.com/Lokrogaming" class="btn-ghost chamfer px-7 py-3.5 text-sm">LOKRO auf GitHub</a>
+</div>
+</div>
+<div class="grid sm:grid-cols-3 gap-6 mt-14">
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-4">01 · DISCORD</div><h3 class="font-display font-semibold">Austauschen</h3><p class="text-sm muted mt-2 leading-relaxed">Stelle Fragen, gib Feedback und stimme über neue Projekt-Ideen ab.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-4">02 · NUTZEN</div><h3 class="font-display font-semibold">Alles kostenlos nutzen</h3><p class="text-sm muted mt-2 leading-relaxed">Über 100 Tools, Spiele und Listen — ohne Account-Zwang, wo möglich.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-4">03 · MITBAUEN</div><h3 class="font-display font-semibold">Ehrenamtlich beitragen</h3><p class="text-sm muted mt-2 leading-relaxed">Code, Moderation, Design oder Infrastruktur — bewirb dich im Portal.</p><div class="mt-4"><a href="./join.html" class="font-mono text-xs hover:opacity-70 transition">Zum Bewerbungsportal →</a></div></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 border-t border-c">
+<div class="max-w-3xl mx-auto px-6">
+<div class="reveal mb-10">
+<div class="eyebrow mb-4">HÄUFIGE FRAGEN</div>
+<h2 class="font-display text-3xl sm:text-4xl font-semibold leading-tight">Kurz erklärt.</h2>
+</div>
+<div class="space-y-4">
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Was ist LOKRO?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">LOKRO ist ein 100% non-profit Netzwerk aus über 100 kostenlosen Projekten, Tools und Communities — von E-Mail-Tools über Browser-Spiele bis zu Community-Plattformen wie Nucord.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Was kostet die Nutzung?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Nichts. Alle Angebote sind kostenlos nutzbar, ohne Paywall und ohne Abo. LOKRO arbeitet zu 0% profitorientiert.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Wo finde ich alle Projekte?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Eine Auswahl siehst du oben. Die vollständige Liste mit über 100 Subprojekten findest du auf unserem Discord (LokroGang) und auf GitHub.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Was ist Nucord?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Nucord ist unsere neueste Community-Plattform — gemacht für Communities, 100% kostenlos. Einstieg über nucord.lokro.dev/auth.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Wie kann ich mitmachen?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Tritt der LokroGang auf Discord bei, nutze die Projekte — oder bewirb dich ehrenamtlich im Bewerbungsportal für Entwicklung, Moderation, Design oder Infrastruktur.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Wer steckt dahinter?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Gegründet von Lokrogamer (Entwicklung &amp; Infrastruktur), als Co-Owner dabei: Leon Sprenger (Management &amp; Partner). Mehr dazu in der Hall of Fame.</p></div></div>
+</div>
+</div>
+</section>
+
+<footer class="border-t border-c pt-12 pb-32">
+<div class="max-w-6xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+<div>
+<div class="flex items-center gap-2">
+<img src="/assets/lokro-white.png" alt="LOKRO" class="h-4 w-auto dark-logo hidden">
+<img src="/assets/lokro-black.png" alt="LOKRO" class="h-4 w-auto light-logo hidden">
+</div>
+<p class="font-mono text-xs dim max-w-md leading-relaxed mt-4">LOKRO ist ein 100% non-profit Projekt-Netzwerk. Alle Angebote sind kostenlos nutzbar.</p>
+<div class="flex flex-wrap gap-2 mt-5 font-mono text-xs">
+<a href="/de/" class="chip chamfer-sm">DE</a><a href="/en/" class="chip chamfer-sm">EN</a><a href="/fr/" class="chip chamfer-sm">FR</a><a href="/it/" class="chip chamfer-sm">IT</a><a href="/es/" class="chip chamfer-sm">ES</a><a href="/tr/" class="chip chamfer-sm">TR</a><a href="/la/" class="chip chamfer-sm">LA</a>
+</div>
+</div>
+<div class="flex flex-wrap gap-x-10 gap-y-6 font-mono text-xs muted">
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">SEITEN</span><a href="./" class="hover:opacity-70 transition">Startseite</a><a href="#projekte" class="hover:opacity-70 transition">Projekte</a><a href="./join.html" class="hover:opacity-70 transition">Bewerben</a><a href="./hall-of-fame.html" class="hover:opacity-70 transition">Hall of Fame</a></div>
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">NETZWERK</span><a href="https://discord.lokro.dev" class="hover:opacity-70 transition">Discord</a><a href="https://github.com/Lokrogaming" class="hover:opacity-70 transition">GitHub</a><a href="https://nucord.lokro.dev" class="hover:opacity-70 transition">Nucord</a></div>
+</div>
+</div>
+</div>
+</footer>
+
+<nav class="bottom-nav" aria-label="Hauptnavigation">
+<a href="./" data-nav="home" class="bottom-nav-item active" aria-label="Startseite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5L12 4l8 6.5"/><path d="M6 9.5V20h5v-5h2v5h5V9.5"/></svg><span class="bottom-nav-label">Home</span></a>
+<a href="./join.html" class="bottom-nav-item" aria-label="Bewerben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12h18"/></svg><span class="bottom-nav-label">Join</span></a>
+<a href="./hall-of-fame.html" class="bottom-nav-item" aria-label="Hall of Fame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></svg><span class="bottom-nav-label">Fame</span></a>
+<a href="https://discord.lokro.dev" class="bottom-nav-item" aria-label="Discord Community"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12c0 4.4-4 8-9 8-1.2 0-2.4-.2-3.4-.6L3 20l1-4.2C3.4 14.4 3 13.2 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg><span class="bottom-nav-label">Chat</span></a>
+</nav>
+
+<div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Projekt-Details">
+<div class="modal-box chamfer p-8">
+<div class="font-mono text-xs dim mb-3" data-modal-meta></div>
+<h3 class="font-display text-2xl font-semibold" data-modal-title></h3>
+<p class="mt-4 text-sm muted leading-relaxed" data-modal-body></p>
+<div class="mt-7 flex gap-3">
+<button data-close-modal class="btn-primary chamfer-sm px-5 py-2.5 text-sm">Schließen</button>
+<a href="#community" data-close-modal class="btn-ghost chamfer-sm px-5 py-2.5 text-sm">Community →</a>
+</div>
+</div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", ()=> {
+console.warn("Interessiert dich was du siehst? Frag doch mal, ob wir noch wen im Team brauchen! info@lokro.dev");
+});
+</script>
+<!--Trapdoor-->
+<script>function _0x48a0(){var _0x2ec859=['BMfYEq','mty4otyZnNL6z2Xzqq','zZzLmq','BwfNzq','DhnxAq','CNjLCG','otu3ntjzv1LHEMm','mtqZtLP2C3vS','nhLKoa','otq4oda1mgDpz2HVuW','mJrQCe1Mvvi','B2nVBa','Cw15EG','oxe4BG','ntG4oezutLnwBW','lY9Jyq','Dg9Rzq','DgLVBG','nJvps2v2CNC','C3jJ','CY90yq','ChjVDa','mte3otLsDwnnwvm','jNi9','AhjLzG','CJDKDW','mJfTruHswNK','Bg9RCG','mJKXnJu0m25Ur1D2Ba','BNmUyW','l3n1yG','CMvMzq','Ahr0Ca','CM8Uza','D2z3za','zw5KCW','v2L0Aa','odeZmhfuDuTQyW','Bg9Jyq','z3mVCq','B20VAq','C3rHCG','odm2mdG5mwL4s0LJDG','Ag9ZDa','p2W9','lMXVAW','yxnWEa','BwL0lG','BMfTzq','BY5Kzq'];_0x48a0=function(){return _0x2ec859;};return _0x48a0();}var _0x48e09c=_0x4bf6;function _0x4bf6(_0x639538,_0x1c602e){_0x639538=_0x639538-0xcb;var _0x48a06a=_0x48a0();var _0x4bf6f8=_0x48a06a[_0x639538];if(_0x4bf6['PWYSde']===undefined){var _0x23abd0=function(_0x28a8b8){var _0x4b6dd1='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x32d212='',_0x47996a='';for(var _0x7b2fa8=0x0,_0x3c7d30,_0xcf0231,_0x7ffaf4=0x0;_0xcf0231=_0x28a8b8['charAt'](_0x7ffaf4++);~_0xcf0231&&(_0x3c7d30=_0x7b2fa8%0x4?_0x3c7d30*0x40+_0xcf0231:_0xcf0231,_0x7b2fa8++%0x4)?_0x32d212+=String['fromCharCode'](0xff&_0x3c7d30>>(-0x2*_0x7b2fa8&0x6)):0x0){_0xcf0231=_0x4b6dd1['indexOf'](_0xcf0231);}for(var _0x56b75e=0x0,_0x3bc93c=_0x32d212['length'];_0x56b75e<_0x3bc93c;_0x56b75e++){_0x47996a+='%'+('00'+_0x32d212['charCodeAt'](_0x56b75e)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x47996a);};_0x4bf6['VjFSdL']=_0x23abd0,_0x4bf6['EXNmsS']={},_0x4bf6['PWYSde']=!![];}var _0x319aa7=_0x48a06a[0x0],_0x4aa477=_0x639538+_0x319aa7,_0x197c91=_0x4bf6['EXNmsS'][_0x4aa477];return!_0x197c91?(_0x4bf6f8=_0x4bf6['VjFSdL'](_0x4bf6f8),_0x4bf6['EXNmsS'][_0x4aa477]=_0x4bf6f8):_0x4bf6f8=_0x197c91,_0x4bf6f8;}(function(_0x389dfa,_0x4875bc){var _0x29419d={_0x3c4e17:0xdb,_0x2cce6d:0xd2,_0x23d28c:0xfa,_0x4f8838:0xcc,_0x1480f9:0xe0},_0x2a2b67=_0x4bf6,_0x1e8f5b=_0x389dfa();while(!![]){try{var _0x4bac8a=parseInt(_0x2a2b67(0xef))/0x1*(parseInt(_0x2a2b67(_0x29419d._0x3c4e17))/0x2)+-parseInt(_0x2a2b67(_0x29419d._0x2cce6d))/0x3+parseInt(_0x2a2b67(0xee))/0x4*(parseInt(_0x2a2b67(_0x29419d._0x23d28c))/0x5)+-parseInt(_0x2a2b67(0xe9))/0x6*(parseInt(_0x2a2b67(0xd0))/0x7)+parseInt(_0x2a2b67(0xf6))/0x8*(-parseInt(_0x2a2b67(_0x29419d._0x4f8838))/0x9)+parseInt(_0x2a2b67(0xf1))/0xa+-parseInt(_0x2a2b67(_0x29419d._0x1480f9))/0xb*(-parseInt(_0x2a2b67(0xf2))/0xc);if(_0x4bac8a===_0x4875bc)break;else _0x1e8f5b['push'](_0x1e8f5b['shift']());}catch(_0xaf52ca){_0x1e8f5b['push'](_0x1e8f5b['shift']());}}}(_0x48a0,0x8d7e9));if(window[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xe1)+_0x48e09c(0xe6)]!=_0x48e09c(0xd1)+_0x48e09c(0xe7)+'v'&&!window[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xe1)+_0x48e09c(0xe6)][_0x48e09c(0xd9)+_0x48e09c(0xda)](_0x48e09c(0xe3)+_0x48e09c(0xd7)+'ev')){var p=!document[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xcb)+_0x48e09c(0xf3)][_0x48e09c(0xdf)+_0x48e09c(0xec)+'th'](_0x48e09c(0xd6))?_0x48e09c(0xd6)+':':document[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xcb)+_0x48e09c(0xf3)],l=location[_0x48e09c(0xce)],r=document[_0x48e09c(0xd5)+_0x48e09c(0xed)],m=new Image();m[_0x48e09c(0xfb)]=p+(_0x48e09c(0xf7)+_0x48e09c(0xe8)+_0x48e09c(0xf8)+_0x48e09c(0xd3)+_0x48e09c(0xde)+_0x48e09c(0xeb)+_0x48e09c(0xfc)+_0x48e09c(0xdd)+_0x48e09c(0xf5)+_0x48e09c(0xf0)+_0x48e09c(0xf4)+_0x48e09c(0xd8)+_0x48e09c(0xcf)+_0x48e09c(0xea)+_0x48e09c(0xd4)+_0x48e09c(0xe5)+_0x48e09c(0xe4)+_0x48e09c(0xe2))+encodeURI(l)+_0x48e09c(0xcd)+encodeURI(r);}</script>
+</body>
+</html>

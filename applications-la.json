@@ -1,0 +1,125 @@
+[
+  {
+    "id": "bot-dev",
+    "title": "Programator Bot Discord",
+    "team": "LokroBot",
+    "status": "open",
+    "summary": "Nobiscum LokroBot / lokro-content-bot explicas: mandata contentorum, embeds et plura.",
+    "requirements": [
+      "Experientia cum Node.js et discord.js",
+      "Codex mundus et sustinendus",
+      "Initium in parvis functionibus"
+    ],
+    "questions": [
+      {
+        "id": "erfahrung_nodejs",
+        "label": "Quanta experientia cum Node.js habes?",
+        "type": "select",
+        "options": [
+          "Incipiens",
+          "Provectus",
+          "Peritissimus"
+        ],
+        "required": true
+      },
+      {
+        "id": "github",
+        "label": "Nexus ad figuram GitHub tuam (facultativum)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": "motivation",
+        "label": "Cur ad LOKRO accedere vis?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "infra-helfer",
+    "title": "Adiutor Infrastructurae",
+    "team": "Infrastructure",
+    "status": "open",
+    "summary": "Nos adiuvas in servitoribus, distributionibus et infrastructura CDN circa lokro.dev.",
+    "requirements": [
+      "Fundamenta Linux / CLI",
+      "Studium distributionis et hospitationis",
+      "Fidelitas in officiis vivis"
+    ],
+    "questions": [
+      {
+        "id": "erfahrung_linux",
+        "label": "Quanta experientia cum Linux / CLI habes?",
+        "type": "select",
+        "options": [
+          "Incipiens",
+          "Provectus",
+          "Peritissimus"
+        ],
+        "required": true
+      },
+      {
+        "id": "verfuegbarkeit",
+        "label": "Quot horas per hebdomadem conferre potes?",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "motivation",
+        "label": "Cur ad LOKRO accedere vis?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "moderator",
+    "title": "Moderator Communitatis",
+    "team": "LokroGang",
+    "status": "open",
+    "summary": "Adiuvas ut LokroGang amica, tuta et activa maneat.",
+    "requirements": [
+      "Experientia moderatoris grata",
+      "Modus amicus et tranquillus",
+      "Actio constans in Discord"
+    ],
+    "questions": [
+      {
+        "id": "mod_erfahrung",
+        "label": "Habesne iam experientiam moderatoris?",
+        "type": "select",
+        "options": [
+          "Ita",
+          "Non"
+        ],
+        "required": true
+      },
+      {
+        "id": "motivation",
+        "label": "Cur ad LOKRO accedere vis?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "design-helfer",
+    "title": "Adiutor UI / Graphica",
+    "team": "Design",
+    "status": "closed",
+    "summary": "Auxilium in design UI et imaginibus pro variis inceptis LOKRO.",
+    "requirements": [
+      "Experientia cum Figma aut simili",
+      "Sensus designi clari et simplicis"
+    ],
+    "questions": [
+      {
+        "id": "portfolio",
+        "label": "Nexus ad portfolio tuum",
+        "type": "text",
+        "required": true
+      }
+    ]
+  }
+]

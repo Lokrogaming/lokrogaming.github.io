@@ -1,0 +1,125 @@
+[
+  {
+    "id": "bot-dev",
+    "title": "Discord Bot Geliştirici",
+    "team": "LokroBot",
+    "status": "open",
+    "summary": "Bizimle LokroBot / lokro-content-bot geliştirirsin: içerik komutları, embedler ve daha fazlası.",
+    "requirements": [
+      "Node.js ve discord.js deneyimi",
+      "Temiz, sürdürülebilir kod",
+      "Küçük özelliklerde inisiyatif"
+    ],
+    "questions": [
+      {
+        "id": "erfahrung_nodejs",
+        "label": "Node.js deneyimin ne düzeyde?",
+        "type": "select",
+        "options": [
+          "Başlangıç",
+          "Orta düzey",
+          "Çok deneyimli"
+        ],
+        "required": true
+      },
+      {
+        "id": "github",
+        "label": "GitHub profilinin bağlantısı (isteğe bağlı)",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": "motivation",
+        "label": "Neden LOKRO’ya katılmak istiyorsun?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "infra-helfer",
+    "title": "Altyapı & Hosting Yardımcısı",
+    "team": "Infrastructure",
+    "status": "open",
+    "summary": "Sunucular, dağıtımlar ve lokro.dev CDN altyapısında bize destek ol.",
+    "requirements": [
+      "Temel Linux / CLI bilgisi",
+      "Dağıtım ve hostinge ilgi",
+      "Canlı hizmetlerde güvenilirlik"
+    ],
+    "questions": [
+      {
+        "id": "erfahrung_linux",
+        "label": "Linux / CLI deneyimin ne düzeyde?",
+        "type": "select",
+        "options": [
+          "Başlangıç",
+          "Orta düzey",
+          "Çok deneyimli"
+        ],
+        "required": true
+      },
+      {
+        "id": "verfuegbarkeit",
+        "label": "Haftada yaklaşık kaç saat ayırabilirsin?",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "motivation",
+        "label": "Neden LOKRO’ya katılmak istiyorsun?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "moderator",
+    "title": "Topluluk Moderatörü",
+    "team": "LokroGang",
+    "status": "open",
+    "summary": "LokroGang’in dostça, güvenli ve aktif kalmasına yardımcı olursun.",
+    "requirements": [
+      "Moderatör deneyimi avantajdır",
+      "Nazik, sakin üslup",
+      "Discord’da düzenli aktiflik"
+    ],
+    "questions": [
+      {
+        "id": "mod_erfahrung",
+        "label": "Daha önce moderatörlük deneyimin oldu mu?",
+        "type": "select",
+        "options": [
+          "Evet",
+          "Hayır"
+        ],
+        "required": true
+      },
+      {
+        "id": "motivation",
+        "label": "Neden LOKRO’ya katılmak istiyorsun?",
+        "type": "textarea",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "design-helfer",
+    "title": "UI / Grafik Yardımcısı",
+    "team": "Design",
+    "status": "closed",
+    "summary": "Çeşitli LOKRO projeleri için UI tasarımı ve grafik desteği.",
+    "requirements": [
+      "Figma veya benzeri deneyimi",
+      "Sade, net tasarım anlayışı"
+    ],
+    "questions": [
+      {
+        "id": "portfolio",
+        "label": "Portföyünün bağlantısı",
+        "type": "text",
+        "required": true
+      }
+    ]
+  }
+]

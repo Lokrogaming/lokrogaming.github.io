@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — LOKRO</title>
+<meta name="description" content="Seite nicht gefunden. Finde zurück zu LOKRO in deiner Sprache.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/assets/lokro-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="antialiased">
+<main class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-grid hero-fade"></div>
+<div class="relative max-w-xl mx-auto px-6 py-20 text-center">
+<div class="font-mono text-xs tracking-widest muted mb-6">404 · SEITE NICHT GEFUNDEN</div>
+<h1 class="font-display font-semibold text-5xl sm:text-6xl leading-tight">Verlaufen<span style="color:var(--accent)">?</span></h1>
+<p class="muted mt-6 leading-relaxed">Diese Seite gibt es hier nicht. Wähle deine Sprache und starte neu.</p>
+<div class="card chamfer p-6 mt-10 text-left">
+<div class="eyebrow mb-4">SPRACHE WÄHLEN</div>
+<div class="grid grid-cols-2 gap-3">
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/de/">DE · Deutsch</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/en/">EN · English</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/fr/">FR · Français</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/it/">IT · Italiano</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/es/">ES · Español</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm" href="/tr/">TR · Türkçe</a>
+<a class="btn-ghost chamfer-sm px-4 py-2.5 text-sm col-span-2" href="/la/">LA · Latina</a>
+</div>
+<div class="mt-5 flex flex-wrap gap-3 justify-center">
+<a id="back-home" href="/de/" class="btn-primary chamfer px-6 py-3 text-sm">Zur Startseite</a>
+</div>
+</div>
+</div>
+</main>
+<script>
+(function () {
+  var m = window.location.pathname.match(/^\/(de|en|fr|it|es|tr|la)(\/|$)/);
+  if (m) {
+    var lang = m[1];
+    try { localStorage.setItem('lokro-language', lang); } catch (e) {}
+    var back = document.getElementById('back-home');
+    if (back) back.href = '/' + lang + '/';
+  } else {
+    try {
+      var s = localStorage.getItem('lokro-language');
+      if (s && ['de','en','fr','it','es','tr','la'].indexOf(s) !== -1) {
+        document.getElementById('back-home').href = '/' + s + '/';
+      }
+    } catch (e) {}
+  }
+})();
+</script>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
