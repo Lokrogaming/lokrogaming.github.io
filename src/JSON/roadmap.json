@@ -1,0 +1,94 @@
+[
+  {
+    "id": "themes",
+    "status": "in-progress",
+    "eta": null,
+    "title": {
+      "de": "Anpassbare Themes",
+      "en": "Customizable themes",
+      "es": "Temas personalizables",
+      "fr": "Thèmes personnalisables",
+      "it": "Temi personalizzabili",
+      "la": "Themata accommodabilia",
+      "tr": "Özelleştirilebilir temalar"
+    },
+    "description": {
+      "de": "Helle, dunkle und eigene Farbakzente — bereits auf der Startseite angekündigt.",
+      "en": "Light, dark and custom color accents — already announced on the homepage.",
+      "es": "Acentos claros, oscuros y propios — ya anunciado en la portada.",
+      "fr": "Accents clairs, sombres et personnalisés — déjà annoncé sur la page d’accueil.",
+      "it": "Accenti chiari, scuri e personalizzati — già annunciato in homepage.",
+      "la": "Lumina clara, obscura et propria — iam in pagina prima nuntiata.",
+      "tr": "Açık, koyu ve özel renk vurguları — ana sayfada duyuruldu."
+    }
+  },
+  {
+    "id": "legal",
+    "status": "planned",
+    "eta": null,
+    "title": {
+      "de": "Impressum & Datenschutz",
+      "en": "Imprint & privacy",
+      "es": "Aviso legal y privacidad",
+      "fr": "Mentions légales & confidentialité",
+      "it": "Note legali e privacy",
+      "la": "Impressum et data privata",
+      "tr": "Künye ve gizlilik"
+    },
+    "description": {
+      "de": "Rechtliche Seiten für das Netzwerk.",
+      "en": "Legal pages for the network.",
+      "es": "Páginas legales para la red.",
+      "fr": "Pages juridiques pour le réseau.",
+      "it": "Pagine legali per la rete.",
+      "la": "Paginae iuridicae pro reti.",
+      "tr": "Ağ için yasal sayfalar."
+    }
+  },
+  {
+    "id": "news",
+    "status": "planned",
+    "eta": null,
+    "title": {
+      "de": "News-Seite mit Blogposts",
+      "en": "News page with blog posts",
+      "es": "Página de noticias con blog",
+      "fr": "Page d’actus avec articles",
+      "it": "Pagina news con articoli",
+      "la": "Pagina nuntiorum cum blog",
+      "tr": "Blog yazılarıyla haber sayfası"
+    },
+    "description": {
+      "de": "Neuigkeiten aus dem Blog direkt auf lokro.dev.",
+      "en": "Blog news directly on lokro.dev.",
+      "es": "Noticias del blog directamente en lokro.dev.",
+      "fr": "Les actus du blog directement sur lokro.dev.",
+      "it": "Notizie dal blog direttamente su lokro.dev.",
+      "la": "Nuntia ex blog directo in lokro.dev.",
+      "tr": "Blog haberleri doğrudan lokro.dev’de."
+    }
+  },
+  {
+    "id": "directory",
+    "status": "planned",
+    "eta": null,
+    "title": {
+      "de": "Projekt-Verzeichnis",
+      "en": "Project directory",
+      "es": "Directorio de proyectos",
+      "fr": "Annuaire des projets",
+      "it": "Elenco progetti",
+      "la": "Index inceptorum",
+      "tr": "Proje dizini"
+    },
+    "description": {
+      "de": "Alle Projekte durchsuchbar an einem Ort.",
+      "en": "All projects, searchable in one place.",
+      "es": "Todos los proyectos en un lugar, con búsqueda.",
+      "fr": "Tous les projets au même endroit, avec recherche.",
+      "it": "Tutti i progetti in un unico posto, con ricerca.",
+      "la": "Omnia incepta uno loco, quaeribilia.",
+      "tr": "Tüm projeler tek yerde, aranabilir."
+    }
+  }
+]

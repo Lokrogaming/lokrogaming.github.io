@@ -264,18 +264,86 @@ select.select-field { appearance: none; -webkit-appearance: none; }
   position: absolute;
   top: 0;
   left: 0;
-  width: 16px;
-  height: 16px;
-  margin: -8px 0 0 -8px;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
   border-radius: 999px;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-  filter: blur(7px);
+  background: radial-gradient(circle, var(--cursor-accent) 0%, transparent 60%);
+  filter: blur(5px);
   opacity: 0;
   will-change: transform, opacity;
 }
 @media (hover: none), (pointer: coarse) {
   #cursor-aura { display: none; }
 }
+
+/* Header sunrise glow — clipped cap rising from below into the hero grid.
+   Only the top of the circle shows; the rest is cut by the wrapper.
+   Injected by site.js into the first grid hero. Static: no motion to reduce. */
+.header-glow-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.header-glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 340px;
+  height: 340px;
+  margin-left: -170px;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--cursor-accent) 0%, transparent 65%);
+  filter: blur(28px);
+  opacity: .55;
+}
+html.light .header-glow { opacity: .4; }
+
+/* Custom platform dropdown (theme editor) */
+.plat-wrap { position: relative; }
+.plat-btn { display: flex; align-items: center; justify-content: space-between; gap: .6rem; width: 100%; text-align: left; cursor: pointer; }
+.plat-btn-content { display: flex; align-items: center; gap: .6rem; min-width: 0; overflow: hidden; }
+.plat-btn-content svg { width: 18px; height: 18px; flex-shrink: 0; }
+.plat-btn .dim { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.plat-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.plat-menu { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 70; max-height: 260px; overflow: auto; background: var(--bg-elev); border: 1px solid var(--border-strong); box-shadow: 0 24px 50px -20px rgba(0,0,0,.5); }
+.plat-option { display: flex; align-items: center; gap: .6rem; width: 100%; padding: .6rem .9rem; background: none; border: none; cursor: pointer; text-align: left; font-size: .85rem; color: var(--fg-muted); }
+.plat-option svg { width: 18px; height: 18px; flex-shrink: 0; }
+.plat-option:hover, .plat-option.hl { background: var(--bg-elev-2); color: var(--fg); }
+.plat-option[aria-selected="true"] { color: var(--fg); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   #cursor-aura { display: none; }
 }
+
+/* User setting: reduced motion (localStorage lokro-settings).
+   Mirrors the OS-level block above, but controlled per user. */
+html[data-motion="reduced"] *, html[data-motion="reduced"] *::before, html[data-motion="reduced"] *::after { animation: none !important; transition: none !important; }
+html[data-motion="reduced"] { scroll-behavior: auto; }
+html[data-motion="reduced"] .reveal { opacity: 1; transform: none; filter: none; }
+html[data-motion="reduced"] #cursor-aura { display: none; }
+
+/* Custom theme: extra header shadow (theme flag "headerShadow") */
+html[data-hshadow="1"] header { box-shadow: 0 12px 34px -14px var(--accent-dim), 0 2px 0 0 var(--accent-dim); }
+
+/* Disabled theme toggle (while a custom theme is active) */
+#theme-toggle:disabled { opacity: .35; cursor: not-allowed; }
+#theme-toggle:disabled #theme-knob { transform: none; }
+
+/* Settings switches */
+.switch { position: relative; display: inline-flex; align-items: center; gap: .7rem; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.switch .track { width: 46px; height: 26px; border-radius: 999px; background: var(--bg-elev-2); border: 1px solid var(--border-strong); transition: background-color .2s ease, border-color .2s ease; flex-shrink: 0; position: relative; }
+.switch .track::after { content: ""; position: absolute; top: 50%; left: 3px; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 999px; background: var(--fg-dim); transition: left .2s ease, background-color .2s ease; }
+.switch input:checked + .track { background: var(--accent-dim); border-color: var(--accent); }
+.switch input:checked + .track::after { left: 23px; background: var(--accent); }
+.switch input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+.switch input:disabled + .track { opacity: .4; }
+.switch.disabled { cursor: not-allowed; opacity: .7; }
+
+/* Settings color fields */
+input[type="color"].color-field { width: 44px; height: 32px; padding: 2px; background: var(--bg-elev-2); border: 1px solid var(--border); cursor: pointer; flex-shrink: 0; }
+input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }

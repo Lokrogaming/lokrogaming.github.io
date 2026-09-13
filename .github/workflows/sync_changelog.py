@@ -136,7 +136,7 @@ def fetch_rss(url):
 
 def write_files(entries):
     for suffix in LANG_SUFFIXES:
-        path = "changelog" + suffix + ".json"
+        path = "src/JSON/changelog" + suffix + ".json"
         with open(path, "w", encoding="utf-8") as f:
             json.dump(entries, f, ensure_ascii=False, indent=2)
             f.write("\n")

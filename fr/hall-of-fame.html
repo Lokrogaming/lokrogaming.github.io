@@ -112,7 +112,7 @@
 </div>
 </div>
 <div class="flex gap-10 font-mono text-xs muted">
-<div class="flex flex-col gap-3"><span class="dim tracking-widest">PAGES</span><a href="./" class="hover:opacity-70 transition">Accueil</a><a href="./join.html" class="hover:opacity-70 transition">Postuler</a><a href="./changelog.html" class="hover:opacity-70 transition">Changelog</a></div>
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">PAGES</span><a href="./" class="hover:opacity-70 transition">Accueil</a><a href="./join.html" class="hover:opacity-70 transition">Postuler</a><a href="./changelog.html" class="hover:opacity-70 transition">Changelog</a><a href="./roadmap.html" class="hover:opacity-70 transition">Roadmap</a><a href="./settings.html" class="hover:opacity-70 transition">Paramètres</a></div>
 <div class="flex flex-col gap-3"><span class="dim tracking-widest">RÉSEAU</span><a href="https://discord.lokro.dev" class="hover:opacity-70 transition">Discord</a><a href="https://github.com/Lokrogaming" class="hover:opacity-70 transition">GitHub</a></div>
 </div>
 </div>
@@ -129,7 +129,7 @@
 <script src="/assets/site.js" defer></script>
 <script>
 let members = [];
-const HOF_URL = '/hall-of-fame-fr.json';
+const HOF_URL = '/src/JSON/hall-of-fame-fr.json';
 const HOF_STR = { loading: 'Chargement du hall of fame …', error: 'Les entrées n’ont pas pu être chargées. Recharge la page.' };
 async function loadHall() {
 const feat = document.getElementById('featured-grid');

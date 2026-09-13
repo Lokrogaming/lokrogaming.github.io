@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "lokro-bot"
           git config user.email "lokro-bot@users.noreply.github.com"
-          git add changelog*.json
+          git add src/JSON/changelog*.json
           # [skip ci] is intentional: it stops this push from re-triggering
           # the bump webhook workflow (which would create junk entries
           # about the sync commit itself).

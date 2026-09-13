@@ -17,6 +17,7 @@
 <meta property="og:title" content="Başvuru Portalı — LOKRO">
 <meta property="og:description" content="LOKRO'da açık gönüllü pozisyonlar.">
 <meta property="og:image" content="https://lokro.dev/assets/lokro-white.png">
+<meta property="og:locale" content="tr_TR">
 <link rel="icon" type="image/png" href="/assets/lokro-black.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +162,7 @@
 </div>
 </div>
 <div class="flex gap-10 font-mono text-xs muted">
-<div class="flex flex-col gap-3"><span class="dim tracking-widest">SAYFALAR</span><a href="./" class="hover:opacity-70 transition">Ana Sayfa</a><a href="#listings" class="hover:opacity-70 transition">Pozisyonlar</a><a href="./hall-of-fame.html" class="hover:opacity-70 transition">Hall of Fame</a><a href="./changelog.html" class="hover:opacity-70 transition">Changelog</a></div>
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">SAYFALAR</span><a href="./" class="hover:opacity-70 transition">Ana Sayfa</a><a href="#listings" class="hover:opacity-70 transition">Pozisyonlar</a><a href="./hall-of-fame.html" class="hover:opacity-70 transition">Hall of Fame</a><a href="./changelog.html" class="hover:opacity-70 transition">Changelog</a><a href="./roadmap.html" class="hover:opacity-70 transition">Roadmap</a><a href="./settings.html" class="hover:opacity-70 transition">Ayarlar</a></div>
 <div class="flex flex-col gap-3"><span class="dim tracking-widest">AĞ</span><a href="https://discord.lokro.dev" class="hover:opacity-70 transition">Discord</a><a href="https://github.com/Lokrogaming" class="hover:opacity-70 transition">GitHub</a></div>
 </div>
 </div>
@@ -232,7 +233,7 @@ document.getElementById('back-to-listings').addEventListener('click', () => {
 async function loadListings() {
   grid.innerHTML = '<p class="font-mono text-xs muted col-span-full">' + STR.loading + '</p>';
   try {
-    const res = await fetch('/applications-tr.json');
+    const res = await fetch('/src/JSON/applications-tr.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     listings = await res.json();
     renderListings();
