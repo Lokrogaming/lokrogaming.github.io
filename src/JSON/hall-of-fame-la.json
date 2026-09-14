@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Lokrogamer",
+    "role": "Conditor & Programator",
+    "description": "Conditor LOKRO. Responsabilis pro evolutione, infrastructura et visione totius retis.",
+    "avatar": "",
+    "link": "https://github.com/lokrogaming",
+    "featured": true
+  },
+  {
+    "name": "Leon Sprenger",
+    "role": "Procurator & Socius (LS)",
+    "description": "Co-proprietarius LOKRO. Adfert experientiam procurationis et auxilium ut LOKRO sit marca seria.",
+    "avatar": "",
+    "link": "",
+    "featured": true
+  },
+  {
+    "name": "Gretaj512",
+    "role": "Fautor",
+    "description": "Nos ex die primo adiuvat",
+    "avatar": "",
+    "link": "https://instagram.com/gretaj512",
+    "featured": true
+  }
+]

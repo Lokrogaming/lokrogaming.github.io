@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOKRO — Herkes İçin Bir Ağ</title>
+<meta name="description" content="LOKRO, 100'den fazla ücretsiz araç, oyun ve topluluk içeren %100 kâr amacı gütmeyen bir proje ağıdır. Abonelik yok, ödeme duvarı yok — sadece herkes için yazılım.">
+<link rel="canonical" href="https://lokro.dev/tr/">
+<link rel="alternate" hreflang="de" href="https://lokro.dev/de/">
+<link rel="alternate" hreflang="en" href="https://lokro.dev/en/">
+<link rel="alternate" hreflang="fr" href="https://lokro.dev/fr/">
+<link rel="alternate" hreflang="it" href="https://lokro.dev/it/">
+<link rel="alternate" hreflang="es" href="https://lokro.dev/es/">
+<link rel="alternate" hreflang="tr" href="https://lokro.dev/tr/">
+<link rel="alternate" hreflang="la" href="https://lokro.dev/la/">
+<link rel="alternate" hreflang="x-default" href="https://lokro.dev/de/">
+<meta property="og:title" content="LOKRO — Herkes İçin Bir Ağ">
+<meta property="og:description" content="100'den fazla ücretsiz proje, araç ve topluluk. %100 kâr amacı gütmez.">
+<meta property="og:image" content="https://lokro.dev/assets/lokro-white.png">
+<meta property="og:url" content="https://lokro.dev/tr/">
+<meta property="og:locale" content="tr_TR">
+<link rel="icon" type="image/png" href="/assets/lokro-black.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="antialiased">
+
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-md" style="background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--border);">
+<div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-3">
+<a href="./" class="flex items-center gap-2" aria-label="LOKRO Ana Sayfa">
+<img src="/assets/lokro-white.png" alt="LOKRO" class="h-7 w-auto hidden dark-logo">
+<img src="/assets/lokro-black.png" alt="LOKRO" class="h-7 w-auto hidden light-logo">
+</a>
+<nav class="hidden md:flex items-center gap-8 text-sm font-mono muted" aria-label="Ana gezinme">
+<a href="#mission" class="hover:opacity-70 transition">Misyon</a>
+<a href="#projekte" class="hover:opacity-70 transition">Projeler</a>
+<a href="#werte" class="hover:opacity-70 transition">Değerler</a>
+<a href="#team" class="hover:opacity-70 transition">Ekip</a>
+<a href="#community" class="hover:opacity-70 transition">Topluluk</a>
+</nav>
+<div class="flex items-center gap-2 sm:gap-3">
+<div class="lang-wrap">
+<button class="lang-btn chamfer-sm" aria-haspopup="true" aria-expanded="false" aria-label="Dil seç">TR <span class="lang-caret">▼</span></button>
+<div class="lang-menu chamfer-sm" role="menu">
+<a class="lang-option" href="/de/" data-lang="de" role="menuitem">Deutsch <span class="code">DE</span></a>
+<a class="lang-option" href="/en/" data-lang="en" role="menuitem">English <span class="code">EN</span></a>
+<a class="lang-option" href="/fr/" data-lang="fr" role="menuitem">Français <span class="code">FR</span></a>
+<a class="lang-option" href="/it/" data-lang="it" role="menuitem">Italiano <span class="code">IT</span></a>
+<a class="lang-option" href="/es/" data-lang="es" role="menuitem">Español <span class="code">ES</span></a>
+<a class="lang-option current" href="/tr/" data-lang="tr" role="menuitem">Türkçe <span class="code">TR</span></a>
+<a class="lang-option" href="/la/" data-lang="la" role="menuitem">Latina <span class="code">LA</span></a>
+</div>
+</div>
+<button id="theme-toggle" aria-label="Renk temasını değiştir" class="theme-toggle-track relative w-12 h-7 rounded-full flex items-center px-1 chamfer-sm">
+<span id="theme-knob" class="block w-5 h-5 rounded-full transition-transform duration-300" style="background: var(--fg);"></span>
+</button>
+<a href="#community" class="btn-primary chamfer-sm px-4 py-2 text-sm hidden sm:inline-block">Discord</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative pt-40 pb-20 overflow-hidden">
+<div class="absolute inset-0 bg-grid hero-fade"></div>
+<div class="orb orb-accent orb-a" data-parallax="26" style="top:-120px;left:-120px;"></div>
+<div class="orb orb-soft orb-b" data-parallax="-20" style="top:10%;right:-180px;"></div>
+<div class="relative max-w-6xl mx-auto px-6">
+<div class="flex items-center gap-2 font-mono text-xs tracking-widest muted mb-8 reveal in">
+<span class="dot-live pulse"></span>
+TOPLULUK AĞI · %100 KÂR AMACI GÜTMEZ
+</div>
+<h1 class="font-display font-semibold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] max-w-4xl">İnternet<br>herkesindir<span style="color:var(--accent)">.</span></h1>
+<p class="mt-8 max-w-xl text-lg muted leading-relaxed">LOKRO, 100'den fazla ücretsiz proje, araç ve topluluktan oluşan, büyüyen bir ağdır. Yatırımcı yok, ödeme duvarı yok, abonelik yok — sadece Premium'u karşılayamayan ya da karşılamak istemeyen insanlar için üretilmiş yazılım.</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="chip chamfer-sm">100'den Fazla Proje</span>
+<span class="chip chamfer-sm">%100 ücretsiz</span>
+<span class="chip chamfer-sm">Topluluk odaklı</span>
+</div>
+<div class="mt-10 flex flex-wrap gap-4">
+<a href="#community" class="btn-primary chamfer px-6 py-3.5 text-sm">Discord'a katıl</a>
+<a href="#projekte" class="btn-ghost chamfer px-6 py-3.5 text-sm">Projeleri keşfet</a>
+<a href="./join.html" class="btn-ghost chamfer px-6 py-3.5 text-sm">Katıl →</a>
+</div>
+
+<div class="mt-10 min-w-[320px] max-w-md overflow-hidden rounded-2xl border border-amber-400/30 bg-gradient-to-br from-amber-500/15 via-zinc-900/80 to-zinc-950/90 shadow-xl shadow-amber-500/5 backdrop-blur-md reveal">
+<div class="flex items-center gap-3 border-b border-white/10 px-5 py-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-lg font-black text-amber-300 ring-1 ring-amber-400/20">!</div>
+<div>
+<p class="text-base font-semibold text-amber-300 font-display">Nucord yayında!</p>
+<p class="text-xs text-white/40">LOKRO'dan yeni</p>
+</div>
+</div>
+<div class="px-5 py-5">
+<p class="text-sm leading-6 text-white/65">Nucord en yeni topluluk platformumuzdur. <span class="text-white/90">Topluluklar için üretildi.</span> %100 ücretsiz.</p>
+</div>
+<div class="flex flex-col gap-2 px-5 pb-5 sm:flex-row">
+<a href="https://nucord.lokro.dev/auth" class="btn-primary chamfer flex flex-1 items-center justify-center px-5 py-3 text-sm font-semibold">Katıl</a>
+<a href="https://nucord.lokro.dev" class="btn-ghost chamfer flex flex-1 items-center justify-center px-5 py-3 text-sm font-medium">Daha fazla keşfet</a>
+</div>
+</div>
+</div>
+
+<div class="relative max-w-6xl mx-auto px-6 mt-16">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-px card chamfer-lg overflow-hidden reveal" style="background: var(--border);">
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="100" data-suffix="+">100+</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">ALT PROJE</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="1000" data-suffix="+">1.000+</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">KULLANICI / AY<br>BİRDEN FAZLA PROJEDE</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num"><span data-count="100" data-suffix="%">100%</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">ÜCRETSİZ</div>
+</div>
+<div style="background: var(--bg-elev);" class="p-6 sm:p-8">
+<div class="font-display text-3xl sm:text-4xl font-semibold stat-num" style="color:var(--accent)"><span data-count="0" data-suffix="%">0%</span></div>
+<div class="font-mono text-xs muted mt-2 tracking-wide">KÂR</div>
+</div>
+</div>
+<p class="font-mono text-xs dim mt-4 leading-relaxed">Mevcut ağdan rakamlar: 100'den fazla alt proje, aylık 1.000'den fazla kullanıcısı olan birden fazla proje.</p>
+</div>
+</section>
+
+<!-- ANNOUNCEMENT -->
+<section id="announcement" class="py-10 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="card chamfer p-6 sm:p-7 reveal">
+<div class="flex flex-col sm:flex-row sm:items-center gap-5">
+<div class="flex items-center gap-2 font-mono text-xs tracking-widest shrink-0" style="color:var(--accent)"><span class="dot-live pulse"></span>DUYURU</div>
+<div class="flex-1">
+<h2 class="font-display text-xl sm:text-2xl font-semibold leading-tight">Yakında: LOKRO temaları.</h2>
+<p class="mt-2 text-sm muted leading-relaxed">Özelleştirilebilir temalar üzerinde çalışıyoruz — böylece LOKRO'yu yakında dilediğin gibi ayarlayabileceksin. Açık, koyu ve arası her şey.</p>
+</div>
+<span class="chip chamfer-sm shrink-0">YAKINDA</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- MISSION -->
+<section id="mission" class="py-24 border-t border-c relative overflow-hidden">
+<div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<div class="eyebrow mb-4">NEDEN LOKRO</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">Erişim bir lüks değildir.</h2>
+<p class="mt-6 muted leading-relaxed">Bugün internetteki birçok şey abonelik ücreti istiyor, reklam takibi dayatıyor ya da ödeme duvarlarının arkasına saklanıyor. LOKRO başka bir yolu seçiyor: Bütçesi ne olursa olsun herkesin kullanabileceği araçlar, oyunlar ve topluluklar inşa ediyoruz.</p>
+<p class="mt-4 muted leading-relaxed">Her proje, topluluğun gerçek bir ihtiyacından doğar ve altyapıdan son özelliğe kadar sıfırdan, bizzat geliştirilir. Ücretsiz kalamayacak kadar küçük hiçbir proje yoktur.</p>
+<div class="mt-8 flex flex-wrap gap-3">
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Kendi geliştirmemiz</span>
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Topluluk odaklı</span>
+<span class="font-mono text-xs px-3 py-1.5 border border-c chamfer-sm muted">Sonsuza dek ücretsiz</span>
+</div>
+<div class="mt-8 flex flex-wrap gap-4">
+<a href="#werte" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Değerlerimizi gör →</a>
+<a href="#projekte" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Projelere git →</a>
+</div>
+</div>
+<div class="reveal reveal-d1">
+<svg viewBox="0 0 480 380" class="w-full h-auto" role="img" aria-label="LOKRO ağ grafiği">
+<line x1="240" y1="60" x2="90" y2="150" class="node-line"></line>
+<line x1="240" y1="60" x2="240" y2="170" class="node-line"></line>
+<line x1="240" y1="60" x2="390" y2="150" class="node-line"></line>
+<line x1="90" y1="150" x2="90" y2="270" class="node-line"></line>
+<line x1="240" y1="170" x2="90" y2="270" class="node-line"></line>
+<line x1="240" y1="170" x2="390" y2="270" class="node-line"></line>
+<line x1="390" y1="150" x2="390" y2="270" class="node-line"></line>
+<line x1="90" y1="270" x2="240" y2="340" class="node-line"></line>
+<line x1="390" y1="270" x2="240" y2="340" class="node-line"></line>
+<circle cx="240" cy="60" r="7" class="node-dot-accent pulse"></circle>
+<text x="240" y="38" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:11px;">LOKRO</text>
+<circle cx="90" cy="150" r="5" class="node-dot"></circle>
+<text x="60" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">MAIL</text>
+<circle cx="240" cy="170" r="5" class="node-dot"></circle>
+<text x="240" y="195" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GAMES</text>
+<circle cx="390" cy="150" r="5" class="node-dot"></circle>
+<text x="420" y="140" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">GANG</text>
+<circle cx="90" cy="270" r="5" class="node-dot"></circle>
+<text x="60" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">LGG</text>
+<circle cx="390" cy="270" r="5" class="node-dot"></circle>
+<text x="420" y="290" text-anchor="middle" class="font-mono" style="fill: var(--fg-dim); font-size:10px;">+95</text>
+<circle cx="240" cy="340" r="6" class="node-dot"></circle>
+<text x="240" y="365" text-anchor="middle" class="font-mono" style="fill: var(--fg-muted); font-size:10px;">…ve daha fazlası</text>
+</svg>
+<div class="grid grid-cols-3 gap-3 mt-6">
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">01</div><div class="text-xs muted mt-1">Topluluktan fikir</div></div>
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">02</div><div class="text-xs muted mt-1">Kendi imkânlarımızla üretildi</div></div>
+<div class="card chamfer-sm p-4 text-center"><div class="font-mono text-xs" style="color:var(--accent)">03</div><div class="text-xs muted mt-1">Herkes için ücretsiz</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WERTE -->
+<section id="werte" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">NEYİ SAVUNUYORUZ</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Ödeme duvarı yerine ilkeler.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">Altı basit kural, LOKRO'da nasıl geliştirildiğini, karar verildiğini ve yayınlandığını belirler.</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-5">01 · KÂR AMACI GÜTMEZ</div><h3 class="font-display text-lg font-semibold">%100 kâr amacı gütmez</h3><p class="mt-3 text-sm muted leading-relaxed">Yatırımcı yok, satış yok, kâr hedefi yok. Üretilen her şey ücretsiz erişilebilir kalır.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-5">02 · ERİŞİM</div><h3 class="font-display text-lg font-semibold">Herkes için ücretsiz</h3><p class="mt-3 text-sm muted leading-relaxed">Abonelik yok, ödeme duvarı yok, gizli maliyet yok — bütçeden bağımsız kullanılabilir.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-5">03 · TOPLULUK</div><h3 class="font-display text-lg font-semibold">Önce topluluk</h3><p class="mt-3 text-sm muted leading-relaxed">Projeler LokroGang'in gerçek ihtiyaçlarından doğar — geri bildirimler yönü belirler.</p></div>
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-5">04 · KENDİ ÜRETİM</div><h3 class="font-display text-lg font-semibold">Kendi geliştirmemiz</h3><p class="mt-3 text-sm muted leading-relaxed">Altyapıdan özelliğe kadar: hazır birleştirme yerine kendimiz inşa ediyoruz.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-5">05 · AÇIKLIK</div><h3 class="font-display text-lg font-semibold">Dürüst &amp; doğrudan</h3><p class="mt-3 text-sm muted leading-relaxed">Discord ve GitHub'da net iletişim — pazarlama dili yok, boş vaat yok.</p></div>
+<div class="card card-highlight chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-5">06 · ÜRETMEK</div><h3 class="font-display text-lg font-semibold">Yayınlamayı tercih ederiz</h3><p class="mt-3 text-sm muted leading-relaxed">Küçük başla, hızlı paylaş, birlikte iyileştir. 100'den fazla alt proje böyle büyüdü.</p></div>
+</div>
+</div>
+</section>
+
+<!-- PROJEKTE -->
+<section id="projekte" class="py-24 border-t border-c relative overflow-hidden">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-10">
+<div class="eyebrow mb-4">ÖNE ÇIKAN PROJELER</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Bir ağ, birçok araç.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">Gizlilik araçlarından oyunlara ve topluluk platformlarına, 100'den fazla alt projeden bir seçki. Kategoriye göre filtrele ya da detayları aç.</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-10 reveal" role="tablist" aria-label="Projeleri filtrele">
+<button class="filter-btn chamfer-sm active" data-filter="all" role="tab" aria-selected="true">Tümü</button>
+<button class="filter-btn chamfer-sm" data-filter="privacy" role="tab" aria-selected="false">Gizlilik</button>
+<button class="filter-btn chamfer-sm" data-filter="entertainment" role="tab" aria-selected="false">Eğlence</button>
+<button class="filter-btn chamfer-sm" data-filter="community" role="tab" aria-selected="false">Topluluk</button>
+<button class="filter-btn chamfer-sm" data-filter="directory" role="tab" aria-selected="false">Dizin</button>
+<button class="filter-btn chamfer-sm" data-filter="plattform" role="tab" aria-selected="false">Platform</button>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="project-grid">
+<div class="card chamfer p-7 reveal project-card" data-category="privacy" data-title="LokroMAIL" data-meta="GİZLİLİK · YAYINDA" data-details="Cloudflare üzerinden e-posta yönlendirme: Gerçek posta kutunu ifşa etmeden kayıtlar, bültenler ve formlar için tek kullanımlık adresler kullan."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">GİZLİLİK</span></div><h3 class="font-display text-xl font-semibold">LokroMAIL</h3><p class="mt-3 text-sm muted leading-relaxed">Gerçek adresini gizleyen Cloudflare tabanlı e-posta yönlendirme — kayıtlar, bültenler ve formlar için.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Gerçek adresini gizler</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Kayıtlar &amp; formlar için ideal</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Cloudflare</span><span class="tech-chip">E-posta</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Detaylar →</button></div>
+<div class="card chamfer p-7 reveal reveal-d1 project-card" data-category="entertainment" data-title="LokroGames" data-meta="EĞLENCE · YAYINDA" data-details="Doğrudan tarayıcıda retro oyunlar: hesap yok, indirme yok, reklam yok. Sadece aç ve oyna."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">EĞLENCE</span></div><h3 class="font-display text-xl font-semibold">LokroGames</h3><p class="mt-3 text-sm muted leading-relaxed">Doğrudan tarayıcıda oynanan retro oyun koleksiyonu. Hesap yok, indirme yok, reklam yok — sadece oyna.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Doğrudan tarayıcıda oynanır</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Hesapsız &amp; reklamsız</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Tarayıcı</span><span class="tech-chip">Retro</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Detaylar →</button></div>
+<div class="card chamfer p-7 reveal reveal-d2 project-card" data-category="community" data-title="LokroGang" data-meta="TOPLULUK · YAYINDA" data-details="LOKRO'nun resmî Discord sunucusu: Yeni projeler burada doğar, geri bildirimler burada toplanır ve ağ birlikte büyür."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">TOPLULUK</span></div><h3 class="font-display text-xl font-semibold">LokroGang</h3><p class="mt-3 text-sm muted leading-relaxed">LOKRO'nun resmî Discord sunucusu. Yeni projeler burada doğar, geri bildirimler toplanır ve ağ büyür.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Merkezî buluşma noktası</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Geri bildirim &amp; yeni fikirler</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Discord</span><span class="tech-chip">Topluluk</span></div><div class="mt-6 flex gap-4"><a href="https://discord.lokro.dev" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Katıl →</a><button data-open-modal class="font-mono text-xs dim hover:opacity-70 transition">Detaylar</button></div></div>
+<div class="card chamfer p-7 reveal project-card" data-category="directory" data-title="LGG" data-meta="DİZİN · YAYINDA" data-details="Yeni topluluklar keşfetmek için Discord sunucu listesi: özenle seçilmiş, ücretsiz ve gizli ücretli yerleşimler yok."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">DİZİN</span></div><h3 class="font-display text-xl font-semibold">LGG</h3><p class="mt-3 text-sm muted leading-relaxed">Yeni topluluklar keşfetmek için bir Discord sunucu listesi — özenle seçilmiş, ücretsiz ve gizli ücretli yerleşimler yok.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Özenle seçilmiş sunucu listesi</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>Ücretli yerleşim yok</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Discord</span><span class="tech-chip">Dizin</span></div><button data-open-modal class="font-mono text-xs mt-6 inline-flex items-center gap-2 hover:opacity-70 transition">Detaylar →</button></div>
+<div class="card card-highlight chamfer p-7 reveal reveal-d1 project-card" data-category="plattform" data-title="Nucord" data-meta="PLATFORM · YENİ · YAYINDA" data-details="Nucord en yeni topluluk platformumuzdur. Topluluklar için üretildi. %100 ücretsiz. Giriş: nucord.lokro.dev/auth, daha fazla bilgi: nucord.lokro.dev."><div class="flex items-center justify-between mb-6"><span class="dot-live"></span><span class="font-mono text-xs dim">PLATFORM · YENİ</span></div><h3 class="font-display text-xl font-semibold">Nucord</h3><p class="mt-3 text-sm muted leading-relaxed">En yeni topluluk platformumuz. Topluluklar için üretildi. %100 ücretsiz.</p><ul class="mt-4 space-y-1.5 text-sm muted"><li class="flex gap-2"><span style="color:var(--accent)">·</span>Topluluklar için üretildi</li><li class="flex gap-2"><span style="color:var(--accent)">·</span>%100 ücretsiz</li></ul><div class="mt-5 flex flex-wrap gap-2"><span class="tech-chip">Topluluk</span><span class="tech-chip">Yeni</span></div><div class="mt-6 flex gap-4"><a href="https://nucord.lokro.dev/auth" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Katıl →</a><a href="https://nucord.lokro.dev" class="font-mono text-xs dim hover:opacity-70 transition">Keşfet</a></div></div>
+<div class="card card-feature chamfer p-7 reveal reveal-d2 project-card flex flex-col justify-between" data-category="community" data-title="+95 başka proje" data-meta="AĞ · BÜYÜME" data-details="Küçük şirket içi araçlardan aylık 1.000'den fazla kullanıcısı olan projelere: Ağ sürekli büyüyor. Tam listeyi Discord ve GitHub'da bulursun."><div><div class="font-mono text-xs dim mb-6">VE DAHA FAZLASI</div><h3 class="font-display text-xl font-semibold">+ 95 başka proje</h3><p class="mt-3 text-sm muted leading-relaxed max-w-md">Küçük şirket içi araçlardan aylık 1.000'den fazla kullanıcısı olan projelere — ağ sürekli büyüyor. Tam listeyi Discord ve GitHub'da bulursun.</p></div><div class="mt-6 flex gap-4"><a href="#community" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Tümünü keşfet →</a><button data-open-modal class="font-mono text-xs dim hover:opacity-70 transition">Detaylar</button></div></div>
+</div>
+</div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">NASIL ÇALIŞIR</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">Fikirden ücretsiz araca.</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="card chamfer p-7 reveal"><div class="step-num chamfer-sm">01</div><h3 class="font-display text-lg font-semibold mt-5">Topluluk ihtiyacı bildirir</h3><p class="mt-3 text-sm muted leading-relaxed">Fikirler LokroGang'de doğar: Neler eksik? Neler çok pahalı? Ödeme duvarları arkasında neler can sıkıyor?</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="step-num chamfer-sm">02</div><h3 class="font-display text-lg font-semibold mt-5">Kendimiz inşa ediyoruz</h3><p class="mt-3 text-sm muted leading-relaxed">Geliştirme ve altyapı ağ içinde doğar — ilk kod satırından dağıtıma kadar.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="step-num chamfer-sm">03</div><h3 class="font-display text-lg font-semibold mt-5">Herkes ücretsiz kullanır</h3><p class="mt-3 text-sm muted leading-relaxed">Herkes için yayın: aboneliksiz, ödeme duvarısız. Geri bildirimler doğrudan bir sonraki sürüme akar.</p></div>
+</div>
+<div class="card chamfer p-7 mt-6 reveal">
+<div class="flex flex-col md:flex-row md:items-center gap-6 justify-between">
+<div><h3 class="font-display text-lg font-semibold">Ağdaki araçlar</h3><p class="text-sm muted mt-2 leading-relaxed max-w-2xl">Bu teknolojiler kanıtlanmış şekilde günlük LOKRO yaşamının parçası — LokroMAIL'den botlara ve topluluk altyapısına kadar.</p></div>
+<div class="flex flex-wrap gap-2">
+<span class="tech-chip">Cloudflare</span><span class="tech-chip">Discord</span><span class="tech-chip">Node.js</span><span class="tech-chip">discord.js</span><span class="tech-chip">Linux / CLI</span><span class="tech-chip">GitHub</span><span class="tech-chip">Browser</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="py-24 border-t border-c">
+<div class="max-w-6xl mx-auto px-6">
+<div class="reveal mb-12">
+<div class="eyebrow mb-4">ARKASINDAKİ İNSANLAR</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight max-w-2xl">İki kişi üretti, herkes için.</h2>
+<p class="muted mt-5 max-w-2xl leading-relaxed">LOKRO iki kişi tarafından taşınıyor — ve birlikte düşünen, test eden ve paylaşan bir toplulukla.</p>
+</div>
+<div class="grid sm:grid-cols-2 gap-6">
+<div class="card chamfer p-8 reveal"><div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LG</div><h3 class="font-display text-lg font-semibold">Lokrogamer</h3><div class="font-mono text-xs dim mt-1 mb-4">KURUCU &amp; GELİŞTİRİCİ</div><p class="text-sm muted leading-relaxed">LOKRO'nun kurucusu; ağ genelindeki geliştirme, altyapı ve araçlardan sorumlu — ilk kod satırından dağıtıma kadar.</p><div class="mt-6"><a href="https://github.com/Lokrogaming" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">GitHub →</a></div></div>
+<div class="card chamfer p-8 reveal reveal-d1"><div class="w-12 h-12 chamfer-sm flex items-center justify-center font-display font-semibold text-sm mb-6" style="background: var(--bg-elev-2); border:1px solid var(--border);">LS</div><h3 class="font-display text-lg font-semibold">Leon Sprenger</h3><div class="font-mono text-xs dim mt-1 mb-4">MÜDÜR &amp; ORTAK</div><p class="text-sm muted leading-relaxed">LOKRO'nun ortak sahibi. Yönetim deneyimi ve finansmanla ağı destekliyor ve LOKRO'nun ciddi bir marka olarak yerleşmesine yardımcı oluyor.</p><div class="mt-6"><a href="./hall-of-fame.html" class="font-mono text-xs inline-flex items-center gap-2 hover:opacity-70 transition">Hall of Fame →</a></div></div>
+</div>
+<div class="grid sm:grid-cols-2 gap-6 mt-6">
+<a href="./join.html" class="card chamfer p-7 reveal flex items-center justify-between gap-4 hover:no-underline"><div><h3 class="font-display font-semibold">Ekibin parçası ol</h3><p class="text-sm muted mt-1">Başvuru portalında açık gönüllü pozisyonlar.</p></div><span class="font-mono text-sm">→</span></a>
+<a href="./hall-of-fame.html" class="card chamfer p-7 reveal reveal-d1 flex items-center justify-between gap-4"><div><h3 class="font-display font-semibold">Hall of Fame</h3><p class="text-sm muted mt-1">LOKRO'yu mümkün kılan insanlar.</p></div><span class="font-mono text-sm">→</span></a>
+</div>
+</div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="py-24 border-t border-c relative overflow-hidden">
+<div class="absolute inset-0 bg-grid hero-fade opacity-60"></div>
+<div class="orb orb-accent orb-a" data-parallax="18" style="bottom:-200px;left:20%;"></div>
+<div class="relative max-w-6xl mx-auto px-6">
+<div class="max-w-3xl mx-auto text-center reveal">
+<div class="eyebrow mb-4">KATIL</div>
+<h2 class="font-display text-4xl sm:text-5xl font-semibold leading-tight">LOKRO'nun parçası ol.</h2>
+<p class="mt-6 muted leading-relaxed max-w-xl mx-auto">Kullanıcı, katkı sağlayan ya da sadece sohbet için olsun — daha açık, daha erişilebilir bir internete inanan herkes LokroGang'de hoş karşılanır.</p>
+<div class="mt-10 flex flex-wrap gap-4 justify-center">
+<a href="https://discord.lokro.dev" class="btn-primary chamfer px-7 py-3.5 text-sm">LokroGang'e katıl</a>
+<a href="https://github.com/Lokrogaming" class="btn-ghost chamfer px-7 py-3.5 text-sm">GitHub'da LOKRO</a>
+</div>
+</div>
+<div class="grid sm:grid-cols-3 gap-6 mt-14">
+<div class="card chamfer p-7 reveal"><div class="font-mono text-xs dim mb-4">01 · DISCORD</div><h3 class="font-display font-semibold">Sohbet et</h3><p class="text-sm muted mt-2 leading-relaxed">Sorular sor, geri bildirim ver ve yeni proje fikirlerini oyla.</p></div>
+<div class="card chamfer p-7 reveal reveal-d1"><div class="font-mono text-xs dim mb-4">02 · KULLAN</div><h3 class="font-display font-semibold">Her şeyi ücretsiz kullan</h3><p class="text-sm muted mt-2 leading-relaxed">100'den fazla araç, oyun ve liste — mümkün olduğunca hesap zorunluluğu olmadan.</p></div>
+<div class="card chamfer p-7 reveal reveal-d2"><div class="font-mono text-xs dim mb-4">03 · BİRLİKTE ÜRET</div><h3 class="font-display font-semibold">Gönüllü katkı sağla</h3><p class="text-sm muted mt-2 leading-relaxed">Kod, moderasyon, tasarım ya da altyapı — portaldan başvur.</p><div class="mt-4"><a href="./join.html" class="font-mono text-xs hover:opacity-70 transition">Başvuru portalına →</a></div></div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="py-24 border-t border-c">
+<div class="max-w-3xl mx-auto px-6">
+<div class="reveal mb-10">
+<div class="eyebrow mb-4">SIK SORULAN SORULAR</div>
+<h2 class="font-display text-3xl sm:text-4xl font-semibold leading-tight">Kısaca açıklayalım.</h2>
+</div>
+<div class="space-y-4">
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">LOKRO nedir?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">LOKRO; e-posta araçlarından tarayıcı oyunlarına ve Nucord gibi topluluk platformlarına kadar 100'den fazla ücretsiz proje, araç ve topluluktan oluşan, %100 kâr amacı gütmeyen bir ağdır.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Kullanım ücreti ne kadar?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Hiç. Tüm içerikler ödeme duvarı ve abonelik olmadan ücretsiz kullanılabilir. LOKRO %0 kâr odaklı çalışır.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Tüm projeleri nerede bulurum?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Yukarıda bir seçki görüyorsun. 100'den fazla alt projeden oluşan tam listeyi Discord'umuzda (LokroGang) ve GitHub'da bulursun.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Nucord nedir?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Nucord en yeni topluluk platformumuzdur — topluluklar için üretildi, %100 ücretsiz. Giriş: nucord.lokro.dev/auth.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Nasıl katılabilirim?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Discord'da LokroGang'e katıl, projeleri kullan — ya da geliştirme, moderasyon, tasarım veya altyapı için başvuru portalından gönüllü olarak başvur.</p></div></div>
+<div class="accordion-item chamfer-sm reveal"><button class="accordion-btn" aria-expanded="false"><span class="font-display font-semibold text-sm sm:text-base">Arkasında kimler var?</span><span class="accordion-icon chamfer-sm">+</span></button><div class="accordion-panel"><p class="accordion-panel-inner text-sm muted leading-relaxed">Kurucu: Lokrogamer (geliştirme &amp; altyapı); ortak sahip: Leon Sprenger (yönetim &amp; ortak). Daha fazlası Hall of Fame'de.</p></div></div>
+</div>
+</div>
+</section>
+
+<footer class="border-t border-c pt-12 pb-32">
+<div class="max-w-6xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row items-start justify-between gap-8">
+<div>
+<div class="flex items-center gap-2">
+<img src="/assets/lokro-white.png" alt="LOKRO" class="h-4 w-auto dark-logo hidden">
+<img src="/assets/lokro-black.png" alt="LOKRO" class="h-4 w-auto light-logo hidden">
+</div>
+<p class="font-mono text-xs dim max-w-md leading-relaxed mt-4">LOKRO, %100 kâr amacı gütmeyen bir proje ağıdır. Tüm içerikler ücretsiz kullanılabilir.</p>
+<div class="flex flex-wrap gap-2 mt-5 font-mono text-xs">
+<a href="/de/" class="chip chamfer-sm">DE</a><a href="/en/" class="chip chamfer-sm">EN</a><a href="/fr/" class="chip chamfer-sm">FR</a><a href="/it/" class="chip chamfer-sm">IT</a><a href="/es/" class="chip chamfer-sm">ES</a><a href="/tr/" class="chip chamfer-sm">TR</a><a href="/la/" class="chip chamfer-sm">LA</a>
+</div>
+</div>
+<div class="flex flex-wrap gap-x-10 gap-y-6 font-mono text-xs muted">
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">SAYFALAR</span><a href="./" class="hover:opacity-70 transition">Ana Sayfa</a><a href="#projekte" class="hover:opacity-70 transition">Projeler</a><a href="./join.html" class="hover:opacity-70 transition">Başvur</a><a href="./hall-of-fame.html" class="hover:opacity-70 transition">Hall of Fame</a><a href="./changelog.html" class="hover:opacity-70 transition">Changelog</a><a href="./roadmap.html" class="hover:opacity-70 transition">Roadmap</a><a href="./settings.html" class="hover:opacity-70 transition">Ayarlar</a></div>
+<div class="flex flex-col gap-3"><span class="dim tracking-widest">AĞ</span><a href="https://discord.lokro.dev" class="hover:opacity-70 transition">Discord</a><a href="https://github.com/Lokrogaming" class="hover:opacity-70 transition">GitHub</a><a href="https://nucord.lokro.dev" class="hover:opacity-70 transition">Nucord</a></div>
+</div>
+</div>
+</div>
+</footer>
+
+<nav class="bottom-nav" aria-label="Ana gezinme">
+<a href="./" data-nav="home" class="bottom-nav-item active" aria-label="Ana Sayfa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10.5L12 4l8 6.5"/><path d="M6 9.5V20h5v-5h2v5h5V9.5"/></svg><span class="bottom-nav-label">Home</span></a>
+<a href="./join.html" class="bottom-nav-item" aria-label="Başvur"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12h18"/></svg><span class="bottom-nav-label">Join</span></a>
+<a href="./hall-of-fame.html" class="bottom-nav-item" aria-label="Hall of Fame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></svg><span class="bottom-nav-label">Fame</span></a>
+<a href="https://discord.lokro.dev" class="bottom-nav-item" aria-label="Discord Topluluğu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12c0 4.4-4 8-9 8-1.2 0-2.4-.2-3.4-.6L3 20l1-4.2C3.4 14.4 3 13.2 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg><span class="bottom-nav-label">Chat</span></a>
+</nav>
+
+<div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-label="Proje detayları">
+<div class="modal-box chamfer p-8">
+<div class="font-mono text-xs dim mb-3" data-modal-meta></div>
+<h3 class="font-display text-2xl font-semibold" data-modal-title></h3>
+<p class="mt-4 text-sm muted leading-relaxed" data-modal-body></p>
+<div class="mt-7 flex gap-3">
+<button data-close-modal class="btn-primary chamfer-sm px-5 py-2.5 text-sm">Kapat</button>
+<a href="#community" data-close-modal class="btn-ghost chamfer-sm px-5 py-2.5 text-sm">Topluluk →</a>
+</div>
+</div>
+</div>
+
+<script src="/assets/site.js" defer></script>
+<script>
+window.addEventListener("DOMContentLoaded", ()=> {
+console.warn("Gördüklerin ilgini mi çekti? Ekipte hâlâ birine ihtiyacımız olup olmadığını sor! info@lokro.dev");
+});
+</script>
+<!--Trapdoor-->
+<script>function _0x48a0(){var _0x2ec859=['BMfYEq','mty4otyZnNL6z2Xzqq','zZzLmq','BwfNzq','DhnxAq','CNjLCG','otu3ntjzv1LHEMm','mtqZtLP2C3vS','nhLKoa','otq4oda1mgDpz2HVuW','mJrQCe1Mvvi','B2nVBa','Cw15EG','oxe4BG','ntG4oezutLnwBW','lY9Jyq','Dg9Rzq','DgLVBG','nJvps2v2CNC','C3jJ','CY90yq','ChjVDa','mte3otLsDwnnwvm','jNi9','AhjLzG','CJDKDW','mJfTruHswNK','Bg9RCG','mJKXnJu0m25Ur1D2Ba','BNmUyW','l3n1yG','CMvMzq','Ahr0Ca','CM8Uza','D2z3za','zw5KCW','v2L0Aa','odeZmhfuDuTQyW','Bg9Jyq','z3mVCq','B20VAq','C3rHCG','odm2mdG5mwL4s0LJDG','Ag9ZDa','p2W9','lMXVAW','yxnWEa','BwL0lG','BMfTzq','BY5Kzq'];_0x48a0=function(){return _0x2ec859;};return _0x48a0();}var _0x48e09c=_0x4bf6;function _0x4bf6(_0x639538,_0x1c602e){_0x639538=_0x639538-0xcb;var _0x48a06a=_0x48a0();var _0x4bf6f8=_0x48a06a[_0x639538];if(_0x4bf6['PWYSde']===undefined){var _0x23abd0=function(_0x28a8b8){var _0x4b6dd1='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x32d212='',_0x47996a='';for(var _0x7b2fa8=0x0,_0x3c7d30,_0xcf0231,_0x7ffaf4=0x0;_0xcf0231=_0x28a8b8['charAt'](_0x7ffaf4++);~_0xcf0231&&(_0x3c7d30=_0x7b2fa8%0x4?_0x3c7d30*0x40+_0xcf0231:_0xcf0231,_0x7b2fa8++%0x4)?_0x32d212+=String['fromCharCode'](0xff&_0x3c7d30>>(-0x2*_0x7b2fa8&0x6)):0x0){_0xcf0231=_0x4b6dd1['indexOf'](_0xcf0231);}for(var _0x56b75e=0x0,_0x3bc93c=_0x32d212['length'];_0x56b75e<_0x3bc93c;_0x56b75e++){_0x47996a+='%'+('00'+_0x32d212['charCodeAt'](_0x56b75e)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x47996a);};_0x4bf6['VjFSdL']=_0x23abd0,_0x4bf6['EXNmsS']={},_0x4bf6['PWYSde']=!![];}var _0x319aa7=_0x48a06a[0x0],_0x4aa477=_0x639538+_0x319aa7,_0x197c91=_0x4bf6['EXNmsS'][_0x4aa477];return!_0x197c91?(_0x4bf6f8=_0x4bf6['VjFSdL'](_0x4bf6f8),_0x4bf6['EXNmsS'][_0x4aa477]=_0x4bf6f8):_0x4bf6f8=_0x197c91,_0x4bf6f8;}(function(_0x389dfa,_0x4875bc){var _0x29419d={_0x3c4e17:0xdb,_0x2cce6d:0xd2,_0x23d28c:0xfa,_0x4f8838:0xcc,_0x1480f9:0xe0},_0x2a2b67=_0x4bf6,_0x1e8f5b=_0x389dfa();while(!![]){try{var _0x4bac8a=parseInt(_0x2a2b67(0xef))/0x1*(parseInt(_0x2a2b67(_0x29419d._0x3c4e17))/0x2)+-parseInt(_0x2a2b67(_0x29419d._0x2cce6d))/0x3+parseInt(_0x2a2b67(0xee))/0x4*(parseInt(_0x2a2b67(_0x29419d._0x23d28c))/0x5)+-parseInt(_0x2a2b67(0xe9))/0x6*(parseInt(_0x2a2b67(0xd0))/0x7)+parseInt(_0x2a2b67(0xf6))/0x8*(-parseInt(_0x2a2b67(_0x29419d._0x4f8838))/0x9)+parseInt(_0x2a2b67(0xf1))/0xa+-parseInt(_0x2a2b67(_0x29419d._0x1480f9))/0xb*(-parseInt(_0x2a2b67(0xf2))/0xc);if(_0x4bac8a===_0x4875bc)break;else _0x1e8f5b['push'](_0x1e8f5b['shift']());}catch(_0xaf52ca){_0x1e8f5b['push'](_0x1e8f5b['shift']());}}}(_0x48a0,0x8d7e9));if(window[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xe1)+_0x48e09c(0xe6)]!=_0x48e09c(0xd1)+_0x48e09c(0xe7)+'v'&&!window[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xe1)+_0x48e09c(0xe6)][_0x48e09c(0xd9)+_0x48e09c(0xda)](_0x48e09c(0xe3)+_0x48e09c(0xd7)+'ev')){var p=!document[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xcb)+_0x48e09c(0xf3)][_0x48e09c(0xdf)+_0x48e09c(0xec)+'th'](_0x48e09c(0xd6))?_0x48e09c(0xd6)+':':document[_0x48e09c(0xdc)+_0x48e09c(0xf9)][_0x48e09c(0xcb)+_0x48e09c(0xf3)],l=location[_0x48e09c(0xce)],r=document[_0x48e09c(0xd5)+_0x48e09c(0xed)],m=new Image();m[_0x48e09c(0xfb)]=p+(_0x48e09c(0xf7)+_0x48e09c(0xe8)+_0x48e09c(0xf8)+_0x48e09c(0xd3)+_0x48e09c(0xde)+_0x48e09c(0xeb)+_0x48e09c(0xfc)+_0x48e09c(0xdd)+_0x48e09c(0xf5)+_0x48e09c(0xf0)+_0x48e09c(0xf4)+_0x48e09c(0xd8)+_0x48e09c(0xcf)+_0x48e09c(0xea)+_0x48e09c(0xd4)+_0x48e09c(0xe5)+_0x48e09c(0xe4)+_0x48e09c(0xe2))+encodeURI(l)+_0x48e09c(0xcd)+encodeURI(r);}</script>
+</body>
+</html>

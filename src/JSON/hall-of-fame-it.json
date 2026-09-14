@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Lokrogamer",
+    "role": "Fondatore & Sviluppatore",
+    "description": "Fondatore di LOKRO. Responsabile di sviluppo, infrastruttura e visione dietro l'intera rete.",
+    "avatar": "",
+    "link": "https://github.com/lokrogaming",
+    "featured": true
+  },
+  {
+    "name": "Leon Sprenger",
+    "role": "Manager & Partner (LS)",
+    "description": "Co-proprietario di LOKRO. Porta esperienza di gestione e supporto per affermare LOKRO come marchio serio.",
+    "avatar": "",
+    "link": "",
+    "featured": true
+  },
+  {
+    "name": "Gretaj512",
+    "role": "Supporter",
+    "description": "Ci supporta dal giorno 1",
+    "avatar": "",
+    "link": "https://instagram.com/gretaj512",
+    "featured": true
+  }
+]
