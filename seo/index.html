@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Google Profil Registrierung — LOKRO</title>
+    <meta name="description" content="Registriere dich bei LOKRO, damit deine öffentliche Online-Präsenz besser von Suchmaschinen und KI-Systemen verstanden werden kann.">
+
+    <meta name="theme-color" content="#0a0a0b">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg-elev: #111113;
+            --bg-elev-2: #17171a;
+
+            --fg: #f2f2f0;
+            --fg-muted: #9a9a9e;
+            --fg-dim: #626266;
+
+            --border: rgba(255,255,255,.09);
+            --border-strong: rgba(255,255,255,.16);
+
+            --grid-line: rgba(255,255,255,.055);
+
+            --accent: #7fe3b4;
+            --accent-dim: rgba(127,227,180,.14);
+
+            --warn: #e3b97f;
+            --danger: #e37f7f;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            overflow-x: clip;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: "Inter", system-ui, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+
+            background-image:
+                linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+
+            background-size: 56px 56px;
+
+            mask-image: radial-gradient(
+                ellipse 90% 70% at 50% 20%,
+                black 20%,
+                transparent 100%
+            );
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            left: 50%;
+            top: -250px;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: -2;
+
+            background: radial-gradient(
+                circle,
+                rgba(127,227,180,.12),
+                transparent 68%
+            );
+
+            filter: blur(50px);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(1100px, calc(100% - 32px));
+            margin: auto;
+        }
+
+        .font-display {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .font-mono {
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .muted {
+            color: var(--fg-muted);
+        }
+
+        .dim {
+            color: var(--fg-dim);
+        }
+
+        /* HEADER */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+
+            border-bottom: 1px solid var(--border);
+
+            background: rgba(10,10,11,.78);
+            backdrop-filter: blur(18px);
+        }
+
+        .header-inner {
+            min-height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--fg);
+            color: var(--bg);
+
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+
+            clip-path: polygon(
+                9px 0,
+                100% 0,
+                100% calc(100% - 9px),
+                calc(100% - 9px) 100%,
+                0 100%,
+                0 9px
+            );
+        }
+
+        .brand-name {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .brand-sub {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .62rem;
+            color: var(--fg-dim);
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .68rem;
+            color: var(--fg-muted);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+
+            box-shadow:
+                0 0 0 4px var(--accent-dim),
+                0 0 20px var(--accent);
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            padding: 100px 0 70px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 11px;
+
+            border: 1px solid var(--border);
+
+            background: rgba(17,17,19,.65);
+
+            color: var(--fg-muted);
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .68rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow span {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 25px auto 20px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2.6rem, 7vw, 5.5rem);
+            line-height: .98;
+            letter-spacing: -.055em;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: auto;
+
+            color: var(--fg-muted);
+
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            margin-top: 32px;
+
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* BUTTONS */
+
+        .btn {
+            min-height: 46px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 0 20px;
+
+            border: 1px solid var(--border-strong);
+
+            background: transparent;
+            color: var(--fg);
+
+            font-family: "Inter", sans-serif;
+            font-weight: 600;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--fg-dim);
+            background: var(--bg-elev);
+        }
+
+        .btn-primary {
+            border-color: var(--fg);
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            border-color: var(--fg);
+            background: #fff;
+            box-shadow: 0 12px 35px -15px var(--accent);
+        }
+
+        /* INFO GRID */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+
+            margin: 30px 0 80px;
+        }
+
+        .card {
+            background: rgba(17,17,19,.82);
+            border: 1px solid var(--border);
+
+            padding: 24px;
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-strong);
+
+            box-shadow:
+                0 20px 45px -30px #000,
+                0 0 30px -20px var(--accent);
+        }
+
+        .card-number {
+            color: var(--accent);
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .7rem;
+        }
+
+        .card h3 {
+            margin: 14px 0 8px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            margin: 0;
+
+            color: var(--fg-muted);
+
+            font-size: .88rem;
+            line-height: 1.65;
+        }
+
+        /* FORM */
+
+        .form-wrapper {
+            max-width: 850px;
+            margin: 0 auto 120px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading .eyebrow {
+            margin-bottom: 14px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 10px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            letter-spacing: -.04em;
+        }
+
+        .section-heading p {
+            margin: 0;
+
+            color: var(--fg-muted);
+            line-height: 1.7;
+        }
+
+        form {
+            display: grid;
+            gap: 16px;
+        }
+
+        .form-card {
+            padding: 28px;
+
+            background: rgba(17,17,19,.9);
+            border: 1px solid var(--border);
+        }
+
+        .form-card h3 {
+            margin: 0 0 4px;
+
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .form-card-description {
+            margin: 0 0 24px;
+
+            color: var(--fg-dim);
+            font-size: .83rem;
+        }
+
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: var(--fg-muted);
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .68rem;
+
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        label span {
+            color: var(--accent);
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+
+            border: 1px solid var(--border);
+
+            background: var(--bg-elev-2);
+            color: var(--fg);
+
+            padding: 13px 14px;
+
+            outline: none;
+
+            font-family: "Inter", sans-serif;
+            font-size: .9rem;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent);
+
+            box-shadow:
+                0 0 0 3px var(--accent-dim);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #55555a;
+        }
+
+        .help {
+            color: var(--fg-dim);
+            font-size: .72rem;
+            line-height: 1.5;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        /* PREVIEW */
+
+        .preview {
+            margin-top: 4px;
+
+            padding: 24px;
+
+            background: #09090a;
+            border: 1px solid var(--border);
+
+            position: relative;
+        }
+
+        .preview::before {
+            content: "GENERATED PROFILE";
+
+            position: absolute;
+            top: -9px;
+            left: 18px;
+
+            padding: 2px 7px;
+
+            background: var(--bg);
+
+            color: var(--accent);
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .6rem;
+            letter-spacing: .1em;
+        }
+
+        .preview pre {
+            margin: 0;
+
+            color: #bfc3c0;
+
+            white-space: pre-wrap;
+            word-break: break-word;
+
+            font-family: "JetBrains Mono", monospace;
+            font-size: .74rem;
+            line-height: 1.7;
+        }
+
+        .submit-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            margin-top: 8px;
+        }
+
+        .privacy-note {
+            color: var(--fg-dim);
+            font-size: .7rem;
+            line-height: 1.5;
+        }
+
+        .success {
+            display: none;
+
+            padding: 18px;
+
+            border: 1px solid rgba(127,227,180,.3);
+
+            background: var(--accent-dim);
+
+            color: var(--fg);
+
+            line-height: 1.6;
+        }
+
+        .success.show {
+            display: block;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 40px 0 100px;
+
+            border-top: 1px solid var(--border);
+
+            color: var(--fg-dim);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        footer a {
+            color: var(--fg-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* REVEAL */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            filter: blur(4px);
+
+            transition:
+                opacity .65s ease,
+                transform .65s ease,
+                filter .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 760px) {
+            .hero {
+                padding: 70px 0 45px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                margin-bottom: 60px;
+            }
+
+            .fields,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .form-card {
+                padding: 20px;
+            }
+
+            .submit-area {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container header-inner">
+
+        <a href="https://lokro.dev" class="brand">
+            <div class="brand-logo">L</div>
+
+            <div>
+                <div class="brand-name">LOKRO</div>
+                <div class="brand-sub">PROFILE REGISTRY</div>
+            </div>
+        </a>
+
+        <div class="header-status">
+            <span class="status-dot"></span>
+            OPEN REGISTRATION
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <div class="container">
+
+            <div class="eyebrow">
+                <span>●</span>
+                GOOGLE PROFILE REGISTRY
+            </div>
+
+            <h1 class="reveal">
+                Willst du auch auf
+                <span class="accent">Google</span>
+                angezeigt werden?
+            </h1>
+
+            <p class="reveal">
+                Dann fülle hier deine Registrierung aus.
+                Wir sammeln deine öffentlichen Informationen und erstellen
+                daraus eine strukturierte Beschreibung deiner Person,
+                deiner Arbeit und deiner Online-Präsenz.
+            </p>
+
+            <div class="hero-actions reveal">
+                <a href="#registration" class="btn btn-primary">
+                    Registrierung starten
+                </a>
+
+                <a href="#how-it-works" class="btn">
+                    Wie funktioniert das?
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section id="how-it-works">
+        <div class="container">
+
+            <div class="info-grid">
+
+                <div class="card reveal">
+                    <div class="card-number">01 / INPUT</div>
+
+                    <h3>Du gibst Informationen an</h3>
+
+                    <p>
+                        Name, Künstlername, Tätigkeit, Beschreibung,
+                        Projekte und deine offiziellen Social-Media-Profile.
+                    </p>
+                </div>
+
+
+                <div class="card reveal">
+                    <div class="card-number">02 / STRUCTURE</div>
+
+                    <h3>LOKRO strukturiert die Daten</h3>
+
+                    <p>
+                        Deine Angaben werden automatisch in eine klare,
+                        maschinenlesbare Profilbeschreibung umgewandelt.
+                    </p>
+                </div>
+
+
+                <div class="card reveal">
+                    <div class="card-number">03 / DISCOVERY</div>
+
+                    <h3>Bereit für Suchmaschinen</h3>
+
+                    <p>
+                        Die Informationen können anschließend für eine
+                        öffentliche Profilseite und strukturierte Daten
+                        verwendet werden.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- REGISTRATION -->
+
+    <section id="registration">
+        <div class="container">
+
+            <div class="form-wrapper">
+
+                <div class="section-heading reveal">
+
+                    <div class="eyebrow">
+                        REGISTRATION / 001
+                    </div>
+
+                    <h2>
+                        Erzähl uns von dir.
+                    </h2>
+
+                    <p>
+                        Je genauer deine Angaben sind, desto besser kann
+                        daraus ein verständliches öffentliches Profil
+                        erstellt werden.
+                    </p>
+
+                </div>
+
+
+                <!--
+                    FORMSUBMIT
+                    E-Mail-Ziel: support@lokro.dev
+                -->
+
+                <form
+                    id="profileForm"
+                    action="https://formsubmit.co/support@lokro.dev"
+                    method="POST"
+                >
+
+                    <!-- FormSubmit configuration -->
+
+                    <input type="hidden" name="_subject"
+                        value="Neue Google-Profil Registrierung — LOKRO">
+
+                    <input type="hidden" name="_captcha"
+                        value="false">
+
+                    <input type="hidden" name="_template"
+                        value="table">
+
+                    <input type="hidden" name="_next"
+                        value="https://lokro.dev/">
+
+                    <!-- Generated content -->
+                    <input
+                        type="hidden"
+                        name="generated_profile"
+                        id="generatedProfile"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="generated_jsonld"
+                        id="generatedJsonLd"
+                    >
+
+
+                    <!-- BASIC INFORMATION -->
+
+                    <div class="form-card reveal">
+
+                        <h3>Grundinformationen</h3>
+
+                        <p class="form-card-description">
+                            Die wichtigsten Informationen über dich.
+                        </p>
+
+                        <div class="fields">
+
+                            <div class="field">
+                                <label>
+                                    Öffentlicher Name <span>*</span>
+                                </label>
+
+                                <input
+                                    name="public_name"
+                                    id="publicName"
+                                    required
+                                    placeholder="z. B. Max Mustermann"
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>
+                                    Künstlername / Username
+                                </label>
+
+                                <input
+                                    name="alternate_name"
+                                    id="alternateName"
+                                    placeholder="z. B. MaxGaming"
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>
+                                    Tätigkeit <span>*</span>
+                                </label>
+
+                                <input
+                                    name="occupation"
+                                    id="occupation"
+                                    required
+                                    placeholder="Streamer, Musiker, Entwickler ..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>
+                                    Standort / Land
+                                </label>
+
+                                <input
+                                    name="location"
+                                    id="location"
+                                    placeholder="Deutschland / NRW"
+                                >
+                            </div>
+
+
+                            <div class="field full">
+                                <label>
+                                    Website
+                                </label>
+
+                                <input
+                                    type="url"
+                                    name="website"
+                                    id="website"
+                                    placeholder="https://example.com"
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-card reveal">
+
+                        <h3>Deine Beschreibung</h3>
+
+                        <p class="form-card-description">
+                            Hier darfst du ausführlich werden. Beschreibe
+                            dich so, wie du möchtest, dass Suchmaschinen
+                            und Nutzer dich verstehen.
+                        </p>
+
+                        <div class="field">
+
+                            <label>
+                                Ausführliche Beschreibung <span>*</span>
+                            </label>
+
+                            <textarea
+                                name="description"
+                                id="description"
+                                required
+                                placeholder="Wer bist du? Was machst du? Seit wann? Welche Inhalte produzierst du? Welche Themen behandelst du? Welche Spiele, Projekte oder Plattformen nutzt du? Was macht dich besonders?"
+                            ></textarea>
+
+                            <div class="help">
+                                Tipp: Schreibe möglichst konkret.
+                                "Ich bin Streamer" ist weniger hilfreich als
+                                "Ich bin ein deutscher Twitch-Streamer,
+                                der hauptsächlich Minecraft und Variety
+                                Content streamt."
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SOCIALS -->
+
+                    <div class="form-card reveal">
+
+                        <h3>Social Media & Links</h3>
+
+                        <p class="form-card-description">
+                            Bitte möglichst deine offiziellen Profile
+                            angeben. Diese Links können später als
+                            eindeutige Referenzen verwendet werden.
+                        </p>
+
+                        <div class="social-grid">
+
+                            <div class="field">
+                                <label>Twitch</label>
+
+                                <input
+                                    type="url"
+                                    name="twitch"
+                                    id="twitch"
+                                    placeholder="https://twitch.tv/..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>YouTube</label>
+
+                                <input
+                                    type="url"
+                                    name="youtube"
+                                    id="youtube"
+                                    placeholder="https://youtube.com/@..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>TikTok</label>
+
+                                <input
+                                    type="url"
+                                    name="tiktok"
+                                    id="tiktok"
+                                    placeholder="https://tiktok.com/@..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>Instagram</label>
+
+                                <input
+                                    type="url"
+                                    name="instagram"
+                                    id="instagram"
+                                    placeholder="https://instagram.com/..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>X / Twitter</label>
+
+                                <input
+                                    type="url"
+                                    name="twitter"
+                                    id="twitter"
+                                    placeholder="https://x.com/..."
+                                >
+                            </div>
+
+
+                            <div class="field">
+                                <label>Discord / Community</label>
+
+                                <input
+                                    type="url"
+                                    name="discord"
+                                    id="discord"
+                                    placeholder="https://discord.gg/..."
+                                >
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EXTRA -->
+
+                    <div class="form-card reveal">
+
+                        <h3>Weitere Informationen</h3>
+
+                        <p class="form-card-description">
+                            Alles, was für dein öffentliches Profil relevant
+                            sein könnte.
+                        </p>
+
+                        <div class="fields">
+
+                            <div class="field">
+                                <label>
+                                    Kategorie
+                                </label>
+
+                                <select
+                                    name="category"
+                                    id="category"
+                                >
+                                    <option value="Streamer">
+                                        Streamer
+                                    </option>
+
+                                    <option value="Content Creator">
+                                        Content Creator
+                                    </option>
+
+                                    <option value="Musiker">
+                                        Musiker
+                                    </option>
+
+                                    <option value="Entwickler">
+                                        Entwickler
+                                    </option>
+
+                                    <option value="Künstler">
+                                        Künstler
+                                    </option>
+
+                                    <option value="Unternehmen">
+                                        Unternehmen
+                                    </option>
+
+                                    <option value="Sonstiges">
+                                        Sonstiges
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="field">
+                                <label>
+                                    Profilbild URL
+                                </label>
+
+                                <input
+                                    type="url"
+                                    name="image"
+                                    id="image"
+                                    placeholder="https://..."
+                                >
+                            </div>
+
+
+                            <div class="field full">
+
+                                <label>
+                                    Weitere Informationen
+                                </label>
+
+                                <textarea
+                                    name="extra"
+                                    id="extra"
+                                    placeholder="Weitere Projekte, Erfolge, Communities, besondere Informationen, Auszeichnungen, bekannte Inhalte usw."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- GENERATED PREVIEW -->
+
+                    <div class="form-card reveal">
+
+                        <h3>Automatisch erstelltes Profil</h3>
+
+                        <p class="form-card-description">
+                            Dieser Text wird automatisch aus deinen Angaben
+                            erzeugt und gemeinsam mit deiner Registrierung
+                            übermittelt.
+                        </p>
+
+                        <div class="preview">
+
+                            <pre id="previewText">Fülle das Formular aus, um hier deine automatisch generierte Profilbeschreibung zu sehen.</pre>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+
+                    <div class="submit-area reveal">
+
+                        <div class="privacy-note">
+                            Mit dem Absenden bestätigst du, dass du die
+                            angegebenen Informationen zur Veröffentlichung
+                            bzw. Verarbeitung für dieses Profil bereitstellst.
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Registrierung absenden →
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="success"
+                        id="successMessage"
+                    >
+                        ✓ Deine Profilinformationen wurden vorbereitet.
+                        Beim Absenden werden sowohl die normale Registrierung
+                        als auch die automatisch erzeugten strukturierten
+                        Profildaten an LOKRO übermittelt.
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div>
+            <strong class="font-display">LOKRO</strong>
+            <span class="dim"> · Profile Registry</span>
+        </div>
+
+        <div class="font-mono">
+            <a href="https://lokro.dev">lokro.dev</a>
+            &nbsp;·&nbsp;
+            <a href="mailto:support@lokro.dev">support@lokro.dev</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+    /*
+     * LOKRO Profile Registry
+     * ----------------------
+     * Generates:
+     * 1. Human-readable profile text
+     * 2. Schema.org JSON-LD
+     */
+
+    const form = document.getElementById("profileForm");
+
+    const preview = document.getElementById("previewText");
+    const generatedProfile = document.getElementById("generatedProfile");
+    const generatedJsonLd = document.getElementById("generatedJsonLd");
+
+    const fields = {
+        publicName: document.getElementById("publicName"),
+        alternateName: document.getElementById("alternateName"),
+        occupation: document.getElementById("occupation"),
+        location: document.getElementById("location"),
+        website: document.getElementById("website"),
+
+        description: document.getElementById("description"),
+
+        twitch: document.getElementById("twitch"),
+        youtube: document.getElementById("youtube"),
+        tiktok: document.getElementById("tiktok"),
+        instagram: document.getElementById("instagram"),
+        twitter: document.getElementById("twitter"),
+        discord: document.getElementById("discord"),
+
+        category: document.getElementById("category"),
+        image: document.getElementById("image"),
+        extra: document.getElementById("extra")
+    };
+
+
+    function value(element) {
+        return element.value.trim();
+    }
+
+
+    function buildSocialLinks() {
+
+        const links = [];
+
+        const socialFields = [
+            ["Twitch", fields.twitch],
+            ["YouTube", fields.youtube],
+            ["TikTok", fields.tiktok],
+            ["Instagram", fields.instagram],
+            ["X / Twitter", fields.twitter],
+            ["Discord", fields.discord]
+        ];
+
+        socialFields.forEach(([name, element]) => {
+
+            const url = value(element);
+
+            if (url) {
+                links.push({
+                    name,
+                    url
+                });
+            }
+
+        });
+
+        return links;
+    }
+
+
+    function generateProfileText() {
+
+        const name = value(fields.publicName);
+        const alternate = value(fields.alternateName);
+        const occupation = value(fields.occupation);
+        const location = value(fields.location);
+        const website = value(fields.website);
+        const description = value(fields.description);
+        const extra = value(fields.extra);
+
+        const socials = buildSocialLinks();
+
+        let text = "";
+
+        text += `Name: ${name || "[nicht angegeben]"}\n`;
+
+        if (alternate) {
+            text += `Bekannt als / Username: ${alternate}\n`;
+        }
+
+        if (occupation) {
+            text += `Tätigkeit: ${occupation}\n`;
+        }
+
+        if (location) {
+            text += `Standort: ${location}\n`;
+        }
+
+        if (website) {
+            text += `Offizielle Website: ${website}\n`;
+        }
+
+        text += `\nBeschreibung:\n`;
+        text += `${description || "[noch keine Beschreibung angegeben]"}\n`;
+
+        if (extra) {
+            text += `\nWeitere Informationen:\n`;
+            text += `${extra}\n`;
+        }
+
+        if (socials.length > 0) {
+
+            text += `\nOffizielle Online-Profile:\n`;
+
+            socials.forEach(social => {
+                text += `- ${social.name}: ${social.url}\n`;
+            });
+        }
+
+        text += `\nProfiltyp: ${value(fields.category) || "Person"}`;
+
+        return text;
+    }
+
+
+    function generateJsonLd() {
+
+        const socials = buildSocialLinks();
+
+        const person = {
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+
+            "mainEntity": {
+                "@type": "Person",
+                "name": value(fields.publicName),
+                "description": value(fields.description)
+            }
+        };
+
+
+        const mainEntity = person.mainEntity;
+
+
+        if (value(fields.alternateName)) {
+            mainEntity.alternateName =
+                value(fields.alternateName);
+        }
+
+
+        if (value(fields.website)) {
+            mainEntity.url =
+                value(fields.website);
+        }
+
+
+        if (value(fields.image)) {
+            mainEntity.image =
+                value(fields.image);
+        }
+
+
+        if (socials.length > 0) {
+            mainEntity.sameAs =
+                socials.map(social => social.url);
+        }
+
+
+        return JSON.stringify(person, null, 2);
+    }
+
+
+    function updatePreview() {
+
+        const text = generateProfileText();
+
+        preview.textContent = text;
+
+        generatedProfile.value = text;
+
+        generatedJsonLd.value =
+            generateJsonLd();
+    }
+
+
+    Object.values(fields).forEach(element => {
+
+        element.addEventListener("input", updatePreview);
+        element.addEventListener("change", updatePreview);
+
+    });
+
+
+    form.addEventListener("submit", function(event) {
+
+        updatePreview();
+
+        /*
+         * Small delay ensures that the hidden fields have been
+         * populated before FormSubmit receives the request.
+         */
+
+        setTimeout(() => {
+
+            document
+                .getElementById("successMessage")
+                .classList.add("show");
+
+        }, 50);
+
+    });
+
+
+    /*
+     * Reveal animations
+     */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: .08
+            }
+        );
+
+
+    document
+        .querySelectorAll(".reveal")
+        .forEach(element => observer.observe(element));
+
+
+    /*
+     * Initial preview
+     */
+
+    updatePreview();
+
+</script>
+
+</body>
+</html>
