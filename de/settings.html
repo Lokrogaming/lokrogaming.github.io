@@ -774,11 +774,23 @@
     downloadJson({ kind: 'lokro-backup', version: 1, settings: LT.loadSettings(), themes: LT.getUserThemes() }, 'lokro-backup.json');
     $('import-status').textContent = ST.backupDone;
   });
-  $('reset-btn').addEventListener('click', function () {
-    if (!window.confirm(ST.resetAsk)) return;
-    try { localStorage.removeItem('lokro-settings'); localStorage.removeItem('lokro-themes'); } catch (e) {}
-    window.location.reload();
-  });
+ $('reset-btn').addEventListener('click', function () {
+  if (!window.confirm(ST.resetAsk)) return;
+
+  try {
+    // LOKRO Theme-Daten zurücksetzen
+    localStorage.removeItem('lokro-settings');
+    localStorage.removeItem('lokro-themes');
+
+    // LOKRO Popup-/Reel-Zustände zurücksetzen
+    localStorage.removeItem('lokro-popup-states');
+  } catch (e) {
+    console.warn('LOKRO Reset: LocalStorage konnte nicht vollständig gelöscht werden.', e);
+  }
+
+  // Seite neu laden
+  window.location.reload();
+});
 
   document.addEventListener('DOMContentLoaded', function () {
     LT = window.LokroThemes;
