@@ -347,3 +347,210 @@ html[data-hshadow="1"] header { box-shadow: 0 12px 34px -14px var(--accent-dim),
 /* Settings color fields */
 input[type="color"].color-field { width: 44px; height: 32px; padding: 2px; background: var(--bg-elev-2); border: 1px solid var(--border); cursor: pointer; flex-shrink: 0; }
 input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }
+
+/* Branding guide */
+.swatch-face { height: 88px; border-bottom: 1px solid var(--border); }
+.code-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .72rem;
+  line-height: 1.65;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--fg-muted);
+  margin: 0;
+}
+.logo-stage {
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  background: var(--bg-elev-2);
+}
+.shape-demo {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.typo-sample { border: 1px solid var(--border); background: var(--bg-elev); padding: 1.25rem 1.4rem; }
+
+/* Birthday */
+.bd-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.bd-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    var(--accent-dim) 0%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  animation: bd-glow-move 10s ease-in-out infinite;
+}
+
+.bd-card {
+  position: relative;
+  z-index: 2;
+  background: color-mix(
+    in srgb,
+    var(--bg-elev) 88%,
+    transparent
+  );
+  border: 1px solid color-mix(
+    in srgb,
+    var(--accent) 28%,
+    var(--border)
+  );
+  box-shadow:
+    0 30px 80px -36px rgba(0,0,0,.7),
+    0 0 0 1px var(--accent-dim),
+    0 0 80px -20px var(--accent-dim);
+  backdrop-filter: blur(10px);
+}
+
+.bd-name {
+  color: var(--accent);
+  word-break: break-word;
+}
+
+/* Birthday particles */
+.bd-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bd-particle {
+  position: absolute;
+  bottom: -14px;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+
+  opacity: 0;
+
+  box-shadow:
+    0 0 6px var(--accent),
+    0 0 16px var(--accent-dim),
+    0 0 28px var(--accent-dim);
+
+  animation:
+    bd-float 8s linear infinite;
+}
+
+.bd-particle.gold {
+  background: var(--gold);
+
+  box-shadow:
+    0 0 6px var(--gold),
+    0 0 16px var(--gold-dim),
+    0 0 28px var(--gold-dim);
+}
+
+.bd-particle.star {
+  width: 5px;
+  height: 5px;
+
+  background: var(--fg);
+
+  box-shadow:
+    0 0 6px var(--fg),
+    0 0 14px rgba(255,255,255,.35);
+}
+
+/* Slightly different movement for individual particles */
+.bd-particle:nth-child(2n) {
+  animation-duration: 10s;
+}
+
+.bd-particle:nth-child(3n) {
+  animation-duration: 7s;
+}
+
+.bd-particle:nth-child(4n) {
+  animation-duration: 12s;
+}
+
+@keyframes bd-float {
+  0% {
+    transform:
+      translate3d(0, 20px, 0)
+      scale(.7)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  12% {
+    opacity: .9;
+  }
+
+  50% {
+    transform:
+      translate3d(18px, -45%, 0)
+      scale(1)
+      rotate(120deg);
+
+    opacity: .75;
+  }
+
+  85% {
+    opacity: .55;
+  }
+
+  100% {
+    transform:
+      translate3d(-20px, -115%, 0)
+      scale(.55)
+      rotate(260deg);
+
+    opacity: 0;
+  }
+}
+
+@keyframes bd-glow-move {
+  0%, 100% {
+    transform:
+      translate(-8%, -6%)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(10%, 8%)
+      scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-particle,
+  .bd-glow {
+    animation: none !important;
+  }
+
+  .bd-particle {
+    opacity: .35;
+    transform: none;
+  }
+}

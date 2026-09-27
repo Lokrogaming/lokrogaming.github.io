@@ -389,11 +389,12 @@
         try { localStorage.setItem(LANG_KEY, next); } catch (err) {}
         var suffix = pageSuffix();
         var hash = window.location.hash || '';
+        var search = window.location.search || '';
         var target = '/' + next + '/' + (suffix ? suffix : '');
-        // allow default anchor behaviour for <a href>; but ensure hash kept
+        // keep query (e.g. birthday reciever/caller) and hash across languages
         if (opt.tagName.toLowerCase() === 'a') {
           e.preventDefault();
-          window.location.href = target + hash;
+          window.location.href = target + search + hash;
         }
       });
     });
@@ -552,8 +553,51 @@
     reinitAura: function () { try { initCursorAura(); } catch (e) {} }
   };
 
+  function initCopyButtons() {
+    document.querySelectorAll('[data-copy], [data-copy-from]').forEach(function (btn) {
+      if (btn.getAttribute('data-copy-bound') === '1') return;
+      btn.setAttribute('data-copy-bound', '1');
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy') || '';
+        var from = btn.getAttribute('data-copy-from');
+        if (from) {
+          var el = document.querySelector(from);
+          if (el) text = el.textContent || '';
+        }
+        text = String(text || '').trim();
+        if (!text) return;
+        var done = btn.getAttribute('data-copied') || 'OK';
+        var original = btn.textContent;
+        function mark() {
+          btn.textContent = done;
+          window.setTimeout(function () { btn.textContent = original; }, 1600);
+        }
+        function fallback() {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            mark();
+          } catch (err) {}
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(mark).catch(fallback);
+        } else {
+          fallback();
+        }
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initTheme(); initReveal(); initCounters(); initFilters();
     initAccordion(); initModal(); initLang(); initNav(); initOrbs(); initCursorAura(); initHeaderGlow();
+    initCopyButtons();
   });
 })();
