@@ -29,14 +29,22 @@
 <script>
 (function () {
   var h = window.location.hash || '';
+  var q = window.location.search || '';
+
   try {
     var s = localStorage.getItem('lokro-language');
-    if (s && ['de','en','fr','it','es','tr','la'].indexOf(s) !== -1 && s !== 'de') {
-      window.location.replace('/' + s + '/hall-of-fame.html' + h);
+
+    if (
+      s &&
+      ['de', 'en', 'fr', 'it', 'es', 'tr', 'la'].indexOf(s) !== -1 &&
+      s !== 'de'
+    ) {
+      window.location.replace('/' + s + '/hall-of-fame.html' + q + h);
       return;
     }
   } catch (e) {}
-  window.location.replace('/en/hall-of-fame.html' + h);
+
+  window.location.replace('/de/hall-of-fame.html' + q + h);
 })();
 </script>
 <!--Trapdoor-->
