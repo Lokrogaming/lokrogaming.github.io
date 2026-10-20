@@ -24,7 +24,7 @@
   },
   {
     "id": "legal",
-    "status": "planned",
+    "status": "done",
     "eta": null,
     "title": {
       "de": "Impressum & Datenschutz",
@@ -36,13 +36,13 @@
       "tr": "Künye ve gizlilik"
     },
     "description": {
-      "de": "Rechtliche Seiten für das Netzwerk.",
-      "en": "Legal pages for the network.",
-      "es": "Páginas legales para la red.",
-      "fr": "Pages juridiques pour le réseau.",
-      "it": "Pagine legali per la rete.",
-      "la": "Paginae iuridicae pro reti.",
-      "tr": "Ağ için yasal sayfalar."
+      "de": "Impressum nach § 5 DDG und Datenschutzerklärung — live auf jeder Sprachseite.",
+      "en": "Legal notice pursuant to § 5 DDG and privacy policy — live on every language page.",
+      "es": "Aviso legal conforme al § 5 DDG y política de privacidad — ya disponible en cada idioma.",
+      "fr": "Mentions légales conformes au § 5 DDG et politique de confidentialité — en ligne sur chaque langue.",
+      "it": "Note legali ai sensi del § 5 DDG e informativa sulla privacy — online in ogni lingua.",
+      "la": "Notitia legis iuxta § 5 DDG et declaratio de protectione data — in singulis linguis iam in linea.",
+      "tr": "§ 5 DDG uyarınca künye ve gizlilik beyanı — her dilde yayında."
     }
   },
   {
