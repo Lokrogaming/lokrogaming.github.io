@@ -1,68 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOKRO — Ein Netzwerk für alle</title>
-<meta name="description" content="LOKRO ist ein 100% non-profit Projekt-Netzwerk mit über 100 kostenlosen Tools, Spielen und Communities. Wähle deine Sprache.">
-<link rel="icon" type="image/png" href="/assets/lokro-black.png">
-<link rel="canonical" href="https://lokro.dev/de/">
-<link rel="alternate" hreflang="de" href="https://lokro.dev/de/">
-<link rel="alternate" hreflang="en" href="https://lokro.dev/en/">
-<link rel="alternate" hreflang="fr" href="https://lokro.dev/fr/">
-<link rel="alternate" hreflang="it" href="https://lokro.dev/it/">
-<link rel="alternate" hreflang="es" href="https://lokro.dev/es/">
-<link rel="alternate" hreflang="tr" href="https://lokro.dev/tr/">
-<link rel="alternate" hreflang="la" href="https://lokro.dev/la/">
-<link rel="alternate" hreflang="x-default" href="https://lokro.dev/de/">
-<meta property="og:title" content="LOKRO — Ein Netzwerk für alle">
-<meta property="og:description" content="100% non-profit. Über 100 kostenlose Projekte, Tools und Communities.">
-<meta property="og:image" content="https://lokro.dev/assets/lokro-white.png">
-<meta property="og:locale" content="de_DE">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="/assets/site.css">
-<style>body{min-height:100vh;display:flex;align-items:center;justify-content:center}</style>
-</head>
-<body class="antialiased">
-<main class="w-full max-w-xl mx-auto px-6 py-20 text-center">
-<img src="/assets/lokro-white.png" alt="LOKRO" class="h-10 w-auto mx-auto dark-logo hidden">
-<img src="/assets/lokro-black.png" alt="LOKRO" class="h-10 w-auto mx-auto light-logo hidden">
-<h1 class="font-display font-semibold text-3xl mt-8">LOKRO</h1>
-<p class="muted mt-3 text-sm leading-relaxed font-mono tracking-wide" id="router-note">Sprache wird erkannt … / Detecting language …</p>
-<div class="card chamfer p-6 mt-8 text-left">
-<div class="eyebrow mb-4">LANGUAGE / SPRACHE</div>
-<div class="grid grid-cols-2 gap-3" id="lang-links">
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/de/">Deutsch</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/en/">English</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/fr/">Français</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/it/">Italiano</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/es/">Español</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm" href="/tr/">Türkçe</a>
-<a class="btn-ghost chamfer-sm px-4 py-3 text-sm col-span-2" href="/la/">Latina</a>
-</div>
-<p class="font-mono text-xs dim mt-5 leading-relaxed">Deine Wahl wird lokal gespeichert (<span class="font-mono">lokro-language</span>) und beim nächsten Besuch automatisch verwendet.</p>
-</div>
-</main>
-<script>
-(function () {
-  var LANGS = ['de','en','fr','it','es','tr','la'];
-  var KEY = 'lokro-language';
-  function valid(l){ return LANGS.indexOf(l) !== -1; }
-  var stored = null;
-  try { stored = localStorage.getItem(KEY); } catch (e) {}
-  if (valid(stored)) { window.location.replace('/' + stored + '/'); return; }
-  var nav = (navigator.language || navigator.userLanguage || 'de').toLowerCase();
-  var short = nav.split('-')[0];
-  var guess = valid(short) ? short : 'de';
-  // Map common variants explicitly; Latin has no browser code, stays manual.
-  if (short === 'pt' || short === 'nl' || short === 'pl' || short === 'ru') guess = 'en';
-  try { localStorage.setItem(KEY, guess); } catch (e) {}
-  window.location.replace('/' + guess + '/');
-})();
-</script>
-<script src="/assets/site.js" defer></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/lokro-black.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="description" content="LOKRO ist ein 100% non-profit Projekt-Netzwerk mit über 100 kostenlosen Tools, Spielen und Communities." />
+    <title>LOKRO — Ein Netzwerk für alle</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

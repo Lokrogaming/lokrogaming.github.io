@@ -25,7 +25,9 @@ LOKRO ist ein **Non-Profit-Projektnetzwerk**: kostenlose Tools, Spiele und Commu
 
 ![Tech Stack](https://skillicons.dev/icons?i=discord,windows,vue,vim,vite,vscode,visualstudio,unity,ts,tailwind,svg,supabase,stackoverflow,robloxstudio,react,pytorch,py,powershell,postgres,php,ps,npm,nodejs,netlify,nextjs,mysql,md,lua,linux,kali,instagram,html,githubactions,github,git,flutter,firebase,express,docker,discordjs,arch,arduino,bash,bootstrap,cloudflare,css,debian&theme=dark)
 
-Die Seite selbst kommt bewusst ohne Framework aus: **HTML + Tailwind CSS + Vanilla JS**, geteilte Assets unter `assets/` (`site.css`, `site.js`), Daten als JSON. Kein Build-Schritt, kein Backend – deployt direkt per GitHub Pages.
+Die Seite wurde mit **Vite + React + Tailwind CSS** neu aufgebaut (TypeScript). Die Komponenten leben in `src/`, die Übersetzung in `src/locales/` (7 Sprachen). Build-Artefakte landen in `dist/` und werden per GitHub Actions auf GitHub Pages deployed.
+
+Datenbank & Auth: **PocketBase** (`db.lokro.dev`) wird für datenbankbezogene Dinge (z. B. Bewerbungen, Hall of Fame, OAuth) verwendet.
 
 ## Projektstruktur
 
