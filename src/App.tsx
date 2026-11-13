@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useTranslation } from '@/lib';
 import { Layout } from '@/components/layout/Layout';
@@ -14,18 +14,20 @@ import { Impressum, Datenschutz } from '@/pages/Legal';
 import { NotFound } from '@/pages/NotFound';
 import type { Lang } from '@/lib';
 
+const LANGS: Lang[] = ['de', 'en', 'fr', 'it', 'es', 'tr', 'la'];
+
 export default function App() {
   const { lang: i18nLang } = useTranslation();
   const location = useLocation();
+  const [initialPath, setInitialPath] = useState<string | null>(null);
 
-  // Von der 404.html weitergeleitete Hash-Pfade (/index.html#/de/join) in
-  // echte BrowserRouter-Pfade umwandeln, ohne die Seite neu zu laden.
+  // Von der 404.html übermittelter Pfad (SPA-Fallback für Direktaufrufe von Unterseiten auf GitHub Pages)
   useEffect(() => {
-    var hash = window.location.hash;
-    if (hash.startsWith('#/')) {
-      var path = decodeURIComponent(hash.slice(1));
-      window.history.replaceState({}, '', path);
-      window.location.hash = '';
+    var path = null;
+    try { path = localStorage.getItem('__spa_path'); } catch {}
+    if (path) {
+      try { localStorage.removeItem('__spa_path'); } catch {}
+      setInitialPath(path);
     }
   }, []);
 
@@ -34,17 +36,25 @@ export default function App() {
     return `/${lang}${hasSuffix ? pathname : '/'}`;
   };
 
+  // Root "/" -> auf erkannte/gespeicherte Sprache umleiten.
+  if (location.pathname === '/' || location.pathname === '') {
+    return <Navigate to={redirectTo(i18nLang, '/')} replace />;
+  }
+
+  const langSegment = location.pathname.split('/')[1];
+  const valid = LANGS.includes(langSegment as Lang);
+
+  if (!valid) {
+    return <Navigate to={redirectTo(i18nLang, '/')} replace />;
+  }
+
+  // Wenn ein gespeicherter Pfad vorliegt, einmalig dorthin navigieren.
+  if (initialPath) {
+    return <Navigate to={initialPath} replace />;
+  }
+
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Navigate
-            to={redirectTo(i18nLang, location.pathname)}
-            replace
-          />
-        }
-      />
       <Route path=":lang/*" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="join" element={<Join />} />
@@ -57,9 +67,6 @@ export default function App() {
         <Route path="impressum" element={<Impressum />} />
         <Route path="datenschutz" element={<Datenschutz />} />
         <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="*">
-        <Navigate to={redirectTo(i18nLang, '/')} replace />
       </Route>
     </Routes>
   );

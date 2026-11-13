@@ -10,10 +10,11 @@
 (function () {
   var p = window.location.pathname;
   // Statische Assets und API-Aufrufe nicht umleiten
-  if (/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?|json|webmanifest)$/i.test(p)) return;
   if (p === '/' || p === '/index.html') return;
-  // Einzelseiten-App booten und den ursprünglichen Pfad im Hash mitgeben
-  window.location.replace('/index.html#' + encodeURIComponent(p));
+  if (/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?|json|webmanifest)$/i.test(p)) return;
+  // Pfad für die React-App zwischenspeichern (ohne Neuladen der Seite durch hash-Manipulation)
+  try { localStorage.setItem('__spa_path', p); } catch {}
+  window.location.replace('/index.html');
 })();
 </script>
 </body>
