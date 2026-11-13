@@ -23,7 +23,7 @@ export default function App() {
 
   // Von der 404.html übermittelter Pfad (SPA-Fallback für Direktaufrufe von Unterseiten auf GitHub Pages)
   useEffect(() => {
-    var path = null;
+    var path: string | null = null;
     try { path = localStorage.getItem('__spa_path'); } catch {}
     if (path) {
       try { localStorage.removeItem('__spa_path'); } catch {}
