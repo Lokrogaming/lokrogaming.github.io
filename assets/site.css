@@ -554,3 +554,53 @@ input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }
     transform: none;
   }
 }
+
+/* Partner ticker — scrollender „Partnered with“-Band */
+.partner-ticker {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 0;
+  border-right: 0;
+}
+.partner-track {
+  display: flex;
+  gap: 2rem;
+  padding: 0.6rem 0;
+  animation: partnerScroll 22s linear infinite;
+  will-change: transform;
+}
+.partner-item {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.partner-item .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+  flex-shrink: 0;
+}
+.partner-item .name {
+  color: var(--fg);
+  font-weight: 600;
+}
+@keyframes partnerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+html[data-motion="reduced"] .partner-track {
+  animation: none;
+  transform: none;
+  justify-content: center;
+}
