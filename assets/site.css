@@ -238,27 +238,19 @@ select.select-field { appearance: none; -webkit-appearance: none; }
   * { scroll-behavior: auto !important; }
 }
 
-/* Seasonal and optional local weather atmosphere. */
-<<<<<<< Updated upstream
-.seasonal-atmosphere, .weather-atmosphere { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
-.seasonal-atmosphere { opacity: .72; z-index: 0; }
+/* Seasonal theme atmosphere — colors + falling particles (leaves in autumn).
+   Weather feature removed for now. */
+.seasonal-atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: .72; }
 body > section { position: relative; z-index: 1; }
-=======
-.seasonal-atmosphere, .weather-atmosphere { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.seasonal-atmosphere { opacity: .72; }
->>>>>>> Stashed changes
-.seasonal-particle, .weather-particle { position: absolute; top: -12vh; color: var(--season-color, #b9ddc3); text-shadow: 0 0 12px currentColor; animation: atmosphere-fall var(--fall-duration, 12s) linear infinite; animation-delay: var(--fall-delay, 0s); }
-.weather-atmosphere { opacity: .62; }
-.weather-particle { color: rgba(150,195,255,.7); width: 1px; height: 24px; background: linear-gradient(transparent, currentColor); transform: rotate(12deg); }
+.seasonal-particle { position: absolute; top: -12vh; color: var(--season-color, #b9ddc3); text-shadow: 0 0 12px currentColor; animation: atmosphere-fall var(--fall-duration, 12s) linear infinite, leaf-sway var(--leaf-sway, 0s) ease-in-out infinite alternate; animation-delay: var(--fall-delay, 0s); white-space: nowrap; }
+.seasonal-particle.is-leaf { font-size: 1.15rem !important; opacity: .9; }
+@keyframes atmosphere-fall { to { transform: translate3d(6vw, 115vh, 0) rotate(300deg); } }
+@keyframes leaf-sway { 0% { transform: translateX(0); } 100% { transform: translateX(var(--leaf-sway)); } }
 html[data-season="spring"] { --season-color: #e5b5d1; --season-glow: rgba(229,181,209,.12); }
 html[data-season="summer"] { --season-color: #f5d48a; --season-glow: rgba(245,212,138,.12); }
 html[data-season="autumn"] { --season-color: #df9a63; --season-glow: rgba(223,154,99,.12); }
 html[data-season="winter"] { --season-color: #b8d9f2; --season-glow: rgba(184,217,242,.12); }
-html[data-weather="rain"] header::after, html[data-weather="snow"] header::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .45; background-image: repeating-linear-gradient(110deg, transparent 0 18px, rgba(167,205,255,.35) 19px 20px, transparent 21px 34px); background-size: 100% 100%; animation: weather-drift 1.2s linear infinite; }
-html[data-weather="snow"] header::after { background-image: radial-gradient(circle, rgba(255,255,255,.85) 1px, transparent 2px); background-size: 24px 24px; animation-duration: 8s; }
-@keyframes atmosphere-fall { to { transform: translate3d(6vw, 115vh, 0) rotate(300deg); } }
-@keyframes weather-drift { to { background-position: 40px 80px; } }
-@media (prefers-reduced-motion: reduce) { .seasonal-particle, .weather-particle, html[data-weather] header::after { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .seasonal-particle { animation: none !important; } }
 
 /* LOKRO 2027 — unified page system */
 :root {

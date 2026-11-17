@@ -92,6 +92,50 @@ Neue Einträge entstehen von selbst: Bei jedem Push auf `main` feuert `.github/w
 
 `applications*.json` und `hall-of-fame*.json` liegen pro Sprache vor (`-en`, `-es`, `-fr`, `-it`, `-la`, `-tr`, ohne Suffix = Deutsch) und werden von den jeweiligen Seiten per `fetch()` geladen.
 
+## Geplante Migration: React / JSX / Tailwind (vorbereitend)
+
+**Hinweis:** Die Live-Seite läuft weiterhin auf reinem HTML. Dieser Abschnitt ist reine Dokumentation für eine spätere Umstellung – es werden noch keine Dateien umgeschrieben.
+
+### Aktueller Stack
+
+- **HTML** (mehrsprachige Unterordner `de/`, `en/`, …)
+- **Tailwind CSS** via CDN (`<script src="https://cdn.tailwindcss.com"></script>`)
+- **Vanilla JS** (`assets/site.js`) — theme, localStorage-Einstellungen, seasonal atmosphere, reveal, counters, nav, modal
+- Kein Build-Schritt, kein Framework, deploys direkt per GitHub Pages
+
+### Gezielter Ziel-Stack
+
+- **React** + **JSX** für wiederverwendbare UI-Komponenten
+- **Tailwind CSS** (beibehalten, über PostCSS/Build oder CDN)
+- **Vite** als Build-Tool (bereits in der `codex/vite-react-tailwind-rebuild`-Branch erprobt)
+- `assets/site.js` Logik wird in React-Hooks / Custom Hooks überführt (z. B. `useSeasonalTheme`, `useLocalStorageSettings`)
+
+### Komponenten-Planung (zur Migration)
+
+| Bereich | Geplante React-Komponente | Hinweis |
+|---------|---------------------------|---------|
+| Header / Nav | `<Header>`, `<BottomNav>`, `<MobileNavDrawer>` | Mobile-Navigation aus `initMobileNav()` |
+| Karten | `<ProjectCard>`, `<ThemeCard>`, `<HallOfFameCard>` | Aus JSON gerendert |
+| Ticker | `<PartnerTicker>` | Randbündig, endless scroll |
+| Seasonal | `<SeasonalAtmosphere>` | Blätter/Partikel, `data-season` |
+| Settings | `<SettingsPage>` mit `<ThemeEditor>` | localStorage-Backend bleibt |
+| Modal | `<ProjectModal>` | Projekt-Details |
+
+### Migrationsschritte (geplant)
+
+1. Bestand dokumentieren (dieser README-Abschnitt)
+2. Vite + React + Tailwind lokal aufsetzen (Parallelexperiment, nicht auf `main`)
+3. Einzelne Komponenten schrittweise portieren (zuerst statische Teile: Header, Footer, Cards)
+4. Interaktive Logik (Theme, Settings, Seasonal) als Hooks migrieren
+5. Build-Output auf GitHub Pages deployen
+
+### Was bleibt
+
+- Die JSON-Daten unter `src/JSON/` bleiben die zentrale Datenquelle
+- localStorage-Keys (`lokro-settings`, `lokro-themes`, `lokro-language`) bleiben erhalten
+- Mehrsprachige URL-Struktur (`/de/`, `/en/`, …) bleibt
+- 100 % non-profit, keine Paywall, kein Tracking
+
 ## Mitmachen
 
 LOKRO wächst durch Menschen, die mitgestalten wollen – alles ehrenamtlich:

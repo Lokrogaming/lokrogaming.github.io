@@ -147,11 +147,6 @@
 </div>
 <div class="grid sm:grid-cols-2 gap-6">
 <div class="card chamfer p-7 reveal">
-<label class="switch" id="season-row"><input id="set-season" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Tema stagionale</span></label><p class="text-sm muted mt-4 leading-relaxed">Adatta automaticamente colori e particelle alla stagione corrente. Attivo per impostazione predefinita.</p></div><div class="card chamfer p-7 reveal"><label class="switch"><input id="set-weather" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Atmosfera meteo</span></label><p class="text-sm muted mt-4 leading-relaxed">Richiede la posizione; pioggia e neve animate nell’intestazione. Open-Meteo.</p>
-</div>
-<div class="card chamfer p-7 reveal">
-<label class="switch"><input id="set-motion" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Riduci animazioni</span></label>
-<p class="text-sm muted mt-4 leading-relaxed">Disattiva animazioni, parallasse e transizioni. Altrimenti viene rispettata automaticamente l’impostazione di sistema.</p>
 </div>
 </div>
 </div>
@@ -330,16 +325,11 @@
       installShowcase(theme);
     }
   }
-<<<<<<< Updated upstream
   function syncEgg() {
-    var st = LT.loadSettings();
-    var aura = document.getElementById('cursor-aura');
-    if (st.cursorEgg && st.themeId === 'original' && !st.reducedMotion) LT.reinitAura();
-    else if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
-    LT.applyWeather(st.weatherEgg);
+    // Weather feature paused — no-op.
+    var aura = document.getElementById("cursor-aura");
+    if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
   }
-=======
->>>>>>> Stashed changes
   var editingId = null;
   function editorColors() {
     var out = {};
@@ -525,7 +515,6 @@
             var st = LT.loadSettings();
             if (typeof data.settings.reducedMotion === 'boolean') st.reducedMotion = data.settings.reducedMotion;
             if (typeof data.settings.seasonalTheme === 'boolean') st.seasonalTheme = data.settings.seasonalTheme;
-            if (typeof data.settings.weatherEgg === 'boolean') st.weatherEgg = data.settings.weatherEgg;
             LT.saveSettings(st);
             LT.refresh();
             syncToggles();
@@ -582,7 +571,6 @@
   function syncToggles() {
     var st = LT.loadSettings();
     $('set-season').checked = st.seasonalTheme !== false;
-    $('set-weather').checked = !!st.weatherEgg;
     $('set-motion').checked = !!st.reducedMotion;
     var customActive = st.themeId !== 'original';
     $('set-season').disabled = false;
@@ -742,7 +730,6 @@
     LT.refresh();
 
   });
-  $('set-weather').addEventListener('change', function () { var st = LT.loadSettings(); st.weatherEgg = $('set-weather').checked; LT.saveSettings(st); LT.refresh(); LT.applyWeather(st.weatherEgg); });
   $('set-motion').addEventListener('change', function () {
     var st = LT.loadSettings();
     st.reducedMotion = $('set-motion').checked;

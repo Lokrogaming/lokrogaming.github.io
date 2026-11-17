@@ -147,11 +147,7 @@
 </div>
 <div class="grid sm:grid-cols-2 gap-6">
 <div class="card chamfer p-7 reveal">
-<<<<<<< Updated upstream
-<label class="switch" id="egg-row"><input id="set-egg" type="checkbox" checked><span class="track"></span><span class="font-display font-semibold">Jahreszeiten-Theme</span></label><p class="text-sm muted mt-4 leading-relaxed">Passt Farben und dezente Partikel an die aktuelle Jahreszeit an. Standard: aus.</p><p id="egg-note" class="font-mono text-xs mt-3 hidden" style="color:var(--warn)">Jahreszeiten-Theme</p></div><div class="card chamfer p-7 reveal"><label class="switch"><input id="set-weather" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Wetter-Atmosphäre</span></label><p class="text-sm muted mt-4 leading-relaxed">Standortfreigabe nötig; Regen und Schnee werden im Header animiert. Wetterdaten: Open-Meteo.</p>
-=======
-<label class="switch" id="season-row"><input id="set-season" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Jahreszeiten-Theme</span></label><p class="text-sm muted mt-4 leading-relaxed">Aktiviert automatisch die Farben und natürliche Partikel der aktuellen Jahreszeit. Standard: an.</p></div><div class="card chamfer p-7 reveal"><label class="switch"><input id="set-weather" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Wetter-Atmosphäre</span></label><p class="text-sm muted mt-4 leading-relaxed">Standortfreigabe nötig; Regen und Schnee werden im Header animiert. Wetterdaten: Open-Meteo.</p>
->>>>>>> Stashed changes
+<label class="switch" id="season-row"><input id="set-season" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Jahreszeiten-Theme</span></label><p class="text-sm muted mt-4 leading-relaxed">Passt Farben und dezente Partikel an die aktuelle Jahreszeit an. Herbst: fallende Blätter. Wetter-Atmosphäre ist zurzeit deaktiviert.</p></div>
 </div>
 <div class="card chamfer p-7 reveal">
 <label class="switch"><input id="set-motion" type="checkbox"><span class="track"></span><span class="font-display font-semibold">Bewegungen reduzieren</span></label>
@@ -355,16 +351,12 @@
       installShowcase(theme);
     }
   }
-<<<<<<< Updated upstream
   function syncEgg() {
+    // Weather feature paused — kept as no-op hook for future use.
     var st = LT.loadSettings();
     var aura = document.getElementById('cursor-aura');
-    if (st.cursorEgg && st.themeId === 'original' && !st.reducedMotion) LT.reinitAura();
-    else if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
-    LT.applyWeather(st.weatherEgg);
+    if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
   }
-=======
->>>>>>> Stashed changes
   var editingId = null;
   function editorColors() {
     var out = {};
@@ -550,7 +542,6 @@
             var st = LT.loadSettings();
             if (typeof data.settings.reducedMotion === 'boolean') st.reducedMotion = data.settings.reducedMotion;
             if (typeof data.settings.seasonalTheme === 'boolean') st.seasonalTheme = data.settings.seasonalTheme;
-            if (typeof data.settings.weatherEgg === 'boolean') st.weatherEgg = data.settings.weatherEgg;
             LT.saveSettings(st);
             LT.refresh();
             syncToggles();
@@ -607,7 +598,6 @@
   function syncToggles() {
     var st = LT.loadSettings();
     $('set-season').checked = st.seasonalTheme !== false;
-    $('set-weather').checked = !!st.weatherEgg;
     $('set-motion').checked = !!st.reducedMotion;
     var customActive = st.themeId !== 'original';
     $('set-season').disabled = false;
@@ -767,7 +757,6 @@
     LT.refresh();
 
   });
-  $('set-weather').addEventListener('change', function () { var st = LT.loadSettings(); st.weatherEgg = $('set-weather').checked; LT.saveSettings(st); LT.refresh(); LT.applyWeather(st.weatherEgg); });
   $('set-motion').addEventListener('change', function () {
     var st = LT.loadSettings();
     st.reducedMotion = $('set-motion').checked;
