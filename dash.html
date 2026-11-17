@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>LOKRO Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+   @font-face {
+    font-family: "Anurati";
+    src: url("/assets/fonts/anurati.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      background:
+        linear-gradient(
+          rgba(0,0,0,.35),
+          rgba(0,0,0,.72)
+        ),
+        url("https://images.unsplash.com/photo-1794259872929-14231c1c9b02?q=80&w=1920&auto=format&fit=crop");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .gs {
+      font-family: "Google Sans", sans-serif;
+    }
+
+    .anturi {
+      font-family: "Anurati", sans-serif;
+    }
+
+    .clock {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .glass {
+      background: rgba(255,255,255,.09);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen w-full text-white gs">
+
+  <main class="min-h-screen w-full flex flex-col">
+
+    <!-- HEADER -->
+    <header class="min-h-[18vh] flex flex-col items-center justify-center px-5 py-8 text-center">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
+        <span id="greet">Good Afternoon</span>, Lokro
+      </h1>
+      <p class="text-md sm:text-lg md:text-xl font-bold tracking-tight text-slate-600">What's on your mind today?</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 pb-12 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8">
+
+      <!-- CLOCK CARD -->
+      <div class="glass rounded-2xl p-6 sm:p-8 w-full md:w-auto flex flex-col items-center justify-center">
+
+        <p
+          id="weekday"
+          class="anturi text-6xl sm:text-7xl md:text-8xl text-center bg-gradient-to-r from-red-400 to-black bg-clip-text text-transparent"
+        >
+          FRIDAY
+        </p>
+
+        <div class="w-20 h-1 bg-gradient-to-r from-red-300 via-gray-500 to-black mt-2 rounded-full"></div>
+
+        <div class="glass mt-6 rounded-xl px-6 py-4 flex items-center justify-center gap-2">
+          <span id="hours" class="text-4xl sm:text-5xl font-bold clock">14</span>
+
+          <span class="text-3xl font-bold animate-pulse">:</span>
+
+          <span id="minutes" class="text-4xl sm:text-5xl font-bold clock">15</span>
+
+          <span id="seconds" class="text-lg text-white/60 clock self-end mb-1">00</span>
+        </div>
+
+        <p id="date" class="text-sm text-white/60 mt-4"></p>
+        <p id="note" class="text-sm text-white/80 mt-4"></p>
+      </div>
+
+      <!-- INFORMATION CARDS -->
+      <div class="w-full flex flex-col gap-4">
+
+
+<!-- GITHUB CARD -->
+<div class="glass rounded-2xl p-4 sm:p-5 flex items-center gap-4 min-h-24">
+
+  <!-- GITHUB SVG -->
+  <div class="rounded-xl bg-black/50 p-3 flex items-center justify-center shrink-0">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="w-8 h-8 text-white"
+      aria-label="GitHub"
+      role="img"
+    >
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.67 1.25 3.32.96.1-.74.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.96 10.96 0 0 1 5.73 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.68 5.38-5.24 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+      />
+    </svg>
+  </div>
+
+  <div class="w-px h-12 bg-white/30 shrink-0"></div>
+
+  <div class="min-w-0 flex-1 flex flex-col gap-2">
+    <p class="text-base sm:text-xl font-bold leading-snug">
+      You've made
+      <span class="text-green-400">1,960</span>
+      commits to GitHub this year.
+    </p>
+
+    <div class="h-px w-full bg-white/30"></div>
+
+    <div class="flex items-end justify-between gap-2">
+      <p class="text-xs sm:text-sm text-white/50">
+        Keep building. Keep creating.
+      </p>
+
+      <span class="text-[11px] font-medium text-white/40 whitespace-nowrap shrink-0">
+        now
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<!-- NOTIFICATION STACK CSS -->
+<style>
+  .notification-stack {
+    position: relative;
+    isolation: isolate;
+    margin-bottom: 14px;
+  }
+
+  .notification-stack::before,
+  .notification-stack::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    height: 100%;
+    border-radius: 16px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: -1;
+  }
+
+  .notification-stack::before {
+    bottom: -7px;
+    opacity: .75;
+  }
+
+  .notification-stack::after {
+    bottom: -14px;
+    left: 24px;
+    right: 24px;
+    opacity: .4;
+  }
+
+  .notification-main {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+
+<!-- YOUTUBE NOTIFICATION STACK -->
+<div class="notification-stack">
+
+  <div class="notification-main glass rounded-2xl p-4 sm:p-5 flex items-center gap-4 min-h-24">
+
+    <!-- YOUTUBE SVG -->
+    <div class="rounded-xl bg-red-600/50 p-3 flex items-center justify-center shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        class="w-8 h-8 text-white"
+        viewBox="0 0 16 16">
+        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+      </svg>
+    </div>
+
+    <div class="w-px h-12 bg-white/30 shrink-0"></div>
+
+    <div class="min-w-0 flex-1 flex flex-col gap-2">
+      <p class="text-base sm:text-xl font-bold leading-snug">
+        New follower! You're at
+        <span class="text-red-500">10.6k</span>
+        now! Keep pushing!
+      </p>
+
+      <div class="h-px w-full bg-white/30"></div>
+
+      <div class="flex items-end justify-between gap-2">
+        <p class="text-xs sm:text-sm text-white/50">
+          Keep growing your fanbase
+        </p>
+
+        <span class="text-[11px] font-medium text-white/40 whitespace-nowrap shrink-0">
+          4h ago
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+  
+    <!-- NOTIFICATION STACK CSS -->
+<style>
+  .notification-stack2 {
+    position: relative;
+    isolation: isolate;
+    margin-bottom: 14px;
+  }
+
+  .notification-stack2::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    height: 100%;
+    border-radius: 16px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: -1;
+  }
+
+  .notification-stack2::before {
+    bottom: -7px;
+    opacity: .75;
+    z-index: -1;
+  }
+
+  .notification-main2 {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
+
+<!-- CALENDAR NOTIFICATION STACK -->
+<div class="notification-stack2">
+
+  <div class="notification-main2 glass rounded-2xl p-4 sm:p-5 flex items-center gap-4 min-h-24">
+
+    <!-- CALENDAR SVG -->
+    <div class="rounded-xl bg-blue-500/50 p-3 flex items-center justify-center shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8 text-white" viewBox="0 0 16 16">
+  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+  <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+</svg>
+    </div>
+
+    <div class="w-px h-12 bg-white/30 shrink-0"></div>
+
+    <div class="min-w-0 flex-1 flex flex-col gap-2">
+      <p class="text-base sm:text-xl font-bold leading-snug">
+        Remember to keep going with your 
+        <span class="text-blue-500">gym schedule</span>
+        ! Keep yourself healthy
+      </p>
+
+      <div class="h-px w-full bg-white/30"></div>
+
+      <div class="flex items-end justify-between gap-2">
+        <p class="text-xs sm:text-sm text-white/50">
+          Keep training your body
+        </p>
+
+        <span class="text-[11px] font-medium text-white/40 whitespace-nowrap shrink-0">
+          Wednesday
+        </span>
+      </div>
+    </div>
+
+</div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const weekdays = [
+      "SUNDAY",
+      "MONDAY",
+      "TUESDAY",
+      "WEDNESDAY",
+      "THURSDAY",
+      "FRIDAY",
+      "SATURDAY"
+    ];
+    const notes = [
+     "Enjoy the rest of your weekend!",
+     "Remember to go to the Gym",
+     "Hope you had a lovely day!",
+     "Keep pushing! Only 2 Days left till weekend!",
+     "Tommorrow is the last day before the weekend, maybe go to the gym one more time?",
+     "Last day of the week! Keep the good work up!",
+     "Weekend! Maybe go to the gym at 8 pm?"
+     ];
+
+    function updateClock() {
+      const now = new Date();
+
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+
+      document.getElementById("hours").textContent =
+        String(hour).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(minute).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(second).padStart(2, "0");
+
+      document.getElementById("weekday").textContent =
+        weekdays[now.getDay()];
+      
+      document.getElementById("note").textContent =
+        notes[now.getDay()];
+
+      document.getElementById("date").textContent =
+        new Intl.DateTimeFormat("en-US", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(now);
+
+      let greeting = "Good Evening";
+
+      if (hour >= 5 && hour < 12) {
+        greeting = "Good Morning";
+      } else if (hour >= 12 && hour < 18) {
+        greeting = "Good Afternoon";
+      }
+
+      document.getElementById("greet").textContent = greeting;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
+</body>
+</html>
+

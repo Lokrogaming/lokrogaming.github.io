@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+@font-face {
+    font-family: "Anurati";
+    src: url("https://example.lokro.dev/anturi/otf.otf") format("opentype");
+}
+
+body {
+    background: #111;
+    color: white;
+    padding: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1 id="result">LOKRO FONT TEST</h1>
+<p id="status">Font wird geprüft ...</p>
+
+<script>
+(async () => {
+    const font = new FontFace(
+        "AnuratiTest",
+        'url("https://example.lokro.dev/anturi/otf.otf")'
+    );
+
+    try {
+        await font.load();
+        document.fonts.add(font);
+
+        document.getElementById("result").style.fontFamily = "AnuratiTest";
+        document.getElementById("status").textContent =
+            "Font geladen: " + font.status;
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "FEHLER: " + error.message;
+    }
+})();
+</script>
+
+</body>
+</html>
+
