@@ -555,7 +555,7 @@ input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }
   }
 }
 
-/* Partner ticker — scrollender „Partnered with“-Band */
+/* Partner ticker — endless „Partnered with“ scroll */
 .partner-ticker {
   position: relative;
   overflow: hidden;
@@ -568,7 +568,7 @@ input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }
   display: flex;
   gap: 2rem;
   padding: 0.6rem 0;
-  animation: partnerScroll 22s linear infinite;
+  animation: partnerScroll 30s linear infinite;
   will-change: transform;
 }
 .partner-item {
