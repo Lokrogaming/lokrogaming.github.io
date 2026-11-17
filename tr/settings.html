@@ -330,16 +330,11 @@
       installShowcase(theme);
     }
   }
-<<<<<<< Updated upstream
   function syncEgg() {
-    var st = LT.loadSettings();
-    var aura = document.getElementById('cursor-aura');
-    if (st.cursorEgg && st.themeId === 'original' && !st.reducedMotion) LT.reinitAura();
-    else if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
-    LT.applyWeather(st.weatherEgg);
+    // Weather feature paused — no-op.
+    var aura = document.getElementById("cursor-aura");
+    if (aura && aura.parentNode) aura.parentNode.removeChild(aura);
   }
-=======
->>>>>>> Stashed changes
   var editingId = null;
   function editorColors() {
     var out = {};

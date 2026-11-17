@@ -183,7 +183,11 @@
     var root = document.documentElement;
     var month = new Date().getMonth();
     var season = month >= 2 && month <= 4 ? 'spring' : month >= 5 && month <= 7 ? 'summer' : month >= 8 && month <= 11 ? 'autumn' : 'winter';
-    if (enabled) {
+    if (motionReduced()) {
+      root.removeAttribute('data-season');
+      var old = document.querySelector('.seasonal-atmosphere');
+      if (old) old.remove();
+    } else if (enabled) {
       root.setAttribute('data-season', season);
       if (!document.querySelector('.seasonal-atmosphere')) {
         var layer = document.createElement('div'); layer.className = 'seasonal-atmosphere'; layer.setAttribute('aria-hidden', 'true');
