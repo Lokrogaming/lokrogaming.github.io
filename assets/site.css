@@ -926,3 +926,41 @@ html[data-season="winter"] { --season-color: #b8dcff; --season-glow: rgba(168, 2
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* Ticker hover: stehen bleiben */
+.partner-ticker:hover .partner-track {
+  animation-play-state: paused;
+}
+
+/* Namen als Links */
+.partner-link {
+  color: var(--fg);
+  text-decoration: none;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+.partner-link .name {
+  color: inherit;
+}
+
+/* Unterstrich fährt von links nach rechts beim Hover */
+.partner-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width .25s ease;
+}
+.partner-link:hover::after {
+  width: 100%;
+}
+.partner-link:hover .name {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
