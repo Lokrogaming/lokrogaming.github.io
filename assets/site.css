@@ -255,6 +255,7 @@ html[data-weather="snow"] header::after { background-image: radial-gradient(circ
 @keyframes atmosphere-fall { to { transform: translate3d(6vw, 115vh, 0) rotate(300deg); } }
 @keyframes weather-drift { to { background-position: 40px 80px; } }
 @media (prefers-reduced-motion: reduce) { .seasonal-particle, .weather-particle, html[data-weather] header::after { animation: none !important; } }
+html[data-motion="reduced"] .seasonal-particle, html[data-motion="reduced"] .weather-particle { animation: none !important; }
 
 /* LOKRO 2027 — unified page system */
 :root {
