@@ -563,6 +563,7 @@ input[type="color"].color-field:disabled { opacity: .4; cursor: not-allowed; }
   border: 1px solid var(--border);
   border-left: 0;
   border-right: 0;
+  margin-top: 4rem; /* Platz für den fixed Header (h-16 = 64px) */
 }
 .partner-track {
   display: flex;
